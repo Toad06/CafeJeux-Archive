@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="fr" xml:lang="fr">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+	<title>AlphaBounce - Le jeu web : L'espace infini et plus si affinité !</title>
+
+	<meta name="author" content="Motion-Twin"/>
+	<meta http-equiv="content-language" content="fr"/>
+	<meta name="keywords" content="casse brique, arkanoid, aventure, en ligne, infini"/>
+	<meta name="description" content="Un jeu de casse-brique et d'aventure avec une infinité de niveaux."/>
+
+	<link href="/favicon.ico" rel="SHORTCUT ICON"/>
+	<link href="/css/style.css.gz?v=30" type="text/css" rel="stylesheet"/>
+	<!--[if lt IE 7]>
+		<link href="/css/ie6.css.gz?v=30" type="text/css" rel="stylesheet"/>
+	<![endif]-->
+	<!--[if IE]>
+		<link href="/css/ie.css.gz?v=30" type="text/css" rel="stylesheet"/>
+	<![endif]--><script type="text/javascript" src="//data.twinoid.com/js/259/std.js"></script>
+	<script type="text/javascript" src="/js/app.js.gz?v=5"></script>
+
+	<script type="text/javascript">
+		var isPlaying = false;
+		//<![CDATA[
+
+		function openBank(){
+			if (isPlaying)
+				return;
+			if (window.parent == window){
+				document.getElementById('iframe').src = '/user/missions';
+				var onCashClose = (function(){ document.location = '/'; });
+				mt.js.Twinoid.call('askCashFrame',["site=29;userId=1425575;m=fuel;lang=fr;s=BrJ5aHPURGGFw9vwSQKSzcRMkmczD7nW;k=7d53b05c2eb8819b4b813634adebaf47",onCashClose]);
+			}
+			else
+				window.parent.openBank();
+		}
+		//]]>
+	</script>
+	
+</head>
+
+	
+	<body id="inner">
+
+		<a href="/" class="rescue" target="_top">Afficher le site en entier</a>
+
+		<div id="content">
+			<div id="menu">
+					<ul>
+						<li><a href="/user/missions">Missions</a></li>
+						<li><a href="/user/1425575">Ma page</a></li>
+						<li><a href="/user/ranking?mypos=1">Classement</a></li>
+						<li class="active"><a href="javascript:openBank();">Banque</a></li>
+						<li><a href="/tid/forum" target="_top">Forum</a></li>
+						
+						
+						
+						
+					</ul>
+							</div>
+
+			<div id="section">
+				
+				
+
+<h1 class="noMarg"><strong>Carte bancaire</strong> ou Paypal</h1>
+
+<div class="bank">
+
+	
+	<a href="/bank" class="back">Retour à la banque Interstellaire</a>
+
+
+	<div class="help">Le paiement par carte bancaire ou via Paypal est le moyen le plus <b>simple</b> et le plus <b>intéressant</b>
+	pour obtenir des capsules d'hydrogène solide.</div>
+
+	<ul class="cb">
+		<li>
+			<a href="/bank/37/cbGo?choice=0">
+				<span class="value">
+	<span class="fuel" title="100 capsules d'Hydrogène Solide">100 <img alt="" src="/img/icons/small_fuel.gif"/></span>
+</span>
+				<img alt="CB 5 euros" src="/img/bank/cb_5.gif"/>
+			</a>
+		</li><li>
+			<a href="/bank/38/cbGo?choice=0">
+				<span class="value">
+	<span class="fuel" title="350 capsules d'Hydrogène Solide">350 <img alt="" src="/img/icons/small_fuel.gif"/></span>
+</span>
+				<img alt="CB 15 euros" src="/img/bank/cb_15.gif"/>
+			</a>
+		</li><li>
+			<a href="/bank/39/cbGo?choice=0">
+				<span class="value">
+	<span class="fuel" title="1200 capsules d'Hydrogène Solide">1200 <img alt="" src="/img/icons/small_fuel.gif"/></span>
+</span>
+				<img alt="CB 50 euros" src="/img/bank/cb_50.gif"/>
+			</a>
+		</li>
+	</ul>
+
+	<div class="clear"></div>
+	<div class="infos">
+		<dl class="faq">
+			<dt>Quels sont les risques à donner mon numéro de carte ici ?</dt>
+			<dd>A aucun moment, pendant la transaction, nous n'avons connaissance du numéro de votre carte. Toutes les informations sont cryptées et envoyées directement à la Banque Postale. Celle-ci nous répond simplement si oui ou non le paiement est validé.</dd>
+
+			<dt>Je dispose d'un compte Paypal&trade;</dt>
+			<dd>Vous pourrez choisir l'option de paiement par Paypal&trade; dès la page suivante, après le choix du montant désiré.</dd>
+
+			<dt>Je n'ai pas de carte bancaire ou elle ne fonctionne pas ici !</dt>
+			<dd>Il vous est possible d'opter pour une <a href="/bank/audio">solution de paiement Audiotel</a> qui ne nécessite aucune carte bancaire.</dd>
+
+			<dt>J'ai d'autres questions...</dt>
+			<dd>Vous pouvez <a href="http://motion-twin.fr/conso.html" target="_blank">consulter la page d'aide concernant les achats en ligne</a> :)</dd>
+			<dt>En cas de problème</dt>
+			<dd>Vous pouvez <a href="http://support.motion-twin.com/?site=ab;uname=Toad06;email=null;code=null" target="_blank">contacter le support technique</a>.</dd>
+
+		</dl>
+		<br/>
+	</div>
+</div>
+
+			</div>
+		</div>
+
+
+
+		<script type="text/javascript">
+		//<![CDATA[
+
+		if (window.parent == window){
+			document.body.className = "popup";
+		}
+		else {
+			parent.iframe_location('/bank/cb');
+			document.body.onmousemove = parent.iframe_mousemove;
+		}
+		//]]>
+		</script>
+
+
+		
+	</body>
+</html>
+
+
+
+

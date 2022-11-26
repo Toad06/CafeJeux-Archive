@@ -1,0 +1,46 @@
+<fill id="main"><![CDATA[
+<div class="sponsor">
+	<h1><strong>faites connaître</strong> caféjeux</h1>
+
+	<a href="#user/sponsor" class="button b_back" onclick="js.XmlHttp.get('user/sponsor',this); return false;">Retour au parrainage</a>
+
+	<h2><strong>La zone</strong> des webmasters</h2>
+
+	<p>
+		Insérez le code <em>HTML</em> ci-dessous dans les pages de votre site Internet là où
+		vous souhaitez afficher l'animation.
+	</p>
+	<p>
+		Les personnes qui cliqueront sur une de ces animations sur votre site puis s'inscriront 
+		à CaféJeux seront automatiquement parrainées par vous.
+	</p>
+
+	<h3><strong>Animation</strong> carrée</h3>
+
+	<p>Placez ce code dans votre page :</p>
+	<pre>&lt;script type="text/javascript" 
+src="http://www.cafejeux.com/sponsor/embed.js?sz=230x200;ref={ARCHIVE_USERNAME}"&gt;&lt;/script&gt;</pre>
+
+	<div id="btn230x200">
+		<a href="#" class="button" onclick="js.Utils.setClass('anim230x200',''); js.Utils.setClass('btn230x200','hidden'); return false;">Aperçu de l'animation</a>
+	</div>
+
+	<div class="hidden" id="anim230x200">
+		<a href="#" class="button" onclick="js.Utils.setClass('anim230x200','hidden'); js.Utils.setClass('btn230x200',''); return false;">Masquer l'aperçu</a>
+		<div class="swf" id="swf_swf230x200">
+			Votre lecteur Flash n'est pas à jour. <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&Lang=French&P5_Language=French" target="_blank">Installer la dernière version</a>
+		</div>
+		<script type="text/javascript" id="jsid-1">
+		var so = new SWFObject("swf/promo230x200.swf","swf230x200","230","200","0","#000000");
+		so.addParam("AllowScriptAccess","always");
+		so.addParam("scale","noscale");
+		so.addParam("menu","false");
+		so.write("swf_swf230x200");
+		</script>
+	
+	</div>
+
+
+</div>
+]]>
+</fill>

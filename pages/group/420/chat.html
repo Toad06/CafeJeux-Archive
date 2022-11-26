@@ -1,0 +1,63 @@
+<script>js.XmlHttp.rmTipCache("smileytip_chatInput_group_420");</script>
+<back>group/420?go=chat</back>
+<menu id="groupMenu" selected="chat"></menu>
+<fill chat="group_420" id="groupMain">
+	<h2><strong>Bavardages autour</strong> d'un café</h2>
+
+
+	<div class="groupChat">
+		<table>
+		<tr>
+			<td class="content">
+				<div id="history"></div>
+				<div id="input">
+					<form onsubmit="js.App.sendChatMessage( 'group_420', this.chatInput ); return false;" autocomplete="off">
+						<input class="field" type="text" id="chatInput"/>
+						<div class="hidden" id="currentColor"><div class="col"></div></div><a class="smileyButton" onclick="if( mt.js.Tip.lastRef == this ){ mt.js.Tip.hide(); } else { js.XmlHttp.tipCache('smileyTip?id=st_14331;input=chatInput;room=group_420','smileytip_chatInput_group_420',this); }" id="st_14331"><img alt="" src="img/icons/small_smiley.gif"/></a>
+		<script id="jsid-1">
+			js.Utils.setClass('currentColor','color_'+js.App.getChatColor('group_420'));
+		</script>
+	
+						<input class="button" type="submit" id="chatSubmit" value="Dire"/>
+					</form>
+				</div>
+			</td>
+			<td class="users">
+				<div class="gtable" id="chat_rooms">
+		<div class="swf" id="swf_rooms">
+			Votre lecteur Flash n'est pas à jour. <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&Lang=French&P5_Language=French" target="_blank">Installer la dernière version</a>
+		</div>
+		<script type="text/javascript" id="jsid-2">
+		var so = new SWFObject("swf/rooms.swf?v=20100928162820","rooms","420","350","0","null");
+		so.addParam("AllowScriptAccess","always");
+		so.addParam("scale","noscale");
+		so.addParam("menu","false");
+			so.addParam("wmode","transparent");
+so.addVariable("gid","420");
+so.addVariable("me","18269");
+so.addVariable("raw","IYR8meGmcj-Uyavut9GCJFILGrVYaZapQ1aataeXiUJaqWd6DqaeLsjiWemagBuabjqItmndadj1aasuiEmfdadj1aar4H0W0mamNuabjeGJcqWaYDqaeLIjeWKmamNuabjyIqmjdadj1aWkPrjaGdaqF1aWkPXjiGZbqK9qmfQOsxiaWejhuddVyeKIftbqK9qmqwqswiAmbct1aXbzrjqHOWejpudefNeMcgJaqK9qmqwWsziEmfct1aXbBrjKHWWujpudeiWeMsjaWujpudeDIeNshdbqw1aXisrjGHSWejdudffmeMIfZaqx1aW71XjqHCWufDqmB4OsuiBmbb7udafqeKYbmfbZudiL8eLcftbqB1aYjFrhsambb3udiMaeKYdmfbtuddVzeKIfZbqK9qmJcOsqimWemagNuabjeGdaqluabhIgdbqWaYDqmqwir8HWWemagBudekFeKcgJcqWaYDqmV1assiKtbqF1aasqiBmjdadj1a0sIGabeFiumndadn1aY-Bbhscmbdadn1aYD_HhcgZbqF1aYj4rjiGtbqK9qnfmuaarfIbmba_b-aa");
+so.addVariable("date","{ARCHIVE_TABLE_DATETIME}");
+so.addVariable("chat","group_420CMfEH6Ceji6XNeDDPgUNe6eKGZW2FgOd");
+so.addVariable("avatarurl","swf/avatar.swf?v=20100928162820");
+so.addVariable("maxusers","2");
+so.addVariable("seed","92101");
+		so.write("swf_rooms");
+		</script>
+	
+				</div>
+				<a href="#group/420/editRoom" class="button b_group" onclick="js.XmlHttp.get('group/420/editRoom',this); return false;">Déplacer les meubles</a>
+			</td>
+		</tr>
+		</table>
+		<div class="row">
+			<div class="inputCheck">
+				<input checked="checked" type="checkbox" onchange="js.XmlHttp.get('group/420/watchChat?v='+this.checked);" id="chat_watch"/>
+				<label for="chat_watch">Me prévenir en cas de nouveaux messages sur ce chat</label>
+			</div>
+		</div>
+
+		<div class="clear"></div>
+
+
+	</div>
+</fill>

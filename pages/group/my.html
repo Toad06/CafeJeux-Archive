@@ -1,0 +1,62 @@
+<fill id="main">
+	
+		<h1><strong>Les tables</strong> du café</h1>
+		<ul class="tabs">
+			<li class="selected"><a href="#group/my" onclick="js.XmlHttp.get('group/my',this); return false;">Accueil</a></li>
+			<li><a href="#group" onclick="js.XmlHttp.get('group',this); return false;">Rejoindre une table</a></li>
+			<li><a href="#group/create" onclick="js.XmlHttp.get('group/create',this); return false;">Créer une table</a></li>
+			<li><a href="#group/list" onclick="js.XmlHttp.get('group/list',this); return false;">Liste des tables</a></li>
+		</ul>
+	
+	<img class="art" alt="Table de jeu" src="img/artworks/screen_chat.gif" title="Table du Café Jeux"/>
+
+	<p>
+		Les joueurs peuvent se rejoindre autour d'une table pour discuter entre eux (chat et forum)
+		et s'affronter sur les jeux de leur choix !
+	</p>
+	<p class="help">
+		Un joueur peut faire partie de 8 tables au maximum.
+	</p>
+	<p>
+		Pour tout savoir sur les tables et leur fonctionnement, vous pouvez <a href="#help?section=group" onclick="js.XmlHttp.get('help?section=group',this); return false;">consulter l'aide</a> à tout moment.
+	</p>
+	<div class="clear"></div>
+
+		<a href="#group" class="button b_join" onclick="js.XmlHttp.get('group',this); return false;">J'aimerais <strong>rejoindre</strong> une table !</a>
+		<a href="#group/create" class="button" onclick="js.XmlHttp.get('group/create',this); return false;">Je veux <strong>créer</strong> ma table (
+		<span class="tokens" onmouseover="mt.js.Tip.show(this,'Les sucres roux sont achetés à la banque et conservés jusqu\'à leur utilisation',null)" onmouseout="mt.js.Tip.hide()">30<img alt="sucre(s)" src="img/icons/small_bought.gif"/></span>
+	)</a>
+
+		<h2><strong>Mes classements</strong> de table</h2>
+		
+		<div class="tableHeader"></div>
+	
+		<table class="table tableRanking">
+			<tr>
+				<th>&nbsp;</th>
+				<th>Table</th>
+				<th>Score</th>
+			</tr>
+			<tr onclick="js.XmlHttp.get('group/420',this);">
+				<td class="logo">
+					<div onmouseover="mt.js.Tip.show(this,'&lt;div class=\'groupLogo\'&gt;&lt;img src=\'img/artworks/entrance_small.jpg\' alt=\'\'/&gt;&lt;/div&gt;',null)" onmouseout="mt.js.Tip.hide()"><img alt="[logo]" src="img/artworks/entrance_small.jpg"/></div>
+				</td><td>
+					Table des Habitués
+				</td>
+				<td class="score">
+
+						<em>Aucun score</em>
+								</td>
+			</tr><tr onclick="js.XmlHttp.get('group/6951',this);">
+				<td class="logo">
+					
+				</td><td>
+					CaféJeux 2007-2020
+				</td>
+				<td class="score">
+
+						<em>Aucun score</em>
+								</td>
+			</tr>
+		</table>
+</fill>

@@ -1,0 +1,40 @@
+<back>group/420?go=ranking</back>
+<menu id="groupMenu" selected="ranking"></menu>
+<load>group/420/partyHistory</load>
+<fill id="groupMain">
+<![CDATA[
+
+	<div class="scores">
+		<h2><strong>Classement</strong> interne</h2><div class="gameList">
+			<div class="title">Jeux choisis:</div>
+			<ul>
+				<li>
+			<img class="gameIcon" alt="" src="games/icon/miniwar.gif"/>&nbsp;Anticorp's
+	</li>
+			</ul>
+			<div class="title">Dernière remise à zéro:</div>
+			<p class="help"><span title="Le lundi 21 avril 2014, à 17:47:53">
+			21 avril 2014
+		</span>
+	
+			</p>
+			<a href="#group/420/changeGame" class="button" onclick="js.XmlHttp.get('group/420/changeGame',this); return false;">Changer le classement</a>
+		</div>
+
+		<div class="scorePane">
+				<p>Aucun joueur classé pour le moment.</p>
+				<p class="help">
+					Pour participer à ce classement, vous devez défier d'autres joueurs sur la
+					table. Pour cela, rendez-vous sur la fiche des joueurs que vous souhaitez
+					affronter.
+				</p>
+					</div>
+		<div class="clear"></div>
+
+		<h2><strong>Historique</strong> des parties</h2>
+		<div id="partyHistory"></div>
+	</div>
+
+
+]]>
+</fill>

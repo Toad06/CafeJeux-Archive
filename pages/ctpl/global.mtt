@@ -1,0 +1,133 @@
+<macros>
+
+	<macro name="pingFailed">La connexion semble perdue : merci d'actualiser la page.</macro>
+
+	<macro name="connected">
+		<![CDATA[<img src="img/icons/large_online.gif" $$mtip(global@online)/>]]>
+	</macro>
+	<macro name="closed">
+		<![CDATA[<img src="img/icons/large_offline.gif" $$click(help?section=connection) $$mtip(global@offline)/>]]>
+	</macro>
+	<macro name="connecting">
+		<![CDATA[<img src="img/icons/large_connecting.gif" $$click(help/connection) $$mtip(global@bconnecting)/>]]>
+	</macro>
+
+	<macro name="hasParty">Vous avez déjà une partie en cours.</macro>
+	<macro name="isInQueue">Vous devez quitter la file d'attente pour pouvoir observer une partie.</macro>
+
+	<macro name="barEmpty">
+
+	</macro>
+
+	<macro name="online">
+		Vous êtes connecté au serveur du Café. Bon jeu !
+	</macro>
+	<macro name="offline">
+		<p>Vous êtes actuellement <strong>déconnecté</strong> du serveur CaféJeux !</p>
+		<p>Cliquez pour obtenir plus d'informations.</p>
+	</macro>
+	<macro name="bconnecting">
+		<p>La connexion au serveur CaféJeux est en cours, veuillez patienter...</p>
+		<p>Cliquez pour obtenir plus d'informations.</p>
+	</macro>
+	<macro name="ejected">Vous avez été éjecté du site.</macro>
+	<macro name="userFreeMoney">
+		<p>Les <strong>sucres blancs</strong> sont reçus gratuitement chaque jour.</p>
+		<p>Chaque partie jouée au café consomme <strong>1 sucre</strong>.</p>
+	</macro>
+	<macro name="userMoney">
+		<p>Les <strong>sucres roux</strong> sont achetés au bar.</p>
+		<p>Chaque partie jouée au café consomme <strong>1 sucre</strong> (les sucres blancs sont utilisés en priorité)</p>
+	</macro>
+	<macro name="userPrizeToken">
+		<p>Les <strong>Caps</strong> sont gagnées à chaque victoire.</p>
+		<p>Vous pouvez vous en servir dans la <strong>boutique Bonus</strong>.</p>
+	</macro>
+
+	<macro name="user">
+		<![CDATA[<a class="user" id="u_::_rid::" onmouseover="js.XmlHttp.userTip(this,'::_u._uid::',';gid=::_gid::')" onmouseout="js.XmlHttp.hideUserTip(this)" $$click(user/::_u._uid::)>::_u._name::</a>]]>
+	</macro>
+
+	<macro name="scoreStats">
+		<p>Pourcentage de matches amicaux remportés:</p>
+		<dl>
+			<dt>Parties gagnées</dt>	<dd>::v0::</dd>
+			<dt>Matchs nuls</dt>		<dd>::v1::</dd>
+			<dt>Parties perdues</dt>	<dd>::v2::</dd>
+		</dl>
+
+	</macro>
+
+	<macro name="groupStats">
+		<dl>
+			<dt>Défis gagnés</dt>		<dd>::v0::</dd>
+			<dt>Défis interrompus</dt>	<dd>::v1::</dd>
+			<dt>Défis perdus</dt>		<dd>::v2::</dd>
+		</dl>
+	</macro>
+
+	<macro name="msgcount">
+		<![CDATA[
+		::if (_unseen > 0)::
+			<img src="img/icons/anim_mail_loop.gif" alt=""/>
+			<span class="count">::_unseen::</span>
+		::end::
+		Messages
+		]]>
+	</macro>
+
+	<macro name="newmsg">
+		<![CDATA[
+		<a $$click(pvmsg)>
+			<img class="icon" src="::DATA::img/icons/anim_mail.gif" alt=""/>
+			::if (_f != null)::
+			<p>Vous avez un nouveau message de <strong>::_f::</strong>.</p>
+			::else::
+			<p>Vous avez un nouveau message.</p>
+			::end::
+			<p>Cliquez ici pour le lire...</p>
+		</a>
+		]]>
+	</macro>
+
+	<macro name="groupjoin">
+		<![CDATA[
+		<a $$click(group/::_group.id::/?go=recruit)>
+			<p><strong>::_uname::</strong> souhaite rejoindre votre table <strong>::_group.name::</strong>.</p>
+			<p>Cliquez ici pour accepter ou refuser</p>
+		</a>
+		]]>
+	</macro>
+
+	<macro name="multipleLoginWarning">
+		<div class="black"></div>
+		<div class="sitePopup">
+			<div class="header"></div>
+			<div class="content">
+				<p>
+					<img src="img/icons/large_offline.gif" alt=""/>
+					Vous avez été déconnecté parce que quelqu'un s'est connecté sur votre utilisateur
+					sur un autre ordinateur ou une autre fenêtre.
+				</p>
+				<a class="button" href="#" onclick="js.App.autoReconnect(); document.getElementById('multipleLoginWarning').className='hidden'; return false;">Se reconnecter</a>
+			</div>
+			<div class="footer"></div>
+		</div>
+	</macro>
+
+	<macro name="identifyFailedWarning">
+		<div class="black"></div>
+		<div class="sitePopup">
+			<div class="header"></div>
+			<div class="content">
+				<p>
+					Votre session n'est plus valide, probablement parce que vous êtes resté inactif sur le site plusieurs heures.
+					Vous devez donc relancer Café-Jeux pour pouvoir vous identifier à nouveau.
+				</p>
+				<a class="button" href="#" onclick="js.App.reboot(); return false;">Relancer Café Jeux</a>
+			</div>
+			<div class="footer"></div>
+		</div>
+	</macro>
+
+</macros>

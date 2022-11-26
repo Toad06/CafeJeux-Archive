@@ -1,0 +1,147 @@
+<back clear="1"></back>
+
+		<style class="online" id="siteBg"></style>
+		<connect host="play.cafejeux.com" port="1024" sid="CMfEH6Ceji6XNeDDPgUNe6eKGZW2FgOd"></connect>
+		<user prizeToken="{ARCHIVE_USER_PRIZE_TOKEN}" freeMoney="{ARCHIVE_USER_FREE_MONEY}" money="{ARCHIVE_USER_MONEY}"></user>
+
+
+	<fill id="cache">
+		<div class="cache">
+			<img alt="" src="img/icons/large_connecting.gif"/>
+			<img alt="" src="img/icons/large_offline.gif"/>
+			<img alt="" src="img/icons/large_online.gif"/>
+
+			<img alt="" src="img/design/tabs_hover.gif"/>
+			<img alt="" src="img/design/tabs_selected.gif"/>
+
+			<img alt="" src="img/icons/menu_play_hover.gif"/>
+			<img alt="" src="img/icons/menu_ranking_hover.gif"/>
+			<img alt="" src="img/icons/menu_mail_hover.gif"/>
+			<img alt="" src="img/icons/menu_shop_hover.gif"/>
+			<img alt="" src="img/icons/menu_bank_hover.gif"/>
+		</div>
+	</fill>
+		<blacklist set="33208;296239;307984;340881"></blacklist>
+		
+
+		<load>partnerFrame</load>
+		<sound on="0"></sound>
+<fill class="" id="siteSound">
+		<a href="#user/siteSound?v=1" class="off" onclick="js.XmlHttp.get('user/siteSound?v=1',this); return false;" onmouseover="mt.js.Tip.show(this,'&lt;p&gt;Sons désactivés.&lt;/p&gt; &lt;em&gt;CaféJeux n\'utilise que quelques sons pour vous signaler un évènement important sur le site (à votre tour de jouer, défi...etc)&lt;/em&gt;',null)" onmouseout="mt.js.Tip.hide()">
+			off
+		</a>
+	</fill>
+
+
+
+		<fill class="" id="partners">
+			<div class="title">Partenaires</div>
+			<div id="partnersContent"></div>
+		</fill>
+		
+		<fill id="drinkContainer">
+			{ARCHIVE_DRINK_COLDCUP}
+			<div class="drink {ARCHIVE_DRINK_CSS}" id="drink" onmouseover="mt.js.Tip.show(this,'&lt;img src=\'img/drinks/{ARCHIVE_DRINK_IMG}\'/&gt; {ARCHIVE_DRINK_DESC}','normalTip drinkTip')" onmouseout="mt.js.Tip.hide()"></div>
+		</fill>
+	
+		<fill id="defyContainer">
+			<div id="defy">
+				<a href="#defy" onclick="js.XmlHttp.get('defy',this); return false;" onmouseover="mt.js.Tip.show(this,'Personne ne vous propose de match amical pour le moment...',null)" onmouseout="mt.js.Tip.hide()"><img alt="" src="img/design/pixel.gif"/></a>
+			</div>
+		</fill>
+		<join watch="1" room="group_420" type="group" id="420" title="Table des Habitués"></join>
+		<join watch="1" room="group_6951" type="group" id="6951" title="CaféJeux 2007-2020"></join>
+		<fill id="menu">
+		<![CDATA[
+		<div id="menuBtnBar">
+			<a href="#play" class="iconButton ib_play" onclick="js.XmlHttp.get('play',this); return false;">Jouer au Bar</a>
+		</div>
+		<div class="hidden" id="menuBtnPlaying"></div>
+
+		<div class="buttonPack">
+			<a href="#game/rankings" class="iconButton ib_ranking" onclick="js.XmlHttp.get('game/rankings',this); return false;">Classement</a>
+			<a href="#pvmsg" class="iconButton ib_mail" onclick="js.XmlHttp.get('pvmsg',this); return false;" id="menu_pvmsg">
+		Messages
+	</a>
+			<a href="#shop" class="iconButton ib_shop" onclick="js.XmlHttp.get('shop',this); return false;">Boutique</a>
+			<a href="#bank" class="iconButton ib_bank" onclick="js.XmlHttp.get('bank',this); return false;">+ de Sucres</a>
+		</div>
+
+		<div class="clear separator"></div>
+
+		<ul class="topLevel">
+			<li><a href="#group/my" onclick="js.XmlHttp.get('group/my',this); return false;">Tables de jeu</a></li>
+				<ul class="groups">
+					<li>
+						<a href="#group/420?go=chat" class="chat" onclick="js.XmlHttp.get('group/420?go=chat',this); return false;" onmouseover="js.App.chatTip(this,'group_420');" onmouseout="mt.js.Tip.hide();">
+							<img alt="" src="img/icons/small_say.gif"/>
+						</a>
+						<a href="#group/420" onclick="js.XmlHttp.get('group/420',this); return false;">
+							Table des Habitués
+						</a>
+
+					</li><li>
+						<a href="#group/6951?go=chat" class="chat" onclick="js.XmlHttp.get('group/6951?go=chat',this); return false;" onmouseover="js.App.chatTip(this,'group_6951');" onmouseout="mt.js.Tip.hide();">
+							<img alt="" src="img/icons/small_say.gif"/>
+						</a>
+						<a href="#group/6951" onclick="js.XmlHttp.get('group/6951',this); return false;">
+							CaféJeux 2007-2020
+						</a>
+
+					</li>
+				</ul>
+			<li><a href="#news" onclick="js.XmlHttp.get('news',this); return false;">Nouveautés</a></li>
+			<li><a href="#forum" onclick="js.XmlHttp.get('forum',this); return false;">Forums</a></li>
+			<li><a href="#user/18269" onclick="js.XmlHttp.get('user/18269',this); return false;">Ma page</a></li>
+			<li><a href="#user/sponsor" onclick="js.XmlHttp.get('user/sponsor',this); return false;">Parrainage</a></li>
+			<li class="separator"></li>
+			<li><a href="#help" onclick="js.XmlHttp.get('help',this); return false;"><img alt="" src="img/icons/small_help.gif"/> Aide</a></li>
+			<li><a href="#user/logout" class="logout" onclick="js.XmlHttp.get('user/logout',this); return false;">Se déconnecter</a></li>
+		</ul>
+
+		<!--
+			<ul id="menuBtnContainer">
+				<li id="menuBtnBar"><a class="play" href="#game" onclick="js.XmlHttp.get('game',this); return false;">Jouer au bar</a></li>
+				<li id="menuBtnPlaying" class="hidden"></li>
+			</ul>
+			<ul>
+				<li><a href="#game/rankings" onclick="js.XmlHttp.get('game/rankings',this); return false;">Classements</a></li>
+				<li><a href="#shop" onclick="js.XmlHttp.get('shop',this); return false;">Bonus</a></li>
+
+				<li><a href="#group/my" onclick="js.XmlHttp.get('group/my',this); return false;">Tables de jeu</a></li>
+<mt mt:if="groups.length > 0">					<ul class="groups">
+						<li mt:foreach="group groups">
+							<a class="chat" href="#group/::group.id::?go=chat" onclick="js.XmlHttp.get('group/::group.id::?go=chat',this); return false;" onmouseover="js.App.chatTip(this,'group_::group.id::');" onmouseout="mt.js.Tip.hide();">
+								<img src="::DATA::img/icons/small_say.gif" alt=""/>
+							</a>
+							<a href="#group/::group.id::" onclick="js.XmlHttp.get('group/::group.id::',this); return false;">
+								::group.name::
+							</a>
+
+						</li>
+					</ul>
+</mt>
+				<li><a href="#news" onclick="js.XmlHttp.get('news',this); return false;">Nouveautés</a></li>
+				<li id="menu_pvmsg">
+<mt mt:if="(msgcount).unseen > 0">			<img src="::DATA::img/icons/anim_mail_loop.gif" alt=""/>
+			<span class="count">::(msgcount).unseen::</span>
+</mt>		Messages
+	</li>
+				<li><a href="#user/::user.id::" onclick="js.XmlHttp.get('user/::user.id::',this); return false;">Ma page</a></li>
+				<li><a href="#user/sponsor" onclick="js.XmlHttp.get('user/sponsor',this); return false;">Parrainage</a></li>
+				<li><a href="#bank" onclick="js.XmlHttp.get('bank',this); return false;">Plus de parties !</a></li>
+				<li><a href="#static/forum" onclick="js.XmlHttp.get('static/forum',this); return false;">Forum</a></li>
+				<li class="separator"></li>
+				<li><a href="#help" onclick="js.XmlHttp.get('help',this); return false;"><img src="::DATA::img/icons/small_help.gif" alt=""/> Aide</a></li>
+<mt mt:if="user.admin">					<li><a href="#admin" onclick="js.XmlHttp.get('admin',this); return false;" class="admin">En cuisine</a> </li>
+</mt>				<li><a href="#user/logout" onclick="js.XmlHttp.get('user/logout',this); return false;" class="logout">Se déconnecter</a></li>
+			</ul>
+			-->
+		]]>
+		</fill>
+
+
+<fill id="headBar">
+
+			Bonjour <strong>{ARCHIVE_USERNAME}</strong> !
+	</fill>

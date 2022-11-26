@@ -1,0 +1,44 @@
+<fill id="main">
+	<h1><strong>Offrir du sucre à</strong> {ARCHIVE_OTHER_USERNAME}</h1>
+
+	<p>Il faut toujours aider son voisin de table dans le besoin !</p>
+	<p class="warning">
+		ATTENTION: Vous n'obtiendrez RIEN contre votre don : il ne
+		s'agit pas d'un système d'échange géré par CaféJeux.
+		Seuls les sucres <strong>roux</strong> peuvent être donnés.
+	</p>
+
+	<form onsubmit="js.XmlHttp.post('user/{ARCHIVE_OTHER_ID}/giveMoney',this); return false;">
+		<div id="formError"></div>
+
+		
+		<div class="row">
+			<div class="label"><label for="qty">Sucres roux :</label></div>
+			<div class="input"><input class="field" name="qty" type="text" id="qty" value="1"/></div>
+			<div class="clear"></div>
+		</div>
+	
+
+		
+		<div class="row">
+			<div class="label"><label for="pass">Mon Code secret :</label></div>
+			<div class="input"><input class="field" name="pass" type="password" id="pass" value=""/></div>
+			<div class="clear"></div>
+		</div>
+	
+		<p class="help">Afin d'éviter des abus, merci d'entrer le
+		code secret de votre compte.</p>
+
+		
+		<div class="row">
+			<input class="button" name="submit" type="submit" value="Offrir à {ARCHIVE_OTHER_USERNAME}"/>
+			<div class="clear"></div>
+		</div>
+	
+	</form>
+
+	<div class="actions">
+		<a href="#user/{ARCHIVE_OTHER_ID}" class="button b_back" onclick="js.XmlHttp.get('user/{ARCHIVE_OTHER_ID}',this); return false;">Retourner à sa fiche</a>
+	</div>
+
+</fill>

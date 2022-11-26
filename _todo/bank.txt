@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="fr" xml:lang="fr">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+	<title>AlphaBounce - Le jeu web : L'espace infini et plus si affinité !</title>
+
+	<meta name="author" content="Motion-Twin"/>
+	<meta http-equiv="content-language" content="fr"/>
+	<meta name="keywords" content="casse brique, arkanoid, aventure, en ligne, infini"/>
+	<meta name="description" content="Un jeu de casse-brique et d'aventure avec une infinité de niveaux."/>
+
+	<link href="/favicon.ico" rel="SHORTCUT ICON"/>
+	<link href="/css/style.css.gz?v=30" type="text/css" rel="stylesheet"/>
+	<!--[if lt IE 7]>
+		<link href="/css/ie6.css.gz?v=30" type="text/css" rel="stylesheet"/>
+	<![endif]-->
+	<!--[if IE]>
+		<link href="/css/ie.css.gz?v=30" type="text/css" rel="stylesheet"/>
+	<![endif]--><script type="text/javascript" src="//data.twinoid.com/js/259/std.js"></script>
+	<script type="text/javascript" src="/js/app.js.gz?v=5"></script>
+
+	<script type="text/javascript">
+		var isPlaying = false;
+		//<![CDATA[
+
+		function openBank(){
+			if (isPlaying)
+				return;
+			if (window.parent == window){
+				document.getElementById('iframe').src = '/user/missions';
+				var onCashClose = (function(){ document.location = '/'; });
+				mt.js.Twinoid.call('askCashFrame',["site=29;userId=1425575;m=fuel;lang=fr;s=BrJ5aHPURGGFw9vwSQKSzcRMkmczD7nW;k=7d53b05c2eb8819b4b813634adebaf47",onCashClose]);
+			}
+			else
+				window.parent.openBank();
+		}
+		//]]>
+	</script>
+	
+</head>
+
+	
+	<body id="inner">
+
+		<a href="/" class="rescue" target="_top">Afficher le site en entier</a>
+
+		<div id="content">
+			<div id="menu">
+					<ul>
+						<li><a href="/user/missions">Missions</a></li>
+						<li><a href="/user/1425575">Ma page</a></li>
+						<li><a href="/user/ranking?mypos=1">Classement</a></li>
+						<li class="active"><a href="javascript:openBank();">Banque</a></li>
+						<li><a href="/tid/forum" target="_top">Forum</a></li>
+						
+						
+						
+						
+					</ul>
+							</div>
+
+			<div id="section">
+				
+				
+<div class="bank">
+	<div class="bank">
+
+		<div class="help">
+			La Banque Interstellaire vous permet de soutenir AlphaBounce en obtenant des
+			<strong>Capsules d'Hydrogène solide supplémentaires</strong> .
+			Les Capsules Solides non utilisées sont conservées le lendemain.
+			<div class="ad">
+				Votre premier achat vous permet de débloquer
+				<img alt="" src="/img/bank/anim_life.gif"/>&nbsp;(<img alt="" src="/img/icons/small_pad.gif"/>) en jeu !
+				Cette enveloppe supplémentaire est acquise de manière permanente.
+			</div>
+		</div>
+
+		<div class="payMeans">
+			<a href="/bank/cb"><img alt="Carte bancaire et PayPal" src="/img/bank/cat_cb.jpg"/></a>
+			<a href="/bank/audio"><img alt="Audiotel et SMS" src="/img/bank/cat_other.jpg"/></a>
+		</div>
+
+		<h1> Plus d'informations ?</h1>
+
+		<dl class="faq">
+			<dt>Les paiements sont-ils sécurisés ?</dt>
+			<dd>Les moyens de paiement proposés sont tous parfaitement sûrs. La carte bancaire bénéficie d'une connexion sécurisée avec la Banque Postale, et les appels Audiotel ne nécessitent pas d'utilisation d'une carte de paiement.</dd>
+
+			<dt>Je n'ai pas de carte bancaire, puis-je tout de même acheter ?</dt>
+			<dd>Les paiements Audiotel vous permettent d'acheter depuis n'importe quel téléphone fixe, ou depuis votre portable.</dd>
+
+			<dt>J'ai d'autres questions...</dt>
+			<dd>Vous pouvez <a href="http://motion-twin.fr/conso.html" target="_blank">consulter la page d'aide concernant les achats en ligne</a> :)</dd>
+		</dl>
+
+		<ul class="options">
+			<li>
+				<a href="http://motion-twin.fr/parents.html" target="_blank">
+				<strong>Informations pour les parents</strong>
+				Les parents de mineurs peuvent en savoir plus ici sur les solutions de paiement
+				</a>
+			</li>
+			<li>
+				<a href="http://motion-twin.fr/conso.html" target="_blank">
+				<strong>Tout savoir sur les paiements</strong>
+				Consulter toutes les informations concernant les solutions de paiement
+				</a>
+			</li>
+		</ul>
+	</div>
+
+</div>
+
+			</div>
+		</div>
+
+
+
+		<script type="text/javascript">
+		//<![CDATA[
+
+		if (window.parent == window){
+			document.body.className = "popup";
+		}
+		else {
+			parent.iframe_location('/bank');
+			document.body.onmousemove = parent.iframe_mousemove;
+		}
+		//]]>
+		</script>
+
+
+		
+	</body>
+</html>
+
+
+
+
+

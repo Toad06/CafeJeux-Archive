@@ -1,0 +1,58 @@
+<fill id="main">
+	<h1><strong>Modifier mon</strong> code secret</h1>
+
+	<a href="#user/18269" class="button b_back" onclick="js.XmlHttp.get('user/18269',this); return false;">Annuler</a>
+
+	<form onsubmit="js.XmlHttp.post('user/modifPass',this); return false;">
+		<div id="formError"></div>
+
+		<fieldset>
+			
+		<div class="row">
+			<div class="label"><label for="oldPass">Code secret actuel</label></div>
+			<div class="input"><input class="field" name="oldPass" type="password" id="oldPass" value=""/></div>
+			<div class="clear"></div>
+		</div>
+	
+		</fieldset>
+		<fieldset>
+			
+		<div class="row">
+			<div class="label"><label for="pass">Nouveau code secret</label></div>
+			<div class="input"><input class="field" name="pass" type="password" id="pass" value=""/></div>
+			<div class="clear"></div>
+		</div>
+	
+			
+		<div class="row">
+			<div class="label"><label for="pass2">Confirmation</label></div>
+			<div class="input"><input class="field" name="pass2" type="password" id="pass2" value=""/></div>
+			<div class="clear"></div>
+		</div>
+	
+			<div class="row">
+				<div class="label">
+					Qualité du code secret
+				</div>
+				<div class="input passComplexity">
+					<div id="passComplexityText"></div>
+					<div id="passComplexityContainer"><div id="passComplexityBar"></div></div>
+					<div id="passComplexityIcon"></div>
+				</div>
+			</div>
+			<div class="clear"></div>
+			<script type="text/javascript" id="jsid-1">
+			//<![CDATA[
+
+			js.FormHelper.initPass();
+			//]]>
+			</script>
+		</fieldset>
+		
+		<div class="row">
+			<input class="button" name="submit" type="submit" value="Changer de code secret"/>
+			<div class="clear"></div>
+		</div>
+	
+	</form>
+</fill>

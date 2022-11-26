@@ -1,0 +1,30 @@
+<back>user/register</back>
+<fill id="main">
+	<div class="register">
+		<h1><strong>prendre un</strong> café et jouer</h1>
+		<h2><strong>Etape 1 sur 2:</strong> votre avatar</h2>
+
+			<p>
+				Choisissez le personnage que vous incarnerez sur le Café Jeux:
+			</p>
+			<p class="help">
+				Ce personnage sera visible sur votre fiche personnelle, sur les forums et sur le chat.
+			</p>
+
+			<div class="avatarEditor">
+		<div class="swf" id="swf_flashEditor">
+			Votre lecteur Flash n'est pas à jour. <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&Lang=French&P5_Language=French" target="_blank">Installer la dernière version</a>
+		</div>
+		<script type="text/javascript" id="jsid-1">
+		var so = new SWFObject("swf/editor.swf?v=20100928162820","flashEditor","500","290","0","#403b42");
+		so.addParam("AllowScriptAccess","always");
+		so.addParam("scale","noscale");
+		so.addParam("menu","false");
+so.addVariable("url","user/register");
+	so.addVariable("avatarurl","swf/avatar.swf?v=20100928162820");
+			so.write("swf_flashEditor");
+		</script>
+	
+			</div>
+	</div>
+</fill>

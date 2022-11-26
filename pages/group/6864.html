@@ -1,0 +1,43 @@
+<back ignore="1"></back>
+<load>group/6864/{ARCHIVE_LOAD_TABLE}</load>
+<fill id="main">
+<![CDATA[
+	<h1><strong>The</strong> Kindergarten ☆☆☆</h1>
+
+	<div class="group">
+<!--		<mt mt:if="isMember">
+			<a class="tableBack" href="#group/my" onclick="js.XmlHttp.get('group/my',this); return false;">x</a>
+		</mt><mt mt:else="">
+			<a class="tableBack" href="#::from::" onclick="js.XmlHttp.get('::from::',this); return false;">x</a>
+		</mt>-->
+
+		<div class="tableLogo">
+			<div onmouseover="mt.js.Tip.show(this,'&lt;div class=\'groupLogo\'&gt;&lt;img src=\'http://img.imagesia.com/fichiers/136/2avh28_imagesia-com_136zz.jpg\' alt=\'\'/&gt;&lt;/div&gt;',null)" onmouseout="mt.js.Tip.hide()"><img alt="[logo]" src="http://img.imagesia.com/fichiers/136/2avh28_imagesia-com_136zz.jpg"/></div>
+		</div>
+
+		<ul class="tabs" id="groupMenu">
+
+			<li onclick="js.XmlHttp.get('group/6864/description',this);" menuid="description"><a>Accueil</a></li>
+
+			<li onclick="js.XmlHttp.get('group/6864/members',this);" menuid="members" title="Liste des membres">
+				<a>Membres <em>({ARCHIVE_TABLE_TOTAL_MEMBERS})</em></a>
+			</li>
+
+
+			
+				<li onclick="js.XmlHttp.get('group/6864/join',this);" menuid="join">
+					<a>
+					rejoindre !
+					</a>
+				</li>
+
+		</ul>
+
+		<div class="container" id="groupMain">
+			<div class="loading">Chargement de la table...</div>
+		</div>
+			<a href="#group" class="button b_back" onclick="js.XmlHttp.get('group',this); return false;">Retour</a>
+		<div class="clear"></div>
+	</div>
+]]>
+</fill>

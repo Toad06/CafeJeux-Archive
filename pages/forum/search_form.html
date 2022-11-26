@@ -1,0 +1,61 @@
+<fill id="main"><![CDATA[
+<div class="forumContainer">
+		<a href="#forum" class="button b_back" onclick="js.XmlHttp.get('forum',this); return false;">Retour aux forums</a>
+
+
+
+	<h1><strong>Chercher sur</strong> le forum</h1>
+
+	<form onsubmit="js.XmlHttp.post('forum/search',this); return false;">
+		
+		<div class="row">
+			<div class="label"><label for="search">Mots clés :</label></div>
+			<div class="input"><input class="field" name="search" type="text" id="search" value="{ARCHIVE_FORUM_SEARCH_REQUEST}"/></div>
+			<div class="clear"></div>
+		</div>
+	
+		<div class="row">
+			<div class="label"><label>Forum :</label></div>
+			<div class="input">
+				<select name="themeId">
+					<option value="0">Tous les forums</option>
+					<option {ARCHIVE_FORUM_SEARCH_THEME_5}value="5">Le Café Jeux</option>
+									<option {ARCHIVE_FORUM_SEARCH_THEME_2}value="2">Les tables</option>
+								</select>
+			</div>
+		</div>
+
+		
+		<div class="row">
+			<input class="button" name="submit" type="submit" value="Rechercher"/>
+			<div class="clear"></div>
+		</div>
+	
+	</form>
+		
+		<div class="tableHeader"></div>
+	
+		<table class="table tableClick threads">
+		<tr>
+			<th class="subject">Sujet</th>
+			<th class="author">Auteur</th>
+			<th class="resp">Rép.</th>
+		</tr>
+			<tr>
+				<th class="date" colspan="4"> 
+		Le  9 janvier 2018
+	 </th>
+			</tr>
+				<tr href="#forum/thread/185436" class="treaded_true" onclick="js.XmlHttp.get('forum/thread/185436',this); return false;">
+					<td class="title">Poste ton sucre 6</td>
+					<td class="user"><span class="user" id="u_78390" onmouseover="js.XmlHttp.userTip(this,'478631','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/478631" onclick="js.XmlHttp.get('user/478631',this); return false;">titeuf1996</a>
+		</span>
+	</td>
+					<td class="msgcount">358</td>
+				</tr>
+		</table>
+	
+</div>
+]]>
+</fill>

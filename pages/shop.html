@@ -1,0 +1,38 @@
+{ARCHIVE_LOAD_SUBSHOP}<fill id="main">
+	<h1><strong>Bonus</strong> CaféJeux</h1>
+
+	<ul class="tabs" id="shopMenu">
+		<li class="selected" onclick="js.XmlHttp.get('shop',this);" menuid="Home"><a>Accueil</a></li>
+		<li onclick="js.XmlHttp.get('shop/type/Sugar',this);" menuid="Sugar"><a>Sucres</a></li>
+		<li onclick="js.XmlHttp.get('shop/type/Color',this);" menuid="Color"><a>Encres</a></li>
+		<li onclick="js.XmlHttp.get('shop/type/Drink',this);" menuid="Drink"><a>Boissons</a></li>
+		<li onclick="js.XmlHttp.get('shop/type/GameOption',this);" menuid="GameOption"><a>Options de jeu</a></li>
+		<li onclick="js.XmlHttp.get('shop/type/Goodies',this);" menuid="Goodies"><a>Cadeaux</a></li>
+		<li onclick="js.XmlHttp.get('shop/type/Furniture',this);" menuid="Furniture"><a>Meubles</a></li>
+	</ul>
+
+
+	<div class="shop">
+		<div id="shopMain">
+			<img class="art" alt="" src="img/artworks/caps.gif"/>
+			<p>
+				Bienvenue dans la boutique <strong>Bonus CaféJeux</strong>. Vous pouvez utiliser
+				vos caps pour acheter ce qu'il vous plait !
+			</p>
+			<p class="help">Les Caps sont principalement gagnées en jouant au bar.</p>
+				<p>Vous possédez 
+		<span class="tokens" onmouseover="mt.js.Tip.show(this,'Vous pouvez utiliser vos caps dans la boutique.',null)" onmouseout="mt.js.Tip.hide()">{ARCHIVE_USER_PRIZE_TOKEN}<img alt="caps" src="img/icons/small_cap.gif"/></span>
+	 !</p>
+						<div class="clear"></div>
+
+			<a href="#shop/type/Goodies" class="button b_superCap" onclick="js.XmlHttp.get('shop/type/Goodies',this); return false;">Cadeaux exclusifs du Café !</a>
+			<a href="#shop/type/Furniture" class="button b_cap" onclick="js.XmlHttp.get('shop/type/Furniture',this); return false;">Déco pour les tables</a>
+			<div class="actions">
+				<a href="#help?section=prizeTokens" class="button b_help" onclick="js.XmlHttp.get('help?section=prizeTokens',this); return false;">En savoir plus sur les caps</a>
+			</div>
+
+
+		</div>
+	</div>
+
+</fill>

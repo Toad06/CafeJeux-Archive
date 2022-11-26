@@ -1,0 +1,17 @@
+<fill id="groupMain">
+	<h2>Supprimer DEFITIVEMENT la table ?</h2>
+
+	<p class="warning">
+		Attention ! Vous êtes sur le point de supprimer définitivement votre table Table des Habitués.
+		Il sera IMPOSSIBLE d'annuler cette action.
+		Aucun sucre ne sera remboursé.
+	</p>
+	<p>
+		<a href="#" class="button b_bomb" onclick="if( confirm('Vous êtes sur le point de supprimer votre table Table des Habitués. Cette action ne peut pas être annulée. Est-ce bien ce que vous souhaitez faire ?') ) js.XmlHttp.get('group/420/delete?sid=qUTibOQ0Dwk1ZUHtbaMvWsA4csl7g7bC'); event.stopPropagation(); return false;">
+			<strong>Supprimer</strong> ma table
+		</a>
+	</p>
+	<p>
+		<a href="#group/420/members" class="button" onclick="js.XmlHttp.get('group/420/members',this); return false;">Annuler</a>
+	</p>
+</fill>

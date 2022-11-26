@@ -1,0 +1,241 @@
+<resumeparty></resumeparty>
+<fill id="main">
+<![CDATA[
+	<h1><strong>Bar:</strong> Trigolo</h1>
+
+
+	<div class="game">
+		<div id="backButton">
+			<a href="#game" class="button b_back" onclick="js.XmlHttp.get('game',this); return false;">Choisir un autre jeu</a>
+		</div>
+
+		<table>
+		<tr>
+			<td class="chat">
+				<div class="av2">
+		<div class="avatar">
+		<div class="swf" id="swf_avatarViewer_89613">
+			Votre lecteur Flash n'est pas à jour. <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&Lang=French&P5_Language=French" target="_blank">Installer la dernière version</a>
+		</div>
+		<script type="text/javascript" id="jsid-1">
+		var so = new SWFObject("swf/viewer.swf?v=201009%H2820","avatarViewer_89613","48","70","0","null");
+		so.addParam("AllowScriptAccess","always");
+		so.addParam("scale","noscale");
+		so.addParam("menu","false");
+			so.addParam("wmode","transparent");
+so.addVariable("url","/");
+	so.addVariable("dir","1");
+	so.addVariable("gfx","");
+	so.addVariable("avatarurl","swf/avatar.swf?v=20100928162820");
+			so.write("swf_avatarViewer_89613");
+		</script>
+	
+		</div>
+	</div>
+					<div class="av1">
+		<div class="avatar">
+		<div class="swf" id="swf_avatarViewer_46359">
+			Votre lecteur Flash n'est pas à jour. <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&Lang=French&P5_Language=French" target="_blank">Installer la dernière version</a>
+		</div>
+		<script type="text/javascript" id="jsid-2">
+		var so = new SWFObject("swf/viewer.swf?v=20100928162820","avatarViewer_46359","48","70","0","null");
+		so.addParam("AllowScriptAccess","always");
+		so.addParam("scale","noscale");
+		so.addParam("menu","false");
+			so.addParam("wmode","transparent");
+so.addVariable("url","/user/18269");
+	so.addVariable("gfx","0,0,0,0,0,0,0,0,2,0,0,0,3,0,3,6,6,0");
+	so.addVariable("avatarurl","swf/avatar.swf?v=20100928162820");
+			so.write("swf_avatarViewer_46359");
+		</script>
+	
+		</div>
+	</div>
+								<div id="infosContainer">
+
+						<div class="start" onclick="js.XmlHttp.get('game/9/bar',this);" id="infos">
+							<a href="#game/9/bar" onclick="js.XmlHttp.get('game/9/bar',this); return false;">Cliquez ici pour jouer !</a>
+							<p class="help">Chaque partie nécessite 
+		<span class="tokens" onmouseover="mt.js.Tip.show(this,'Vous pouvez utiliser vos sucres blancs ou roux. Les blancs seront utilisés en priorité.',null)" onmouseout="mt.js.Tip.hide()">1<img alt="caps" src="img/icons/small_free.gif"/></span>
+	</p>
+						</div>
+							</div>
+
+				<div class="clear"></div>
+
+				<div class="users">
+						<div class="field1">
+							{ARCHIVE_USERNAME}
+<div class="xpBar" onmouseover="mt.js.Tip.show(this,'Niveau d\'expérience: 3 &lt;p&gt;&lt;em&gt;Cette valeur révèle le niveau d\'expertise sur ce jeu.&lt;/em&gt;&lt;/p&gt;',null)" onmouseout="mt.js.Tip.hide()">
+			<div>3</div>
+				<img alt="" src="img/design/xpBar_fill.gif" style="width : 57px"/>
+					</div>
+						</div>
+										<div class="field2"><em>pas d'adversaire</em></div>
+				</div>
+				<div class="clear"></div>
+
+				<div class="chrono">
+					<div class="field1"><em>--</em></div>
+					<div class="field2"><em>--</em></div>
+				</div>
+				<div class="clear"></div>
+
+				<div id="historyContainer">
+					<div class="fakeHistory">
+						<div class="bg"></div>
+					</div>
+				</div>
+
+			</td>
+			<td class="game" id="gameZone">
+
+					<div class="hidden" id="helpContainer">
+						<a href="#" class="button" onclick="js.Utils.setClass('helpContainer','hidden'); js.Utils.setClass('rankingContainer',''); return false;">Mon classement pour Trigolo</a>
+						
+		<div class="gameHelp">
+			<div class="gameHelpFooter">
+				<div class="gameHelpHeader">
+					<div class="title">Trigolo</div>
+					<div class="icon"><img alt="" src="games/screen/trifus.gif"/></div>
+					<div class="goal">
+						<h3>But du jeu</h3>
+						<p>convertir toutes les cartes élémentaires !</p>
+					</div>
+					
+<p>A chaque tour vous pouvez poser l'une de vos cartes.Les cartes adjacentes sont converties si votre élément est supérieur.</p>
+<ul>
+<li>Le feu est plus fort que le bois</li>
+<li>Le bois est plus fort que l'eau</li>
+<li>L'eau est plus fort que le feu</li>
+</ul>
+<p>Si les éléments sont identiques, c'est la carte ayant le numéro le plus élevé qui l'emporte.</p>
+<p>Lorsque toutes les cases sont remplies, celui qui possède le plus de cartes sur le plateau gagne la partie.</p>
+
+
+				</div>
+			</div>
+		</div>
+	
+					</div>
+					<div id="rankingContainer">
+						<a href="#" class="button" onclick="js.Utils.setClass('helpContainer',''); js.Utils.setClass('rankingContainer','hidden'); return false;">Voir l'aide du jeu</a>
+						<div class="gameHelp gameScore">
+							<div class="gameHelpFooter">
+								<div class="gameHelpHeader">
+									<table class="table">
+										<tr>
+											<th>Pos.</th>
+											<th>Joueur</th>
+											<th>Score</th>
+										</tr>
+										<tr>
+											<td>
+			199<sup>ème</sup>
+	</td>
+											<td>
+
+<span class="user" id="u_59242" onmouseover="js.XmlHttp.userTip(this,'483183','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/483183" onclick="js.XmlHttp.get('user/483183',this); return false;">skyfall</a>
+		</span>
+	
+																					</td>
+											<td>158</td>
+										</tr><tr>
+											<td>
+			200<sup>ème</sup>
+	</td>
+											<td>
+
+<span class="user" id="u_39533" onmouseover="js.XmlHttp.userTip(this,'484428','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/484428" onclick="js.XmlHttp.get('user/484428',this); return false;">syror</a>
+		</span>
+	
+																					</td>
+											<td>158</td>
+										</tr><tr>
+											<td>
+			201<sup>ème</sup>
+	</td>
+											<td>
+
+<span class="user" id="u_592" onmouseover="js.XmlHttp.userTip(this,'479319','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/479319" onclick="js.XmlHttp.get('user/479319',this); return false;">BensUncle</a>
+		</span>
+	
+																					</td>
+											<td>157</td>
+										</tr><tr class="important">
+											<td>
+			202<sup>ème</sup>
+	</td>
+											<td>
+<span class="user" id="u_49304" onmouseover="js.XmlHttp.userTip(this,'18269','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/18269" onclick="js.XmlHttp.get('user/18269',this); return false;">{ARCHIVE_USERNAME}</a>
+		</span>
+	
+																							</td>
+											<td>157</td>
+										</tr><tr>
+											<td>
+			203<sup>ème</sup>
+	</td>
+											<td>
+
+<span class="user" id="u_24987" onmouseover="js.XmlHttp.userTip(this,'149708','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/149708" onclick="js.XmlHttp.get('user/149708',this); return false;">facteurfred</a>
+		</span>
+	
+																					</td>
+											<td>156</td>
+										</tr><tr>
+											<td>
+			204<sup>ème</sup>
+	</td>
+											<td>
+
+<span class="user" id="u_59395" onmouseover="js.XmlHttp.userTip(this,'391287','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/391287" onclick="js.XmlHttp.get('user/391287',this); return false;">calily</a>
+		</span>
+	
+																					</td>
+											<td>155</td>
+										</tr><tr>
+											<td>
+			205<sup>ème</sup>
+	</td>
+											<td>
+
+<span class="user" id="u_54735" onmouseover="js.XmlHttp.userTip(this,'357812','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/357812" onclick="js.XmlHttp.get('user/357812',this); return false;">jeanfi</a>
+		</span>
+	
+																					</td>
+											<td>154</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</div>
+						<a href="#game/rankings?game=9" class="button b_score" onclick="js.XmlHttp.get('game/rankings?game=9',this); return false;">Voir le classement complet</a>
+					</div>
+					</td>
+		</tr>
+		</table>
+	</div>
+		<div class="swf" id="swf_gamePreload">
+			Votre lecteur Flash n'est pas à jour. <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&Lang=French&P5_Language=French" target="_blank">Installer la dernière version</a>
+		</div>
+		<script type="text/javascript" id="jsid-3">
+		var so = new SWFObject("games/swf/trifus.20110927104829.swf","gamePreload","1","1","0","null");
+		so.addParam("AllowScriptAccess","always");
+		so.addParam("scale","noscale");
+		so.addParam("menu","false");
+			so.addParam("wmode","transparent");
+		so.write("swf_gamePreload");
+		</script>
+	
+
+	
+]]>
+</fill>

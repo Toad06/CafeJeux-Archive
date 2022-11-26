@@ -1,0 +1,41 @@
+
+<fill id="main">
+		<h1><strong>Envoyer un mail</strong> à mes amis</h1>
+		<a href="#user/sponsor" class="button b_back" onclick="js.XmlHttp.get('user/sponsor',this); return false;">Retour au parrainage</a>
+		<p>Ce formulaire vous permet de faire découvrir le Café Jeux à vos amis en leur envoyant un mail attrayant !</p>
+	
+	<div id="formError"></div>
+
+	<form onsubmit="js.XmlHttp.post('user/mailMyFriends',this); return false;">
+		<div class="row">
+			<div class="label"><label for="email">Adresse email *</label></div>
+			<div class="input"><input class="field" name="email" type="text" id="email" value=""/></div>
+			<div class="clear"></div>
+		</div>
+	
+		
+		<div class="row rowFlex">
+			<div class="label"><label for="text">Petit message **</label></div>
+			<div class="input"><textarea name="text" id="text"></textarea></div>
+			<div class="clear"></div>
+		</div>
+			
+		<div class="row">
+			<input class="button" name="submit" type="submit" value="Envoyer mon message !"/>
+			<div class="clear"></div>
+		</div>
+	
+			</form>
+
+	<p class="dyk">
+		* Nous ne transmettrons JAMAIS les emails saisis à de méchants spammeurs
+		(ni à de gentils spammeurs si tant est que cela existe). Un seul message par
+		adresse pourra être envoyé. Si quelqu'un a déjà envoyé un mail à l'une de
+		vos connaissances, votre message ne sera pas transmis.
+	</p>
+
+	<p class="dyk">
+		** Merci de rester poli et agréable avec vos connaissances, en cas de plainte
+		nous pourrions être amenés à supprimer votre compte.
+	</p>
+</fill>

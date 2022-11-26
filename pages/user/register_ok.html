@@ -1,0 +1,43 @@
+<fill id="main">
+	<div class="welcome">
+		<h1><strong>Bienvenue</strong> {ARCHIVE_USERNAME}</h1>
+
+		<h2><strong>Inscription</strong> terminée !</h2>
+
+		<a href="#game" onclick="js.XmlHttp.get('game',this); return false;">
+		<img class="art" alt="" src="img/artworks/entrance.jpg"/>
+		</a>
+
+		<div class="intro">
+			<p class="main">
+				Toute l'équipe du Café Jeux vous souhaite la bienvenue et espère que vous passerez
+				d'agréables moments en notre compagnie !
+			</p>
+			<p>
+				Vous pouvez dès à présent découvrir nos jeux. Chaque partie nécessite 
+		<span class="tokens" onmouseover="mt.js.Tip.show(this,'Vous pouvez utiliser vos sucres blancs ou roux. Les blancs seront utilisés en priorité.',null)" onmouseout="mt.js.Tip.hide()">1<img alt="caps" src="img/icons/small_free.gif"/></span>
+	.
+				Chaque jour, <strong>nous vous offrons 
+		<span class="tokens" onmouseover="mt.js.Tip.show(this,'Les sucres blancs sont reçus gratuitement chaque jour',null)" onmouseout="mt.js.Tip.hide()">3<img alt="sucre(s)" src="img/icons/small_free.gif"/></span>
+	</strong>
+				histoire de bien commencer la journée.
+			</p>
+		</div>
+		<a href="#game" class="button b_continue" onclick="js.XmlHttp.get('game',this); return false;">Continuer vers les jeux</a>
+		<div class="clear"></div>
+
+<!--		<p>
+			Nous vous invitons également à remplir les informations présentes sur votre fiche,
+			pour que les autres joueurs du Café puissent en savoir un peu plus sur vous.
+		</p>
+		<p>
+			Si vous avez la moindre question ou que vous voulez en savoir plus, n'hésitez
+			pas à consuler l'aide, il vous suffit de cliquer sur le lien Aide présent à gauche de
+			toutes les pages.
+		</p>
+
+		<a class="button b_fight" href="#game" onclick="js.XmlHttp.get('game',this); return false;">Jouer !</a>
+		<a class="button b_histo" href="#user/::user.id::" onclick="js.XmlHttp.get('user/::user.id::',this); return false;">Voir et éditer ma fiche</a>
+		<a class="button b_help" href="#help" onclick="js.XmlHttp.get('help',this); return false;">Consulter l'aide</a>-->
+	</div>
+</fill>

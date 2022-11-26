@@ -1,0 +1,50 @@
+<back>group/6951?go=recruit</back>
+<menu id="groupMenu" selected="recruit"></menu>
+<fill id="groupMain">
+<![CDATA[
+
+		<h2><strong>Inviter</strong> un joueur du Café</h2>
+		<div id="formError"></div>
+
+		<form onsubmit="js.XmlHttp.post('group/6951/invite',this); return false;" class="invite">
+			
+		<div class="row">
+			<div class="label"><label for="name">Pseudo du joueur</label></div>
+			<div class="input">
+				<input class="field fieldContact" name="name" type="text" id="name" value=""/><a href="#user/tipContact?rid=cl_27685;field=name" class="button contactButton" onclick="js.XmlHttp.get('user/tipContact?rid=cl_27685;field=name',this); return false;" id="cl_27685" tabindex="999"> Amis</a>
+			</div>
+			<div class="clear"></div>
+		</div>
+	
+			
+		<div class="row">
+			<input class="button" name="submit" type="submit" value="Lancer l'invitation"/>
+			<div class="clear"></div>
+		</div>
+	
+		</form>
+
+		<div class="clear"></div>
+
+		<h2><strong>Inviter</strong> un ami</h2>
+		<p>
+			Si vous connaissez une personne qui n'est pas inscrite au Café, vous pouvez lui envoyer
+			un petit mail pour lui proposer de vous rejoindre, et directement à cette table !
+		</p>
+		<p class="help">
+			Tout joueur inscrit de cette façon deviendra automatiquement votre filleul.
+		</p>
+
+		<a href="#user/mailMyFriends?group=6951" class="button b_mail" onclick="js.XmlHttp.get('user/mailMyFriends?group=6951',this); return false;">Inviter un ami par email</a>
+
+		<h2><strong>Campagnes</strong> promotionnelles</h2>
+		<p>
+			Aucune campagne active pour le moment !
+		</p>
+		<p class="help">
+			Pendant la première semaine, votre annonce sera affichée régulièrement dans la page
+			"Rejoindre une Table". Ainsi, vous pouvez faire de la publicité pour votre table !
+		</p>
+		
+]]>
+</fill>

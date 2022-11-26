@@ -1,0 +1,34 @@
+<h2>Tél. Fixe (DOM/TOM)</h2>
+
+<ul class="tutorial">
+
+			<li class="call">Appelez le :<strong>0899 700 145</strong><em>1,349 € / appel + 0,337 € / mn</em><em>Durée moyenne : 1mn25. Surtaxe éventuelle depuis certains opérateurs.</em></li>
+			<li class="listen">Suivez les instructions de la boite vocale, jusqu'à ce que votre Code vous soit dicté</li>
+			<li class="hangup">Notez le code obtenu dans le champ ci-dessous puis raccrochez. Vous obtiendrez 
+	<span class="fuel" title="20 capsules d'Hydrogène Solide">20 <img alt="" src="/img/icons/small_fuel.gif"/></span>
+.</li>
+			
+</ul>
+
+<form onsubmit="return js.App.loadForm(this, 'bankCheck');" class="buy" method="post" action="/bank/audioCode">
+	<div id="bankCheck"></div>
+	<label>Code reçu : <input class="field" name="code" type="text" value=""/></label>
+	<input class="button" name="submit" type="submit" value="Valider"/>
+</form>
+
+<div class="warning">
+	<p>
+		Attention à bien noter le code que vous allez obtenir, faites par exemple attention à distinguer
+		un 0 (zéro), d'un O (la lettre).
+	</p>
+</div>
+
+<div class="clear"></div>
+
+<div class="warning">
+	<p>Les mineurs doivent obtenir l'autorisation de leurs parents avant d'utiliser un moyen de paiement.</p>
+</div>
+
+<ul class="tutorial" id="contactRw">
+	<li class="trouble">Un soucis ? Contactez tout simplement le <a href="http://support.motion-twin.com/?site=ab;uname=Toad06;email=null;method=rw_domtom" target="_blank">Support technique</a></li>
+</ul>

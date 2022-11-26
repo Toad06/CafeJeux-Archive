@@ -1,0 +1,30 @@
+<fill id="main">
+	<h1><strong>Chercher</strong> un ami</h1>
+
+	<form onsubmit="js.XmlHttp.post('user/search',this); return false;">
+		
+		<div class="row">
+			<div class="label"><label for="name">Début du pseudo :</label></div>
+			<div class="input"><input class="field" name="name" type="text" id="name" value=""/></div>
+			<div class="clear"></div>
+		</div>
+	
+		
+		<div class="row">
+			<div class="input inputCheck">
+				<input {ARCHIVE_SEARCH_ONLINE} name="online" type="checkbox" id="online" value="1"/>
+				<label for="online">uniquement les utilisateurs connectés</label>
+			</div>
+			<div class="clear"></div>
+		</div>
+	
+		
+		<div class="row">
+			<input class="button" name="submit" type="submit" value="Chercher un joueur"/>
+			<div class="clear"></div>
+		</div>
+	
+	</form>
+
+	<div id="searchResult"></div>
+</fill>

@@ -1,0 +1,24 @@
+<fill id="main">
+	
+		<h1><strong>Les tables</strong> du café</h1>
+		<ul class="tabs">
+			<li><a href="#group/my" onclick="js.XmlHttp.get('group/my',this); return false;">Accueil</a></li>
+			<li><a href="#group" onclick="js.XmlHttp.get('group',this); return false;">Rejoindre une table</a></li>
+			<li class="selected"><a href="#group/create" onclick="js.XmlHttp.get('group/create',this); return false;">Créer une table</a></li>
+			<li><a href="#group/list" onclick="js.XmlHttp.get('group/list',this); return false;">Liste des tables</a></li>
+		</ul>
+		<p>
+			Une fois votre table créée, vous pourrez y inviter vos amis, les affronter autour des
+			différents jeux, chatter et animer le forum de la table.
+		</p>
+		<p class="help">Vous serez le <strong>créateur</strong> de cette table. Vous disposerez donc de tous les droits d'un administrateur pour la gérer.</p>
+		<p class="nack">
+			La création d'une table coute 
+		<span class="tokens" onmouseover="mt.js.Tip.show(this,'Les sucres roux sont achetés à la banque et conservés jusqu\'à leur utilisation',null)" onmouseout="mt.js.Tip.hide()">30<img alt="sucre(s)" src="img/icons/small_bought.gif"/></span>
+	.
+		</p>
+		<div class="actions">
+			<a href="#bank" class="button b_token" onclick="js.XmlHttp.get('bank',this); return false;">Je veux obtenir des sucres !</a>
+			<a href="#group/my" class="button b_back" onclick="js.XmlHttp.get('group/my',this); return false;">Annuler</a>
+		</div>
+	</fill>

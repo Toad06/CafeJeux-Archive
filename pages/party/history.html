@@ -1,0 +1,22 @@
+<fill id="main">
+<![CDATA[
+	<h1><strong>Historique de</strong> mes parties</h1>
+
+	<ul class="tabs">
+		<li class="{ARCHIVE_HISTORY_1}" href="#party/history?mode=default" onclick="js.XmlHttp.get('party/history?mode=default',this); return false;"><a>Au bar</a></li>
+		<li class="{ARCHIVE_HISTORY_2}" href="#party/history?mode=friendly" onclick="js.XmlHttp.get('party/history?mode=friendly',this); return false;"><a>Amicaux</a></li>
+		<li class="{ARCHIVE_HISTORY_3}" href="#party/history?mode=group" onclick="js.XmlHttp.get('party/history?mode=group',this); return false;"><a>Sur table</a></li>
+	</ul>
+
+	<a href="#user/18269" class="button b_back" onclick="js.XmlHttp.get('user/18269',this); return false;">Retour à ma page</a>
+
+	<div class="container">
+			<p>
+				Pas de partie enregistrée dans cet historique.
+			</p>
+			</div>
+
+	<a href="party/historyCsv" class="button" target="LoginFrame" onmouseover="mt.js.Tip.show(this,'Téléchargez la liste de vos 1000 dernières parties. La liste peut être importée dans votre tableur préféré pour calculer vous même les statistiques de votre choix !',null)" onmouseout="mt.js.Tip.hide()">Experts : Historique CSV</a>
+
+]]>
+</fill>

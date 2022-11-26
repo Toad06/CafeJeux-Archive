@@ -1,0 +1,101 @@
+<macros>
+	<macro name="join"><![CDATA[
+		<div class="chatInfo">
+			<strong onmouseover="js.App.userHighlight('::_room::',0)" onmouseout="js.App.userUnHighlight('::_room::',0)">El Papa:</strong>
+			<a class="user" $$click(user/::_u._uid::)  onmouseover="js.App.userHighlight('::_room::',::_u._uid::)" onmouseout="js.App.userUnHighlight('::_room::',::_u._uid::)">::_u._name::</a>
+			vient d'arriver.
+		</div>
+	]]></macro>
+	<macro name="userlist"><![CDATA[
+		<div class="chatInfo">
+			<strong onmouseover="js.App.userHighlight('::_room::',0)" onmouseout="js.App.userUnHighlight('::_room::',0)">El Papa:</strong>
+			::if (_list.length==0)::
+				Assied toi ou tu veux, il n'y a personne à la table.
+			::else::
+				Installe toi, il y a déjà
+				::foreach _list::
+					<a class="user" $$click(user/::_u._uid::)  onmouseover="js.App.userHighlight('::_room::',::_u._uid::)" onmouseout="js.App.userUnHighlight('::_room::',::_u._uid::)">::_u._name::</a>
+				::end::
+			::end::
+		</div>
+	]]></macro>
+	<macro name="leave"><![CDATA[
+		<div class="chatInfo">
+			<strong onmouseover="js.App.userHighlight('::_room::',0)" onmouseout="js.App.userUnHighlight('::_room::',0)">El Papa:</strong>
+			<a class="user" $$click(user/::_u._uid::)  onmouseover="js.App.userHighlight('::_room::',::_u._uid::)" onmouseout="js.App.userUnHighlight('::_room::',::_u._uid::)">::_u._name::</a> est parti...
+		</div>
+	]]></macro>
+
+	<macro name="msg.bar"><![CDATA[
+		<a $$click(group/::_p._id::?go=chat)>
+			<img class="icon" src="img/icons/anim_chat.gif" alt=""/>
+			<p><strong>Table "::_p._title::"</strong></p>
+			<p><strong> ::_u._name:::</strong> ::_s::</p>
+		</a>
+	]]></macro>
+	<macro name="report"><![CDATA[
+		<div id="chatReport" class="report">
+			<h3>Signaler un comportement anormal</h3>
+			::if (_list.length == 0)::
+				<p><em>Personne n'a parlé durant les 30 dernières secondes.</em></p>
+			::else::
+				<p>Quel utilisateur a eu un comportement anormal sur le chat en cours ? (insultes, ..etc.)</p>
+				<p class="help">En cas de récidive, cet utilisateur ne pourra plus utiliser le chat durant ses parties au bar.</p>
+				<p class="warning">
+					Toute alerte abusive pourra être sanctionnée.
+				</p>
+
+				<ul>
+				::foreach _list::
+					<li><a class="user" href="#" onclick="if( confirm('Etes-vous sûr de vouloir envoyer une alerte à propos du comportement de ::_u._name:: sur le chat ?') ) js.App.chatReport('::_room::',::_u._uid::); return false;">::_u._name::</a></li>
+				::end::
+				</ul>
+			::end::
+			<a class="button b_back" href="#" onclick="js.Utils.setClass('historyContainer',''); js.Utils.setClass('reportContainer','hidden'); return false;">Annuler et revenir au chat</a>
+		</div>
+	]]></macro>
+	<macro name="ejected">Vous avez été éjecté de cette table.</macro>
+	<macro name="speech"><div class="chatEmote">::_user:: ::_s::</div></macro>
+	<macro name="msg"><div class="chatMsg color_::_c::"><span class="name ::if (_stranger)::visitor::end::"><span class="time">[::_time::]</span> ::_user:::</span> <span class="msg">::_s::</span></div></macro>
+	<macro name="cmd"><![CDATA[
+			<a class="sender" $$click(user/::_u._uid::) onmouseover="js.App.userHighlight('::_room::',::_u._uid::)" onmouseout="js.App.userUnHighlight('::_room::',::_u._uid::)">::_u._name::</a>
+	]]></macro>
+	<macro name="cmd_Lol"><div class="chatEmote">::_user:: éclate de rire</div></macro>
+	<macro name="cmd_Yes"><div class="chatEmote">::_user:: est d'accord</div></macro>
+	<macro name="cmd_No"><div class="chatEmote">::_user:: n'est pas d'accord !</div></macro>
+	<macro name="cmd_Love"><div class="chatEmote">::_user:: aime tout le monde :)</div></macro>
+	<macro name="cmd_Cry"><div class="chatEmote">::_user:: pleure</div></macro>
+	<macro name="cmd_Out"><div class="chatEmote">::_user:: trouve ça lamentable : tu sors !</div></macro>
+	<macro name="cmd_Happy"><div class="chatEmote">::_user:: respire la joie !</div></macro>
+	<macro name="cmd_Puke"><div class="chatEmote">::_user:: ne se sent pas bien...</div></macro>
+	<macro name="cmd_Jump"><div class="chatEmote">::_user:: saute partout</div></macro>
+	<macro name="cmd_Fight"><div class="chatEmote">::_user:: a envie de jouer !</div></macro>
+	<macro name="cmd_Angry"><div class="chatEmote">::_user:: s'énerve...</div></macro>
+	<macro name="cmd_Token"><![CDATA[<div class="chatEmote">::_user:: veut des <a $$click(user/::_uid::/giveMoney)>sucres</a> !</div>]]></macro>
+
+	<macro name="tip">
+		<div class="connected">
+			<dl>
+				<dt>Connectés:</dt>
+				::foreach _list::
+					<dd>::_u._name::</dd>
+				::end::
+			</dl>
+		</div>
+	</macro>
+
+	<macro name="ejectPublicTip">
+		<p>
+			Seuls les visiteurs peuvent être bannis du chat.
+		</p>
+		::if (_list.length == 0)::
+			<em>Aucun visiteur</em>
+		::end::
+		<ul>
+			::foreach _list::
+				<li onclick="if( confirm('Etes-vous sûr de vouloir bannir ::_u._name:: ?') ){ js.XmlHttp.get('group/::_gid::/chatBan?id=::_u._uid::'); mt.js.Tip.hide(); }">::_u._name::</li>
+			::end::
+			<li onclick="mt.js.Tip.hide()" class="action">Annuler</li>
+		</ul>
+	</macro>
+</macros>

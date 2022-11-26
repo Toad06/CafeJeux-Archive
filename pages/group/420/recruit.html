@@ -1,0 +1,54 @@
+<back>group/420?go=recruit</back>
+<menu id="groupMenu" selected="recruit"></menu>
+<fill id="groupMain">
+<![CDATA[
+		<h2><strong>Méthode de recrutement</strong> des membres</h2>
+			<img alt="" src="img/icons/small_act_yes.gif"/> <strong>Actuellement:</strong> les joueurs qui souhaitent rejoindre votre table sont tous acceptés.
+			<a href="#group/420/autoAccept?v=false" class="button" onclick="js.XmlHttp.get('group/420/autoAccept?v=false',this); return false;">Non, je préfère les valider</a>
+		
+
+		<h2><strong>Inviter</strong> un joueur du Café</h2>
+		<div id="formError"></div>
+
+		<form onsubmit="js.XmlHttp.post('group/420/invite',this); return false;" class="invite">
+			
+		<div class="row">
+			<div class="label"><label for="name">Pseudo du joueur</label></div>
+			<div class="input">
+				<input class="field fieldContact" name="name" type="text" id="name" value=""/><a href="#user/tipContact?rid=cl_72259;field=name" class="button contactButton" onclick="js.XmlHttp.get('user/tipContact?rid=cl_72259;field=name',this); return false;" id="cl_72259" tabindex="999"> Amis</a>
+			</div>
+			<div class="clear"></div>
+		</div>
+	
+			
+		<div class="row">
+			<input class="button" name="submit" type="submit" value="Lancer l'invitation"/>
+			<div class="clear"></div>
+		</div>
+	
+		</form>
+
+		<div class="clear"></div>
+
+		<h2><strong>Inviter</strong> un ami</h2>
+		<p>
+			Si vous connaissez une personne qui n'est pas inscrite au Café, vous pouvez lui envoyer
+			un petit mail pour lui proposer de vous rejoindre, et directement à cette table !
+		</p>
+		<p class="help">
+			Tout joueur inscrit de cette façon deviendra automatiquement votre filleul.
+		</p>
+
+		<a href="#user/mailMyFriends?group=420" class="button b_mail" onclick="js.XmlHttp.get('user/mailMyFriends?group=420',this); return false;">Inviter un ami par email</a>
+
+		<h2><strong>Campagnes</strong> promotionnelles</h2>
+
+		<div class="groupAd groupAdLogo">
+			<div class="logo"><img alt="[logo]" src="img/artworks/entrance_small.jpg"/></div>
+			<div class="title">Table des Habitués</div>
+			<div class="content">CaféJeux, à la vie, à la mort... et au-delà. :)</div>
+		</div>
+			<a href="#group/420/ad" class="button b_ad" onclick="js.XmlHttp.get('group/420/ad',this); return false;">Ecrire une annonce promotionnelle</a>
+
+]]>
+</fill>

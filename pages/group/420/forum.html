@@ -1,0 +1,722 @@
+<back>group/420?go=forum%3Fpage=1</back>
+<menu id="groupMenu" selected="forum"></menu>
+<fill id="groupForumTab"><a>Forum</a></fill>
+<fill id="groupMain">
+<![CDATA[
+	<div class="forum">
+		<h2><strong>Poster un</strong> message</h2>
+		<form onsubmit="js.XmlHttp.post('group/420/post',this); return false;">
+			
+		<div class="formatButtons">
+			<a class="button fb_bold" type="button" onClick="js.App.forumInsert('message','*','*');" onmouseover="mt.js.Tip.show(this,'Mettre en &lt;b&gt;gras&lt;/b&gt; le texte sélectionné.',null)" tabindex="99" onmouseout="mt.js.Tip.hide()">G</a>
+			<a class="button fb_italic" type="button" onClick="js.App.forumInsert('message','//','//');" onmouseover="mt.js.Tip.show(this,'Mettre en &lt;i&gt;italique&lt;/i&gt; le texte sélectionné.',null)" tabindex="99" onmouseout="mt.js.Tip.hide()">I</a>
+			<a class="button" type="button" onClick="js.App.forumInsert('message','[cite]','[/cite]');" onmouseover="mt.js.Tip.show(this,'Insérer une citation',null)" tabindex="99" onmouseout="mt.js.Tip.hide()">Cite</a>
+			<a class="button" type="button" onClick="js.App.forumUrl('message','Entrez l\'adresse de la page','Entrez le texte de votre lien');" onmouseover="mt.js.Tip.show(this,'Insérer un lien',null)" tabindex="99" onmouseout="mt.js.Tip.hide()">Lien</a>
+			<div class="clear"></div>
+		</div>
+	
+			
+		<div class="smileyList">
+		<div class="iconColors">
+				<a href="#" class="color_0" onclick="js.App.forumInsert('message','#0#','##'); return false;" onmouseover="mt.js.Tip.show(this,'Appliquer cette encre au texte sélectionné.',null)" tabindex="99" onmouseout="mt.js.Tip.hide()">0</a>
+
+				<a href="#" class="color_1" onclick="js.App.forumInsert('message','#1#','##'); return false;" onmouseover="mt.js.Tip.show(this,'Appliquer cette encre au texte sélectionné.',null)" tabindex="99" onmouseout="mt.js.Tip.hide()">1</a>
+
+				<a href="#" class="color_2" onclick="js.App.forumInsert('message','#2#','##'); return false;" onmouseover="mt.js.Tip.show(this,'Appliquer cette encre au texte sélectionné.',null)" tabindex="99" onmouseout="mt.js.Tip.hide()">2</a>
+
+				<a href="#" class="color_3" onclick="js.App.forumInsert('message','#3#','##'); return false;" onmouseover="mt.js.Tip.show(this,'Appliquer cette encre au texte sélectionné.',null)" tabindex="99" onmouseout="mt.js.Tip.hide()">3</a>
+
+				<a href="#" class="color_4" onclick="js.App.forumInsert('message','#4#','##'); return false;" onmouseover="mt.js.Tip.show(this,'Appliquer cette encre au texte sélectionné.',null)" tabindex="99" onmouseout="mt.js.Tip.hide()">4</a>
+
+				<a href="#" class="color_5" onclick="js.App.forumInsert('message','#5#','##'); return false;" onmouseover="mt.js.Tip.show(this,'Appliquer cette encre au texte sélectionné.',null)" tabindex="99" onmouseout="mt.js.Tip.hide()">5</a>
+
+				<a href="#" class="color_6" onclick="js.App.forumInsert('message','#6#','##'); return false;" onmouseover="mt.js.Tip.show(this,'Appliquer cette encre au texte sélectionné.',null)" tabindex="99" onmouseout="mt.js.Tip.hide()">6</a>
+
+				<a href="#" class="color_7" onclick="js.App.forumInsert('message','#7#','##'); return false;" onmouseover="mt.js.Tip.show(this,'Appliquer cette encre au texte sélectionné.',null)" tabindex="99" onmouseout="mt.js.Tip.hide()">7</a>
+
+				<a href="#" class="color_8" onclick="js.App.forumInsert('message','#8#','##'); return false;" onmouseover="mt.js.Tip.show(this,'Appliquer cette encre au texte sélectionné.',null)" tabindex="99" onmouseout="mt.js.Tip.hide()">8</a>
+			<div class="clear"></div>
+		</div>
+
+				<a href="#" onclick="document.getElementById('message').value += ':)'; document.getElementById('message').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:)',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_smile.gif"/></a>
+
+				<a href="#" onclick="document.getElementById('message').value += ':('; document.getElementById('message').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:(',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_sad.gif"/></a>
+
+				<a href="#" onclick="document.getElementById('message').value += ':D'; document.getElementById('message').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:D',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_biggrin.gif"/></a>
+
+				<a href="#" onclick="document.getElementById('message').value += ';)'; document.getElementById('message').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;;)',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_wink.gif"/></a>
+
+				<a href="#" onclick="document.getElementById('message').value += ':quoi:'; document.getElementById('message').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:quoi:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_question.gif"/></a>
+
+				<a href="#" onclick="document.getElementById('message').value += ':o'; document.getElementById('message').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:o',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_surprised.gif"/></a>
+
+				<a href="#" onclick="document.getElementById('message').value += '8O'; document.getElementById('message').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;8O',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_eek.gif"/></a>
+
+				<a href="#" onclick="document.getElementById('message').value += '8)'; document.getElementById('message').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;8)',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_cool.gif"/></a>
+
+				<a href="#" onclick="document.getElementById('message').value += ':x'; document.getElementById('message').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:x',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_mad.gif"/></a>
+
+				<a href="#" onclick="document.getElementById('message').value += ':P'; document.getElementById('message').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:P',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_razz.gif"/></a>
+
+				<a href="#" onclick="document.getElementById('message').value += ':!:'; document.getElementById('message').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:!:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_exclaim.gif"/></a>
+
+				<a href="#" onclick="document.getElementById('message').value += ':?'; document.getElementById('message').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:?',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_confused.gif"/></a>
+
+				<a href="#" onclick="document.getElementById('message').value += ':timide:'; document.getElementById('message').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:timide:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_redface.gif"/></a>
+
+				<a href="#" onclick="document.getElementById('message').value += ':lol:'; document.getElementById('message').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:lol:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_lol.gif"/></a>
+
+				<a href="#" onclick="document.getElementById('message').value += ':pleure:'; document.getElementById('message').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:pleure:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_cry.gif"/></a>
+
+				<a href="#" onclick="document.getElementById('message').value += ':mechant:'; document.getElementById('message').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:mechant:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_evil.gif"/></a>
+
+				<a href="#" onclick="document.getElementById('message').value += ':evil:'; document.getElementById('message').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:evil:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_evil.gif"/></a>
+
+				<a href="#" onclick="document.getElementById('message').value += ':sadique:'; document.getElementById('message').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:sadique:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_twisted.gif"/></a>
+
+				<a href="#" onclick="document.getElementById('message').value += ':twist:'; document.getElementById('message').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:twist:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_twisted.gif"/></a>
+
+				<a href="#" onclick="document.getElementById('message').value += ':innocent:'; document.getElementById('message').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:innocent:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_rolleyes.gif"/></a>
+
+				<a href="#" onclick="document.getElementById('message').value += ':wink:'; document.getElementById('message').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:wink:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_wink2.gif"/></a>
+
+				<a href="#" onclick="document.getElementById('message').value += ':dontcare:'; document.getElementById('message').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:dontcare:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_dontcare.gif"/></a>
+
+				<a href="#" onclick="document.getElementById('message').value += ':huh:'; document.getElementById('message').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:huh:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_huh.gif"/></a>
+
+				<a href="#" onclick="document.getElementById('message').value += ':noon:'; document.getElementById('message').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:noon:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_nooo.gif"/></a>
+
+				<a href="#" onclick="document.getElementById('message').value += ':youpi:'; document.getElementById('message').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:youpi:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_yeah.gif"/></a>
+
+				<a href="#" onclick="document.getElementById('message').value += ':idee:'; document.getElementById('message').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:idee:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_idea.gif"/></a>
+
+				<a href="#" onclick="document.getElementById('message').value += ':charte:'; document.getElementById('message').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:charte:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_chart.gif"/></a>
+
+				<a href="#" onclick="document.getElementById('message').value += ':fleche:'; document.getElementById('message').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:fleche:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_arrow.gif"/></a>
+
+				<a href="#" onclick="document.getElementById('message').value += ':croix:'; document.getElementById('message').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:croix:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_cross.gif"/></a>
+
+				<a href="#" onclick="document.getElementById('message').value += ':love:'; document.getElementById('message').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:love:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_love.gif"/></a>
+
+				<a href="#" onclick="document.getElementById('message').value += ':sucreblanc:'; document.getElementById('message').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:sucreblanc:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_sucreblanc.gif"/></a>
+
+				<a href="#" onclick="document.getElementById('message').value += ':sucre:'; document.getElementById('message').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:sucre:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_sucreroux.gif"/></a>
+
+				<a href="#" onclick="document.getElementById('message').value += ':mail:'; document.getElementById('message').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:mail:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_mail.gif"/></a>
+
+				<a href="#" onclick="document.getElementById('message').value += ':match:'; document.getElementById('message').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:match:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_fight.gif"/></a>
+
+				<a href="#" onclick="document.getElementById('message').value += ':table:'; document.getElementById('message').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:table:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_table.gif"/></a>
+
+				<a href="#" onclick="document.getElementById('message').value += ':tasse:'; document.getElementById('message').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:tasse:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_tasse.gif"/></a>
+
+				<a href="#" onclick="document.getElementById('message').value += ':caps:'; document.getElementById('message').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:caps:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_cap.gif"/></a>
+
+				<a href="#" onclick="document.getElementById('message').value += ':chrono:'; document.getElementById('message').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:chrono:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_chrono.gif"/></a>
+			<div class="clear"></div>
+			
+		</div>
+	
+			
+		<div class="row rowFlex">
+			<div class="input"><textarea class="big" name="message" id="message"></textarea></div>
+			<div class="clear"></div>
+		</div>
+	
+			
+		<div class="row">
+			<input class="button" name="submit" type="submit" value="Envoyer !"/>
+			<div class="clear"></div>
+		</div>
+	
+		</form>
+
+		<h2><strong>Forum privé</strong> de la table</h2>
+<div class="pagination">
+			<div class="prev">
+
+				<div></div>
+			</div>
+			<div class="next">
+				<a href="#group/420/forum?page=2" onclick="js.XmlHttp.get('group/420/forum?page=2',this); return false;">Suivant</a>
+						</div>
+			<div class="count">
+					Page 1
+							</div>
+		</div>
+	
+			<table>
+				<tr>
+					<td class="header">
+						
+		<div class="avatar">
+		<div class="swf" id="swf_avatarViewer_49725">
+			Votre lecteur Flash n'est pas à jour. <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&Lang=French&P5_Language=French" target="_blank">Installer la dernière version</a>
+		</div>
+		<script type="text/javascript" id="jsid-1">
+		var so = new SWFObject("swf/viewer.swf?v=20100928162820","avatarViewer_49725","48","70","0","null");
+		so.addParam("AllowScriptAccess","always");
+		so.addParam("scale","noscale");
+		so.addParam("menu","false");
+			so.addParam("wmode","transparent");
+so.addVariable("url","/user/18269");
+so.addVariable("delay","0");
+so.addVariable("dir","0");
+so.addVariable("gfx","0,0,0,0,0,0,0,0,2,0,0,0,3,0,3,6,6,0");
+so.addVariable("avatarurl","swf/avatar.swf?v=20100928162820");
+		so.write("swf_avatarViewer_49725");
+		</script>
+	
+		</div>
+	
+						<div class="user"><span class="user" id="u_57945" onmouseover="js.XmlHttp.userTip(this,'18269','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/18269" onclick="js.XmlHttp.get('user/18269',this); return false;">{ARCHIVE_USERNAME}</a>
+		</span>
+	</div>
+						<div class="date"><span title="Le lundi 21 avril 2014, à 17:23:11">
+			21 avril 2014
+		</span>
+	
+						</div>
+							<a href="#group/420/deletePost?id=1160223" class="button b_delete" onclick="js.XmlHttp.get('group/420/deletePost?id=1160223',this); return false;">Supprimer</a>
+								</td>
+					<td class="content">Bonjour !<br/> <br/> ... 6 ans après <img src="img/smiley/icon_biggrin.gif" alt=":D"/></td>
+				</tr>
+				<tr class="separator"><td colspan="2"></td></tr>
+				<tr>
+					<td class="header">
+						
+		<div class="avatar">
+		<div class="swf" id="swf_avatarViewer_55274">
+			Votre lecteur Flash n'est pas à jour. <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&Lang=French&P5_Language=French" target="_blank">Installer la dernière version</a>
+		</div>
+		<script type="text/javascript" id="jsid-2">
+		var so = new SWFObject("swf/viewer.swf?v=20100928162820","avatarViewer_55274","48","70","0","null");
+		so.addParam("AllowScriptAccess","always");
+		so.addParam("scale","noscale");
+		so.addParam("menu","false");
+			so.addParam("wmode","transparent");
+so.addVariable("url","/user/300851");
+so.addVariable("delay","1");
+so.addVariable("dir","0");
+so.addVariable("gfx","0,0,0,0,5,0,3,0,3,0,0,0,3,0,3,6,6,0");
+so.addVariable("avatarurl","swf/avatar.swf?v=20100928162820");
+		so.write("swf_avatarViewer_55274");
+		</script>
+	
+		</div>
+	
+						<div class="user"><span class="user" id="u_67150" onmouseover="js.XmlHttp.userTip(this,'300851','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/300851" onclick="js.XmlHttp.get('user/300851',this); return false;">mathieu52</a>
+		</span>
+	</div>
+						<div class="date"><span title="Le jeudi 27 novembre 2008, à 18:25:35">
+			27 novembre 2008
+		</span>
+	
+						</div>
+							<a href="#group/420/deletePost?id=657896" class="button b_delete" onclick="js.XmlHttp.get('group/420/deletePost?id=657896',this); return false;">Supprimer</a>
+								</td>
+					<td class="content">bonjour !!</td>
+				</tr>
+				<tr class="separator"><td colspan="2"></td></tr>
+				<tr>
+					<td class="header">
+						
+		<div class="avatar">
+		<div class="swf" id="swf_avatarViewer_96752">
+			Votre lecteur Flash n'est pas à jour. <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&Lang=French&P5_Language=French" target="_blank">Installer la dernière version</a>
+		</div>
+		<script type="text/javascript" id="jsid-3">
+		var so = new SWFObject("swf/viewer.swf?v=20100928162820","avatarViewer_96752","48","70","0","null");
+		so.addParam("AllowScriptAccess","always");
+		so.addParam("scale","noscale");
+		so.addParam("menu","false");
+			so.addParam("wmode","transparent");
+so.addVariable("url","/user/18269");
+so.addVariable("delay","2");
+so.addVariable("dir","0");
+so.addVariable("gfx","0,0,0,0,0,0,0,0,2,0,0,0,3,0,3,6,6,0");
+so.addVariable("avatarurl","swf/avatar.swf?v=20100928162820");
+		so.write("swf_avatarViewer_96752");
+		</script>
+	
+		</div>
+	
+						<div class="user"><span class="user" id="u_83095" onmouseover="js.XmlHttp.userTip(this,'18269','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/18269" onclick="js.XmlHttp.get('user/18269',this); return false;">{ARCHIVE_USERNAME}</a>
+		</span>
+	</div>
+						<div class="date"><span title="Le samedi 30 août 2008, à 10:16:26">
+			30 août 2008
+		</span>
+	
+						</div>
+							<a href="#group/420/deletePost?id=588462" class="button b_delete" onclick="js.XmlHttp.get('group/420/deletePost?id=588462',this); return false;">Supprimer</a>
+								</td>
+					<td class="content">C'est la routine <img src="img/smiley/icon_biggrin.gif" alt=":D"/></td>
+				</tr>
+				<tr class="separator"><td colspan="2"></td></tr>
+				<tr>
+					<td class="header">
+						
+		<div class="avatar">
+		<div class="swf" id="swf_avatarViewer_39442">
+			Votre lecteur Flash n'est pas à jour. <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&Lang=French&P5_Language=French" target="_blank">Installer la dernière version</a>
+		</div>
+		<script type="text/javascript" id="jsid-4">
+		var so = new SWFObject("swf/viewer.swf?v=20100928162820","avatarViewer_39442","48","70","0","null");
+		so.addParam("AllowScriptAccess","always");
+		so.addParam("scale","noscale");
+		so.addParam("menu","false");
+			so.addParam("wmode","transparent");
+so.addVariable("url","/user/16732");
+so.addVariable("delay","3");
+so.addVariable("dir","0");
+so.addVariable("gfx","0,0,8,2,2,1,7,7,2,0,0,0,3,0,3,12,6,14");
+so.addVariable("avatarurl","swf/avatar.swf?v=20100928162820");
+		so.write("swf_avatarViewer_39442");
+		</script>
+	
+		</div>
+	
+						<div class="user"><span class="user" id="u_11893" onmouseover="js.XmlHttp.userTip(this,'16732','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/16732" onclick="js.XmlHttp.get('user/16732',this); return false;">Zehir</a>
+		</span>
+	</div>
+						<div class="date"><span title="Le lundi 25 août 2008, à 13:28:08">
+			25 août 2008
+		</span>
+	
+						</div>
+							<a href="#group/420/deletePost?id=583820" class="button b_delete" onclick="js.XmlHttp.get('group/420/deletePost?id=583820',this); return false;">Supprimer</a>
+								</td>
+					<td class="content">on est tellement habitué que ça sert plus a rien de parler mdr<br/> <br/> tient jai du travail a faire de ce coté la</td>
+				</tr>
+				<tr class="separator"><td colspan="2"></td></tr>
+				<tr>
+					<td class="header">
+						
+		<div class="avatar">
+		<div class="swf" id="swf_avatarViewer_54085">
+			Votre lecteur Flash n'est pas à jour. <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&Lang=French&P5_Language=French" target="_blank">Installer la dernière version</a>
+		</div>
+		<script type="text/javascript" id="jsid-5">
+		var so = new SWFObject("swf/viewer.swf?v=20100928162820","avatarViewer_54085","48","70","0","null");
+		so.addParam("AllowScriptAccess","always");
+		so.addParam("scale","noscale");
+		so.addParam("menu","false");
+			so.addParam("wmode","transparent");
+so.addVariable("url","/user/239166");
+so.addVariable("delay","4");
+so.addVariable("dir","0");
+so.addVariable("gfx","0,0,0,0,0,0,6,3,3,0,0,0,3,0,3,6,6,0");
+so.addVariable("avatarurl","swf/avatar.swf?v=20100928162820");
+		so.write("swf_avatarViewer_54085");
+		</script>
+	
+		</div>
+	
+						<div class="user"><span class="user" id="u_10853" onmouseover="js.XmlHttp.userTip(this,'239166','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/239166" onclick="js.XmlHttp.get('user/239166',this); return false;">mugiawara</a>
+		</span>
+	</div>
+						<div class="date"><span title="Le lundi 11 août 2008, à 12:40:27">
+			11 août 2008
+		</span>
+	
+						</div>
+							<a href="#group/420/deletePost?id=572673" class="button b_delete" onclick="js.XmlHttp.get('group/420/deletePost?id=572673',this); return false;">Supprimer</a>
+								</td>
+					<td class="content">salut ben c'est la premiere fois que je vais poster sur le forum et je tiens a dire bonjour a tous les membres  de la table des habitués</td>
+				</tr>
+				<tr class="separator"><td colspan="2"></td></tr>
+				<tr>
+					<td class="header">
+						
+		<div class="avatar">
+		<div class="swf" id="swf_avatarViewer_7960">
+			Votre lecteur Flash n'est pas à jour. <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&Lang=French&P5_Language=French" target="_blank">Installer la dernière version</a>
+		</div>
+		<script type="text/javascript" id="jsid-6">
+		var so = new SWFObject("swf/viewer.swf?v=20100928162820","avatarViewer_7960","48","70","0","null");
+		so.addParam("AllowScriptAccess","always");
+		so.addParam("scale","noscale");
+		so.addParam("menu","false");
+			so.addParam("wmode","transparent");
+so.addVariable("url","/user/316694");
+so.addVariable("delay","5");
+so.addVariable("dir","0");
+so.addVariable("gfx","0,0,3,0,0,0,6,7,1,0,0,0,3,0,3,12,6,0");
+so.addVariable("avatarurl","swf/avatar.swf?v=20100928162820");
+		so.write("swf_avatarViewer_7960");
+		</script>
+	
+		</div>
+	
+						<div class="user"><span class="user" id="u_39115" onmouseover="js.XmlHttp.userTip(this,'316694','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/316694" onclick="js.XmlHttp.get('user/316694',this); return false;">tck012</a>
+		</span>
+	</div>
+						<div class="date"><span title="Le lundi 21 juillet 2008, à 13:34:17">
+			21 juillet 2008
+		</span>
+	
+						</div>
+							<a href="#group/420/deletePost?id=557620" class="button b_delete" onclick="js.XmlHttp.get('group/420/deletePost?id=557620',this); return false;">Supprimer</a>
+								</td>
+					<td class="content">Ouais</td>
+				</tr>
+				<tr class="separator"><td colspan="2"></td></tr>
+				<tr>
+					<td class="header">
+						
+		<div class="avatar">
+		<div class="swf" id="swf_avatarViewer_15758">
+			Votre lecteur Flash n'est pas à jour. <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&Lang=French&P5_Language=French" target="_blank">Installer la dernière version</a>
+		</div>
+		<script type="text/javascript" id="jsid-7">
+		var so = new SWFObject("swf/viewer.swf?v=20100928162820","avatarViewer_15758","48","70","0","null");
+		so.addParam("AllowScriptAccess","always");
+		so.addParam("scale","noscale");
+		so.addParam("menu","false");
+			so.addParam("wmode","transparent");
+so.addVariable("url","/user/16732");
+so.addVariable("delay","6");
+so.addVariable("dir","0");
+so.addVariable("gfx","0,0,8,2,2,1,7,7,2,0,0,0,3,0,3,12,6,14");
+so.addVariable("avatarurl","swf/avatar.swf?v=20100928162820");
+		so.write("swf_avatarViewer_15758");
+		</script>
+	
+		</div>
+	
+						<div class="user"><span class="user" id="u_8360" onmouseover="js.XmlHttp.userTip(this,'16732','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/16732" onclick="js.XmlHttp.get('user/16732',this); return false;">Zehir</a>
+		</span>
+	</div>
+						<div class="date"><span title="Le jeudi 17 juillet 2008, à 22:55:46">
+			17 juillet 2008
+		</span>
+	
+						</div>
+							<a href="#group/420/deletePost?id=554307" class="button b_delete" onclick="js.XmlHttp.get('group/420/deletePost?id=554307',this); return false;">Supprimer</a>
+								</td>
+					<td class="content">il a de l'expérience ^^ a 94 ans mdr</td>
+				</tr>
+				<tr class="separator"><td colspan="2"></td></tr>
+				<tr>
+					<td class="header">
+						
+		<div class="avatar">
+		<div class="swf" id="swf_avatarViewer_26890">
+			Votre lecteur Flash n'est pas à jour. <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&Lang=French&P5_Language=French" target="_blank">Installer la dernière version</a>
+		</div>
+		<script type="text/javascript" id="jsid-8">
+		var so = new SWFObject("swf/viewer.swf?v=20100928162820","avatarViewer_26890","48","70","0","null");
+		so.addParam("AllowScriptAccess","always");
+		so.addParam("scale","noscale");
+		so.addParam("menu","false");
+			so.addParam("wmode","transparent");
+so.addVariable("url","/user/230355");
+so.addVariable("delay","7");
+so.addVariable("dir","0");
+so.addVariable("gfx","29,0,0,2,0,3,0,0,2,0,0,10,6,3,3,6,6,0");
+so.addVariable("avatarurl","swf/avatar.swf?v=20100928162820");
+		so.write("swf_avatarViewer_26890");
+		</script>
+	
+		</div>
+	
+						<div class="user"><span class="user" id="u_62735" onmouseover="js.XmlHttp.userTip(this,'230355','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/230355" onclick="js.XmlHttp.get('user/230355',this); return false;">marypitch</a>
+		</span>
+	</div>
+						<div class="date"><span title="Le mardi  1 juillet 2008, à 18:19:41">
+			 1 juillet 2008
+		</span>
+	
+						</div>
+							<a href="#group/420/deletePost?id=536354" class="button b_delete" onclick="js.XmlHttp.get('group/420/deletePost?id=536354',this); return false;">Supprimer</a>
+								</td>
+					<td class="content">ouah t'es super fort !!<br/> Mais bon ici plus personne ne parle !</td>
+				</tr>
+				<tr class="separator"><td colspan="2"></td></tr>
+				<tr>
+					<td class="header">
+						
+		<div class="avatar">
+		<div class="swf" id="swf_avatarViewer_90259">
+			Votre lecteur Flash n'est pas à jour. <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&Lang=French&P5_Language=French" target="_blank">Installer la dernière version</a>
+		</div>
+		<script type="text/javascript" id="jsid-9">
+		var so = new SWFObject("swf/viewer.swf?v=20100928162820","avatarViewer_90259","48","70","0","null");
+		so.addParam("AllowScriptAccess","always");
+		so.addParam("scale","noscale");
+		so.addParam("menu","false");
+			so.addParam("wmode","transparent");
+so.addVariable("url","/user/4633");
+so.addVariable("delay","8");
+so.addVariable("dir","0");
+so.addVariable("gfx","0,0,6,2,8,0,4,0,8,0,0,0,3,0,3,14,6,9");
+so.addVariable("avatarurl","swf/avatar.swf?v=20100928162820");
+		so.write("swf_avatarViewer_90259");
+		</script>
+	
+		</div>
+	
+						<div class="user"><span class="user" id="u_40559" onmouseover="js.XmlHttp.userTip(this,'4633','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/4633" onclick="js.XmlHttp.get('user/4633',this); return false;">monsterdiable</a>
+		</span>
+	</div>
+						<div class="date"><span title="Le mardi  1 juillet 2008, à 11:34:50">
+			 1 juillet 2008
+		</span>
+	
+						</div>
+							<a href="#group/420/deletePost?id=535851" class="button b_delete" onclick="js.XmlHttp.get('group/420/deletePost?id=535851',this); return false;">Supprimer</a>
+								</td>
+					<td class="content">Yup, jvous rejoins. Je suis nouveau.. premier à amonite et voila.</td>
+				</tr>
+				<tr class="separator"><td colspan="2"></td></tr>
+				<tr>
+					<td class="header">
+						
+		<div class="avatar">
+		<div class="swf" id="swf_avatarViewer_62176">
+			Votre lecteur Flash n'est pas à jour. <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&Lang=French&P5_Language=French" target="_blank">Installer la dernière version</a>
+		</div>
+		<script type="text/javascript" id="jsid-10">
+		var so = new SWFObject("swf/viewer.swf?v=20100928162820","avatarViewer_62176","48","70","0","null");
+		so.addParam("AllowScriptAccess","always");
+		so.addParam("scale","noscale");
+		so.addParam("menu","false");
+			so.addParam("wmode","transparent");
+so.addVariable("url","/user/290594");
+so.addVariable("delay","9");
+so.addVariable("dir","0");
+so.addVariable("gfx","29,0,3,3,1,0,0,0,2,0,0,4,13,5,5,6,0,14");
+so.addVariable("avatarurl","swf/avatar.swf?v=20100928162820");
+		so.write("swf_avatarViewer_62176");
+		</script>
+	
+		</div>
+	
+						<div class="user"><span class="user" id="u_24017" onmouseover="js.XmlHttp.userTip(this,'290594','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/290594" onclick="js.XmlHttp.get('user/290594',this); return false;">nikita300</a>
+		</span>
+	</div>
+						<div class="date"><span title="Le samedi 29 mars 2008, à 22:40:49">
+			29 mars 2008
+		</span>
+	
+						</div>
+							<a href="#group/420/deletePost?id=431660" class="button b_delete" onclick="js.XmlHttp.get('group/420/deletePost?id=431660',this); return false;">Supprimer</a>
+								</td>
+					<td class="content">je cherche un gars avec qui sortir et qui a entre 11 et 13 ans</td>
+				</tr>
+				<tr class="separator"><td colspan="2"></td></tr>
+				<tr>
+					<td class="header">
+						
+		<div class="avatar">
+		<div class="swf" id="swf_avatarViewer_28200">
+			Votre lecteur Flash n'est pas à jour. <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&Lang=French&P5_Language=French" target="_blank">Installer la dernière version</a>
+		</div>
+		<script type="text/javascript" id="jsid-11">
+		var so = new SWFObject("swf/viewer.swf?v=20100928162820","avatarViewer_28200","48","70","0","null");
+		so.addParam("AllowScriptAccess","always");
+		so.addParam("scale","noscale");
+		so.addParam("menu","false");
+			so.addParam("wmode","transparent");
+so.addVariable("url","/user/16732");
+so.addVariable("delay","10");
+so.addVariable("dir","0");
+so.addVariable("gfx","0,0,8,2,2,1,7,7,2,0,0,0,3,0,3,12,6,14");
+so.addVariable("avatarurl","swf/avatar.swf?v=20100928162820");
+		so.write("swf_avatarViewer_28200");
+		</script>
+	
+		</div>
+	
+						<div class="user"><span class="user" id="u_37822" onmouseover="js.XmlHttp.userTip(this,'16732','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/16732" onclick="js.XmlHttp.get('user/16732',this); return false;">Zehir</a>
+		</span>
+	</div>
+						<div class="date"><span title="Le vendredi 14 mars 2008, à 19:14:15">
+			14 mars 2008
+		</span>
+	
+						</div>
+							<a href="#group/420/deletePost?id=414979" class="button b_delete" onclick="js.XmlHttp.get('group/420/deletePost?id=414979',this); return false;">Supprimer</a>
+								</td>
+					<td class="content">fiou ça faisait un bail que javai pas vu les mess, 10 nouveaux mess, les 10 derniers :p</td>
+				</tr>
+				<tr class="separator"><td colspan="2"></td></tr>
+				<tr>
+					<td class="header">
+						
+		<div class="avatar">
+		<div class="swf" id="swf_avatarViewer_9736">
+			Votre lecteur Flash n'est pas à jour. <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&Lang=French&P5_Language=French" target="_blank">Installer la dernière version</a>
+		</div>
+		<script type="text/javascript" id="jsid-12">
+		var so = new SWFObject("swf/viewer.swf?v=20100928162820","avatarViewer_9736","48","70","0","null");
+		so.addParam("AllowScriptAccess","always");
+		so.addParam("scale","noscale");
+		so.addParam("menu","false");
+			so.addParam("wmode","transparent");
+so.addVariable("url","/user/72817");
+so.addVariable("delay","11");
+so.addVariable("dir","0");
+so.addVariable("gfx","29,0,0,0,8,0,0,0,2,0,0,4,6,3,3,6,2,0");
+so.addVariable("avatarurl","swf/avatar.swf?v=20100928162820");
+		so.write("swf_avatarViewer_9736");
+		</script>
+	
+		</div>
+	
+						<div class="user"><span class="user" id="u_83860" onmouseover="js.XmlHttp.userTip(this,'72817','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/72817" onclick="js.XmlHttp.get('user/72817',this); return false;">titefemme12</a>
+		</span>
+	</div>
+						<div class="date"><span title="Le dimanche 24 février 2008, à 15:24:18">
+			24 février 2008
+		</span>
+	
+						</div>
+							<a href="#group/420/deletePost?id=394017" class="button b_delete" onclick="js.XmlHttp.get('group/420/deletePost?id=394017',this); return false;">Supprimer</a>
+								</td>
+					<td class="content">Saloute!<br/> moi aussi je suis nouvelle, j'espere qu'il y a du monde !!<br/> a bientôt<br/> <br/> <a target="_blank" href="redir?url=http%3A%2F%2FoO%2Dma%2Dvie%2D%2Dmes%2Dreves%2DOo%2Eskyblog%2Ecom">oO-ma-vie--mes-reves-Oo.skyblo ...</a></td>
+				</tr>
+				<tr class="separator"><td colspan="2"></td></tr>
+				<tr>
+					<td class="header">
+						
+		<div class="avatar">
+		<div class="swf" id="swf_avatarViewer_14738">
+			Votre lecteur Flash n'est pas à jour. <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&Lang=French&P5_Language=French" target="_blank">Installer la dernière version</a>
+		</div>
+		<script type="text/javascript" id="jsid-13">
+		var so = new SWFObject("swf/viewer.swf?v=20100928162820","avatarViewer_14738","48","70","0","null");
+		so.addParam("AllowScriptAccess","always");
+		so.addParam("scale","noscale");
+		so.addParam("menu","false");
+			so.addParam("wmode","transparent");
+so.addVariable("url","/user/291308");
+so.addVariable("delay","12");
+so.addVariable("dir","0");
+so.addVariable("gfx","29,0,3,2,3,0,0,0,2,0,0,0,2,0,3,6,5,0");
+so.addVariable("avatarurl","swf/avatar.swf?v=20100928162820");
+		so.write("swf_avatarViewer_14738");
+		</script>
+	
+		</div>
+	
+						<div class="user"><span class="user" id="u_6682" onmouseover="js.XmlHttp.userTip(this,'291308','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/291308" onclick="js.XmlHttp.get('user/291308',this); return false;">latitoune</a>
+		</span>
+	</div>
+						<div class="date"><span title="Le samedi 23 février 2008, à 23:30:00">
+			23 février 2008
+		</span>
+	
+						</div>
+							<a href="#group/420/deletePost?id=393354" class="button b_delete" onclick="js.XmlHttp.get('group/420/deletePost?id=393354',this); return false;">Supprimer</a>
+								</td>
+					<td class="content">slt je sui nouvelle j'ai 13 ans é j'abite dans le 28 bon ba si  vous voulé mieu me conaitre alé voir mon blog!!<br/> <br/> <a target="_blank" href="redir?url=http%3A%2F%2Fmelanie%2D28240%2Eskyrock%2Ecom%2F">melanie-28240.skyrock.com</a></td>
+				</tr>
+				<tr class="separator"><td colspan="2"></td></tr>
+				<tr>
+					<td class="header">
+						
+		<div class="avatar">
+		<div class="swf" id="swf_avatarViewer_80169">
+			Votre lecteur Flash n'est pas à jour. <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&Lang=French&P5_Language=French" target="_blank">Installer la dernière version</a>
+		</div>
+		<script type="text/javascript" id="jsid-14">
+		var so = new SWFObject("swf/viewer.swf?v=20100928162820","avatarViewer_80169","48","70","0","null");
+		so.addParam("AllowScriptAccess","always");
+		so.addParam("scale","noscale");
+		so.addParam("menu","false");
+			so.addParam("wmode","transparent");
+so.addVariable("url","/user/290594");
+so.addVariable("delay","13");
+so.addVariable("dir","0");
+so.addVariable("gfx","29,0,3,3,1,0,0,0,2,0,0,4,13,5,5,6,0,14");
+so.addVariable("avatarurl","swf/avatar.swf?v=20100928162820");
+		so.write("swf_avatarViewer_80169");
+		</script>
+	
+		</div>
+	
+						<div class="user"><span class="user" id="u_60933" onmouseover="js.XmlHttp.userTip(this,'290594','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/290594" onclick="js.XmlHttp.get('user/290594',this); return false;">nikita300</a>
+		</span>
+	</div>
+						<div class="date"><span title="Le vendredi 22 février 2008, à 11:18:21">
+			22 février 2008
+		</span>
+	
+						</div>
+							<a href="#group/420/deletePost?id=390800" class="button b_delete" onclick="js.XmlHttp.get('group/420/deletePost?id=390800',this); return false;">Supprimer</a>
+								</td>
+					<td class="content"><span class="color_2">slt moi je suis nouvelle je m'appelle stephanie et j'ai 14 ans<img src="img/smiley/icon_smile.gif" alt=":)"/></span><br/> <span class="color_2">et je previen que demain je partirait au ski jusqu'au 1 mars</span><img src="img/smiley/icon_biggrin.gif" alt=":D"/></td>
+				</tr>
+				<tr class="separator"><td colspan="2"></td></tr>
+				<tr>
+					<td class="header">
+						
+		<div class="avatar">
+		<div class="swf" id="swf_avatarViewer_41144">
+			Votre lecteur Flash n'est pas à jour. <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&Lang=French&P5_Language=French" target="_blank">Installer la dernière version</a>
+		</div>
+		<script type="text/javascript" id="jsid-15">
+		var so = new SWFObject("swf/viewer.swf?v=20100928162820","avatarViewer_41144","48","70","0","null");
+		so.addParam("AllowScriptAccess","always");
+		so.addParam("scale","noscale");
+		so.addParam("menu","false");
+			so.addParam("wmode","transparent");
+so.addVariable("url","/user/230355");
+so.addVariable("delay","14");
+so.addVariable("dir","0");
+so.addVariable("gfx","29,0,0,2,0,3,0,0,2,0,0,10,6,3,3,6,6,0");
+so.addVariable("avatarurl","swf/avatar.swf?v=20100928162820");
+		so.write("swf_avatarViewer_41144");
+		</script>
+	
+		</div>
+	
+						<div class="user"><span class="user" id="u_57469" onmouseover="js.XmlHttp.userTip(this,'230355','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/230355" onclick="js.XmlHttp.get('user/230355',this); return false;">marypitch</a>
+		</span>
+	</div>
+						<div class="date"><span title="Le mercredi 20 février 2008, à 17:41:35">
+			20 février 2008
+		</span>
+	
+						</div>
+							<a href="#group/420/deletePost?id=388936" class="button b_delete" onclick="js.XmlHttp.get('group/420/deletePost?id=388936',this); return false;">Supprimer</a>
+								</td>
+					<td class="content">J'en profite pour vous dire que je ne serais pas là du 28 février au 9 mars! Voilà!</td>
+				</tr>
+				<tr class="separator"><td colspan="2"></td></tr>
+			</table>
+		
+		
+		<div class="pagination">
+			<div class="prev">
+
+				<div></div>
+			</div>
+			<div class="next">
+				<a href="#group/420/forum?page=2" onclick="js.XmlHttp.get('group/420/forum?page=2',this); return false;">Suivant</a>
+						</div>
+			<div class="count">
+					Page 1
+							</div>
+		</div>
+	
+	</div>
+]]>
+</fill>

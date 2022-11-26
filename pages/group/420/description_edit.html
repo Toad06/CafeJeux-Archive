@@ -1,0 +1,54 @@
+<back>group/420?go=description</back>
+<menu id="groupMenu" selected="description"></menu>
+<fill id="groupMain">
+<![CDATA[
+	<h2><strong>Présentation de</strong> la table</h2>
+		<a href="#group/420/description" class="button b_back" onclick="js.XmlHttp.get('group/420/description',this); return false;">Retour</a>
+		<p class="warning">
+			La présentation et le logo de votre table doivent respecter la charte du site. Votre table sera retirée du café de
+			manière définitive en cas d'abus constaté.
+		</p>
+		<form onsubmit="js.XmlHttp.post('group/420/editDescription?edit=1',this); return false;">
+			<p class="info">
+				Vous pouvez indiquer l'adresse (<em>http://...</em>) d'une image qui servira de logo pour votre table.
+				Pour être affichée correctement, l'image doit faire 200 x 135 pixels.
+			</p>
+			
+		<div class="row">
+			<div class="label"><label for="logo">Adresse du logo :</label></div>
+			<div class="input"><input class="field" name="logo" type="text" id="logo" value="http://data.cafejeux.com/img/artworks/entrance_small.jpg"/></div>
+			<div class="clear"></div>
+		</div>
+	
+			<p class="info">
+				La présentation est déstinée à présenter votre table à l'ensemble des utilisateurs.
+			</p>
+			
+		<div class="formatButtons">
+			<a class="button fb_bold" type="button" onClick="js.App.forumInsert('description','*','*');" onmouseover="mt.js.Tip.show(this,'Mettre en &lt;b&gt;gras&lt;/b&gt; le texte sélectionné.',null)" tabindex="99" onmouseout="mt.js.Tip.hide()">G</a>
+			<a class="button fb_italic" type="button" onClick="js.App.forumInsert('description','//','//');" onmouseover="mt.js.Tip.show(this,'Mettre en &lt;i&gt;italique&lt;/i&gt; le texte sélectionné.',null)" tabindex="99" onmouseout="mt.js.Tip.hide()">I</a>
+			<a class="button" type="button" onClick="js.App.forumInsert('description','[cite]','[/cite]');" onmouseover="mt.js.Tip.show(this,'Insérer une citation',null)" tabindex="99" onmouseout="mt.js.Tip.hide()">Cite</a>
+			<a class="button" type="button" onClick="js.App.forumUrl('description','Entrez l\'adresse de la page','Entrez le texte de votre lien');" onmouseover="mt.js.Tip.show(this,'Insérer un lien',null)" tabindex="99" onmouseout="mt.js.Tip.hide()">Lien</a>
+			<div class="clear"></div>
+		</div>
+	
+			
+		<div class="row rowFlex">
+			<div class="input"><textarea class="big" name="description" id="description">C'est... la FIN !
+
+Merci à tous ceux qui auront fait vivre cette table lors de l'âge d'or du site en 2007-2008. La tentative de relance de la table en 2014 (et l'exclusion des membres inactifs) fut donc un échec. Merci tout de même à Nath0u d'être resté fidèle jusqu'au bout. :D
+
+Ciao CaféJeux et bonne chance à tous. ;)</textarea></div>
+			<div class="clear"></div>
+		</div>
+	
+			
+		<div class="row">
+			<input class="button" name="submit" type="submit" value="Enregistrer"/>
+			<div class="clear"></div>
+		</div>
+	
+		</form>
+	
+]]>
+</fill>

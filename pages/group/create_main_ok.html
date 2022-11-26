@@ -1,0 +1,117 @@
+<fill id="main">
+	
+		<h1><strong>Les tables</strong> du café</h1>
+		<ul class="tabs">
+			<li><a href="#group/my" onclick="js.XmlHttp.get('group/my',this); return false;">Accueil</a></li>
+			<li><a href="#group" onclick="js.XmlHttp.get('group',this); return false;">Rejoindre une table</a></li>
+			<li class="selected"><a href="#group/create" onclick="js.XmlHttp.get('group/create',this); return false;">Créer une table</a></li>
+			<li><a href="#group/list" onclick="js.XmlHttp.get('group/list',this); return false;">Liste des tables</a></li>
+		</ul>
+
+		<p>
+			Vous êtes sur le point de créer votre table. La création coute 
+		<span class="tokens" onmouseover="mt.js.Tip.show(this,'Les sucres roux sont achetés à la banque et conservés jusqu\'à leur utilisation',null)" onmouseout="mt.js.Tip.hide()">30<img alt="sucre(s)" src="img/icons/small_bought.gif"/></span>
+	.
+		</p>
+		<div id="formError"></div>
+
+		<form onsubmit="js.XmlHttp.post('group/create',this); return false;" id="groupForm">
+
+			
+		<div class="row">
+			<div class="label"><label for="name">Nom de la table :</label></div>
+			<div class="input"><input class="field" name="name" type="text" id="name" value=""/></div>
+			<div class="clear"></div>
+		</div>
+	
+
+			<div class="row">
+				<div class="label">Classement interne :</div>
+				<div class="input">
+					<div class="gameSelecter">
+						<div class="title">Choisissez un ou plusieurs jeux qui compteront pour le <strong>classement interne</strong> de votre table.</div>
+						<div class="smallGame">
+							<label for="game_check_1" style="background-image:url(games/img_small/expanz.gif);" onmouseover="mt.js.Tip.show(this,'eXpanz',null)" onmouseout="mt.js.Tip.hide()"></label>
+							<input name="game_1" type="checkbox" id="game_check_1" checked="checked" value="1"/>
+						</div><div class="smallGame">
+							<label for="game_check_9" style="background-image:url(games/img_small/trifus.gif);" onmouseover="mt.js.Tip.show(this,'Trigolo',null)" onmouseout="mt.js.Tip.hide()"></label>
+							<input name="game_9" type="checkbox" id="game_check_9" checked="checked" value="1"/>
+						</div><div class="smallGame">
+							<label for="game_check_11" style="background-image:url(games/img_small/hordes.gif);" onmouseover="mt.js.Tip.show(this,'Hordes  Insurrection !',null)" onmouseout="mt.js.Tip.hide()"></label>
+							<input name="game_11" type="checkbox" id="game_check_11" checked="checked" value="1"/>
+						</div><div class="smallGame">
+							<label for="game_check_7" style="background-image:url(games/img_small/marbil.gif);" onmouseover="mt.js.Tip.show(this,'Marbils',null)" onmouseout="mt.js.Tip.hide()"></label>
+							<input name="game_7" type="checkbox" id="game_check_7" checked="checked" value="1"/>
+						</div><div class="smallGame">
+							<label for="game_check_5" style="background-image:url(games/img_small/quat.gif);" onmouseover="mt.js.Tip.show(this,'Quat\'Cinelle',null)" onmouseout="mt.js.Tip.hide()"></label>
+							<input name="game_5" type="checkbox" id="game_check_5" checked="checked" value="1"/>
+						</div><div class="smallGame">
+							<label for="game_check_8" style="background-image:url(games/img_small/ferme.gif);" onmouseover="mt.js.Tip.show(this,'Ferme-la !',null)" onmouseout="mt.js.Tip.hide()"></label>
+							<input name="game_8" type="checkbox" id="game_check_8" checked="checked" value="1"/>
+						</div><div class="smallGame">
+							<label for="game_check_6" style="background-image:url(games/img_small/miniwar.gif);" onmouseover="mt.js.Tip.show(this,'Anticorp\'s',null)" onmouseout="mt.js.Tip.hide()"></label>
+							<input name="game_6" type="checkbox" id="game_check_6" checked="checked" value="1"/>
+						</div><div class="smallGame">
+							<label for="game_check_3" style="background-image:url(games/img_small/crumble.gif);" onmouseover="mt.js.Tip.show(this,'Crumble',null)" onmouseout="mt.js.Tip.hide()"></label>
+							<input name="game_3" type="checkbox" id="game_check_3" checked="checked" value="1"/>
+						</div><div class="smallGame">
+							<label for="game_check_4" style="background-image:url(games/img_small/magmax.gif);" onmouseover="mt.js.Tip.show(this,'Magmax Battle',null)" onmouseout="mt.js.Tip.hide()"></label>
+							<input name="game_4" type="checkbox" id="game_check_4" checked="checked" value="1"/>
+						</div><div class="smallGame">
+							<label for="game_check_2" style="background-image:url(games/img_small/amonite.gif);" onmouseover="mt.js.Tip.show(this,'Amonite',null)" onmouseout="mt.js.Tip.hide()"></label>
+							<input name="game_2" type="checkbox" id="game_check_2" checked="checked" value="1"/>
+						</div>
+						<div class="clear"></div>
+						<a href="#" class="button" onclick="js.Utils.checkAll('groupForm','game_'); return false;">sélectionner tous les jeux</a>
+						<p class="help">Si vous sélectionnez tous les jeux, les prochains jeux seront également automatiquement ajoutés.</p>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+
+			<div class="radioPack radio_table">
+				
+		<div class="row">
+			<div class="input inputCheck">
+				<input checked="checked" name="autoAccept" type="radio" id="autoAccept_1" value="1"/>
+				<label for="autoAccept_1">Accepter tous les joueurs qui souhaitent nous rejoindre, sans confirmation</label>
+			</div>
+			<div class="clear"></div>
+		</div>
+	
+				
+		<div class="row">
+			<div class="input inputCheck">
+				<input name="autoAccept" type="radio" id="autoAccept_0" value="0"/>
+				<label for="autoAccept_0">Chaque candidature doit être validée</label>
+			</div>
+			<div class="clear"></div>
+		</div>
+	
+			</div>
+
+			
+
+			<p>Ecrivez une petite présentation de votre table:</p>
+
+			
+		<div class="row rowFlex">
+			<div class="input"><textarea class="big" name="description" id="description"></textarea></div>
+			<div class="clear"></div>
+		</div>
+	
+
+			<div class="warning">
+				Les thèmes et sujet abordés sur les tables doivent donc rester <strong>tout public</strong>.
+				N'oubliez jamais que le Café Jeux accueille chaque jour des joueurs de tout âges
+				et tout milieu.
+			</div>
+			
+		<div class="row">
+			<input class="button" name="submit" onclick="return confirm('Etes vous sûr de vouloir créer votre table pour 30 sucre(s) ?')" type="submit" value="Créer ma table !"/>
+			<div class="clear"></div>
+		</div>
+	
+
+		</form>
+</fill>

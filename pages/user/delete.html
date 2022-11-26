@@ -1,0 +1,39 @@
+<fill id="main">
+	<h1><strong>Supprimer</strong>  mon compte</h1>
+	<a href="#user/18269" class="button b_back" onclick="js.XmlHttp.get('user/18269',this); return false;">Annuler</a>
+
+	<p>
+		Vous êtes sur le point de supprimer votre compte. En validant
+		le formulaire ci-dessous, votre compte restera accessible durant 3 jours.
+		Vous pourrez annuler votre demande durant cette période.
+	</p>
+	<p>
+		Au bout de ces 3 jours, il sera automatiquement et définitivement supprimé.
+		Votre compte ne sera plus accessible, vos scores seront supprimés des
+		classements et vous ne ferez plus partie d'aucune table.
+	</p>
+	<p>
+		Les tables que vous avez créées seront transférées au membre le plus ancien.
+	</p>
+	<p class="warning">
+		Attention, votre pseudonyme ne pourra pas être réutilisé pour créer un nouveau compte.
+	</p>
+
+	<form onsubmit="js.XmlHttp.post('user/delete',this); return false;">
+		<input name="sid" type="hidden" value=""/>
+		
+		<div class="row">
+			<div class="label"><label for="pass">Votre code secret :</label></div>
+			<div class="input"><input class="field" name="pass" type="password" id="pass" value=""/></div>
+			<div class="clear"></div>
+		</div>
+	
+		
+		<div class="row">
+			<input class="button" name="submit" onclick="return confirm('Êtes-vous bien sûr de vouloir supprimer DEFINITIVEMENT votre compte ?')" type="submit" value="Supprimer mon compte"/>
+			<div class="clear"></div>
+		</div>
+	
+	</form>
+
+</fill>

@@ -1,0 +1,237 @@
+<resumeparty></resumeparty>
+<fill id="main">
+<![CDATA[
+	<h1><strong>Bar:</strong> eXpanz</h1>
+
+
+	<div class="game">
+		<div id="backButton">
+			<a href="#game" class="button b_back" onclick="js.XmlHttp.get('game',this); return false;">Choisir un autre jeu</a>
+		</div>
+
+		<table>
+		<tr>
+			<td class="chat">
+				<div class="av2">
+		<div class="avatar">
+		<div class="swf" id="swf_avatarViewer_64749">
+			Votre lecteur Flash n'est pas à jour. <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&Lang=French&P5_Language=French" target="_blank">Installer la dernière version</a>
+		</div>
+		<script type="text/javascript" id="jsid-1">
+		var so = new SWFObject("swf/viewer.swf?v=201009%H2820","avatarViewer_64749","48","70","0","null");
+		so.addParam("AllowScriptAccess","always");
+		so.addParam("scale","noscale");
+		so.addParam("menu","false");
+			so.addParam("wmode","transparent");
+so.addVariable("url","/");
+	so.addVariable("dir","1");
+	so.addVariable("gfx","");
+	so.addVariable("avatarurl","swf/avatar.swf?v=20100928162820");
+			so.write("swf_avatarViewer_64749");
+		</script>
+	
+		</div>
+	</div>
+					<div class="av1">
+		<div class="avatar">
+		<div class="swf" id="swf_avatarViewer_13018">
+			Votre lecteur Flash n'est pas à jour. <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&Lang=French&P5_Language=French" target="_blank">Installer la dernière version</a>
+		</div>
+		<script type="text/javascript" id="jsid-2">
+		var so = new SWFObject("swf/viewer.swf?v=20100928162820","avatarViewer_13018","48","70","0","null");
+		so.addParam("AllowScriptAccess","always");
+		so.addParam("scale","noscale");
+		so.addParam("menu","false");
+			so.addParam("wmode","transparent");
+so.addVariable("url","/user/18269");
+	so.addVariable("gfx","0,0,0,0,0,0,0,0,2,0,0,0,3,0,3,6,6,0");
+	so.addVariable("avatarurl","swf/avatar.swf?v=20100928162820");
+			so.write("swf_avatarViewer_13018");
+		</script>
+	
+		</div>
+	</div>
+								<div id="infosContainer">
+
+						<div class="start" onclick="js.XmlHttp.get('game/1/bar',this);" id="infos">
+							<a href="#game/1/bar" onclick="js.XmlHttp.get('game/1/bar',this); return false;">Cliquez ici pour jouer !</a>
+							<p class="help">Chaque partie nécessite 
+		<span class="tokens" onmouseover="mt.js.Tip.show(this,'Vous pouvez utiliser vos sucres blancs ou roux. Les blancs seront utilisés en priorité.',null)" onmouseout="mt.js.Tip.hide()">1<img alt="caps" src="img/icons/small_free.gif"/></span>
+	</p>
+						</div>
+							</div>
+
+				<div class="clear"></div>
+
+				<div class="users">
+						<div class="field1">
+							{ARCHIVE_USERNAME}
+<div class="xpBar" onmouseover="mt.js.Tip.show(this,'Niveau d\'expérience: 7 &lt;p&gt;&lt;em&gt;Cette valeur révèle le niveau d\'expertise sur ce jeu.&lt;/em&gt;&lt;/p&gt;',null)" onmouseout="mt.js.Tip.hide()">
+			<div>7</div>
+				<img alt="" src="img/design/xpBar_fill.gif" style="width : 42px"/>
+					</div>
+						</div>
+										<div class="field2"><em>pas d'adversaire</em></div>
+				</div>
+				<div class="clear"></div>
+
+				<div class="chrono">
+					<div class="field1"><em>--</em></div>
+					<div class="field2"><em>--</em></div>
+				</div>
+				<div class="clear"></div>
+
+				<div id="historyContainer">
+					<div class="fakeHistory">
+						<div class="bg"></div>
+					</div>
+				</div>
+
+			</td>
+			<td class="game" id="gameZone">
+
+					<div class="hidden" id="helpContainer">
+						<a href="#" class="button" onclick="js.Utils.setClass('helpContainer','hidden'); js.Utils.setClass('rankingContainer',''); return false;">Mon classement pour eXpanz</a>
+						
+		<div class="gameHelp">
+			<div class="gameHelpFooter">
+				<div class="gameHelpHeader">
+					<div class="title">eXpanz</div>
+					<div class="icon"><img alt="" src="games/screen/expanz.gif"/></div>
+					<div class="goal">
+						<h3>But du jeu</h3>
+						<p>Guidez vos expanziens pour conquérir la plus grande surface de jeu possible avant votre adversaire !</p>
+					</div>
+					<h3>Premier tour</h3>
+<p>Au premier tour, chaque joueur choisit un point de départ, il s'étendra à partir de cet endroit.</p>
+
+<h3>Déroulement d'un tour</h3>
+<p>A son tour, chaque joueur choisit une des couleurs bordant sa zone. Il s'étendra sur tous les pions de cette couleur qui touchent sa zone. La zone prendra alors cette couleur.</p>
+<p>Il n'est pas possible de s'étendre sur la couleur actuelle de la zone de l'adversaire</p>
+
+				</div>
+			</div>
+		</div>
+	
+					</div>
+					<div id="rankingContainer">
+						<a href="#" class="button" onclick="js.Utils.setClass('helpContainer',''); js.Utils.setClass('rankingContainer','hidden'); return false;">Voir l'aide du jeu</a>
+						<div class="gameHelp gameScore">
+							<div class="gameHelpFooter">
+								<div class="gameHelpHeader">
+									<table class="table">
+										<tr>
+											<th>Pos.</th>
+											<th>Joueur</th>
+											<th>Score</th>
+										</tr>
+										<tr>
+											<td>
+			970<sup>ème</sup>
+	</td>
+											<td>
+
+<span class="user" id="u_24507" onmouseover="js.XmlHttp.userTip(this,'354272','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/354272" onclick="js.XmlHttp.get('user/354272',this); return false;">Lapetitefilledusud</a>
+		</span>
+	
+																					</td>
+											<td>315</td>
+										</tr><tr>
+											<td>
+			971<sup>ème</sup>
+	</td>
+											<td>
+
+<span class="user" id="u_98141" onmouseover="js.XmlHttp.userTip(this,'487809','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/487809" onclick="js.XmlHttp.get('user/487809',this); return false;">joueurdudimanche</a>
+		</span>
+	
+																					</td>
+											<td>315</td>
+										</tr><tr>
+											<td>
+			972<sup>ème</sup>
+	</td>
+											<td>
+
+<span class="user" id="u_17682" onmouseover="js.XmlHttp.userTip(this,'429374','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/429374" onclick="js.XmlHttp.get('user/429374',this); return false;">bernard35</a>
+		</span>
+	
+																					</td>
+											<td>313</td>
+										</tr><tr class="important">
+											<td>
+			973<sup>ème</sup>
+	</td>
+											<td>
+<span class="user" id="u_28609" onmouseover="js.XmlHttp.userTip(this,'18269','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/18269" onclick="js.XmlHttp.get('user/18269',this); return false;">{ARCHIVE_USERNAME}</a>
+		</span>
+	
+																							</td>
+											<td>313</td>
+										</tr><tr>
+											<td>
+			974<sup>ème</sup>
+	</td>
+											<td>
+
+<span class="user" id="u_13695" onmouseover="js.XmlHttp.userTip(this,'482495','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/482495" onclick="js.XmlHttp.get('user/482495',this); return false;">santasativa</a>
+		</span>
+	
+																					</td>
+											<td>313</td>
+										</tr><tr>
+											<td>
+			975<sup>ème</sup>
+	</td>
+											<td>
+
+<span class="user" id="u_81420" onmouseover="js.XmlHttp.userTip(this,'393473','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/393473" onclick="js.XmlHttp.get('user/393473',this); return false;">ClarkGable</a>
+		</span>
+	
+																					</td>
+											<td>313</td>
+										</tr><tr>
+											<td>
+			976<sup>ème</sup>
+	</td>
+											<td>
+
+<span class="user" id="u_28042" onmouseover="js.XmlHttp.userTip(this,'476172','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/476172" onclick="js.XmlHttp.get('user/476172',this); return false;">AtomikJune</a>
+		</span>
+	
+																					</td>
+											<td>312</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</div>
+						<a href="#game/rankings?game=1" class="button b_score" onclick="js.XmlHttp.get('game/rankings?game=1',this); return false;">Voir le classement complet</a>
+					</div>
+					</td>
+		</tr>
+		</table>
+	</div>
+		<div class="swf" id="swf_gamePreload">
+			Votre lecteur Flash n'est pas à jour. <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&Lang=French&P5_Language=French" target="_blank">Installer la dernière version</a>
+		</div>
+		<script type="text/javascript" id="jsid-3">
+		var so = new SWFObject("games/swf/expanz.20110927104815.swf","gamePreload","1","1","0","null");
+		so.addParam("AllowScriptAccess","always");
+		so.addParam("scale","noscale");
+		so.addParam("menu","false");
+			so.addParam("wmode","transparent");
+		so.write("swf_gamePreload");
+		</script>
+	
+
+	
+]]>
+</fill>

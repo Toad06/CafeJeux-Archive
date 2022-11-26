@@ -1,0 +1,34 @@
+<back>group/420?go=ad</back>
+<fill id="groupMain">
+	<a href="#group/420/recruit" class="button b_back" onclick="js.XmlHttp.get('group/420/recruit',this); return false;">Annuler</a>
+	<h2>Promouvoir votre table !</h2>
+
+	<p>
+		Les annonces permettent de promouvoir votre table si vous souhaitez recruter
+		de nouveaux membres.
+		10 annonces parmi celles envoyées depuis 7 jours sont affichées sur la page
+		<strong>Rejoindre une table</strong>.
+		Poster une annonce coute 
+		<span class="tokens" onmouseover="mt.js.Tip.show(this,'Les sucres roux sont achetés à la banque et conservés jusqu\'à leur utilisation',null)" onmouseout="mt.js.Tip.hide()">4<img alt="sucre(s)" src="img/icons/small_bought.gif"/></span>
+	.
+	</p>
+	<p class="warning">
+		Les annonces doivent respecter la charte du site. En cas d'annonce
+		ne respectant pas la charte, la table pourra être retirée du café sans préavis.
+	</p>
+
+		<form onsubmit="js.XmlHttp.post('group/420/ad',this); return false;" class="adEdit">
+			
+		<div class="row rowFlex">
+			<div class="input"><textarea class="big" name="content" id="content">CaféJeux, à la vie, à la mort... et au-delà. :)</textarea></div>
+			<div class="clear"></div>
+		</div>
+	
+			
+		<div class="row">
+			<input class="button" name="submit" onclick="return confirm('Etes-vous sûr de vouloir envoyer cette annonce pour 4 sucre(s) ?')" type="submit" value="Envoyer"/>
+			<div class="clear"></div>
+		</div>
+	
+		</form>
+</fill>

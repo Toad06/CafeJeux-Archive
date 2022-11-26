@@ -1,0 +1,57 @@
+<back>help?section=firstSteps</back>
+<menu id="helpMenu" selected="firstSteps"></menu>
+<scrolltop></scrolltop>
+<fill id="help">
+<![CDATA[
+
+
+	<h2><strong>Comment bien</strong> débuter ?</h2>
+
+	<img class="art" alt="" src="img/artworks/entrance_small.jpg"/>
+
+	<p>
+		Le Café Jeux a fait sa réputation depuis près d'un siècle en matière de jeux.
+		Le principe est simple:
+	</p>
+	<p>
+		<strong>Chaque jour, vous recevez 
+		<span class="tokens" onmouseover="mt.js.Tip.show(this,'Les sucres blancs sont reçus gratuitement chaque jour',null)" onmouseout="mt.js.Tip.hide()">3<img alt="sucre(s)" src="img/icons/small_free.gif"/></span>
+	 (sucres) qui vous
+		permettent de jouer vos parties.</strong>
+	</p>
+
+	<h2><strong>Comment</strong> jouer ?</h2>
+	<p>
+		En cliquant sur le lien <a href="#game" onclick="js.XmlHttp.get('game',this); return false;">Jouer au bar</a> à gauche, vous accédez
+		à la liste des jeux disponibles au café. Chaque jeu se joue en duel contre un autre joueur actuellement connecté au Café Jeux.
+	</p>
+
+	<p>
+		<img alt="" src="img/games/label_easy.gif" onmouseover="mt.js.Tip.show(this,'Jeu facile d\'accès',null)" onmouseout="mt.js.Tip.hide()"/>
+		<img alt="" src="img/games/label_medium.gif" onmouseover="mt.js.Tip.show(this,'Jeu de difficulté moyenne',null)" onmouseout="mt.js.Tip.hide()"/>
+		<img alt="" src="img/games/label_hard.gif" onmouseover="mt.js.Tip.show(this,'Ce jeu demande plus de temps pour être parfaitement maîtrisé',null)" onmouseout="mt.js.Tip.hide()"/>
+	</p>
+	<p class="help">
+		Notez la présence d'un petit bandeau au coin de chaque jeu: il vous indique la
+		complexité du jeu !
+	</p>
+
+	<p>
+		Une fois la partie lancée, les deux joueurs jouent chacun leur tour. Vous avez un
+		temps limité pour jouer l'ensemble de vos tours. Les parties gagnées et perdues
+		sont comptabilisées et vous permettent de participer au
+		<a href="#game/ranking" onclick="js.XmlHttp.get('game/ranking',this); return false;">classement</a> de chaque Jeu.
+	</p>
+
+	<h2><strong>Et</strong> ensuite ?</h2>
+	<p>
+		Vous pouvez à tout moment <a href="#help/group" onclick="js.XmlHttp.get('help/group',this); return false;">rejoindre une table de jeu</a>
+		pour <strong>chatter en direct</strong> avec d'autres joueurs, les affronter, et participer à
+		de mini-classements internes !
+	</p>
+
+	<a href="#help/group" class="button b_continue" onclick="js.XmlHttp.get('help/group',this); return false;">En savoir plus sur les tables</a>
+	<a href="#help/history" class="button" onclick="js.XmlHttp.get('help/history',this); return false;">Parlez moi de l'histoire du Café</a>
+
+]]>
+</fill>

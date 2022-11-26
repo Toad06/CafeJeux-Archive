@@ -1,0 +1,242 @@
+<resumeparty></resumeparty>
+<fill id="main">
+<![CDATA[
+	<h1><strong>Bar:</strong> Marbils</h1>
+
+
+	<div class="game">
+		<div id="backButton">
+			<a href="#game" class="button b_back" onclick="js.XmlHttp.get('game',this); return false;">Choisir un autre jeu</a>
+		</div>
+
+		<table>
+		<tr>
+			<td class="chat">
+				<div class="av2">
+		<div class="avatar">
+		<div class="swf" id="swf_avatarViewer_43766">
+			Votre lecteur Flash n'est pas à jour. <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&Lang=French&P5_Language=French" target="_blank">Installer la dernière version</a>
+		</div>
+		<script type="text/javascript" id="jsid-1">
+		var so = new SWFObject("swf/viewer.swf?v=201009%H2820","avatarViewer_43766","48","70","0","null");
+		so.addParam("AllowScriptAccess","always");
+		so.addParam("scale","noscale");
+		so.addParam("menu","false");
+			so.addParam("wmode","transparent");
+so.addVariable("url","/");
+	so.addVariable("dir","1");
+	so.addVariable("gfx","");
+	so.addVariable("avatarurl","swf/avatar.swf?v=20100928162820");
+			so.write("swf_avatarViewer_43766");
+		</script>
+	
+		</div>
+	</div>
+					<div class="av1">
+		<div class="avatar">
+		<div class="swf" id="swf_avatarViewer_79744">
+			Votre lecteur Flash n'est pas à jour. <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&Lang=French&P5_Language=French" target="_blank">Installer la dernière version</a>
+		</div>
+		<script type="text/javascript" id="jsid-2">
+		var so = new SWFObject("swf/viewer.swf?v=20100928162820","avatarViewer_79744","48","70","0","null");
+		so.addParam("AllowScriptAccess","always");
+		so.addParam("scale","noscale");
+		so.addParam("menu","false");
+			so.addParam("wmode","transparent");
+so.addVariable("url","/user/18269");
+	so.addVariable("gfx","0,0,0,0,0,0,0,0,2,0,0,0,3,0,3,6,6,0");
+	so.addVariable("avatarurl","swf/avatar.swf?v=20100928162820");
+			so.write("swf_avatarViewer_79744");
+		</script>
+	
+		</div>
+	</div>
+								<div id="infosContainer">
+
+						<div class="start" onclick="js.XmlHttp.get('game/7/bar',this);" id="infos">
+							<a href="#game/7/bar" onclick="js.XmlHttp.get('game/7/bar',this); return false;">Cliquez ici pour jouer !</a>
+							<p class="help">Chaque partie nécessite 
+		<span class="tokens" onmouseover="mt.js.Tip.show(this,'Vous pouvez utiliser vos sucres blancs ou roux. Les blancs seront utilisés en priorité.',null)" onmouseout="mt.js.Tip.hide()">1<img alt="caps" src="img/icons/small_free.gif"/></span>
+	</p>
+						</div>
+							</div>
+
+				<div class="clear"></div>
+
+				<div class="users">
+						<div class="field1">
+							{ARCHIVE_USERNAME}
+<div class="xpBar" onmouseover="mt.js.Tip.show(this,'Niveau d\'expérience: 14 &lt;p&gt;&lt;em&gt;Cette valeur révèle le niveau d\'expertise sur ce jeu.&lt;/em&gt;&lt;/p&gt;',null)" onmouseout="mt.js.Tip.hide()">
+			<div>14</div>
+				<img alt="" src="img/design/xpBar_fill.gif" style="width : 65px"/>
+					</div>
+						</div>
+										<div class="field2"><em>pas d'adversaire</em></div>
+				</div>
+				<div class="clear"></div>
+
+				<div class="chrono">
+					<div class="field1"><em>--</em></div>
+					<div class="field2"><em>--</em></div>
+				</div>
+				<div class="clear"></div>
+
+				<div id="historyContainer">
+					<div class="fakeHistory">
+						<div class="bg"></div>
+					</div>
+				</div>
+
+			</td>
+			<td class="game" id="gameZone">
+
+					<div class="hidden" id="helpContainer">
+						<a href="#" class="button" onclick="js.Utils.setClass('helpContainer','hidden'); js.Utils.setClass('rankingContainer',''); return false;">Mon classement pour Marbils</a>
+						
+		<div class="gameHelp">
+			<div class="gameHelpFooter">
+				<div class="gameHelpHeader">
+					<div class="title">Marbils</div>
+					<div class="icon"><img alt="" src="games/screen/marbil.gif"/></div>
+					<div class="goal">
+						<h3>But du jeu</h3>
+						<p>Envoyez la bille blanche sur les autres billes pour les passer à votre couleur. Touchez les billes de votre couleur pour marquer !</p>
+					</div>
+					
+
+<h3>Déroulement du jeu</h3>
+<p>Si vous touchez:</p>
+<ul>
+<li>une <strong>bille noire</strong>: elle prend votre couleur</li>
+<li>une <strong>bille de couleur adverse</strong>: elle devient noire</li>
+<li>une <strong>bille de votre couleur</strong>: vous la capturez&nbsp;!</li>
+</ul>
+<p>Capturez <strong>5 billes pour gagner</strong>.</p>
+
+
+				</div>
+			</div>
+		</div>
+	
+					</div>
+					<div id="rankingContainer">
+						<a href="#" class="button" onclick="js.Utils.setClass('helpContainer',''); js.Utils.setClass('rankingContainer','hidden'); return false;">Voir l'aide du jeu</a>
+						<div class="gameHelp gameScore">
+							<div class="gameHelpFooter">
+								<div class="gameHelpHeader">
+									<table class="table">
+										<tr>
+											<th>Pos.</th>
+											<th>Joueur</th>
+											<th>Score</th>
+										</tr>
+										<tr>
+											<td>
+			476<sup>ème</sup>
+	</td>
+											<td>
+
+<span class="user" id="u_90414" onmouseover="js.XmlHttp.userTip(this,'477292','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/477292" onclick="js.XmlHttp.get('user/477292',this); return false;">bartangelus007</a>
+		</span>
+	
+																					</td>
+											<td>1297</td>
+										</tr><tr>
+											<td>
+			477<sup>ème</sup>
+	</td>
+											<td>
+
+<span class="user" id="u_37440" onmouseover="js.XmlHttp.userTip(this,'479390','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/479390" onclick="js.XmlHttp.get('user/479390',this); return false;">Mate03</a>
+		</span>
+	
+																					</td>
+											<td>1294</td>
+										</tr><tr>
+											<td>
+			478<sup>ème</sup>
+	</td>
+											<td>
+
+<span class="user" id="u_1688" onmouseover="js.XmlHttp.userTip(this,'413682','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/413682" onclick="js.XmlHttp.get('user/413682',this); return false;">Punk80</a>
+		</span>
+	
+																					</td>
+											<td>1294</td>
+										</tr><tr class="important">
+											<td>
+			479<sup>ème</sup>
+	</td>
+											<td>
+<span class="user" id="u_4799" onmouseover="js.XmlHttp.userTip(this,'18269','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/18269" onclick="js.XmlHttp.get('user/18269',this); return false;">{ARCHIVE_USERNAME}</a>
+		</span>
+	
+																							</td>
+											<td>1294</td>
+										</tr><tr>
+											<td>
+			480<sup>ème</sup>
+	</td>
+											<td>
+
+<span class="user" id="u_50893" onmouseover="js.XmlHttp.userTip(this,'477109','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/477109" onclick="js.XmlHttp.get('user/477109',this); return false;">kenpachi24</a>
+		</span>
+	
+																					</td>
+											<td>1293</td>
+										</tr><tr>
+											<td>
+			481<sup>ème</sup>
+	</td>
+											<td>
+
+<span class="user" id="u_408" onmouseover="js.XmlHttp.userTip(this,'326293','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/326293" onclick="js.XmlHttp.get('user/326293',this); return false;">kurillos74</a>
+		</span>
+	
+																					</td>
+											<td>1290</td>
+										</tr><tr>
+											<td>
+			482<sup>ème</sup>
+	</td>
+											<td>
+
+<span class="user" id="u_64482" onmouseover="js.XmlHttp.userTip(this,'176317','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/176317" onclick="js.XmlHttp.get('user/176317',this); return false;">MeTaLViPeR</a>
+		</span>
+	
+																					</td>
+											<td>1289</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</div>
+						<a href="#game/rankings?game=7" class="button b_score" onclick="js.XmlHttp.get('game/rankings?game=7',this); return false;">Voir le classement complet</a>
+					</div>
+					</td>
+		</tr>
+		</table>
+	</div>
+		<div class="swf" id="swf_gamePreload">
+			Votre lecteur Flash n'est pas à jour. <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&Lang=French&P5_Language=French" target="_blank">Installer la dernière version</a>
+		</div>
+		<script type="text/javascript" id="jsid-3">
+		var so = new SWFObject("games/swf/marbil.20071115175812.swf","gamePreload","1","1","0","null");
+		so.addParam("AllowScriptAccess","always");
+		so.addParam("scale","noscale");
+		so.addParam("menu","false");
+			so.addParam("wmode","transparent");
+		so.write("swf_gamePreload");
+		</script>
+	
+
+	
+]]>
+</fill>

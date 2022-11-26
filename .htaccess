@@ -1,0 +1,112 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+
+RewriteRule ^_special/(.+)$ dispatch.php?p=_special/$1 [L]
+
+RewriteRule ^bank$ dispatch.php?p=bank [L]
+
+RewriteRule ^ctpl/(.+).mtt$ dispatch.php?p=ctpl/$1.mtt [L]
+
+RewriteRule ^defm$ dispatch.php?p=defm [L]
+
+RewriteRule ^defy$ dispatch.php?p=defy [L]
+RewriteRule ^defy/(.+)$ dispatch.php?p=defy/$1 [L]
+
+RewriteCond %{QUERY_STRING} ^themeId=([^&]+)$
+RewriteRule ^forum/search$ dispatch.php?p=forum/search&themeId=%1 [L]
+RewriteRule ^forum$ dispatch.php?p=forum [L]
+RewriteRule ^forum/(.+)$ dispatch.php?p=forum/$1 [L]
+
+RewriteCond %{QUERY_STRING} ^game=([^&]+)$
+RewriteRule ^game/rankings$ dispatch.php?p=game/rankings&game=%1 [L]
+RewriteCond %{QUERY_STRING} ^old=([^&]+)$
+RewriteRule ^game/rankings$ dispatch.php?p=game/rankings&old=%1 [L]
+RewriteRule ^game$ dispatch.php?p=game [L]
+RewriteRule ^game/(.+)$ dispatch.php?p=game/$1 [L]
+
+RewriteCond %{QUERY_STRING} ^go=([^&]+)$
+RewriteRule ^group/([0-9]+)$ dispatch.php?p=group/$1&go=%1 [L]
+RewriteCond %{QUERY_STRING} ^id=([^&]+)$
+RewriteRule ^group/([0-9]+)/auth$ dispatch.php?p=group/$1/auth&id=%1 [L]
+RewriteCond %{QUERY_STRING} ^v=([^&]+)$
+RewriteRule ^group/([0-9]+)/autoAccept$ dispatch.php?p=group/$1/autoAccept&v=%1 [L]
+RewriteCond %{QUERY_STRING} ^id=([^&]+)$
+RewriteRule ^group/([0-9]+)/deletePost$ dispatch.php?p=group/$1/deletePost&id=%1 [L]
+RewriteCond %{QUERY_STRING} ^edit=([^&]+)$
+RewriteRule ^group/([0-9]+)/description$ dispatch.php?p=group/$1/description&edit=%1 [L]
+RewriteCond %{QUERY_STRING} ^confirm=([^&]+)$
+RewriteRule ^group/([0-9]+)/join$ dispatch.php?p=group/$1/join&confirm=%1 [L]
+RewriteCond %{QUERY_STRING} ^v=([^&]+)$
+RewriteRule ^group/([0-9]+)/watchChat$ dispatch.php?p=group/$1/watchChat&v=%1 [L]
+RewriteRule ^group$ dispatch.php?p=group [L]
+RewriteRule ^group/(.+)$ dispatch.php?p=group/$1 [L]
+
+RewriteRule ^head$ dispatch.php?p=head [L]
+
+RewriteCond %{QUERY_STRING} ^section=([^&]+)$
+RewriteRule ^help$ dispatch.php?p=help&section=%1 [L]
+RewriteRule ^help$ dispatch.php?p=help [L]
+RewriteRule ^help/(.+)$ dispatch.php?p=help/$1 [L]
+
+RewriteRule ^log$ dispatch.php?p=log [L]
+
+RewriteCond %{QUERY_STRING} ^hide=([^&]+)$
+RewriteRule ^news$ dispatch.php?p=news&hide=%1 [L]
+RewriteRule ^news$ dispatch.php?p=news [L]
+
+RewriteRule ^partnerFrame$ dispatch.php?p=partnerFrame [L]
+
+RewriteCond %{QUERY_STRING} ^mode=([^&]+)$
+RewriteRule ^party/history$ dispatch.php?p=party/history&mode=%1 [L]
+RewriteRule ^party/(.+)$ dispatch.php?p=party/$1 [L]
+
+RewriteRule ^play$ dispatch.php?p=play [L]
+
+RewriteCond %{QUERY_STRING} ^page=([^&]+)$
+RewriteRule ^pvmsg/([0-9]+)/delete$ dispatch.php?p=pvmsg/[id]/delete&id=$1&page=%1 [L]
+RewriteCond %{QUERY_STRING} ^page=([^&]+)$
+RewriteRule ^pvmsg/([0-9]+)/report$ dispatch.php?p=pvmsg/[id]/report&id=$1&page=%1 [L]
+RewriteCond %{QUERY_STRING} ^to=([^&]+)$
+RewriteRule ^pvmsg/new$ dispatch.php?p=pvmsg/new&to=%1 [L]
+RewriteRule ^pvmsg$ dispatch.php?p=pvmsg [L]
+RewriteRule ^pvmsg/(.+)$ dispatch.php?p=pvmsg/$1 [L]
+
+RewriteCond %{QUERY_STRING} ^url=([^&]+)$
+RewriteRule ^redir$ dispatch.php?p=redir&url=%1 [L]
+
+RewriteCond %{QUERY_STRING} ^item=([^&]+)$
+RewriteRule ^shop$ dispatch.php?p=shop&item=%1 [L]
+RewriteCond %{QUERY_STRING} ^type=([^&]+)$
+RewriteRule ^shop$ dispatch.php?p=shop&type=%1 [L]
+RewriteCond %{QUERY_STRING} ^sid=([^&]+)$
+RewriteRule ^shop/([0-9]+)/buy$ dispatch.php?p=shop/[id]/buy&id=$1&sid=%1 [L]
+RewriteRule ^shop$ dispatch.php?p=shop [L]
+RewriteRule ^shop/([0-9]+)/buy$ dispatch.php?p=shop/[id]/buy&id=$1 [L]
+RewriteRule ^shop/(.+)$ dispatch.php?p=shop/$1 [L]
+
+RewriteCond %{QUERY_STRING} ^id=([^&]+)$
+RewriteRule ^smileyTip$ dispatch.php?p=smileyTip&id=%1 [L]
+RewriteRule ^smileyTip$ dispatch.php?p=smileyTip [L]
+
+RewriteCond %{QUERY_STRING} ^sz=([^&]+)$
+RewriteRule ^sponsor/embed.js$ dispatch.php?p=sponsor/embed.js&sz=%1 [L]
+
+RewriteRule ^static/(.+)$ dispatch.php?p=static/$1 [L]
+
+RewriteCond %{QUERY_STRING} ^submit=([^&]+)$
+RewriteRule ^user/cancelDelete$ dispatch.php?p=user/cancelDelete&submit=%1 [L]
+RewriteCond %{QUERY_STRING} ^id=([^&]+)$
+RewriteRule ^user/chooseDrink$ dispatch.php?p=user/chooseDrink&id=%1 [L]
+RewriteCond %{QUERY_STRING} ^group=([^&]+)$
+RewriteRule ^user/mailMyFriends$ dispatch.php?p=user/mailMyFriends&group=%1 [L]
+RewriteCond %{QUERY_STRING} ^online=([^&]+)$
+RewriteRule ^user/search$ dispatch.php?p=user/search&online=%1 [L]
+RewriteCond %{QUERY_STRING} ^v=([^&]+)$
+RewriteRule ^user/siteSound$ dispatch.php?p=user/siteSound&v=%1 [L]
+RewriteCond %{QUERY_STRING} ^rid=([^&]+)$
+RewriteRule ^user/tipContact$ dispatch.php?p=user/tipContact&rid=%1 [L]
+RewriteRule ^user/([0-9]+)/addBlackContact$ dispatch.php?p=user/[id]/addBlackContact&id=$1 [L]
+RewriteRule ^user/([0-9]+)/addContact$ dispatch.php?p=user/[id]/addContact&id=$1 [L]
+RewriteRule ^user/([0-9]+)/remBlackContact$ dispatch.php?p=user/[id]/remBlackContact&id=$1 [L]
+RewriteRule ^user/([0-9]+)/remContact$ dispatch.php?p=user/[id]/remContact&id=$1 [L]
+RewriteRule ^user/(.+)$ dispatch.php?p=user/$1 [L]

@@ -1,0 +1,65 @@
+<back>group/420?go=changeGame</back>
+<menu id="groupMenu" selected="ranking"></menu>
+<fill id="groupMain">
+<![CDATA[
+	<h2><strong>Changer le</strong> classement</h2>
+
+	<a href="#group/420/ranking" class="button b_back" onclick="js.XmlHttp.get('group/420/ranking',this); return false;">Annuler</a>
+
+	<p>
+		Vous pouvez ici remettre à zéro le classement interne de la table.
+		Vous pouvez choisir de conserver ou de modifier la liste des jeux jouables pour ce classement.
+	</p>
+
+	<div id="formError"></div>
+
+	<form onsubmit="js.XmlHttp.post('group/420/changeGame',this); return false;" id="groupForm">
+		<div class="gameSelecter">
+			<div class="title">Choisissez un ou plusieurs jeux qui compteront pour le <strong>classement interne</strong> de votre table.</div>
+			<div class="smallGame">
+				<label for="game_check_1" style="background-image:url(games/img_small/expanz.gif);" onmouseover="mt.js.Tip.show(this,'eXpanz',null)" onmouseout="mt.js.Tip.hide()"></label>
+				<input name="game_1" type="checkbox" id="game_check_1" value="1"/>
+			</div><div class="smallGame">
+				<label for="game_check_9" style="background-image:url(games/img_small/trifus.gif);" onmouseover="mt.js.Tip.show(this,'Trigolo',null)" onmouseout="mt.js.Tip.hide()"></label>
+				<input name="game_9" type="checkbox" id="game_check_9" value="1"/>
+			</div><div class="smallGame">
+				<label for="game_check_11" style="background-image:url(games/img_small/hordes.gif);" onmouseover="mt.js.Tip.show(this,'Hordes  Insurrection !',null)" onmouseout="mt.js.Tip.hide()"></label>
+				<input name="game_11" type="checkbox" id="game_check_11" value="1"/>
+			</div><div class="smallGame">
+				<label for="game_check_7" style="background-image:url(games/img_small/marbil.gif);" onmouseover="mt.js.Tip.show(this,'Marbils',null)" onmouseout="mt.js.Tip.hide()"></label>
+				<input name="game_7" type="checkbox" id="game_check_7" value="1"/>
+			</div><div class="smallGame">
+				<label for="game_check_5" style="background-image:url(games/img_small/quat.gif);" onmouseover="mt.js.Tip.show(this,'Quat\'Cinelle',null)" onmouseout="mt.js.Tip.hide()"></label>
+				<input name="game_5" type="checkbox" id="game_check_5" value="1"/>
+			</div><div class="smallGame">
+				<label for="game_check_8" style="background-image:url(games/img_small/ferme.gif);" onmouseover="mt.js.Tip.show(this,'Ferme-la !',null)" onmouseout="mt.js.Tip.hide()"></label>
+				<input name="game_8" type="checkbox" id="game_check_8" value="1"/>
+			</div><div class="smallGame">
+				<label for="game_check_6" style="background-image:url(games/img_small/miniwar.gif);" onmouseover="mt.js.Tip.show(this,'Anticorp\'s',null)" onmouseout="mt.js.Tip.hide()"></label>
+				<input checked="checked" name="game_6" type="checkbox" id="game_check_6" value="1"/>
+			</div><div class="smallGame">
+				<label for="game_check_3" style="background-image:url(games/img_small/crumble.gif);" onmouseover="mt.js.Tip.show(this,'Crumble',null)" onmouseout="mt.js.Tip.hide()"></label>
+				<input name="game_3" type="checkbox" id="game_check_3" value="1"/>
+			</div><div class="smallGame">
+				<label for="game_check_4" style="background-image:url(games/img_small/magmax.gif);" onmouseover="mt.js.Tip.show(this,'Magmax Battle',null)" onmouseout="mt.js.Tip.hide()"></label>
+				<input name="game_4" type="checkbox" id="game_check_4" value="1"/>
+			</div><div class="smallGame">
+				<label for="game_check_2" style="background-image:url(games/img_small/amonite.gif);" onmouseover="mt.js.Tip.show(this,'Amonite',null)" onmouseout="mt.js.Tip.hide()"></label>
+				<input name="game_2" type="checkbox" id="game_check_2" value="1"/>
+			</div>
+			<div class="clear"></div>
+			<a href="#" class="button" onclick="js.Utils.checkAll('groupForm'); return false;">sélectionner tous les jeux</a>
+			<p class="help">Si vous sélectionnez tous les jeux, les prochains jeux seront également automatiquement ajoutés.</p>
+		</div>
+
+		<div class="clear"></div>
+
+		
+		<div class="row">
+			<input class="button" name="submit" type="submit" value="Remettre le classement à zéro"/>
+			<div class="clear"></div>
+		</div>
+	
+	</form>
+]]>
+</fill>

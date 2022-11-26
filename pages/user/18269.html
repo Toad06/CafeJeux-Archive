@@ -1,0 +1,391 @@
+<fill id="main">
+<![CDATA[
+	<div class="userSheet">
+			<h1><strong>ma</strong> page</h1>
+		
+		<div class="matchOptions">
+					<a href="#party/history" class="largeButton bl_watch" onclick="js.XmlHttp.get('party/history',this); return false;">
+					Mes parties
+					<em>Revoir vos anciennes parties</em>
+				</a>
+			</div>
+
+		<div class="card myCard">
+			<a href="#user/modifInfos" class="edit" onclick="js.XmlHttp.get('user/modifInfos',this); return false;">Modifier</a>
+ 			
+			
+		<div class="avatar">
+		<div class="swf" id="swf_avatarViewer_46385">
+			Votre lecteur Flash n'est pas à jour. <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&Lang=French&P5_Language=French" target="_blank">Installer la dernière version</a>
+		</div>
+		<script type="text/javascript" id="jsid-1">
+		var so = new SWFObject("swf/viewer.swf?v=20100928162820","avatarViewer_46385","48","70","0","null");
+		so.addParam("AllowScriptAccess","always");
+		so.addParam("scale","noscale");
+		so.addParam("menu","false");
+			so.addParam("wmode","transparent");
+so.addVariable("url","/user/18269");
+	so.addVariable("gfx","0,0,0,0,0,0,0,0,2,0,0,0,3,0,3,6,6,0");
+	so.addVariable("avatarurl","swf/avatar.swf?v=20100928162820");
+			so.write("swf_avatarViewer_46385");
+		</script>
+	
+		</div>
+	
+			
+		<ul class="infos">
+			<li class="name">
+ {ARCHIVE_USERNAME} <em>(
+
+			<img alt="" src="img/icons/small_online.gif"/>
+	 
+
+			online
+	)</em> 
+			</li>
+			<li class="age">
+					
+		-1
+	 ans <!--(
+		::tools.dformat(tools.bdayDate(((u).birthday)),"%e %B")::
+	)-->
+				
+			<img alt="" src="img/icons/small_male.gif"/>
+	 
+			</li>
+			<li class="city">{ARCHIVE_USER_CITY}</li>
+		</ul>
+	
+			<ul class="misc">
+				<li class="lastSeen">
+					<strong>Dernière connexion:</strong><span title="{ARCHIVE_USER_LAST_SEEN_FULL}">
+			{ARCHIVE_USER_LAST_SEEN_PARTIAL}
+		</span>
+	
+				</li>
+				<li class="drinkName">
+					<strong>Boisson</strong> :
+						<span class="helpLink">
+		<span class="drinkName" onmouseover="mt.js.Tip.show(this,'&lt;img src=\'img/drinks/{ARCHIVE_USER_DRINK_IMG}\'/&gt; {ARCHIVE_USER_DRINK_DESC}','normalTip drinkTip')" onmouseout="mt.js.Tip.hide()">
+		{ARCHIVE_USER_DRINK_NAME}
+		</span>
+	</span>
+									</li>
+				<li class="oldness"><strong>Ancienneté</strong> :
+			187 mois
+	</li>
+				<li>
+					<strong>Matchs amicaux</strong> :
+						<span onmouseover="mt.js.Tip.show(this,'Vos parties amicales sont actuellement &lt;strong&gt;observables par d\'autres joueurs&lt;/strong&gt;. Cliquez sur Modifier pour les rendre privées.',null)" onmouseout="mt.js.Tip.hide()">Observables</span>
+										[ <a href="#user/changeFriendlyObservable" onclick="js.XmlHttp.get('user/changeFriendlyObservable',this); return false;">Modifier</a> ]
+				</li>
+			</ul>
+			<div class="clear"></div>
+		</div>
+
+
+		
+
+
+		<h2><strong>Classements</strong></h2>
+
+		<table class="table mainRanking">
+			<tr>
+				<th>&nbsp;</th>
+				<th onmouseover="mt.js.Tip.show(this,'Vous gagnez de l\'expérience à chacune de vos parties ! Quand la barre est pleine, vous passez au niveau supérieur.',null)" onmouseout="mt.js.Tip.hide()">XP</th>
+				<th>Classement Bar</th>
+				<th>Amicaux</th>
+			</tr>
+			<tr><th>
+			<a href="#game/1" onclick="js.XmlHttp.get('game/1',this); return false;">
+			<img class="gameIcon" alt="" src="games/icon/expanz.gif"/>&nbsp;eXpanz
+	</a>
+	
+				</th>
+				<td><div class="xpBar xpSmall" onmouseover="mt.js.Tip.show(this,'Niveau d\'expérience: 7 &lt;p&gt;&lt;em&gt;Cette valeur révèle le niveau d\'expertise sur ce jeu.&lt;/em&gt;&lt;/p&gt;',null)" onmouseout="mt.js.Tip.hide()">
+			<div>7</div>
+			<img alt="" src="img/design/xpBar_fill.gif" style="width : 11px"/>
+		</div>
+	 </td>
+				<td>
+
+			<a href="#game/rankings?game=1;page=65" onclick="js.XmlHttp.get('game/rankings?game=1;page=65',this); return false;">
+				<img src="img/icons/small_rank_1.gif"/>
+			973<sup>ème</sup>
+	
+			</a>
+				
+	
+									</td>
+				<td>
+
+						&nbsp;
+							</td>
+			</tr><tr><th>
+			<a href="#game/9" onclick="js.XmlHttp.get('game/9',this); return false;">
+			<img class="gameIcon" alt="" src="games/icon/trifus.gif"/>&nbsp;Trigolo
+	</a>
+	
+				</th>
+				<td><div class="xpBar xpSmall" onmouseover="mt.js.Tip.show(this,'Niveau d\'expérience: 3 &lt;p&gt;&lt;em&gt;Cette valeur révèle le niveau d\'expertise sur ce jeu.&lt;/em&gt;&lt;/p&gt;',null)" onmouseout="mt.js.Tip.hide()">
+			<div>3</div>
+			<img alt="" src="img/design/xpBar_fill.gif" style="width : 15px"/>
+		</div>
+	 </td>
+				<td>
+
+			<a href="#game/rankings?game=9;page=14" onclick="js.XmlHttp.get('game/rankings?game=9;page=14',this); return false;">
+				<img src="img/icons/small_rank_1.gif"/>
+			202<sup>ème</sup>
+	
+			</a>
+				
+	
+									</td>
+				<td>
+
+						&nbsp;
+							</td>
+			</tr><tr><th>
+			<a href="#game/11" onclick="js.XmlHttp.get('game/11',this); return false;">
+			<img class="gameIcon" alt="" src="games/icon/hordes.gif"/>&nbsp;Hordes  Insurrection !
+	</a>
+	
+				</th>
+				<td><div class="xpBar xpSmall" onmouseover="mt.js.Tip.show(this,'Niveau d\'expérience: 5 &lt;p&gt;&lt;em&gt;Cette valeur révèle le niveau d\'expertise sur ce jeu.&lt;/em&gt;&lt;/p&gt;',null)" onmouseout="mt.js.Tip.hide()">
+			<div>5</div>
+			<img alt="" src="img/design/xpBar_fill.gif" style="width : 5px"/>
+		</div>
+	 </td>
+				<td>
+
+			<a href="#game/rankings?game=11;page=16" onclick="js.XmlHttp.get('game/rankings?game=11;page=16',this); return false;">
+				<img src="img/icons/small_rank_1.gif"/>
+			229<sup>ème</sup>
+	
+			</a>
+				
+	
+									</td>
+				<td>
+
+						&nbsp;
+							</td>
+			</tr><tr><th>
+			<a href="#game/7" onclick="js.XmlHttp.get('game/7',this); return false;">
+			<img class="gameIcon" alt="" src="games/icon/marbil.gif"/>&nbsp;Marbils
+	</a>
+	
+				</th>
+				<td><div class="xpBar xpSmall" onmouseover="mt.js.Tip.show(this,'Niveau d\'expérience: 14 &lt;p&gt;&lt;em&gt;Cette valeur révèle le niveau d\'expertise sur ce jeu.&lt;/em&gt;&lt;/p&gt;',null)" onmouseout="mt.js.Tip.hide()">
+			<div>14</div>
+			<img alt="" src="img/design/xpBar_fill.gif" style="width : 17px"/>
+		</div>
+	 </td>
+				<td>
+
+			<a href="#game/rankings?game=7;page=32" onclick="js.XmlHttp.get('game/rankings?game=7;page=32',this); return false;">
+				<img src="img/icons/small_rank_1.gif"/>
+			479<sup>ème</sup>
+	
+			</a>
+				
+	
+									</td>
+				<td>
+<span class="playStats">
+			<strong onmouseover="mt.js.Tip.show(this,js.App.applyTpl('global@scoreStats',js.App.splitValues('2;0;1')),null)" onmouseout="mt.js.Tip.hide()">67 %</strong>
+		</span>
+	
+									</td>
+			</tr><tr><th>
+			<a href="#game/5" onclick="js.XmlHttp.get('game/5',this); return false;">
+			<img class="gameIcon" alt="" src="games/icon/quat.gif"/>&nbsp;Quat'Cinelle
+	</a>
+	
+				</th>
+				<td><div class="xpBar xpSmall" onmouseover="mt.js.Tip.show(this,'Niveau d\'expérience: 10 &lt;p&gt;&lt;em&gt;Cette valeur révèle le niveau d\'expertise sur ce jeu.&lt;/em&gt;&lt;/p&gt;',null)" onmouseout="mt.js.Tip.hide()">
+			<div>10</div>
+			<img alt="" src="img/design/xpBar_fill.gif" style="width : 10px"/>
+		</div>
+	 </td>
+				<td>
+
+			<a href="#game/rankings?game=5;page=8" onclick="js.XmlHttp.get('game/rankings?game=5;page=8',this); return false;">
+				<img src="img/icons/small_rank_1.gif"/>
+			109<sup>ème</sup>
+	
+			</a>
+				
+	
+									</td>
+				<td>
+<span class="playStats">
+			<strong onmouseover="mt.js.Tip.show(this,js.App.applyTpl('global@scoreStats',js.App.splitValues('2;0;1')),null)" onmouseout="mt.js.Tip.hide()">67 %</strong>
+		</span>
+	
+									</td>
+			</tr><tr><th>
+			<a href="#game/8" onclick="js.XmlHttp.get('game/8',this); return false;">
+			<img class="gameIcon" alt="" src="games/icon/ferme.gif"/>&nbsp;Ferme-la !
+	</a>
+	
+				</th>
+				<td><div class="xpBar xpSmall" onmouseover="mt.js.Tip.show(this,'Niveau d\'expérience: 9 &lt;p&gt;&lt;em&gt;Cette valeur révèle le niveau d\'expertise sur ce jeu.&lt;/em&gt;&lt;/p&gt;',null)" onmouseout="mt.js.Tip.hide()">
+			<div>9</div>
+			<img alt="" src="img/design/xpBar_fill.gif" style="width : 0px"/>
+		</div>
+	 </td>
+				<td>
+
+			<a href="#game/rankings?game=8;page=84" onclick="js.XmlHttp.get('game/rankings?game=8;page=84',this); return false;">
+				<img src="img/icons/small_rank_1.gif"/>
+			1248<sup>ème</sup>
+	
+			</a>
+				
+	
+									</td>
+				<td>
+
+						&nbsp;
+							</td>
+			</tr><tr><th>
+			<a href="#game/6" onclick="js.XmlHttp.get('game/6',this); return false;">
+			<img class="gameIcon" alt="" src="games/icon/miniwar.gif"/>&nbsp;Anticorp's
+	</a>
+	
+				</th>
+				<td><div class="xpBar xpSmall" onmouseover="mt.js.Tip.show(this,'Niveau d\'expérience: 26 &lt;p&gt;&lt;em&gt;Cette valeur révèle le niveau d\'expertise sur ce jeu.&lt;/em&gt;&lt;/p&gt;',null)" onmouseout="mt.js.Tip.hide()">
+			<div>26</div>
+			<img alt="" src="img/design/xpBar_fill.gif" style="width : 7px"/>
+		</div>
+	 </td>
+				<td>
+
+			<a href="#game/rankings?game=6;page=1" onclick="js.XmlHttp.get('game/rankings?game=6;page=1',this); return false;">
+				<img src="img/icons/small_rank_1.gif"/>
+			6<sup>ème</sup>
+	
+			</a>
+				
+	
+									</td>
+				<td>
+<span class="playStats">
+			<strong onmouseover="mt.js.Tip.show(this,js.App.applyTpl('global@scoreStats',js.App.splitValues('14;0;5')),null)" onmouseout="mt.js.Tip.hide()">74 %</strong>
+		</span>
+	
+									</td>
+			</tr><tr><th>
+			<a href="#game/3" onclick="js.XmlHttp.get('game/3',this); return false;">
+			<img class="gameIcon" alt="" src="games/icon/crumble.gif"/>&nbsp;Crumble
+	</a>
+	
+				</th>
+				<td><div class="xpBar xpSmall" onmouseover="mt.js.Tip.show(this,'Niveau d\'expérience: 9 &lt;p&gt;&lt;em&gt;Cette valeur révèle le niveau d\'expertise sur ce jeu.&lt;/em&gt;&lt;/p&gt;',null)" onmouseout="mt.js.Tip.hide()">
+			<div>9</div>
+			<img alt="" src="img/design/xpBar_fill.gif" style="width : 10px"/>
+		</div>
+	 </td>
+				<td>
+
+			<a href="#game/rankings?game=3;page=30" onclick="js.XmlHttp.get('game/rankings?game=3;page=30',this); return false;">
+				<img src="img/icons/small_rank_1.gif"/>
+			437<sup>ème</sup>
+	
+			</a>
+				
+	
+									</td>
+				<td>
+<span class="playStats">
+			<strong onmouseover="mt.js.Tip.show(this,js.App.applyTpl('global@scoreStats',js.App.splitValues('1;0;0')),null)" onmouseout="mt.js.Tip.hide()">100 %</strong>
+		</span>
+	
+									</td>
+			</tr><tr><th>
+			<a href="#game/4" onclick="js.XmlHttp.get('game/4',this); return false;">
+			<img class="gameIcon" alt="" src="games/icon/magmax.gif"/>&nbsp;Magmax Battle
+	</a>
+	
+				</th>
+				<td><div class="xpBar xpSmall" onmouseover="mt.js.Tip.show(this,'Niveau d\'expérience: 9 &lt;p&gt;&lt;em&gt;Cette valeur révèle le niveau d\'expertise sur ce jeu.&lt;/em&gt;&lt;/p&gt;',null)" onmouseout="mt.js.Tip.hide()">
+			<div>9</div>
+			<img alt="" src="img/design/xpBar_fill.gif" style="width : 19px"/>
+		</div>
+	 </td>
+				<td>
+
+						<em>Aucun score</em>
+							</td>
+				<td>
+<span class="playStats">
+			<strong onmouseover="mt.js.Tip.show(this,js.App.applyTpl('global@scoreStats',js.App.splitValues('0;0;1')),null)" onmouseout="mt.js.Tip.hide()">0 %</strong>
+		</span>
+	
+									</td>
+			</tr><tr><th>
+			<a href="#game/2" onclick="js.XmlHttp.get('game/2',this); return false;">
+			<img class="gameIcon" alt="" src="games/icon/amonite.gif"/>&nbsp;Amonite
+	</a>
+	
+				</th>
+				<td><div class="xpBar xpSmall" onmouseover="mt.js.Tip.show(this,'Niveau d\'expérience: 8 &lt;p&gt;&lt;em&gt;Cette valeur révèle le niveau d\'expertise sur ce jeu.&lt;/em&gt;&lt;/p&gt;',null)" onmouseout="mt.js.Tip.hide()">
+			<div>8</div>
+			<img alt="" src="img/design/xpBar_fill.gif" style="width : 22px"/>
+		</div>
+	 </td>
+				<td>
+
+						<em>Aucun score</em>
+							</td>
+				<td>
+
+						&nbsp;
+							</td>
+			</tr>
+		</table>
+
+		<table class="table tableRanking">
+			<tr>
+				<th>&nbsp;</th>
+				<th>Table</th>
+				<th>Score</th>
+			</tr>
+			<tr onclick="js.XmlHttp.get('group/420?from=user/18269',this);">
+				<td class="logo">
+					<div onmouseover="mt.js.Tip.show(this,'&lt;div class=\'groupLogo\'&gt;&lt;img src=\'img/artworks/entrance_small.jpg\' alt=\'\'/&gt;&lt;/div&gt;',null)" onmouseout="mt.js.Tip.hide()"><img alt="[logo]" src="img/artworks/entrance_small.jpg"/></div>
+				</td><td>
+					Table des Habitués
+				</td>
+				<td class="score">
+
+						<em>Aucun score</em>
+							</td>
+			</tr><tr onclick="js.XmlHttp.get('group/6951?from=user/18269',this);">
+				<td class="logo">
+					
+				</td><td>
+					CaféJeux 2007-2020
+				</td>
+				<td class="score">
+
+						<em>Aucun score</em>
+							</td>
+			</tr>
+		</table>
+
+
+		<div class="clear"></div>
+
+		<div class="actions">
+					<a href="#user/18269/furnitures" class="button b_ad" onclick="js.XmlHttp.get('user/18269/furnitures',this); return false;">Mes meubles</a>
+				<a href="#user/goptions" class="button" onclick="js.XmlHttp.get('user/goptions',this); return false;">Mes options de jeux</a>
+				<a href="#user/modifPass" class="button" onclick="js.XmlHttp.get('user/modifPass',this); return false;">Changer mon code secret</a>
+				<a href="#user/shipment" class="button" onclick="js.XmlHttp.get('user/shipment',this); return false;">Mes commandes de cadeaux</a>
+					<a href="#user/delete" class="button b_bomb" onclick="js.XmlHttp.get('user/delete',this); return false;">Supprimer mon compte !</a>
+							</div>
+	</div>
+]]>
+</fill>

@@ -1,0 +1,14 @@
+<html>
+<body>
+<textarea id="LoginFrameContent" style="display: none;">&lt;load&gt;user/chooseDrink&lt;/load&gt;</textarea>
+
+<script type="text/javascript">
+//<![CDATA[
+
+var t = document.getElementById('LoginFrameContent').value;
+window.parent.js.XmlHttp.onData(t);
+document.getElementById('LoginFrameContent').value = "";
+//]]>
+</script>
+</body>
+</html>

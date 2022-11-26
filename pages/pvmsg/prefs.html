@@ -1,0 +1,73 @@
+<fill id="main">
+	<h1><strong>Mes</strong> messages</h1>
+
+	<ul class="tabs">
+		<li onclick="js.XmlHttp.get('pvmsg',this);"><a>Mes messages</a></li>
+		<li onclick="js.XmlHttp.get('pvmsg/new',this);"><a>Nouveau message</a></li>
+		<li class="selected" onclick="js.XmlHttp.get('pvmsg/prefs',this);"><a>Préférences</a></li>
+	</ul>
+
+	<h2><strong>Mode de</strong> filtrage</h2>
+	<form onsubmit="js.XmlHttp.post('pvmsg/prefs',this); return false;">
+		<div class="row">
+			<div class="input inputCheck">
+				<input checked="checked" name="msgFromContact" type="radio" id="msgFromContact_0" value="0"/>
+				<label for="msgFromContact_0">Accepter les messages de tous les joueurs, sauf ceux dans ma liste noire.</label>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="row">
+			<div class="input inputCheck">
+				<input name="msgFromContact" type="radio" id="msgFromContact_1" value="1"/> 
+				<label for="msgFromContact_1">Accepter les messages des joueurs dans ma liste d'amis uniquement.</label>
+			</div>
+			<div class="clear"></div>
+		</div>
+
+		
+		<div class="row">
+			<input class="button" name="submit" type="submit" value="Mettre à jour"/>
+			<div class="clear"></div>
+		</div>
+	
+	</form>
+
+	<h2><strong>Ma</strong> liste noire</h2>
+	<div class="dyk">
+		Les joueurs qui sont dans votre liste noire ne peuvent pas vous envoyer de message privé, d'invitation à 
+		rejoindre une table ni vous proposer un défi ou un match amical. Vous ne voyez pas non plus leurs messages 
+		sur les chats.
+	</div>
+
+		<table class="table">
+			<tr>
+				<td><span class="user" id="u_28213" onmouseover="js.XmlHttp.userTip(this,'33208','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+
+			<img alt="" src="img/icons/small_offline.gif"/>
+	 <a href="#user/33208" onclick="js.XmlHttp.get('user/33208',this); return false;">3Dos</a>
+		</span>
+	</td>
+			</tr><tr>
+				<td><span class="user" id="u_91349" onmouseover="js.XmlHttp.userTip(this,'340881','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+
+			<img alt="" src="img/icons/small_offline.gif"/>
+	 <a href="#user/340881" onclick="js.XmlHttp.get('user/340881',this); return false;">rastahman</a>
+		</span>
+	</td>
+			</tr><tr>
+				<td><span class="user" id="u_25935" onmouseover="js.XmlHttp.userTip(this,'296239','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+
+			<img alt="" src="img/icons/small_offline.gif"/>
+	 <a href="#user/296239" onclick="js.XmlHttp.get('user/296239',this); return false;">tony42</a>
+		</span>
+	</td>
+			</tr><tr>
+				<td><span class="user" id="u_35301" onmouseover="js.XmlHttp.userTip(this,'307984','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+
+			<img alt="" src="img/icons/small_offline.gif"/>
+	 <a href="#user/307984" onclick="js.XmlHttp.get('user/307984',this); return false;">yanndu28</a>
+		</span>
+	</td>
+			</tr>
+		</table>
+</fill>

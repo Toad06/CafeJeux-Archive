@@ -1,0 +1,97 @@
+<fill id="main">
+<![CDATA[
+	
+		<h1><strong>Les tables</strong> du café</h1>
+		<ul class="tabs">
+			<li><a href="#group/my" onclick="js.XmlHttp.get('group/my',this); return false;">Accueil</a></li>
+			<li class="selected"><a href="#group" onclick="js.XmlHttp.get('group',this); return false;">Rejoindre une table</a></li>
+			<li><a href="#group/create" onclick="js.XmlHttp.get('group/create',this); return false;">Créer une table</a></li>
+			<li><a href="#group/list" onclick="js.XmlHttp.get('group/list',this); return false;">Liste des tables</a></li>
+		</ul>
+	
+	<h2><strong>chercher</strong> une table</h2>
+
+	<form onsubmit="js.XmlHttp.post('group/search',this); return false;">
+		
+		<div class="row">
+			<div class="label"><label for="name">Nom :</label></div>
+			<div class="input"><input class="field" name="name" type="text" id="name" value="{ARCHIVE_SEARCH_TABLE_USER_REQUEST}"/></div>
+			<div class="clear"></div>
+		</div>
+	
+		
+		<div class="row">
+			<input class="button" name="submit" type="submit" value="Chercher"/>
+			<div class="clear"></div>
+		</div>
+	
+	</form>
+
+	
+		<div class="tableHeader"></div>
+	
+	<table class="table tableClick groupList">
+		<tr>
+			<th>&nbsp;</th>
+			<th>Table</th>
+			<th>Créateur</th>
+			<th>Membres</th>
+			<th>Création</th>
+			<th>&nbsp;</th>
+		</tr>
+		<tr onclick="js.XmlHttp.get('group/106',this);">
+			<td class="logo">
+				
+			</td>
+			<td class="name">{ARCHIVE_SEARCH_TABLE_1}</td>
+			<td><span class="user" id="u_70918" onmouseover="js.XmlHttp.userTip(this,'1123','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/1123" onclick="js.XmlHttp.get('user/1123',this); return false;">seve36</a>
+		</span>
+	</td>
+			<td>60</td>
+			<td class="date"><span title="Le mardi 20 mars 2007, à 11:24:33">
+			20 mars 2007
+		</span>
+	</td>
+			<td class="autoAccept">
+					<img alt="" src="img/icons/small_r_ConfirmMember.gif" onmouseover="mt.js.Tip.show(this,'Cette table &lt;strong&gt;accepte tous les nouveaux membres&lt;/strong&gt; automatiquement.',null)" onmouseout="mt.js.Tip.hide()"/>
+							</td>
+		</tr><tr onclick="js.XmlHttp.get('group/144',this);">
+			<td class="logo">
+				
+			</td>
+			<td class="name">{ARCHIVE_SEARCH_TABLE_2}</td>
+			<td><span class="user" id="u_2237" onmouseover="js.XmlHttp.userTip(this,'5905','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/5905" onclick="js.XmlHttp.get('user/5905',this); return false;">bestboy</a>
+		</span>
+	</td>
+			<td>2</td>
+			<td class="date"><span title="Le mardi 20 mars 2007, à 20:25:50">
+			20 mars 2007
+		</span>
+	</td>
+			<td class="autoAccept">
+
+					<img alt="" src="img/icons/small_online.gif" onmouseover="mt.js.Tip.show(this,'Si vous décidez de rejoindre cette table, les créateurs devront valider votre demande d\'abord.',null)" onmouseout="mt.js.Tip.hide()"/>
+			</td>
+		</tr><tr onclick="js.XmlHttp.get('group/147',this);">
+			<td class="logo">
+				<div onmouseover="mt.js.Tip.show(this,'&lt;div class=\'groupLogo\'&gt;&lt;img src=\'img/artworks/entrance_small.jpg\' alt=\'\'/&gt;&lt;/div&gt;',null)" onmouseout="mt.js.Tip.hide()"><img alt="[logo]" src="img/artworks/entrance_small.jpg"/></div>
+			</td>
+			<td class="name">{ARCHIVE_SEARCH_TABLE_3}</td>
+			<td><span class="user" id="u_2747" onmouseover="js.XmlHttp.userTip(this,'4967','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/4967" onclick="js.XmlHttp.get('user/4967',this); return false;">margot</a>
+		</span>
+	</td>
+			<td>60</td>
+			<td class="date"><span title="Le mercredi 21 mars 2007, à 08:35:45">
+			21 mars 2007
+		</span>
+	</td>
+			<td class="autoAccept">
+					<img alt="" src="img/icons/small_r_ConfirmMember.gif" onmouseover="mt.js.Tip.show(this,'Cette table &lt;strong&gt;accepte tous les nouveaux membres&lt;/strong&gt; automatiquement.',null)" onmouseout="mt.js.Tip.hide()"/>
+							</td>
+		</tr>
+	</table>
+]]>
+</fill>

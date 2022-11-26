@@ -1,0 +1,55 @@
+<menu id="groupMenu" selected="recruit"></menu>
+<fill id="main">
+
+		<h1><strong>Inviter un ami</strong> à table</h1>
+		<a href="#group/420?go=recruit" class="button b_back" onclick="js.XmlHttp.get('group/{ARCHIVE_GROUP_ID}?go=recruit',this); return false;">Retour à la table</a>
+		<p>
+			Si votre ami s'inscrit grace au mail qu'il recevra,
+			vous serez automatiquement son parrain, et il rejoindra automatiquement la table
+			<strong>{ARCHIVE_GROUP_NAME}</strong>.
+		</p>
+		{ARCHIVE_GROUP_REQUIRE_VALIDATION}
+
+	<div id="formError"></div>
+
+	<form onsubmit="js.XmlHttp.post('user/mailMyFriends',this); return false;">
+			<input name="group" type="hidden" value="{ARCHIVE_GROUP_ID}"/>
+			
+		<div class="row">
+			<div class="label">Table</div>
+			<div class="input"><input class="field readOnly" type="text" disabled="disabled" value="{ARCHIVE_GROUP_NAME}"/></div>
+			<div class="clear"></div>
+		</div>
+		<div class="row">
+			<div class="label"><label for="email">Adresse email *</label></div>
+			<div class="input"><input class="field" name="email" type="text" id="email" value=""/></div>
+			<div class="clear"></div>
+		</div>
+	
+		
+		<div class="row rowFlex">
+			<div class="label"><label for="text">Petit message **</label></div>
+			<div class="input"><textarea name="text" id="text"></textarea></div>
+			<div class="clear"></div>
+		</div>
+
+			
+		<div class="row">
+			<input class="button" name="submit" type="submit" value="Inviter à table !"/>
+			<div class="clear"></div>
+		</div>
+	
+		</form>
+
+	<p class="dyk">
+		* Nous ne transmettrons JAMAIS les emails saisis à de méchants spammeurs
+		(ni à de gentils spammeurs si tant est que cela existe). Un seul message par
+		adresse pourra être envoyé. Si quelqu'un a déjà envoyé un mail à l'une de
+		vos connaissances, votre message ne sera pas transmis.
+	</p>
+
+	<p class="dyk">
+		** Merci de rester poli et agréable avec vos connaissances, en cas de plainte
+		nous pourrions être amenés à supprimer votre compte.
+	</p>
+</fill>

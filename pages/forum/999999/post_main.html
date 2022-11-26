@@ -1,0 +1,157 @@
+<fill id="main"><![CDATA[
+<div class="forumContainer">
+		<a href="#forum/{ARCHIVE_FORUM_POST_INDEX}" class="button b_back" onclick="js.XmlHttp.get('forum/{ARCHIVE_FORUM_POST_INDEX}',this); return false;">Annuler</a>
+
+
+
+
+	<h1>{ARCHIVE_FORUM_POST_FORUM_NAME}</h1>
+
+	<h2><strong>Nouveau</strong> sujet</h2><div class="forum">
+
+</div>
+
+<form onsubmit="js.XmlHttp.post('forum/{ARCHIVE_FORUM_POST_INDEX}/post',this); return false;" name="forum" id="forum">
+
+	{ARCHIVE_FORUM_TITLE_ERROR}
+		<div class="row">
+			<div class="label"><label for="title">Titre :</label></div>
+			<div class="input"><input class="field" name="title" type="text" id="title" maxlength="34" value="{ARCHIVE_FORUM_TITLE_POST}"/></div>
+			<div class="clear"></div>
+		</div>
+
+	{ARCHIVE_FORUM_MESSAGE_ERROR}
+
+	
+		<div class="formatButtons">
+			<a class="button fb_bold" type="button" onClick="js.App.forumInsert('content','*','*');" onmouseover="mt.js.Tip.show(this,'Mettre en &lt;b&gt;gras&lt;/b&gt; le texte sélectionné.',null)" tabindex="99" onmouseout="mt.js.Tip.hide()">G</a>
+			<a class="button fb_italic" type="button" onClick="js.App.forumInsert('content','//','//');" onmouseover="mt.js.Tip.show(this,'Mettre en &lt;i&gt;italique&lt;/i&gt; le texte sélectionné.',null)" tabindex="99" onmouseout="mt.js.Tip.hide()">I</a>
+			<a class="button" type="button" onClick="js.App.forumInsert('content','[cite]','[/cite]');" onmouseover="mt.js.Tip.show(this,'Insérer une citation',null)" tabindex="99" onmouseout="mt.js.Tip.hide()">Cite</a>
+			<a class="button" type="button" onClick="js.App.forumUrl('content','Entrez l\'adresse de la page','Entrez le texte de votre lien');" onmouseover="mt.js.Tip.show(this,'Insérer un lien',null)" tabindex="99" onmouseout="mt.js.Tip.hide()">Lien</a>
+			<div class="clear"></div>
+		</div>
+	
+	
+		<div class="smileyList">
+		<div class="iconColors">
+				<a href="#" class="color_0" onclick="js.App.forumInsert('content','#0#','##'); return false;" onmouseover="mt.js.Tip.show(this,'Appliquer cette encre au texte sélectionné.',null)" tabindex="99" onmouseout="mt.js.Tip.hide()">0</a>
+	
+				<a href="#" class="color_1" onclick="js.App.forumInsert('content','#1#','##'); return false;" onmouseover="mt.js.Tip.show(this,'Appliquer cette encre au texte sélectionné.',null)" tabindex="99" onmouseout="mt.js.Tip.hide()">1</a>
+	
+				<a href="#" class="color_2" onclick="js.App.forumInsert('content','#2#','##'); return false;" onmouseover="mt.js.Tip.show(this,'Appliquer cette encre au texte sélectionné.',null)" tabindex="99" onmouseout="mt.js.Tip.hide()">2</a>
+	
+				<a href="#" class="color_3" onclick="js.App.forumInsert('content','#3#','##'); return false;" onmouseover="mt.js.Tip.show(this,'Appliquer cette encre au texte sélectionné.',null)" tabindex="99" onmouseout="mt.js.Tip.hide()">3</a>
+	
+				<a href="#" class="color_4" onclick="js.App.forumInsert('content','#4#','##'); return false;" onmouseover="mt.js.Tip.show(this,'Appliquer cette encre au texte sélectionné.',null)" tabindex="99" onmouseout="mt.js.Tip.hide()">4</a>
+	
+				<a href="#" class="color_5" onclick="js.App.forumInsert('content','#5#','##'); return false;" onmouseover="mt.js.Tip.show(this,'Appliquer cette encre au texte sélectionné.',null)" tabindex="99" onmouseout="mt.js.Tip.hide()">5</a>
+	
+				<a href="#" class="color_6" onclick="js.App.forumInsert('content','#6#','##'); return false;" onmouseover="mt.js.Tip.show(this,'Appliquer cette encre au texte sélectionné.',null)" tabindex="99" onmouseout="mt.js.Tip.hide()">6</a>
+	
+				<a href="#" class="color_7" onclick="js.App.forumInsert('content','#7#','##'); return false;" onmouseover="mt.js.Tip.show(this,'Appliquer cette encre au texte sélectionné.',null)" tabindex="99" onmouseout="mt.js.Tip.hide()">7</a>
+	
+				<a href="#" class="color_8" onclick="js.App.forumInsert('content','#8#','##'); return false;" onmouseover="mt.js.Tip.show(this,'Appliquer cette encre au texte sélectionné.',null)" tabindex="99" onmouseout="mt.js.Tip.hide()">8</a>
+				<div class="clear"></div>
+		</div>
+
+				<a href="#" onclick="document.getElementById('content').value += ':)'; document.getElementById('content').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:)',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_smile.gif"/></a>
+	
+				<a href="#" onclick="document.getElementById('content').value += ':('; document.getElementById('content').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:(',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_sad.gif"/></a>
+	
+				<a href="#" onclick="document.getElementById('content').value += ':D'; document.getElementById('content').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:D',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_biggrin.gif"/></a>
+	
+				<a href="#" onclick="document.getElementById('content').value += ';)'; document.getElementById('content').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;;)',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_wink.gif"/></a>
+	
+				<a href="#" onclick="document.getElementById('content').value += ':quoi:'; document.getElementById('content').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:quoi:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_question.gif"/></a>
+	
+				<a href="#" onclick="document.getElementById('content').value += ':o'; document.getElementById('content').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:o',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_surprised.gif"/></a>
+	
+				<a href="#" onclick="document.getElementById('content').value += '8O'; document.getElementById('content').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;8O',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_eek.gif"/></a>
+	
+				<a href="#" onclick="document.getElementById('content').value += '8)'; document.getElementById('content').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;8)',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_cool.gif"/></a>
+	
+				<a href="#" onclick="document.getElementById('content').value += ':x'; document.getElementById('content').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:x',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_mad.gif"/></a>
+	
+				<a href="#" onclick="document.getElementById('content').value += ':P'; document.getElementById('content').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:P',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_razz.gif"/></a>
+	
+				<a href="#" onclick="document.getElementById('content').value += ':!:'; document.getElementById('content').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:!:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_exclaim.gif"/></a>
+	
+				<a href="#" onclick="document.getElementById('content').value += ':?'; document.getElementById('content').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:?',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_confused.gif"/></a>
+	
+				<a href="#" onclick="document.getElementById('content').value += ':timide:'; document.getElementById('content').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:timide:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_redface.gif"/></a>
+	
+				<a href="#" onclick="document.getElementById('content').value += ':lol:'; document.getElementById('content').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:lol:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_lol.gif"/></a>
+	
+				<a href="#" onclick="document.getElementById('content').value += ':pleure:'; document.getElementById('content').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:pleure:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_cry.gif"/></a>
+	
+				<a href="#" onclick="document.getElementById('content').value += ':mechant:'; document.getElementById('content').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:mechant:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_evil.gif"/></a>
+	
+				<a href="#" onclick="document.getElementById('content').value += ':evil:'; document.getElementById('content').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:evil:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_evil.gif"/></a>
+	
+				<a href="#" onclick="document.getElementById('content').value += ':sadique:'; document.getElementById('content').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:sadique:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_twisted.gif"/></a>
+	
+				<a href="#" onclick="document.getElementById('content').value += ':twist:'; document.getElementById('content').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:twist:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_twisted.gif"/></a>
+	
+				<a href="#" onclick="document.getElementById('content').value += ':innocent:'; document.getElementById('content').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:innocent:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_rolleyes.gif"/></a>
+	
+				<a href="#" onclick="document.getElementById('content').value += ':wink:'; document.getElementById('content').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:wink:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_wink2.gif"/></a>
+	
+				<a href="#" onclick="document.getElementById('content').value += ':dontcare:'; document.getElementById('content').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:dontcare:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_dontcare.gif"/></a>
+	
+				<a href="#" onclick="document.getElementById('content').value += ':huh:'; document.getElementById('content').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:huh:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_huh.gif"/></a>
+	
+				<a href="#" onclick="document.getElementById('content').value += ':noon:'; document.getElementById('content').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:noon:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_nooo.gif"/></a>
+	
+				<a href="#" onclick="document.getElementById('content').value += ':youpi:'; document.getElementById('content').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:youpi:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_yeah.gif"/></a>
+	
+				<a href="#" onclick="document.getElementById('content').value += ':idee:'; document.getElementById('content').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:idee:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_idea.gif"/></a>
+	
+				<a href="#" onclick="document.getElementById('content').value += ':charte:'; document.getElementById('content').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:charte:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_chart.gif"/></a>
+	
+				<a href="#" onclick="document.getElementById('content').value += ':fleche:'; document.getElementById('content').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:fleche:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_arrow.gif"/></a>
+	
+				<a href="#" onclick="document.getElementById('content').value += ':croix:'; document.getElementById('content').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:croix:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_cross.gif"/></a>
+	
+				<a href="#" onclick="document.getElementById('content').value += ':love:'; document.getElementById('content').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:love:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_love.gif"/></a>
+	
+				<a href="#" onclick="document.getElementById('content').value += ':sucreblanc:'; document.getElementById('content').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:sucreblanc:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_sucreblanc.gif"/></a>
+	
+				<a href="#" onclick="document.getElementById('content').value += ':sucre:'; document.getElementById('content').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:sucre:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_sucreroux.gif"/></a>
+	
+				<a href="#" onclick="document.getElementById('content').value += ':mail:'; document.getElementById('content').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:mail:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_mail.gif"/></a>
+	
+				<a href="#" onclick="document.getElementById('content').value += ':match:'; document.getElementById('content').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:match:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_fight.gif"/></a>
+	
+				<a href="#" onclick="document.getElementById('content').value += ':table:'; document.getElementById('content').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:table:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_table.gif"/></a>
+	
+				<a href="#" onclick="document.getElementById('content').value += ':tasse:'; document.getElementById('content').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:tasse:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_tasse.gif"/></a>
+	
+				<a href="#" onclick="document.getElementById('content').value += ':caps:'; document.getElementById('content').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:caps:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_cap.gif"/></a>
+	
+				<a href="#" onclick="document.getElementById('content').value += ':chrono:'; document.getElementById('content').focus(); return false;" onmouseover="mt.js.Tip.show(this,'Insérer :&lt;br/&gt;:chrono:',null)" tabindex="99" onmouseout="mt.js.Tip.hide()"><img src="img/smiley/icon_chrono.gif"/></a>
+				<div class="clear"></div>
+			
+		</div>
+	
+	<div class="row rowFlex">
+		<div class="label">
+			<label for="content">Message :</label>
+			<p class="becool">Merci de toujours rester courtois et élégant dans vos messages.</p>
+		</div>
+		<div class="input"><textarea name="content" id="content">{ARCHIVE_FORUM_CONTENT_POST}</textarea></div>
+		<div class="clear"></div>
+	</div>
+
+	<div class="submit">
+		<input class="button" onclick="this.name = 'preview';" type="submit" value="Aperçu"/>
+		<input class="button" onclick="this.name = 'submit';" type="submit" value="J'ai relu, je valide !"/>
+		<div class="clear"></div>
+	</div>
+
+</form>
+
+
+
+</div>
+]]>
+</fill>

@@ -1,0 +1,43 @@
+<back ignore="1"></back>
+<load>group/6951/{ARCHIVE_LOAD_TABLE}</load>
+<fill id="main">
+<![CDATA[
+	<h1><strong>CaféJeux</strong> 2007-2020</h1>
+
+	<div class="group">
+<!--		<mt mt:if="isMember">
+			<a class="tableBack" href="#group/my" onclick="js.XmlHttp.get('group/my',this); return false;">x</a>
+		</mt><mt mt:else="">
+			<a class="tableBack" href="#::from::" onclick="js.XmlHttp.get('::from::',this); return false;">x</a>
+		</mt>-->
+
+		
+
+		<ul class="tabs" id="groupMenu">
+
+			<li onclick="js.XmlHttp.get('group/6951/description',this);" menuid="description"><a>Accueil</a></li>
+				<li onclick="js.XmlHttp.get('group/6951/chat',this);" menuid="chat" title="Bavarder avec les autres membres"><a>Chat</a></li>
+				<li onclick="js.XmlHttp.get('group/6951/forum',this);" id="groupForumTab" menuid="forum" title="Discuter avec les autres membres et garder une trace des discussions">
+
+						<a>Forum</a>
+						</li>
+				<li onclick="js.XmlHttp.get('group/6951/ranking',this);" menuid="ranking" title="Consulter les classements internes de la table"><a>Classement </a></li>
+
+			<li onclick="js.XmlHttp.get('group/6951/members',this);" menuid="members" title="Liste des membres">
+				<a>Membres <em>(17)</em></a>
+			</li>
+
+
+			<li onclick="js.XmlHttp.get('group/6951/recruit',this);" menuid="recruit" title="Recrutement de nouveaux joueurs">
+				<a>Recrutement</a>
+			</li>
+
+		</ul>
+
+		<div class="container" id="groupMain">
+			<div class="loading">Chargement de la table...</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+]]>
+</fill>
