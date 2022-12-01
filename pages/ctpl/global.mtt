@@ -33,11 +33,11 @@
 	<macro name="ejected">Vous avez été éjecté du site.</macro>
 	<macro name="userFreeMoney">
 		<p>Les <strong>sucres blancs</strong> sont reçus gratuitement chaque jour.</p>
-		<p>Chaque partie jouée au café consomme <strong>1 sucre</strong>.</p>
+		<p>Chaque partie jouée au Café consomme <strong>1 sucre</strong>.</p>
 	</macro>
 	<macro name="userMoney">
 		<p>Les <strong>sucres roux</strong> sont achetés au bar.</p>
-		<p>Chaque partie jouée au café consomme <strong>1 sucre</strong> (les sucres blancs sont utilisés en priorité)</p>
+		<p>Chaque partie jouée au Café consomme <strong>1 sucre</strong> (les sucres blancs sont utilisés en priorité)</p>
 	</macro>
 	<macro name="userPrizeToken">
 		<p>Les <strong>Caps</strong> sont gagnées à chaque victoire.</p>
@@ -122,9 +122,9 @@
 			<div class="content">
 				<p>
 					Votre session n'est plus valide, probablement parce que vous êtes resté inactif sur le site plusieurs heures.
-					Vous devez donc relancer Café-Jeux pour pouvoir vous identifier à nouveau.
+					Vous devez donc relancer CaféJeux pour pouvoir vous identifier à nouveau.
 				</p>
-				<a class="button" href="#" onclick="js.App.reboot(); return false;">Relancer Café Jeux</a>
+				<a class="button" href="#" onclick="js.App.reboot(); return false;">Relancer CaféJeux</a>
 			</div>
 			<div class="footer"></div>
 		</div>

@@ -502,6 +502,13 @@ switch($page) {
 			$data = get_content($pageUrlExt);
 		}
 		break;
+	case "group/420/eject":
+		$gId = isset($_GET['id']) ? intval($_GET['id']) : 0;
+		if($gId >= 0) {
+			// NOTE : Cette fonctionnalité de cafejeux.com était hors d'usage au moment du test.
+			$data = "";
+		}
+		break;
 	case "group/420/invite":
 	case "group/6951/invite":
 		// NOTE : Lorsque le nom saisi est correct, un message est envoyé au membre invité via la messagerie interne du site. Néanmoins, cette fonctionnalité de cafejeux.com était hors d'usage au moment du test.
@@ -546,6 +553,7 @@ switch($page) {
 		if($gConfirm === 1) {
 			if(!$isDummy) {
 				// NOTE : Impossible de connaître le message affiché quand l'utilisateur postule à une table qui n'est pas pleine (< 60 membres), cette fonctionnalité de cafejeux.com était hors d'usage au moment du test.
+				// Si l'utilisateur faisait déjà partie de huit tables, le message suivant s'affichait sur cafejeux.com : `<p class="nack">Vous ne pouvez pas faire partie de plus de 8 tables à la fois.</p>`
 			} else {
 				$f = "_full";
 			}
@@ -558,10 +566,19 @@ switch($page) {
 		$isDummy = isset($_SESSION['cafeTableDummy']) ? $_SESSION['cafeTableDummy'] : true;
 		$data = get_content((!$isDummy ? $pageUrlExt : $pageUrl . "_dummy" . $pageExt));
 		break;
+	case "group/6951/part":
+		$gSid = isset($_GET['sid']) ? explode(";", $_GET['sid'])[0] : "";
+		if(strlen($gSid) >= 0) {
+			// NOTE : Cette fonctionnalité de cafejeux.com était hors d'usage au moment du test.
+			$data = "";
+		}
+		break;
 	case "group/create":
 	case "group/createFromSpecial":
 		if(!isset($_POST['submit'])) {
 			// NOTE : La page "group/create_main_error.html" ne devrait être affichée que si le nombre de sucres roux est insuffisant (inférieur à 30).
+			// Si l'utilisateur faisait déjà partie de huit tables, le message ci-dessous s'affichait sur cafejeux.com :
+			// `<p class="nack">Vous ne pouvez pas faire partie de plus de 8 tables à la fois, il vous est donc impossible de créer une table pour le moment.</p>`
 			if($page === "group/createFromSpecial") {
 				$data = get_content(str_replace("FromSpecial", "", $pageUrl) . "_main_error" . $pageExt);
 			} else {
@@ -1008,6 +1025,13 @@ switch($page) {
 			$data = str_replace("{ARCHIVE_ELEMENT_ID_FIELD}", $elementIdField, $data);
 		} else {
 			$data = get_content($pageUrl . "_main" . $pageExt);
+		}
+		break;
+	case "user/tkFurniture":
+		$gId = isset($_GET['id']) ? intval($_GET['id']) : 0;
+		if($gId >= 0) {
+			// NOTE : Cette fonctionnalité de cafejeux.com était hors d'usage au moment du test.
+			$data = "";
 		}
 		break;
 	default:

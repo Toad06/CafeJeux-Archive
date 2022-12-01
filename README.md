@@ -11,6 +11,6 @@ IMPORTANT : Les jeux ne sont pas fonctionnels.
 
 ## Installation
 
-Dézipper le fichier téléchargé vers un serveur local ou en ligne.
+Dézipper le fichier téléchargé vers un serveur local ou en ligne et ouvrir "index.php" depuis le navigateur.
 
 Archive développée et testée avec WampServer (Apache 2.4 et PHP 7.4).

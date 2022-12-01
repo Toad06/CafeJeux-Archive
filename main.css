@@ -4454,6 +4454,10 @@ table.groupList tr td.date {
 	border-color: white;
 }
 
+.guide {
+	min-height: 540px;
+}
+
 .guide .teaser ul {
 	margin-top: 10px;
 }
