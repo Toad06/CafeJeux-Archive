@@ -32,7 +32,17 @@ $globalPlayers[18269] = isset($_SESSION['cafeUsername']) ? $_SESSION['cafeUserna
 $globalUserFreeMoney = 3; // nombre de sucres blancs
 $globalUserMoney = 100; // nombre de sucres roux
 $globalUserPrizeToken = 500; // nombre de caps
-$globalUserCity = (isset($_SESSION['cafeUsername']) && trim(strtolower($_SESSION['cafeUsername'])) === "toad06") ? "NISSA" : "Le PC du Café Jeux"; // ville du profil
+$globalUserCity = (isset($_SESSION['cafeUsername']) && strtolower($_SESSION['cafeUsername']) === "toad06") ? "NISSA" : "Le PC du Café Jeux"; // ville du profil
+$globalUserData = array("username" => "Toad06", "gender" => 0, "gfx" => "0,0,0,0,0,0,0,0,2,0,0,0,3,0,3,6,6,0"); // données définies sur la page d'inscription
+if(isset($_SESSION['cafeUsername']) && isset($_COOKIE['cafeUserData'])) {
+	$getUserData = json_decode($_COOKIE['cafeUserData'], true);
+	if(strtolower($_SESSION['cafeUsername']) === strtolower($getUserData['username'])) {
+		$globalUserData['username'] = $getUserData['username'];
+		$globalUserData['gender'] = $getUserData['gender'];
+		$globalUserData['gfx'] = $getUserData['gfx'];
+	}
+	unset($getUserData);
+}
 
 
 // Retourne la date du jour dans les différents formats utilisés par CaféJeux

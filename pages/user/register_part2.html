@@ -1,0 +1,116 @@
+<back>user/register</back>
+<fill id="main">
+<![CDATA[
+	<div class="cache">
+		<img alt="" src="img/icons/small_pass_bad.gif"/>
+		<img alt="" src="img/icons/small_pass_medium.gif"/>
+		<img alt="" src="img/icons/small_pass_good.gif"/>
+		<img alt="" src="img/icons/small_pass_best.gif"/>
+	</div>
+	<div class="register">
+		<h1><strong>prendre un</strong> café et jouer</h1>
+		<h2><strong>Etape 2 sur 2 :</strong> votre compte</h2>
+
+			<form onsubmit="js.XmlHttp.post('user/register',this); return false;">
+				<div id="formError"></div>
+
+				
+		<div class="avatar">
+		<div class="swf" id="swf_avatarViewer_48026">
+			Votre lecteur Flash n'est pas à jour. <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&Lang=French&P5_Language=French" target="_blank">Installer la dernière version</a>
+		</div>
+		<script type="text/javascript" id="jsid-1">
+		var so = new SWFObject("swf/viewer.swf?v=20100928162820","avatarViewer_48026","48","70","0","null");
+		so.addParam("AllowScriptAccess","always");
+		so.addParam("scale","noscale");
+		so.addParam("menu","false");
+			so.addParam("wmode","transparent");
+so.addVariable("url","/user/null");
+	so.addVariable("delay","0");
+	so.addVariable("dir","1");
+	so.addVariable("gfx","{ARCHIVE_REGISTER_GFX}");
+	so.addVariable("avatarurl","swf/avatar.swf?v=20100928162820");
+			so.write("swf_avatarViewer_48026");
+		</script>
+	
+		</div>
+	
+				<a href="#" class="button b_editAvatar" onclick="if( confirm('Les informations entrées dans le formulaire seront perdues, voulez-vous modifier votre avatar ?') ) js.XmlHttp.get('user/register?s={ARCHIVE_REGISTER_GFX}'); event.stopPropagation(); return false;">Modifier</a>
+
+				<fieldset>
+					
+		<div class="row">
+			<div class="label"><label for="name">Pseudo :</label></div>
+			<div class="input"><input class="field" name="name" type="text" id="name" value=""/></div>
+			<div class="clear"></div>
+		</div>
+	
+				</fieldset>
+
+				<fieldset>
+					
+		<div class="row">
+			<div class="label"><label for="pass">Code secret :</label></div>
+			<div class="input"><input class="field" name="pass" type="password" id="pass" value=""/></div>
+			<div class="clear"></div>
+		</div>
+	
+					
+		<div class="row">
+			<div class="label"><label for="pass2">Confirmation :</label></div>
+			<div class="input"><input class="field" name="pass2" type="password" id="pass2" value=""/></div>
+			<div class="clear"></div>
+		</div>
+	
+					<div class="row">
+						<div class="label">
+							Qualité du code secret :
+						</div>
+						<div class="input passComplexity" onmouseover="mt.js.Tip.show(this,'&lt;p&gt;Cette valeur vous indique si votre code secret est sûr ou non.&lt;/p&gt; &lt;p&gt;Choisissez un code secret composé de lettres minuscules ET majuscules, ainsi que de chiffres.&lt;/p&gt;',null)" onmouseout="mt.js.Tip.hide()">
+							<div id="passComplexityText"></div>
+							<div id="passComplexityContainer"><div id="passComplexityBar"></div></div>
+							<div id="passComplexityIcon"></div>
+						</div>
+					</div>
+					<div class="clear"></div>
+					<script type="text/javascript" id="jsid-2">
+					js.FormHelper.initPass();
+					</script>
+				</fieldset>
+
+				<fieldset>
+					<div>Les informations suivantes sont facultatives.</div>
+					
+		<div class="row">
+			<div class="label"><label for="email">Adresse mail :</label></div>
+			<div class="input"><input class="field" name="email" type="text" id="email" value=""/></div>
+			<div class="clear"></div>
+		</div>
+						
+		<div class="row">
+			<div class="label"><label for="sponsor">Parrain :</label></div>
+			<div class="input"><input class="field" name="sponsor" type="text" id="sponsor" value=""/></div>
+			<div class="clear"></div>
+		</div>
+	
+							</fieldset>
+
+				<fieldset>
+					<div>
+						<input name="cgu" type="checkbox" id="cgu" value="1"/>
+						<label for="cgu">J'ai lu et j'accepte les <a href="#" onclick="return false;">Conditions Générales d'Utilisation du site</a>.</label>
+					</div>
+					<p>
+						Si vous avez moins de 18 ans, demandez à vos parents leur accord avant de vous inscrire (<a href="#" onclick="return false;">+ d'infos</a>).
+					</p>
+				</fieldset>
+				
+		<div class="row">
+			<input class="button" name="submit" type="submit" value="S'inscrire au Café !"/>
+			<div class="clear"></div>
+		</div>
+	
+			</form>
+	</div>
+]]>
+</fill>

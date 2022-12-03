@@ -159,12 +159,88 @@ switch($page) {
 		}
 		break;
 	case "user/register":
+		// Le site cafejeux.com utilisait le système de cookies de Flash Player pour détecter les tentatives de créations de multi-comptes. Le message suivant était alors affiché sur la page :
+		// `<div class="nack">Un trop grand nombre d'inscriptions a été détecté depuis votre ordinateur. Voir les <a href="#" target="_blank">Conditions Générales d'Utilisation du site</a>.</div>`
 		$isPagePublic = true;
 		$f = "_ok";
+		$repGfx = "";
+		$repErrors = "";
 		if(!$isUserLoggedIn) {
-			$f = "";
+			$f = "_part1";
+			$gS = isset($_GET['s']) ? $_GET['s'] : "";
+			if(strlen($gS) > 0) {
+				$gfx = htmlentities(explode(";", $gS)[0]);
+				if(count(explode(",", $gfx)) === 18) {
+					$repGfx = 'so.addVariable("gfx","' . $gfx . '");';
+				}
+			} else {
+				if(isset($_POST['submit'])) {
+					$pName = isset($_POST['name']) ? $_POST['name'] : "";
+					$pPass = isset($_POST['pass']) ? $_POST['pass'] : "";
+					$pPass2 = isset($_POST['pass2']) ? $_POST['pass2'] : "";
+					$pEmail = isset($_POST['email']) ? $_POST['email'] : "";
+					$pSponsor = isset($_POST['sponsor']) ? $_POST['sponsor'] : "";
+					$pCgu = isset($_POST['cgu']) ? intval($_POST['cgu']) : 0;
+					$errors = "";
+					if(strlen($pName) < 4 || strlen($pName) > 20) {
+						$errors .= "<li>Un pseudo doit faire entre 4 et 20 caractères.</li>";
+					} elseif(preg_match('/[^A-Za-z0-9]/', $pName)) {
+						$errors .= "<li>Un pseudo ne doit contenir que des chiffres et des lettres.</li>";
+					} elseif($pName === strtoupper($pName)) { // prétexte pour afficher le message ci-dessous
+						$errors .= "<li>Ce pseudo est déjà utilisé, veuillez en choisir un autre.</li>";
+					}
+					if(strlen($pPass) < 6 || strlen($pPass) > 32) {
+						$errors .= "<li>Votre code secret doit faire entre 6 et 32 caractères.</li>";
+					} elseif($pPass !== $pPass2) {
+						$errors .= "<li>Vous avez tapé deux codes secrets différents, veuillez donner deux fois le même.</li>";
+					}
+					if(strlen($pEmail) > 0 && !preg_match('`^\w([-_.]?\w)*@\w([-_.]?\w)*\.([a-z]{1,6})$`', $pEmail)) {
+						$errors .= "<li>Cette adresse email n'est pas à un format valide.</li>";
+					}
+					if(strlen($pSponsor) > 0 && (strlen($pSponsor) < 4 || strlen($pSponsor) > 20 || preg_match('/[^A-Za-z0-9]/', $pSponsor) || strtolower($pSponsor) === strtolower($pName))) {
+						$errors .= "<li>Parrain introuvable : aucun joueur du Café n'a été trouvé avec ce pseudo.</li>";
+					}
+					if($pCgu === 0) {
+						$errors .= "<li>Vous devez accepter les conditions générales d'utilisation pour pouvoir vous inscrire.</li>";
+					}
+					if(strlen($errors) > 0) {
+						$f = "_errors";
+						$repErrors = $errors;
+					} else {
+						$f = "<load>user/chooseDrink?iamnew=1</load>";
+						if(isset($_SESSION['cafePrevUsername'])) unset($_SESSION['cafePrevUsername']);
+						if(isset($_SESSION['cafeDay'])) unset($_SESSION['cafeDay']);
+						if(isset($_SESSION['cafeDayChanged'])) unset($_SESSION['cafeDayChanged']);
+						if(isset($_SESSION['cafeDrink'])) unset($_SESSION['cafeDrink']);
+						$_SESSION['cafeUsername'] = $pName;
+						if(isset($_COOKIE['cafeUserData'])) {
+							$cookieData = json_decode($_COOKIE['cafeUserData'], true);
+							$cookieData['username'] = $pName;
+							setcookie("cafeUserData", json_encode($cookieData), time() + (60 * 60 * 24 * 30), "/");
+						}
+					}
+				} else {
+					$gGfx = isset($_GET['gfx']) ? $_GET['gfx'] : "";
+					if(strlen($gGfx) > 0) {
+						$gfx = htmlentities(explode(";", $gGfx)[0]);
+						$gender = explode(";gender=", $gGfx);
+						if(count(explode(",", $gfx)) === 18 && isset($gender[1])) {
+							$f = "_part2";
+							$repGfx = $gfx;
+							$cookieData = array("username" => "_", "gender" => (intval($gender[1]) === 1 ? 1 : 0), "gfx" => $gfx);
+							setcookie("cafeUserData", json_encode($cookieData), time() + (60 * 60 * 24 * 30), "/");
+						}
+					}
+				}
+			}
 		}
-		$data = get_content($pageUrl . $f . $pageExt);
+		if(substr($f, 0, 1) === "<") {
+			$data = $f;
+		} else {
+			$data = get_content($pageUrl . $f . $pageExt);
+			$data = str_replace("{ARCHIVE_REGISTER_GFX}", $repGfx, $data);
+			$data = str_replace("{ARCHIVE_REGISTER_ERRORS}", $repErrors, $data);
+		}
 		break;
 	case "sponsor/embed.js":
 		$isPagePublic = true;
@@ -242,7 +318,7 @@ switch($page) {
 	case "group/6951/recruit":
 	case "group/list":
 	case "group/my":
-	case "pvmsg":
+	case "pvmsg": // NOTE : S'il n'y a pas de message à afficher, le code HTML sur cafejeux.com était le suivant : "<em>Aucun message.</em>"
 	case "pvmsg/38365":
 	case "pvmsg/42443":
 	case "pvmsg/43268":
@@ -841,11 +917,26 @@ switch($page) {
 		} else {
 			$_SESSION['cafeDay'] = $day;
 			$gDrinkId = isset($_GET['id']) ? intval(explode(";", $_GET['id'])[0]) : -1;
+			$gIsNew = isset($_GET['iamnew']) ? $_GET['iamnew'] : false;
+			if($gIsNew !== false) {
+				$checkDrink = explode(";id=", $gIsNew);
+				$gDrinkId = isset($checkDrink[1]) ? intval($checkDrink[1]) : $gDrinkId;
+				$gIsNew = true;
+			}
 			if($gDrinkId < 0 || !array_key_exists($gDrinkId, $globalDrinks)) {
+				$dataIsNew = "";
+				if($gIsNew) {
+					$dataIsNew = "iamnew=1;";
+				}
 				$data = get_content($pageUrlExt);
+				$data = str_replace("{ARCHIVE_DRINK_NEW_USER}", $dataIsNew, $data);
 			} else {
 				$_SESSION['cafeDrink'] = $gDrinkId;
-				$data = "<load>head</load><load>game</load>";
+				if($gIsNew) {
+					$data = "<load>head</load><load>user/register</load>";
+				} else {
+					$data = "<load>head</load><load>game</load>";
+				}
 			}
 		}
 		break;
@@ -1087,6 +1178,8 @@ if($data !== null) {
 			$data = str_replace("{ARCHIVE_USER_FREE_MONEY}", strval($globalUserFreeMoney), $data);
 			$data = str_replace("{ARCHIVE_USER_PRIZE_TOKEN}", strval($globalUserPrizeToken), $data);
 			$data = str_replace("{ARCHIVE_USER_CITY}", $globalUserCity, $data);
+			$data = str_replace("{ARCHIVE_USER_GFX}", $globalUserData['gfx'], $data);
+			$data = str_replace("{ARCHIVE_USER_GENDER}", ($globalUserData['gender'] === 1 ? "female" : "male"), $data);
 		}
 		echo $data;
 	} elseif(!$isUserLoggedIn) {

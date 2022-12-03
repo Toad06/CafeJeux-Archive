@@ -95,10 +95,16 @@ RewriteRule ^static/(.+)$ dispatch.php?p=static/$1 [L]
 
 RewriteCond %{QUERY_STRING} ^submit=([^&]+)$
 RewriteRule ^user/cancelDelete$ dispatch.php?p=user/cancelDelete&submit=%1 [L]
+RewriteCond %{QUERY_STRING} ^iamnew=([^&]+)$
+RewriteRule ^user/chooseDrink$ dispatch.php?p=user/chooseDrink&iamnew=%1 [L]
 RewriteCond %{QUERY_STRING} ^id=([^&]+)$
 RewriteRule ^user/chooseDrink$ dispatch.php?p=user/chooseDrink&id=%1 [L]
 RewriteCond %{QUERY_STRING} ^group=([^&]+)$
 RewriteRule ^user/mailMyFriends$ dispatch.php?p=user/mailMyFriends&group=%1 [L]
+RewriteCond %{QUERY_STRING} ^gfx=([^&]+)$
+RewriteRule ^user/register$ dispatch.php?p=user/register&gfx=%1 [L]
+RewriteCond %{QUERY_STRING} ^s=([^&]+)$
+RewriteRule ^user/register$ dispatch.php?p=user/register&s=%1 [L]
 RewriteCond %{QUERY_STRING} ^online=([^&]+)$
 RewriteRule ^user/search$ dispatch.php?p=user/search&online=%1 [L]
 RewriteCond %{QUERY_STRING} ^v=([^&]+)$
