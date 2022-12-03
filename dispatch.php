@@ -591,7 +591,7 @@ switch($page) {
 			if(strlen($pName) < 4 || strlen($pName) > 30) {
 				$error = "Le nom d'une table doit faire entre 4 et 30 caractères.";
 			} elseif(strtolower($pName) === "table des habitués") {
-				// NOTE : Sur cafejeux.com, le nom était bien insensible à la casse, mais pas aux espaces entre les mots (donc "table    des habitués" aurait pu être créée).
+				// NOTE : Sur cafejeux.com, le nom était bien insensible à la casse mais pas aux espaces entre les mots (donc "table    des habitués" aurait pu être créée).
 				$error = "Une table utilise déjà ce nom, choisissez en un autre.";
 			} elseif(strlen($pDescription) < 20) {
 				$error = "Merci d'écrire une petite présentation de votre table.";
@@ -856,7 +856,7 @@ switch($page) {
 			if(strlen($pPass) < 6 || strlen($pPass) > 32) {
 				$data = "<alert>Ce code secret n'est pas valide. Attention, les différences entre minuscules et majuscules sont prises en compte.</alert>";
 			} else {
-				// NOTE : Dans cette situation, le lien "Supprimer mon compte !" sur "Ma page" devrait être remplacé par le code HTML ci-dessous, et $data devrait renvoyer vers "user/18269" au lieu de "user/cancelDelete".
+				// NOTE : Dans cette situation, le lien "Supprimer mon compte !" sur "Ma page" devrait être remplacé par le code HTML ci-dessous et $data devrait renvoyer vers "user/18269" au lieu de "user/cancelDelete".
 				// <a href="#user/cancelDelete" class="button" onclick="js.XmlHttp.get('user/cancelDelete',this); return false;">Annuler la suppression en cours</a>
 				// La page principale devrait également afficher ceci, juste après `<div class="cache">(...)</div>` :
 				// <div class="nack">Attention ! La suppression de votre compte a été demandée, elle sera effectuée prochainement !
@@ -934,7 +934,7 @@ switch($page) {
 				$errors .= "<li>Votre ville ou région ne doit pas dépasser 50 caractères.</li>";
 			}
 			if(strlen($pEmail) > 0 && !preg_match('`^\w([-_.]?\w)*@\w([-_.]?\w)*\.([a-z]{1,6})$`', $pEmail)) {
-				$errors .= "<li>Cette adresse e-mail n'est pas à un format valide.</li>";
+				$errors .= "<li>Cette adresse email n'est pas à un format valide.</li>";
 			}
 			$f = "_form_ok";
 			if(strlen($errors) > 0) {

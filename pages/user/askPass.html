@@ -1,14 +1,14 @@
 <fill id="main">
 	<h1><strong>Oubli de</strong> code secret</h1>
 
-	<p>Si vous avez oublié votre code secret, entrez ci-dessous votre pseudo ou votre adresse e-mail.</p>
+	<p>Si vous avez oublié votre code secret, entrez ci-dessous votre pseudo ou votre adresse email.</p>
 	<p>Un email vous sera alors envoyé, il vous permettra de choisir un nouveau code secret.</p>
 
 	<form onsubmit="js.XmlHttp.post('user/askPass',this); return false;">
 		<div id="formError"></div>
 		
 		<div class="row">
-			<div class="label"><label for="nameOrMail">Pseudo ou email:</label></div>
+			<div class="label"><label for="nameOrMail">Pseudo ou email :</label></div>
 			<div class="input"><input class="field" name="nameOrMail" type="text" id="nameOrMail" value=""/></div>
 			<div class="clear"></div>
 		</div>

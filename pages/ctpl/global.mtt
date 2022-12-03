@@ -37,10 +37,10 @@
 	</macro>
 	<macro name="userMoney">
 		<p>Les <strong>sucres roux</strong> sont achetés au bar.</p>
-		<p>Chaque partie jouée au Café consomme <strong>1 sucre</strong> (les sucres blancs sont utilisés en priorité)</p>
+		<p>Chaque partie jouée au Café consomme <strong>1 sucre</strong> (les sucres blancs sont utilisés en priorité).</p>
 	</macro>
 	<macro name="userPrizeToken">
-		<p>Les <strong>Caps</strong> sont gagnées à chaque victoire.</p>
+		<p>Les <strong>caps</strong> sont gagnées à chaque victoire.</p>
 		<p>Vous pouvez vous en servir dans la <strong>boutique Bonus</strong>.</p>
 	</macro>
 
@@ -49,7 +49,7 @@
 	</macro>
 
 	<macro name="scoreStats">
-		<p>Pourcentage de matches amicaux remportés:</p>
+		<p>Pourcentage de matchs amicaux remportés :</p>
 		<dl>
 			<dt>Parties gagnées</dt>	<dd>::v0::</dd>
 			<dt>Matchs nuls</dt>		<dd>::v1::</dd>
@@ -94,7 +94,7 @@
 		<![CDATA[
 		<a $$click(group/::_group.id::/?go=recruit)>
 			<p><strong>::_uname::</strong> souhaite rejoindre votre table <strong>::_group.name::</strong>.</p>
-			<p>Cliquez ici pour accepter ou refuser</p>
+			<p>Cliquez ici pour accepter ou refuser.</p>
 		</a>
 		]]>
 	</macro>
@@ -106,7 +106,7 @@
 			<div class="content">
 				<p>
 					<img src="img/icons/large_offline.gif" alt=""/>
-					Vous avez été déconnecté parce que quelqu'un s'est connecté sur votre utilisateur
+					Vous avez été déconnecté parce que quelqu'un s'est connecté sur votre compte utilisateur
 					sur un autre ordinateur ou une autre fenêtre.
 				</p>
 				<a class="button" href="#" onclick="js.App.autoReconnect(); document.getElementById('multipleLoginWarning').className='hidden'; return false;">Se reconnecter</a>
