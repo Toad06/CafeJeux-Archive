@@ -378,7 +378,7 @@ switch($page) {
 						$date = cj_date_today();
 						$fullDate = $date[0];
 						$partialDate = $date[1];
-						$parsedContent = htmlentities(parse_message($pContent));
+						$parsedContent = parse_message($pContent, false);
 					} else {
 						if($pTitle !== null && strlen($pTitle) === 0) {
 							$errorArray[0] = '<div class="nack">Le titre ne doit pas être vide.</div>';
@@ -821,8 +821,9 @@ switch($page) {
 	case "user/999999/tip":
 		$randomAvatar = random_avatar();
 		$data = get_content($pageUrlExt);
-		$data = str_replace("{ARCHIVE_OTHER_USER_GFX}", $randomAvatar, $data);
-		$data = str_replace("{ARCHIVE_OTHER_USER_ICON}", "female", $data); // TODO => pas connecté / pas connectée (dépend de random_avatar())
+		$data = str_replace("{ARCHIVE_OTHER_USER_GFX}", $randomAvatar['gfx'], $data);
+		$data = str_replace("{ARCHIVE_OTHER_USER_GENDER}", $randomAvatar['gender'], $data);
+		$data = str_replace("{ARCHIVE_OTHER_USER_FEMALE}", ($randomAvatar['gender'] === "female" ? "e" : ""), $data);
 		$data = str_replace("{ARCHIVE_OTHER_USER_DRINK}", $globalDrinks[mt_rand(0, array_keys($globalDrinks)[count($globalDrinks) - 1])]['name'], $data);
 		break;
 	case "user/999999/barHistory":
@@ -909,7 +910,8 @@ switch($page) {
 		if($isUserFullLoggedIn && (($dayChanged) || (isset($_SESSION['cafePrevUsername']) && strtolower($_SESSION['cafePrevUsername']) !== strtolower($_SESSION['cafeUsername'])))) {
 			// NOTE : 1 seule boisson par jour par utilisateur, cette portion de code ne sert qu'à simuler ce principe.
 			$isUserFullLoggedIn = false;
-			unset($_SESSION['cafeDrink']);
+			if(isset($_SESSION['cafePrevUsername'])) unset($_SESSION['cafePrevUsername']);
+			if(isset($_SESSION['cafeDrink'])) unset($_SESSION['cafeDrink']);
 			if($dayChanged) unset($_SESSION['cafeDayChanged']);
 		}
 		if($isUserFullLoggedIn) {

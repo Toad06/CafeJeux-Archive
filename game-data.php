@@ -20,7 +20,7 @@ $globalDrinks = array(
 	12 => array("name" => "L'Anarchipel", "img" => "package_blue.gif", "css" => "drink_blue", "desc" => "Partez à l'aventure avec ce coktail aux mystérieuses saveurs exotiques et aux surprenants accents tropicaux !")
 );
 
-// Liste des joueurs dont les pages sont conservées
+// Liste des joueurs dont les pages sont conservées.
 $globalPlayers = array(
 	81 => "tchong", 33208 => "3Dos", 16732 => "Zehir", /*18269 => "Toad06",*/ 190420 => "all200", 243719 => "totolescargo", 258748 => "Mario06", 265566 => "adeli", 275028 => "cedric85",
 	296239 => "tony42", 302576 => "CashMan", 307984 => "yanndu28", 328173 => "natoun", 340881 => "rastahman", 353165 => "BzzlaMouche", 455222 => "Stampinette"
@@ -28,7 +28,7 @@ $globalPlayers = array(
 $globalPlayers[18269] = isset($_SESSION['cafeUsername']) ? $_SESSION['cafeUsername'] : "Toad06";
 
 
-// Variables utilisateur
+// Variables utilisateur.
 $globalUserFreeMoney = 3; // nombre de sucres blancs
 $globalUserMoney = 100; // nombre de sucres roux
 $globalUserPrizeToken = 500; // nombre de caps
@@ -45,7 +45,7 @@ if(isset($_SESSION['cafeUsername']) && isset($_COOKIE['cafeUserData'])) {
 }
 
 
-// Retourne la date du jour dans les différents formats utilisés par CaféJeux
+// Retourne la date du jour dans les différents formats utilisés par CaféJeux.
 function cj_date_today() {
 	$date =  new IntlDateFormatter("fr_FR", IntlDateFormatter::FULL, IntlDateFormatter::NONE);
 	$date = $date->format(time());
@@ -54,34 +54,96 @@ function cj_date_today() {
 	return array($dateFull, $datePartial);
 }
 
-// Génère un avatar aléatoire sur les pages de joueurs non archivées
-// TODO: Comprendre le fonctionnement de la variable gfx du swf et finir la fonction
+// Génère un avatar aléatoire sur les pages de joueurs non archivées.
+// Le personnage par défaut sur la page d'inscription a ces caractéristiques : "viewer.swf?gfx=0,0,0,0,0,0,0,0,2,0,0,0,3,0,3,6,6,0".
+// Les valeurs générées correspondent à l'ordre des différentes options dans le SWF de la page d'inscription.
 function random_avatar() {
-	// viewer.swf?gfx=0,0,0,0,0,0,0,0,2,0,0,0,3,0,3,6,6,0
-	$data = "";
+	$gender = 0;
+	$gfx = "";
 	for($i = 0; $i < 18; $i++) {
-		if($i > 0) $data .= ",";
+		if($i > 0) $gfx .= ",";
 		$r = 0;
 		switch($i) {
-			case 0: $r = mt_rand(0, 0); break;
-			default: $r = mt_rand(0, 0); break;
+			case 0: $r = mt_rand(0, 1) === 0 ? 0 : 29; $gender = $r === 29 ? "female" : "male"; break; // homme (0 à 28) ou femme (29 à 58) - seules les valeurs 0 et 29 sont en réalité utilisées
+			case 1: $r = 0; break; // usage inconnu - toujours 0, quel que soit le contexte - cette valeur servait peut-être à identifier la boisson à afficher sur une table mais le système a pu être implémenté différemment
+			case 2: if($gender === 1) $r = mt_rand(0, 7); else $r = mt_rand(0, 10); break; // style vestimentaire haut
+			case 3: if($gender === 1) $r = mt_rand(0, 3); else $r = mt_rand(0, 2); break; // style vestimentaire bas
+			case 4: if($gender === 1) $r = mt_rand(0, 8); else $r = mt_rand(0, 17); break; // style capillaire (et barbe, pour homme)
+			case 5: $r = mt_rand(0, 6); break; // couleur de peau
+			case 6: $r = mt_rand(0, 14); break; // homme seulement : couleur du t-shirt
+			case 7: $r = mt_rand(0, 10); break; // homme seulement : couleur du pantalon
+			case 8: $r = mt_rand(0, 8); break; // homme seulement : couleur des cheveux
+			case 9: $r = mt_rand(0, 4); break; // homme seulement : couleur de la veste, si applicable
+			case 10: $r = mt_rand(0, 4); break; // homme seulement : couleur du blouson, si applicable
+			case 11: $r = mt_rand(0, 14); break; // femme seulement : couleur du t-shirt
+			case 12: $r = mt_rand(0, 14); break; // femme seulement : couleur du pantalon
+			case 13: $r = mt_rand(0, 8); break; // femme seulement : couleur des cheveux
+			case 14: $r = mt_rand(0, 5); break; // femme seulement : couleur de l'accessoire à cheveux, si applicable
+			case 15: $r = mt_rand(0, 14); break; // homme seulement : couleur du motif du t-shirt, si applicable
+			case 16: $r = mt_rand(0, 14); break; // femme seulement : couleur du motif du t-shirt, si applicable
+			case 17: $r = mt_rand(0, 14); break; // couleur de la rayure du pantalon, si applicable
 		}
-		$data .= strval($r);
+		$gfx .= strval($r);
 	}
-	return $data;
+	return array("gender" => $gender, "gfx" => $gfx);
 }
 
 // Formate un message en HTML, en remplaçant les balises BBCode, smileys, etc.
 // Utilisé uniquement sur la page "Aperçu" du forum, dans le cadre de cette archive.
-function parse_message($str) {
+function parse_message($str, $allowImages) {
+	$str = htmlspecialchars($str);
+	$findTags = array(
+		'~\*(.*?)\*~s',
+		'~//(.*?)//~s',
+		'~__(.*?)__~s',
+		'~\[cite\]([^"><]*?)\[/cite\]~s',
+		'~\[lien\](https?)://([^"><]*?)\[/lien\]~s', // NOTE : cafejeux.com ne supportait pas les liens commençant par "https://".
+		'~\[lien=((https?)://[^"><]*?)\](.*?)\[/lien\]~s' // Idem ici.
+	);
+	if($allowImages) $findTags[] = '~@(https?://[^"><]*?)@~s';
+	$replaceTags = array(
+		'<strong>$1</strong>',
+		'<em>$1</em>',
+		'<span class="underline">$1</span>',
+		'<cite>$1</cite>',
+		'<a target="_blank" href="redir?url=$1://$2">$2</a>', // NOTE : cafejeux.com tronquait le texte du lien s'il dépassait 30 caractères et s'il était identique à l'adresse du lien : "..." était affiché à la place.
+		'<a target="_blank" href="redir?url=$1">$3</a>', // L'URL en paramètre devrait être encodée avec une fonction comme "urlencode()", ce que faisait cafejeux.com.
+	);
+	if($allowImages) $replaceTags[] = '<img src="$1" alt="" />';
+	$str = preg_replace($findTags, $replaceTags, $str);
+	$str = preg_replace_callback('/#([0-9]+)#(.*?)##/', function($m) {
+		if(!isset($m[2])) return "";
+		$font = intval($m[1]);
+		$text = $m[2];
+		if($font <= 0 || $font > 8) return $text;
+		return '<span class="color_' . $font . '">' . $text . '</span>';
+	}, $str);
+	$findSmileys = array(
+		":)", ":(", ":D", ";)", ":quoi:", ":o", "8O", "8)", ":x", ":P", ":!:", ":?", ":timide:", ":lol:", ":pleure:", ":mechant:", ":sadique:", ":innocent:", ":wink:", ":dontcare:",
+		":huh:", ":noon:", ":youpi:", ":idee:", ":charte:", ":fleche:", ":croix:", ":love:", ":sucreblanc:", ":sucre:", ":mail:", ":match:", ":table:", ":tasse:", ":caps:", ":chrono:",
+		":keepcool:" // NOTE : Ce smiley a seulement été ajouté sur les sites liés à Muxxu, jamais sur cafejeux.com.
+	);
+	$replaceSmileys = array(
+		"smile", "sad", "biggrin", "wink", "question", "surprised", "eek", "cool", "mad", "razz", "exclaim", "confused", "redface", "lol", "cry", "evil", "twisted", "rolleyes", "wink2", "dontcare",
+		"huh", "nooo", "yeah", "idea", "chart", "arrow", "cross", "love", "sucreblanc", "sucreroux", "mail", "fight",  "table", "tasse", "cap", "chrono",
+		"keepcool"
+	);
+	$smileysLength = count($findSmileys) === count($replaceSmileys) ? count($replaceSmileys) : 0;
+	for($i = 0; $i < $smileysLength; $i++) {
+		$replaceSmileys[$i] = '<img src="img/smiley/icon_' . $replaceSmileys[$i] . '.gif" alt="' . $findSmileys[$i] . '" />';
+	}
+	$str = str_replace($findSmileys, $replaceSmileys, $str);
+	// NOTE : cafejeux.com effectuait une césure des chaînes dont la longueur dépassait les 30 caractères (ou, plus exactement, 30 bytes).
+	// Le code ci-dessous reproduit approximativement ce comportement.
 	$arr = explode(" ", $str);
 	$arrLength = count($arr);
 	for($i = 0; $i < $arrLength; $i++) {
-		$arr[$i] = wordwrap($arr[$i], 30, " ", true);
+		if($arr[$i] === htmlspecialchars($arr[$i])) {
+			$arr[$i] = wordwrap($arr[$i], 30, " ", true);
+		}
 	}
-	$str = implode("", $arr);
-	// TODO
-	return $str;
+	$str = implode(" ", $arr);
+	return nl2br($str);
 }
 
 ?>
