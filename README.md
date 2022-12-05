@@ -14,3 +14,6 @@ IMPORTANT : Les jeux ne sont pas fonctionnels.
 Dézipper le fichier téléchargé vers un serveur local ou en ligne et ouvrir "index.php" depuis un navigateur qui supporte toujours le plugin Flash Player.
 
 Archive développée et testée avec WampServer (Apache 2.4 et PHP 7.4).
+
+
+<img src="https://github.com/Toad06/CafeJeux-Site/blob/main/presentation.png?raw=true" alt="" />
