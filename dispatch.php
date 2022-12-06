@@ -259,7 +259,6 @@ switch($page) {
 		}
 		break;
 	/*** Pages réservées aux membres ***/
-	case "bank": // TODO
 	case "ctpl/chat.mtt";
 	case "ctpl/global.mtt":
 	case "ctpl/shop.mtt":
@@ -267,6 +266,14 @@ switch($page) {
 		break;
 	case "_special/1": case "_special/2": case "_special/3": case "_special/4": case "_special/5": case "_special/6": case "_special/7": case "_special/8": case "_special/9": case "_special/11":
 	case "_special/game": case "_special/bar_1": case "_special/bar_11": case "_special/unlock_3": case "_special/unlock_8": case "_special/unlock_9":
+	case "bank": // NOTE : Il s'agit de l'ancienne page "+ de sucres", spécifique à cafejeux.com. La dernière version de la page était commune à tous les sites Motion Twin et n'avait que peu d'intérêt.
+	case "bank/audio": // La page principale "bank" n'existait donc plus au moment où cette archive a été constituée. Mais elle a pu être reproduite à partir d'une capture d'écran et est identique à la page originale.
+	case "bank/cb": // Aucune capture d'écran n'existait en revanche pour les sous-pages de la rubrique. Elles ont donc été reproduites sur la base du modèle de Alphabounce, un autre site de Motion Twin.
+	case "bank/neosurf": // Le rendu n'est donc pas garanti conforme à l'original pour ces pages, en revanche les images proviennent bien de cafejeux.com. La feuille de style n'a également PAS été modifiée.
+	case "bank/phone":
+	case "bank/phoneTropic":
+	case "bank/sms":
+	case "bank/wha":
 	case "defy":
 	case "defy/choosePlayer":
 	case "forum":
@@ -327,7 +334,7 @@ switch($page) {
 	case "pvmsg/2284448":
 	case "pvmsg/6381127":
 	case "pvmsg/6392115":
-	case "pvmsg/list": // NOTE : cafejeux.com affichait 10 messages par page au maximum.
+	case "pvmsg/list": // NOTE : Pagination ajoutée pour l'archive : sur cafejeux.com, la pagination fonctionnait de manière logique selon le nombre de pages et celle actuellement affichée. 10 messages par page au maximum.
 	case "pvmsg/mDelete":
 	case "pvmsg/prefs":
 	case "shop/1": case "shop/3": case "shop/4": case "shop/5": case "shop/6": case "shop/7": case "shop/8": case "shop/9": case "shop/10": case "shop/11": case "shop/12": case "shop/13": case "shop/14": case "shop/15":
@@ -437,6 +444,14 @@ switch($page) {
 	case "forum/readAll":
 		// NOTE : Cette action devrait en réalité retourner "<load>forum</load>". A la place, on se contente d'en "émuler" la conséquence visuelle sur la page.
 		$data = "<script>while(true) { var elem = document.querySelector('.readed_false'); if(!elem) break; elem.className = 'readed_true'; }</script>";
+		break;
+	case "game/queue":
+		if(false && ($globalUserFreeMoney > 0 || $globalUserMoney > 0)) {
+			$data = "<load>game</load>";
+		} else {
+			// TODO?
+			$data = "";
+		}
 		break;
 	case "game/rankings":
 		$gGame = isset($_GET['game']) ? intval($_GET['game']) : 0;
@@ -566,7 +581,7 @@ switch($page) {
 		}
 		break;
 	case "group/420/editDescription":
-		// NOTE : Les champs "logo" et "description" envoyés par le formulaire peuvent être vides. Si l'adresse du logo ne commence pas par http://, une valeur vide semblait enregistrée en base de données.
+		// NOTE : Les champs "logo" et "description" envoyés par le formulaire peuvent être vides. Si l'adresse du logo ne commence pas par "http://", une valeur vide semblait enregistrée en base de données.
 		$data = "<load>group/420/description</load>";
 		break;
 	case "group/420/editRoom":
@@ -941,6 +956,11 @@ switch($page) {
 				}
 			}
 		}
+		break;
+	case "user/chooseDrinkFromSpecial":
+		// NOTE : Il s'agit de la page de choix de boisson par défaut, lorsqu'aucune boisson supplémentaire n'a été achetée en boutique.
+		// Elle est spécifique à cette archive. Le choix effectué depuis cette page ne sera pas pris en compte.
+		$data = get_content("pages/user/chooseDrink_default.html");
 		break;
 	case "user/delete":
 		if(isset($_POST['submit'])) {

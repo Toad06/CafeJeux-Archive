@@ -65,11 +65,11 @@ $dayChanged = isset($_SESSION['cafeDayChanged']);
 		</div>
 		<div id="siteFooter">
 			[ <a href="#help" onclick="js.XmlHttp.get('help',this); return false;">Voir l'aide de CaféJeux</a> ]
-			&copy; <a href="http://www.motion-twin.fr" target="_blank">Motion Twin</a>, tous droits réservés
+			&copy; <a href="#" onclick="return false;">Motion Twin</a>, tous droits réservés
 		</div>
 		<div id="ads">
-			<a href="http://www.mozilla-europe.org/fr/" target="_blank" onmouseover="mt.js.Tip.show(this,'Optimisé pour Firefox ^^',null)" onmouseout="mt.js.Tip.hide()"><img alt="Firefox" src="img/design/firefox.gif"/></a>
-			<a href="http://www.haxe.org" target="_blank" onmouseover="mt.js.Tip.show(this,'Site réalisé en haXe',null)" onmouseout="mt.js.Tip.hide()"><img alt="haXe" src="img/design/haxe.png"/></a>
+			<a href="#" onclick="return false;" onmouseover="mt.js.Tip.show(this,'Optimisé pour Firefox ^^',null)" onmouseout="mt.js.Tip.hide()"><img alt="Firefox" src="img/design/firefox.gif"/></a>
+			<a href="#" onclick="return false;" onmouseover="mt.js.Tip.show(this,'Site réalisé en haXe',null)" onmouseout="mt.js.Tip.hide()"><img alt="haXe" src="img/design/haxe.png"/></a>
 		</div>
 		<div class="hidden">
 			<div id="log_sql"></div>

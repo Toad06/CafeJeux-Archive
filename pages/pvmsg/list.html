@@ -156,9 +156,8 @@
 		</tr>
 		</table>
 
-		<a href="#" class="button b_delete" onclick="js.App.pvmsgDelete('Etes-vous sûr de vouloir supprimer les messages cochés ?','pvmsg/mDelete?page=1'); return false;" onmouseover="mt.js.Tip.show(this,'Cliquez ici pour supprimer tous les messages cochés',null)" onmouseout="mt.js.Tip.hide()">Suppr.</a>
-
-		<!-- Pagination ajoutée pour l'archive : sur le site officiel, pas de pagination quand il n'y a qu'une page, pas de pagination à gauche si on est sur la première page, pas de pagination à droite si on est sur la dernière page, 10 messages par page -->
+		<a href="#" class="button b_delete" onclick="js.App.pvmsgDelete('Etes-vous sûr de vouloir supprimer les messages cochés ?','pvmsg/mDelete?page=1'); return false;" onmouseover="mt.js.Tip.show(this,'Cliquez ici pour supprimer tous les messages cochés.',null)" onmouseout="mt.js.Tip.hide()">Suppr.</a>
+		
 		<div class="pagination">
 			<div class="prev">
 				<a href="#pvmsg/list?page=1" onclick="js.XmlHttp.get('pvmsg/list?page=1',this); return false;">Précédent</a>

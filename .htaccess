@@ -4,6 +4,7 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^_special/(.+)$ dispatch.php?p=_special/$1 [L]
 
 RewriteRule ^bank$ dispatch.php?p=bank [L]
+RewriteRule ^bank/(.+)$ dispatch.php?p=bank/$1 [L]
 
 RewriteRule ^ctpl/(.+).mtt$ dispatch.php?p=ctpl/$1.mtt [L]
 
