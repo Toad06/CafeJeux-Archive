@@ -1,0 +1,53 @@
+<fill id="main">
+	<div class="queue">
+		<h1><strong>Jouer </strong> sans sucre</h1>
+
+		<div id="queueBack">
+			<a href="#game" class="button b_back" onclick="js.XmlHttp.get('game',this); return false;">Annuler</a>
+		</div>
+
+		<div class="status">
+			<div id="queueInfos">
+				<img alt="Chargement..." src="img/design/loading_off.gif"/>
+				<a href="#game/queue?queue=1" onclick="js.XmlHttp.get('game/queue?queue=1',this); return false;">Cliquez ici pour vous inscrire dans la liste d'attente</a>
+				<em>Cette option ne nécessite aucun sucre.</em>
+			</div>
+		</div>
+
+
+		<div class="infos">
+			<div class="dyk">
+				Cette page vous permet de continuer à jouer sans sucre. Toutefois, vous ne choisissez
+				pas votre jeu et vous devez attendre qu'un joueur qui possède des sucres au bar ne trouve
+				personne et soit redirigé ici.
+			</div>
+			<table>
+			<tr>
+				<th>Avantages</th>
+				<th>Inconvénients</th>
+			</tr>
+			<tr>
+				<td class="pro">
+					<ul>
+						<li>Vous pouvez continuer à jouer sans sucre.</li>
+					</ul>
+				</td>
+				<td class="cons">
+					<ul>
+						<li>Vous ne choisissez pas votre jeu.</li>
+						<li>Temps d'attente longs.</li>
+						<li>Aucune garantie de trouver un joueur.</li>
+						<li>Vous ne gagnez pas de <img src="img/icons/small_cap.gif" onmouseover="mt.js.Tip.show(this,'Vous pouvez utiliser vos caps dans la boutique.',null)" onmouseout="mt.js.Tip.hide()"/> en cas de victoire.</li>
+					</ul>
+				</td>
+			</tr>
+			</table>
+			<div class="dyk">
+				<strong>Le plus simple reste d'utiliser vos sucres !</strong>
+				Vous pouvez en obtenir grâce à la Banque, c'est simple et rapide !
+			</div>
+			<a href="#bank" class="button b_token" onclick="js.XmlHttp.get('bank',this); return false;">Je veux des sucres roux !</a>
+		</div>
+
+	</div>
+</fill>

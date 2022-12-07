@@ -447,10 +447,15 @@ switch($page) {
 		break;
 	case "game/queue":
 		if(false && ($globalUserFreeMoney > 0 || $globalUserMoney > 0)) {
+			// NOTE : Cette page ne devrait effectivement être accessible que lorsque le nombre total de sucres est égal 0 (et qu'aucune partie n'est en cours).
 			$data = "<load>game</load>";
 		} else {
-			// TODO?
-			$data = "";
+			// NOTE : Un lien "Jouer sans sucre" devrait être affiché sur la page "Jouer au bar".
+			$data = get_content($pageUrlExt);
+			if(isset($_GET['queue'])) {
+				$data .= PHP_EOL;
+				$data .= get_content($pageUrl . "_in" . $pageExt);
+			}
 		}
 		break;
 	case "game/rankings":
