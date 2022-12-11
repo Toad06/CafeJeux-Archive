@@ -601,8 +601,12 @@ switch($page) {
 	case "group/420/eject":
 		$gId = isset($_GET['id']) ? intval($_GET['id']) : 0;
 		if($gId >= 0) {
-			// NOTE : Cette fonctionnalité de cafejeux.com était hors d'usage au moment du test.
-			$data = "";
+			if($gId === 18269) {
+				$data = "<alert>Vous ne pouvez pas éjecter le propriétaire de la table !</alert>";
+			} else {
+				// NOTE : Cette fonctionnalité de cafejeux.com était hors d'usage au moment du test.
+				$data = "";
+			}
 		}
 		break;
 	case "group/420/invite":
@@ -780,6 +784,8 @@ switch($page) {
 		}
 		break;
 	case "shop":
+		// NOTE : Si l'utilisateur a un nombre de caps égal à 0, le message suivant est affiché :
+		// `<p>Vous n'avez pas encore de caps (<img alt="caps" src="img/icons/small_cap.gif"/>). Vous pouvez jouer au bar pour en obtenir.</p>`
 		$gType = isset($_GET['item']) ? intval($_GET['item']) : 0;
 		$gType = $gType === 0 && isset($_GET['type']) ? htmlentities(explode(";", $_GET['type'])[0]) : $gType;
 		$load = "";

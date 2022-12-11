@@ -37,6 +37,8 @@ RewriteCond %{QUERY_STRING} ^id=([^&]+)$
 RewriteRule ^group/([0-9]+)/deletePost$ dispatch.php?p=group/$1/deletePost&id=%1 [L]
 RewriteCond %{QUERY_STRING} ^edit=([^&]+)$
 RewriteRule ^group/([0-9]+)/description$ dispatch.php?p=group/$1/description&edit=%1 [L]
+RewriteCond %{QUERY_STRING} ^id=([^&]+)$
+RewriteRule ^group/([0-9]+)/eject$ dispatch.php?p=group/$1/eject&id=%1 [L]
 RewriteCond %{QUERY_STRING} ^confirm=([^&]+)$
 RewriteRule ^group/([0-9]+)/join$ dispatch.php?p=group/$1/join&confirm=%1 [L]
 RewriteCond %{QUERY_STRING} ^v=([^&]+)$
