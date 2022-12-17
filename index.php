@@ -87,7 +87,7 @@ $dayChanged = isset($_SESSION['cafeDayChanged']);
 						Attention, l'utilisation du bouton <strong>Actualiser</strong> du navigateur est déconseillée sur le Café Jeux.<br/>
 						En effet, vous serez <strong>déconnecté(e)</strong> du site.
 					</p>
-					<a href="#" class="button" onclick="document.getElementById('refreshWarning').style.display='none'; return false;">Oops, je ne le referai plus ^^</a>
+					<a href="#" class="button" onclick="document.getElementById('refreshWarning').style.display='none'; return false;">Oups, je ne le referai plus ^^</a>
 				</div>
 				<div class="footer"></div>
 			</div>

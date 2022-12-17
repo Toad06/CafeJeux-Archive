@@ -843,6 +843,9 @@ switch($page) {
 			}
 		}
 		break;
+	case "user/190420":
+		$data = "<alert>Cet utilisateur a été supprimé.</alert>";
+		break;
 	case "user/999999":
 	case "user/999999/tip":
 		$randomAvatar = random_avatar();
