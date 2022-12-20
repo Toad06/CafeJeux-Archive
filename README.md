@@ -16,4 +16,4 @@ Dézipper le fichier téléchargé vers un serveur local ou en ligne et ouvrir "
 Archive développée et testée avec WampServer (Apache 2.4 et PHP 7.4).
 
 
-<img src="https://github.com/Toad06/CafeJeux-Site/blob/main/presentation.png?raw=true" alt="" />
+<a href="https://github.com/Toad06/CafeJeux-Site"><img src="https://github.com/Toad06/CafeJeux-Site/blob/main/presentation.png?raw=true" alt="" /></a>

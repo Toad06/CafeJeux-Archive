@@ -1,5 +1,8 @@
 <?php
 
+// Archive du site CaféJeux par Toad06.
+// https://github.com/Toad06/CafeJeux-Site
+
 session_start();
 
 $logged = isset($_SESSION['cafeUsername']);
