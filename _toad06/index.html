@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="fr">
+<head>
+	<title></title>
+	<meta charset="utf-8" />
+	<!--
+		Archive du site CaféJeux par Toad06.
+		https://github.com/Toad06/CafeJeux-Site
+	-->
+	<style type="text/css">
+		body {
+			color: #FFF;
+			background-color: #000;
+		}
+		hr {
+			width: 300px;
+		}
+		#container {
+			margin: auto;
+			text-align: center;
+		}
+		#div_client_1, #div_client_2 {
+			display: inline-block;
+			width: 300px;
+			height: 300px;
+			margin: 50px 10px 20px 10px;
+		}
+		#player_1, #player_2 {
+			display: inline-block;
+			width: 120px;
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<div id="game"></div>
+		<div id="colors">
+			<span id="player_1">Joueur 1</span>
+			<span id="player_2">Joueur 2</span>
+		</div>
+		<hr />
+		<div id="tools">
+			<button onclick="changeSize(this);">Doubler la taille du jeu</button>
+		</div>
+		<hr />
+		<div id="infos"></div>
+		<hr />
+		<div id="messages"></div>
+	</div>
+	<script type="text/javascript">
+		var PATH = "../games/swf/";
+		var PATH_EDITED = "edited_swf/";
+		var games = [
+			null,
+			{name: "eXpanz", swf: PATH + "expanz.20110927104815.swf"}, 								// 1
+			{name: "Amonite", swf: PATH + "amonite.20071115180118.swf"},							// 2
+			{name: "Crumble", swf: PATH + "crumble.20071115175911.swf"},							// 3
+			{name: "Magmax Battle", swf: PATH + "magmax.20071115180341.swf"},						// 4
+			{name: "Quat'Cinelle", swf: PATH + "quat.20071115180452.swf"},							// 5
+			{name: "Anticorp's", swf: PATH_EDITED + "miniwar.swf"},									// 6
+			{name: "Marbils", swf: PATH + "marbil.20071115175812.swf"},								// 7
+			{name: "Ferme-la !", swf: PATH_EDITED + "ferme.swf"},									// 8
+			{name: "Trigolo", swf: PATH + "trifus.20110927104829.swf"},								// 9
+			null,
+			{name: "Hordes Insurrection !", swf: PATH_EDITED + "hordes.swf"},						// 11
+			//
+			{name: "Starsheep Brouteurs", swf: PATH + "paturage.unreleased.swf"},					// 13
+			{name: "Boum : Prototype de Anticorp's", swf: PATH + "miniwar.prototype.swf"}			// 14
+		];
+		var game = (function() {
+			var DEFAULT_GAME = 1;
+			var index = parseInt(window.location.href.split("?game=")[1], 10);
+			var game = games[index];
+			if(!game) {
+				index = DEFAULT_GAME;
+				game = games[DEFAULT_GAME];
+			}
+			game.index = index;
+			document.title = game.name + " - CaféJeux - Mode multijoueurs local par Toad06";
+			return game;
+		})();
+		var script = document.createElement("script");
+		script.src = "fakeserver.js";
+		script.onload = function() {
+			var html = "";
+			for(var i = 1; i <= 2; i++) {
+				html += '<div id="div_client_' + i + '"><embed ' +
+					'src="loader.swf" type="application/x-shockwave-flash" ' +
+					'id="client_' + i + '" name="client_' + i + '" allowscriptaccess="sameDomain" ' +
+					'width="100%" height="100%" quality="high" menu="false" bgcolor="#000000" ' +
+					'flashvars="fvSwf=' + game.swf + '&amp;fvIndex=' + game.index + '&amp;fvPlayer=' + i + '" ' +
+				'/></div>';
+			}
+			document.getElementById("game").innerHTML = html;
+		};
+		document.body.appendChild(script);
+		/*******************/
+		function changeSize(elem) {
+			var w = 300, h = 300;
+			if(elem.innerHTML === elem.doubleText || !elem.doubleText) {
+				if(!elem.doubleText) elem.doubleText = elem.innerHTML;
+				elem.innerHTML = "Réduire la taille du jeu";
+				w *= 2; h *= 2;
+			} else {
+				elem.innerHTML = elem.doubleText;
+			}
+			w += "px"; h += "px";
+			var div_client_1 = document.getElementById("div_client_1");
+			var div_client_2 = document.getElementById("div_client_2");
+			div_client_1.style.width = w; div_client_1.style.height = h;
+			div_client_2.style.width = w; div_client_2.style.height = h;
+		}
+	</script>
+</body>
+</html>
