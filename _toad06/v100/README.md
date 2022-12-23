@@ -1,13 +1,12 @@
-# Jeux multijoueurs en mode local
+# Les jeux multijoueurs de CaféJeux en mode local
+<em>Version 1.0 (22/12/2022)</em><br/>
+<em>Auteur : Toad06, sur la base des codes sources des jeux publiés par Motion Twin.</em>
 
-Cette section comporte plusieurs fichiers inédits dont un fichier de chargement (loader) permettant de faire fonctionner les jeux de CaféJeux en mode local.
+Cette section comporte plusieurs fichiers inédits permettant de faire fonctionner les jeux de CaféJeux en mode local.
 
-Pour y jouer, suivez la procédure d'installation de l'archive indiquée dans le fichier <a href="../README.md">README.md</a> principal, puis ouvrez "_toad06/?game=[INDEX]" depuis le navigateur.
+Pour ce faire, suivez la procédure d'installation de l'archive indiquée dans le fichier <a href="../../README.md">README.md</a> principal, puis ouvrez "_toad06/?game=[INDEX]" depuis le navigateur.
 
 `[INDEX]` correspond à l'identifiant du jeu à charger, les index sont les mêmes que ceux du site CaféJeux. Ils sont également indiqués ci-dessous, avec différentes remarques sur l'état de fonctionnement des jeux.
-
-Loader écrit par Toad06 sur la base des codes sources des jeux publiés par Motion Twin.
-v1.0 22/12/2022
 
 
 ## eXpanz
@@ -17,7 +16,7 @@ v1.0 22/12/2022
 ## Amonite
 ### Index : 2
 - Jeu fonctionnel.
-- Bug possible : Quand un joueur déplace un pion vers une case vide, ce dernier se déplace immédiatement sans jouer d'animation (sauf sur l'écran de l'adversaire). Cela n'affecte pas le déroulement de la partie.
+- Bug mineur possible : Quand un joueur déplace un pion vers une case vide, ce dernier se déplace immédiatement sans jouer d'animation (sauf sur l'écran de l'adversaire). Cela n'affecte pas le déroulement de la partie.
 
 ## Crumble
 ### Index : 3
@@ -27,7 +26,7 @@ v1.0 22/12/2022
 ## Magmax Battle
 ### Index : 4
 - Jeu fonctionnel.
-- Bug mineur : Les personnages des deux équipes ont le même nom. Le code source de ce jeu n'a pas été rendu public par Motion Twin mais les noms semblent être générés de manière aléatoire parmi les données de deux tableaux ; la graine (seed) semble toujours la même pour une raison actuellement inconnue.
+- Bug mineur : Les personnages des deux équipes ont tous le même nom. Le code source de ce jeu n'a pas été rendu public par Motion Twin mais les noms semblent être générés de manière aléatoire parmi les données de deux tableaux ; la graine (seed) semble toujours la même pour une raison actuellement inconnue.
 - Bug : Seul le premier joueur semble pouvoir bénéficier des cartes déblocables en boutique. La fonction "getOptions" ne renvoie sans doute pas la bonne valeur.
 
 ## Quat'Cinelle
@@ -48,7 +47,7 @@ v1.0 22/12/2022
 ## Ferme-la !
 ### Index : 8
 - Jeu fonctionnel.
-- Ce jeu utilise un fichier modifié car l'obfuscation dans le jeu empêche la communication entre Flash (loader.swf) et JavaScript de fonctionner correctement : les clés d'un objet provoquent une erreur.
+- Ce jeu utilise un fichier modifié car l'obfuscation dans le jeu empêche la communication entre Flash (loader.swf) et JavaScript (fakeserver.js) de fonctionner correctement : les clés d'un objet provoquent une erreur.
 
 ## Trigolo
 ### Index : 9
