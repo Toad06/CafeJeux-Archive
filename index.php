@@ -105,10 +105,29 @@ $dayChanged = isset($_SESSION['cafeDayChanged']);
 		<script type="text/javascript" src="loader.js?v=20100928162820"></script>
 		<script type="text/javascript">
 		//<![CDATA[
+			window.fetchedCtpl = {}; fetchedCtpl.total = -1;
+			if(window.fetch) {
+				// Les fichiers du dossier "ctpl" sont chargés de manière synchrone avec XMLHttpRequest, ce qui est déprécié ou obsolète dans tous les navigateurs actuels.
+				// Pour contourner le problème, ces fichiers sont désormais préchargés ici avant toute autre opération, ce qui est raisonnable vu leur très petite taille.
+				try {
+					var cjFetch = async function(url) {
+						var response = await fetch(url);
+						var responseText = await response.text();
+						fetchedCtpl[url] = responseText;
+						if(++fetchedCtpl.total === 4) {
+							var run = o.run;
+							o = new haxe.Timer(200);
+							o.run = run;
+						}
+					};
+					fetchedCtpl.total = 0;
+					cjFetch("ctpl/chat.mtt"); cjFetch("ctpl/game.mtt"); cjFetch("ctpl/global.mtt"); cjFetch("ctpl/shop.mtt");
+				} catch(err) {}
+			}
 			var so = new SWFObject("swf/client.swf?v=20100928162820", "client", "1", "1", "0", "#32273A", true);
 			so.write("swf_client__");
 			var a = 0;
-			var o = new haxe.Timer(200);
+			var o = fetchedCtpl.total >= 0 ? {} : new haxe.Timer(200);
 			o.run = function() {
 				try	{
 					a++;

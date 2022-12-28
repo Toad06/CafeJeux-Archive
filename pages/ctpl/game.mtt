@@ -1,0 +1,38 @@
+<macros>
+	<macro name="logMessage">
+		<div class="logMsg">
+			::_m::
+		</div>
+	</macro>
+
+	<macro name="queuePos"><a href="#" onclick="js.App.leaveQueue(); return false;">::_pos:: / ::_max::</a></macro>
+
+	<macro name="chatMessage">
+		<![CDATA[
+		<div class="chatMsg">
+			<a class="sender" id="u_::_rid::" onmouseover="js.XmlHttp.userTip(this,'::_u._uid::',';gid=::_gid::')" onmouseout="js.XmlHttp.hideUserTip(this)" $$click(user/::_u._uid::)>::_u._name::</a>:
+			::if _me::
+				<span class="msgOpp">::_m::</span>
+			::else::
+				<span class="msg">::_m::</span>
+			::end::
+		</div>
+		]]>
+	</macro>
+
+	<macro name="myTurn">
+		<![CDATA[
+		Votre adversaire vient de jouer. <strong>A moi de jouer !</strong>
+		<a href="#" onclick="js.App.headBarEmpty(); js.App.resumeParty(); return false;">Reprendre ma partie</a>
+		]]>
+	</macro>
+
+	<macro name="announceVictory">
+		::if _win::
+			Vous avez gagné votre partie. Bravo !
+		::else::
+			Vous avez perdu, dommage. ;)
+		::end::
+	</macro>
+
+</macros>

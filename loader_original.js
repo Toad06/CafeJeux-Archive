@@ -3390,19 +3390,6 @@ haxe.Http.prototype.request = function(post) {
 		uri += (StringTools.urlDecode(p) + "=") + StringTools.urlEncode(this.params.get(p));
 	}
 	}}
-	if(!this.async && window.fetchedCtpl.total > 0) {
-		// Fichiers préchargés pour éviter d'utiliser XMLHttpRequest de manière synchrone.
-		var splitUrl = this.url.split("?")[0];
-		var preloadedFile = window.fetchedCtpl[splitUrl];
-		if(preloadedFile) {
-			r = {};
-			r.responseText = preloadedFile;
-			r.readyState = 4;
-			r.status = 200;
-			onreadystatechange();
-			return;
-		}
-	}
 	try {
 		if(post) r.open("POST",this.url,this.async);
 		else if(uri != null) {
