@@ -4,7 +4,7 @@
 
 Cette section comporte plusieurs fichiers inédits permettant de faire fonctionner les jeux de CaféJeux en mode local.
 
-Pour ce faire, suivez la procédure d'installation de l'archive indiquée dans le fichier <a href="../README.md">README.md</a> principal, puis ouvrez "_toad06/?game=[INDEX]" depuis le navigateur.
+Pour ce faire, suivez la procédure d'installation de l'archive indiquée dans le fichier <a href="../../README.md">README.md</a> principal, puis ouvrez "_toad06/?game=[INDEX]" depuis le navigateur.
 
 `[INDEX]` doit être remplacé par l'identifiant du jeu à charger, les index sont les mêmes que ceux du site CaféJeux. Ils sont également indiqués ci-dessous, avec différentes remarques sur l'état de fonctionnement des jeux.
 

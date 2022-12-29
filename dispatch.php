@@ -259,7 +259,8 @@ switch($page) {
 		}
 		break;
 	/*** Pages réservées aux membres ***/
-	case "ctpl/chat.mtt";
+	case "ctpl/chat.mtt":
+	case "ctpl/game.mtt":
 	case "ctpl/global.mtt":
 	case "ctpl/shop.mtt":
 		$data = get_content($pageUrl);
@@ -889,7 +890,7 @@ switch($page) {
 		$data = str_replace("{ARCHIVE_OTHER_ID}", $playerId, $data);
 		$data = str_replace("{ARCHIVE_OTHER_USERNAME}", $playerName, $data);
 		break;
-	case "user/[id]/addBlackContact";
+	case "user/[id]/addBlackContact":
 	case "user/[id]/addContact":
 	case "user/[id]/remBlackContact":
 	case "user/[id]/remContact":
