@@ -111,7 +111,7 @@ $dayChanged = isset($_SESSION['cafeDayChanged']);
 				// Pour contourner le problème, ces fichiers sont désormais préchargés ici avant toute autre opération, ce qui est raisonnable vu leur très petite taille.
 				try {
 					var cjFetch = async function(url) {
-						var response = await fetch(url);
+						var response = await fetch("pages/" + url);
 						var responseText = await response.text();
 						fetchedCtpl[url] = responseText;
 						if(++fetchedCtpl.total === 4) {
