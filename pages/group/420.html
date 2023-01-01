@@ -20,9 +20,8 @@
 			<li onclick="js.XmlHttp.get('group/420/description',this);" menuid="description"><a>Accueil</a></li>
 				<li onclick="js.XmlHttp.get('group/420/chat',this);" menuid="chat" title="Bavarder avec les autres membres"><a>Chat</a></li>
 				<li onclick="js.XmlHttp.get('group/420/forum',this);" id="groupForumTab" menuid="forum" title="Discuter avec les autres membres et garder une trace des discussions">
-
-						<a>Forum</a>
-						</li>
+						<a onmouseover="mt.js.Tip.show(this,'1 message(s) non lu(s)',null)" onmouseout="mt.js.Tip.hide()">Forum (1<img alt="" src="img/icons/anim_small_post.gif"/>)</a>
+									</li>
 				<li onclick="js.XmlHttp.get('group/420/ranking',this);" menuid="ranking" title="Consulter les classements internes de la table"><a>Classement </a></li>
 
 			<li onclick="js.XmlHttp.get('group/420/members',this);" menuid="members" title="Liste des membres">

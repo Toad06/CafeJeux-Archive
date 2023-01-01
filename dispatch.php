@@ -38,6 +38,13 @@ $data = null;
 
 switch($page) {
 	/*** Pages accessibles à tous ***/
+	case "ctpl/chat.mtt":
+	case "ctpl/game.mtt":
+	case "ctpl/global.mtt":
+	case "ctpl/shop.mtt":
+		$isPagePublic = true;
+		$data = get_content($pageUrl);
+		break;
 	case "defm":
 		// NOTE : Cette page est appelée par "swf/client.swf" avec le paramètre GET "sid=[key1];m=[key2]".
 		// Sert-elle à établir la connexion avec le serveur de jeu ?
@@ -259,12 +266,6 @@ switch($page) {
 		}
 		break;
 	/*** Pages réservées aux membres ***/
-	case "ctpl/chat.mtt":
-	case "ctpl/game.mtt":
-	case "ctpl/global.mtt":
-	case "ctpl/shop.mtt":
-		$data = get_content($pageUrl);
-		break;
 	case "_special/1": case "_special/2": case "_special/3": case "_special/4": case "_special/5": case "_special/6": case "_special/7": case "_special/8": case "_special/9": case "_special/11":
 	case "_special/game": case "_special/bar_1": case "_special/bar_11": case "_special/unlock_3": case "_special/unlock_8": case "_special/unlock_9":
 	case "bank": // NOTE : Il s'agit de l'ancienne page "+ de sucres", spécifique à cafejeux.com. La dernière version de la page était commune à tous les sites Motion Twin et n'avait que peu d'intérêt.
