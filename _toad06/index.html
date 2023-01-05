@@ -37,6 +37,13 @@
 			width: 120px;
 			font-weight: bold;
 		}
+		#infos {
+			margin: 10px auto;
+		}
+		.score0, .score1 {
+			display: inline-block;
+			width: 120px;
+		}
 		.turn {
 			border: 1px solid #FFF;
 		}
@@ -49,13 +56,12 @@
 			<span id="player_1" class="turn"></span>
 			<span id="player_2"></span>
 		</div>
+		<div id="infos"></div>
 		<hr />
 		<div id="tools">
 			<button id="changeSizeButton" onclick="changeSize(this);">Doubler la taille du jeu</button>
 			<button id="changeAudioStatusButton" onclick="changeAudioStatus(this);">Son : Activé</button>
 		</div>
-		<hr />
-		<div id="infos"></div>
 		<hr />
 		<div id="messages"></div>
 	</div>

@@ -1,5 +1,5 @@
 # Les jeux multijoueurs de CaféJeux en mode local
-<em>Version 1.2 (29/12/2022)</em><br/>
+<em>Version 1.3-dev (04/01/2023)</em><br/>
 <em>Auteur : Toad06, sur la base des codes sources des jeux publiés par Motion Twin.</em>
 
 Cette section comporte plusieurs fichiers inédits permettant de faire fonctionner les jeux de CaféJeux en mode local.
@@ -21,7 +21,6 @@ Pour ce faire, suivez la procédure d'installation de l'archive indiquée dans l
 ## Crumble
 ### Index : 3
 - Jeu fonctionnel.
-- (1.2) ~~Bug : Il y a souvent quelques soucis d'affichage sur l'écran de l'adversaire quand le tour est joué. Cela n'a néanmoins pas d'incidence sur le déroulement de la partie.~~
 
 ## Magmax Battle
 ### Index : 4
@@ -35,8 +34,7 @@ Pour ce faire, suivez la procédure d'installation de l'archive indiquée dans l
 ### Index : 6
 - Jeu fonctionnel.
 - Le jeu comporte six types de cosmos avec des caractéristiques différentes, cafejeux.com n'en proposait pourtant qu'un seul. Pour jouer avec ces personnages, ajoutez le paramètre "&mode=[INDEX]" dans l'URL. `[INDEX]` doit être remplacé par le type de cosmo souhaité : 0 (soldat classique), 1 (cosmo scout), 2 (cosmo tank), 3 (cosmo médical), 4 (cosmo ninja), 5 (cosmo mage) ou 99 (différents types de cosmos dans une même partie). Ces modes de jeu n'ayant jamais été proprement finalisés, des bugs peuvent survenir.
-- Ce jeu utilise un fichier modifié pour corriger un bug sur la zone "Scissure de Sylvius" (carte légèrement trop courte en hauteur), de nombreuses fautes d'orthographe, activer les mines (la fonctionnalité était délibérément désactivée dans le code source du jeu) et (1.2) ajouter des armes aux cosmos ninja et mage (dont les attaques de couverture et frappe aérienne, cette dernière n'étant toutefois implémentée que graphiquement).
-- (1.2) ~~Bug : Quand vous sélectionnez une arme, patientez un peu si celle-ci ne s'affiche pas dans les mains du cosmo : cela signifie que l'écran de jeu n'est pas synchronisé avec celui de l'adversaire. Si vous tirez quand même, un décalage se produira et les écrans des deux joueurs afficheront des informations contradictoires (fait amusant, ce bug pouvait se produire sur cafejeux.com, dans des conditions cependant plus obscures).~~
+- Ce jeu utilise un fichier modifié pour corriger un bug sur la zone "Scissure de Sylvius" (carte légèrement trop courte en hauteur), de nombreuses fautes d'orthographe, activer les mines (la fonctionnalité était délibérément désactivée dans le code source du jeu) et ajouter des armes aux cosmos ninja et mage (dont les attaques de couverture et frappe aérienne, cette dernière n'étant toutefois implémentée que graphiquement).
 - Bug mineur : Après avoir tiré, un cosmo peut garder son arme en main sur l'un des deux écrans de jeu. Cela n'affecte en rien le déroulement de la partie.
 
 ## Marbils
@@ -51,8 +49,9 @@ Pour ce faire, suivez la procédure d'installation de l'archive indiquée dans l
 
 ## Trigolo
 ### Index : 9
-- Jeu non fonctionnel.
-- Bug majeur : Différents bugs d'affichage se produisent sur l'écran du joueur qui a la main.
+- Jeu fonctionnel.
+- (1.3) ~~Bug majeur : Différents bugs d'affichage se produisent sur l'écran du joueur qui a la main.~~
+- Bug : Les cartes sont placées directement sur le plateau, sans jouer d'animation au préalable. Cela est dû à la solution de contournement actuellement utilisée pour permettre au jeu de fonctionner.
 
 ## Hordes Insurrection !
 ### Index : 11
@@ -65,7 +64,6 @@ Pour ce faire, suivez la procédure d'installation de l'archive indiquée dans l
 ### Index : 12
 - Jeu fonctionnel.
 - Ce jeu n'est jamais sorti sur cafejeux.com mais les administrateurs de Motion Twin avaient évoqué son existence, son nom et son but : manger toute l'herbe !
-- (1.2) ~~Bug : Un problème survient au dernier tour du joueur qui a la main.~~
 
 ## Boum - Prototype de Anticorp's
 ### Index : 13

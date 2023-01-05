@@ -273,9 +273,11 @@ function CJGame_SetInfos(data) {
 		div.innerHTML = html;
 		var score0 = div.getElementsByClassName("score0")[0];
 		var score1 = div.getElementsByClassName("score1")[0];
-		var temp = score0.innerHTML;
-		score0.innerHTML = score1.innerHTML;
-		score1.innerHTML = temp;
+		if(score0 !== undefined && score1 !== undefined) {
+			var temp = score0.innerHTML;
+			score0.innerHTML = score1.innerHTML;
+			score1.innerHTML = temp;
+		}
 		return div.innerHTML;
 	};
 	var player = data[0];

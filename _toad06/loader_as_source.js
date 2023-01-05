@@ -1,6 +1,6 @@
 function Init_MMApi() {
 	// Implémentation uniquement basée sur le code source des jeux CaféJeux publié par Motion Twin, le code de la classe "MMApi" n'ayant pas été rendu public.
-	_global._mmVictory = null;
+	_global._mmHasWon = -1;
 	_global._mmSendToQueue = false;
 	_global._mmQueue = []; _global._mmQueue.wait = 0; _global._mmQueue.requested = false;
 	_global._mmInitMode = _global.fvIndex === 5;
@@ -27,7 +27,23 @@ function Init_MMApi() {
 	};
 	var gameOver = function() {
 		// Affiche l'écran de fin de partie, selon le résultat (gagné, perdu ou nul). Le résultat est déterminé au préalable dans la fonction "victory".
-		JSTrace("gameOver()");
+		if(_global._mmHasWon !== -1) {
+			var obfu = Game_Obfuscation();
+			_root.Game[obfu["main"]] = function() {};
+			var str = "Joueur " + _global.fvPlayer + " : ";
+			switch(_global._mmHasWon) {
+				case true:
+					str = str + "Victoire !";
+					break;
+				case false:
+					str = str + "Perdu...";
+					break;
+				case null:
+					str = str + "Match nul !";
+					break;
+			}
+			JSCall("alert", str);
+		}
 	};
 	var getOptions = function(mine) {
 		// Détermine quelles options sont disponibles pour le joueur ("mine" == true) ou son adversaire ("mine" == false), dans les jeux Anticorp's et Magmax Battle.
@@ -60,15 +76,19 @@ function Init_MMApi() {
 	};
 	var isMyTurn = function() {
 		// Détermine si le client a la main.
-		return _global._mmVictory === null && JSCall("CJGame_PlayData", "turn") === _global.fvPlayer;
+		return _global._mmHasWon === -1 && JSCall("CJGame_PlayData", "turn") === _global.fvPlayer;
 	};
 	var isReconnecting = function() {
 		// Détermine si le client est en train de se reconnecter au jeu (sur cafejeux.com, cela se produisait généralement en cas de perte de la connexion durant la partie).
 		// Toujours "false" ici puisqu'il n'y a pas de vrai mode multijoueurs et donc pas de serveur de jeu.
-		var v = false;
+		// Hack pour Trigolo : Quand le tour vient d'être joué, la carte ne se déplace pas jusqu'à la case sélectionnée pour une raison inconnue, rendant le jeu inutilisable.
+		// Le placement direct de la carte sur le plateau, donc sans aucune animation préalable, empêche le bug de se produire : cette fonction doit pour cela renvoyer "true".
+		var v = _global.fvIndex === 9;
 		if(v) {
-			var obfu = Game_Obfuscation();
-			_root.Game[obfu["onReconnectDone"]]();
+			// var obfu = Game_Obfuscation();
+			// _root.Game[obfu["onReconnectDone"]]();
+			// step == Step.View
+			v = _root.Game["=kIA"] == _root.GameClip[")qF["][";31a"];
 		}
 		return v;
 	};
@@ -152,8 +172,8 @@ function Init_MMApi() {
 	};
 	var victory = function(mine) {
 		// La partie est terminée, le vainqueur est déterminé ici. L'appel à la fonction "gameOver" suit généralement peu de temps après.
-		JSTrace("victory(" + mine + ")");
-		_global._mmVictory = mine;
+		// JSTrace("victory(" + mine + ")");
+		_global._mmHasWon = mine;
 		var obfu = Game_Obfuscation();
 		_root.Game[obfu["onVictory"]](mine);
 	};
