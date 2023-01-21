@@ -11,7 +11,7 @@ IMPORTANT : Les jeux ne sont pas fonctionnels.
 
 ## Installation
 
-Dézipper le fichier téléchargé vers un serveur local ou en ligne et ouvrir "index.php" depuis un navigateur qui supporte toujours le plugin Flash Player.
+Dézipper le fichier téléchargé vers un serveur local ou en ligne et ouvrir "index.php" depuis un navigateur qui prend toujours en charge le plugin Flash Player.
 
 Archive développée et testée avec WampServer (Apache 2.4 et PHP 7.4).
 
