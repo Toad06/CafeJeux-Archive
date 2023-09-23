@@ -1216,7 +1216,7 @@ if($data !== null) {
 			$data = str_replace("{ARCHIVE_USER_FREE_MONEY}", strval($globalUserFreeMoney), $data);
 			$data = str_replace("{ARCHIVE_USER_PRIZE_TOKEN}", strval($globalUserPrizeToken), $data);
 			$data = str_replace("{ARCHIVE_USER_CITY}", $globalUserCity, $data);
-			$data = str_replace("{ARCHIVE_USER_GFX}", $globalUserData['gfx'], $data);
+			$data = str_replace("{ARCHIVE_USER_GFX}", htmlentities($globalUserData['gfx']), $data);
 			$data = str_replace("{ARCHIVE_USER_GENDER}", ($globalUserData['gender'] === 1 ? "female" : "male"), $data);
 		}
 		echo $data;
