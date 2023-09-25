@@ -37,6 +37,7 @@ $globalUserData = array("username" => "Toad06", "gender" => 0, "gfx" => "0,0,0,0
 if(isset($_SESSION['cafeUsername']) && isset($_COOKIE['cafeUserData'])) {
 	$getUserData = json_decode($_COOKIE['cafeUserData'], true);
 	if(strtolower($_SESSION['cafeUsername']) === strtolower($getUserData['username'])) {
+		$_SESSION['cafeUsername'] = $getUserData['username'];
 		$globalUserData['username'] = $getUserData['username'];
 		$globalUserData['gender'] = $getUserData['gender'];
 		$globalUserData['gfx'] = $getUserData['gfx'];

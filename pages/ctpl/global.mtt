@@ -9,7 +9,7 @@
 		<![CDATA[<img src="img/icons/large_offline.gif" $$click(help?section=connection) $$mtip(global@offline)/>]]>
 	</macro>
 	<macro name="connecting">
-		<![CDATA[<img src="img/icons/large_connecting.gif" $$click(help/connection) $$mtip(global@bconnecting)/>]]>
+		<![CDATA[<img src="img/icons/large_connecting.gif" $$click(help?section=connection) $$mtip(global@bconnecting)/>]]>
 	</macro>
 
 	<macro name="hasParty">Vous avez déjà une partie en cours.</macro>

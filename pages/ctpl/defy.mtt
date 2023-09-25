@@ -1,0 +1,38 @@
+﻿<macros>
+	<macro name="icon">
+		<![CDATA[
+		<a $$click(defy) $$tip(On vous lance un défi !)><img src="::DATA::img/icons/anim_duel.gif" alt=""/></a>
+		]]>
+	</macro>
+	<macro name="new">
+		<![CDATA[
+		<a $$click(defy)>
+		::if (_group == null)::
+			<strong>::_name::</strong> vous propose un match amical sur <strong><img src="::DATA::games/icon/::_gameShort::.gif" alt=""/>::_game::</strong>
+		::else::
+			<strong>::_name::</strong> de la table <strong>::_group::</strong> vous défie sur <strong><img src="::DATA::games/icon/::_gameShort::.gif" alt=""/>::_game::</strong> (<em>attention, il s'agit d'un match sur Table</em>)
+		::end::
+		</a>
+		]]>
+	</macro>
+
+	<macro name="refused">
+		<![CDATA[
+		<a $$click(defy)>
+		<img class="icon" src="::DATA::img/icons/large_refused.gif" alt=""/>
+		<p><strong>::_name::</strong> a refusé votre proposition...</p>
+		::if (_reason.length>0)::
+			<p>
+				<strong>Réponse : «</strong> <em>::_reason::</em> <strong>»</strong>
+			</p>
+		::end::
+		</a>
+		]]>
+	</macro>
+
+	<macro name="accepted">
+		<![CDATA[
+		<strong>::_name::</strong> a accepté votre proposition. Lancement en cours...
+		]]>
+	</macro>
+</macros>

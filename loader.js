@@ -4659,6 +4659,17 @@ js.Client.prototype.applyTpl = function(tplName,ctx) {
 	return tpl.execute(ctx,js.TemplateTools);
 }
 js.Client.prototype.connected = function(b) {
+	// Le serveur de jeu n'existe pas/plus, mais on prétend que la connexion reste possible.
+	var fakeConnection = Math.random() > 0.5;
+	if(fakeConnection || this.__fakeConnection) {
+		b = true;
+		js.Client.prototype.connecting = function() {};
+		js.Client.prototype.connected = function() {};
+		if(this.__fakeConnection) delete this.__fakeConnection;
+	} else {
+		b = false;
+		this.__fakeConnection = true;
+	}
 	if(b) {
 		haxe.Log.trace("Connected",{ fileName : "Client.hx", lineNumber : 207, className : "js.Client", methodName : "connected"});
 		this.fill("cnxIcon","global@connected",null);
