@@ -271,7 +271,7 @@ switch($page) {
 	case "bank": // NOTE : Il s'agit de l'ancienne page "+ de sucres", spécifique à cafejeux.com. La dernière version de la page était commune à tous les sites Motion Twin et n'avait que peu d'intérêt.
 	case "bank/audio": // La page principale "bank" n'existait donc plus au moment où cette archive a été constituée. Mais elle a pu être reproduite à partir d'une capture d'écran et est identique à la page originale.
 	case "bank/cb": // Aucune capture d'écran n'existait en revanche pour les sous-pages de la rubrique. Elles ont donc été reproduites sur la base du modèle de Alphabounce, un autre site de Motion Twin.
-	case "bank/neosurf": // Le rendu n'est donc pas garanti conforme à l'original pour ces pages, en revanche les images proviennent bien de cafejeux.com. La feuille de style n'a également PAS été modifiée.
+	case "bank/neosurf": // Le rendu n'est donc pas garanti conforme à l'original pour ces pages, en revanche les images proviennent bien de cafejeux.com. La feuille de style n'a également PAS été modifiée pour l'occasion.
 	case "bank/phone":
 	case "bank/phoneTropic":
 	case "bank/sms":
@@ -286,7 +286,7 @@ switch($page) {
 	case "game":
 	case "game/1":
 	case "game/1/bar":
-	case "game/1/ranking":
+	case "game/1/ranking": // NOTE : En cas d'absence de scores sur un jeu, cafejeux.com affichait ceci : `<p>Aucun joueur dans ce classement pour le moment !</p>`
 	case "game/2":
 	case "game/2/bar":
 	case "game/2/ranking":

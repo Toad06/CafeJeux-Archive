@@ -114,14 +114,14 @@ $dayChanged = isset($_SESSION['cafeDayChanged']);
 						var response = await fetch(url);
 						var responseText = await response.text();
 						fetchedCtpl[url] = responseText;
-						if(++fetchedCtpl.total === 4) {
+						if(++fetchedCtpl.total === 5) {
 							var run = o.run;
 							o = new haxe.Timer(200);
 							o.run = run;
 						}
 					};
 					fetchedCtpl.total = 0;
-					cjFetch("ctpl/chat.mtt"); cjFetch("ctpl/game.mtt"); cjFetch("ctpl/global.mtt"); cjFetch("ctpl/shop.mtt");
+					cjFetch("ctpl/chat.mtt"); cjFetch("ctpl/defy.mtt"); cjFetch("ctpl/game.mtt"); cjFetch("ctpl/global.mtt"); cjFetch("ctpl/shop.mtt");
 				} catch(err) {}
 			}
 			var so = new SWFObject("swf/client.swf?v=20100928162820", "client", "1", "1", "0", "#32273A", true);
