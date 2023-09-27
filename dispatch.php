@@ -286,7 +286,7 @@ switch($page) {
 	case "game":
 	case "game/1":
 	case "game/1/bar":
-	case "game/1/ranking": // NOTE : En cas d'absence de scores sur un jeu, cafejeux.com affichait ceci : `<p>Aucun joueur dans ce classement pour le moment !</p>`
+	case "game/1/ranking": // NOTE : En cas d'absence de scores sur un jeu, cafejeux.com affichait ceci : "<p>Aucun joueur dans ce classement pour le moment !</p>"
 	case "game/2":
 	case "game/2/bar":
 	case "game/2/ranking":
@@ -335,7 +335,7 @@ switch($page) {
 	case "pvmsg/1591972":
 	case "pvmsg/2284448":
 	case "pvmsg/6381127":
-	case "pvmsg/6392115":
+	case "pvmsg/6392115": // NOTE : Si la table avait déjà été supprimée au moment de la lecture du message d'invitation, cafejeux.com affichait ceci à la place : "Cette table n'existe plus !"
 	case "pvmsg/list": // NOTE : Pagination ajoutée pour l'archive : sur cafejeux.com, la pagination fonctionnait de manière logique selon le nombre de pages et celle actuellement affichée. 10 messages par page au maximum.
 	case "pvmsg/mDelete":
 	case "pvmsg/prefs":
