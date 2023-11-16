@@ -1,19 +1,22 @@
 # Archive CaféJeux
 
-Cette archive contient tous les fichiers Flash, images et pages de CafeJeux.com, ancien site de la société Motion Twin.
-Le contenu de certaines pages est dynamique afin de refléter le comportement du site d'origine... et donner l'illusion.
+<em>Auteur : Toad06</em><br/>
+<em>Autres contributeurs : Tom_</em>
 
-Archive par Toad06 avec l'aide de Tom_ pour les fichiers manquants.
+Cette archive contient l'ensemble des pages, images et fichiers Flash de CafeJeux.com, site de jeux en ligne créé et édité par la société Motion Twin de 2007 à 2021.
 
+L'archive est essentiellement statique, les parties dynamiques ne sont souvent là que pour refléter le comportement du site d'origine en termes d'affichage... et donc donner l'illusion.
 
-IMPORTANT : Les jeux ne sont pas fonctionnels.
+Les jeux et quelques inédits sont fonctionnels en mode local (monoposte) en accédant au dossier <a href="_toad06">_toad06</a>. Les jeux qui furent publiés en leur temps seront également intégrés au sein même du site lors d'une prochaine mise à jour.
 
 
 ## Installation
 
-Dézipper le fichier téléchargé vers un serveur local ou en ligne et ouvrir "index.php" depuis un navigateur qui prend toujours en charge le plugin Flash Player.
+Vous devez disposer d'un serveur web avec les logiciels Apache et PHP. Plus particulièrement, l'archive a été testée avec Apache 2.4 et PHP 7.4 mais les versions ultérieures devraient également fonctionner.
 
-Archive développée et testée avec WampServer (Apache 2.4 et PHP 7.4).
+L'installation de l'archive en elle-même est très simple : il vous suffit d'extraire tout le contenu du fichier zip téléchargé vers votre serveur et d'accéder à la page `index.php` depuis un navigateur qui prend toujours en charge le plugin Flash Player.
+
+Vous pouvez signaler tout problème <a href="https://github.com/Toad06/CafeJeux-Archive/issues">en ouvrant un ticket</a> ou contribuer <a href="https://github.com/Toad06/CafeJeux-Archive/pulls">en créant une requête de fusion</a>.
 
 
-<a href="https://github.com/Toad06/CafeJeux-Site"><img src="https://github.com/Toad06/CafeJeux-Site/blob/main/presentation.png?raw=true" alt="" /></a>
+<a href="https://github.com/Toad06/CafeJeux-Archive"><img src="presentation.png?raw=true" alt="" /></a>
