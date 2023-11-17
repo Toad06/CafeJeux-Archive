@@ -295,7 +295,7 @@ haxe.remoting.FlashJsConnection.__name__ = ["haxe","remoting","FlashJsConnection
 haxe.remoting.FlashJsConnection.flashCall = function(flashObj,name,path,params) {
 	try {
 		var fobj = window.document[flashObj];
-		if(fobj == null) fobj = window.document.getElementById[flashObj];
+		if(fobj == null) fobj = window.document.getElementById(flashObj);
 		if(fobj == null) throw ("Could not find flash object '" + flashObj) + "'";
 		var data = null;
 		try {
@@ -1438,7 +1438,7 @@ haxe.remoting.ExternalConnection.prototype.call = function(params) {
 	var params1 = s.toString();
 	var data = null;
 	var fobj = window.document[this.__data.flash];
-	if(fobj == null) fobj = window.document.getElementById[this.__data.flash];
+	if(fobj == null) fobj = window.document.getElementById(this.__data.flash);
 	if(fobj == null) throw ("Could not find flash object '" + this.__data.flash) + "'";
 	try {
 		data = fobj.externalRemotingCall(this.__data.name,this.__path.join("."),params1);

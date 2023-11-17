@@ -104,7 +104,7 @@ switch($page) {
 	case "help/ranking":
 	case "help/tokens":
 	case "help/xp":
-	case "log": // NOTE : Cette page existe... mais impossible de connaître réellement son utilité.
+	case "log": // NOTE : Cette page est appelée quand un problème survient lors de l'initialisation du site, avec l'erreur précise et différentes données de l'utilisateur dans un paramètre POST.
 	case "partnerFrame":
 	case "static/present":
 	case "static/present2":
