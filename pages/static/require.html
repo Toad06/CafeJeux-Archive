@@ -8,6 +8,7 @@
 	<link href="main.css?v=20100928162819" type="text/css" rel="stylesheet"/>
 	<link href="img/favicon.ico" type="image/x-icon" rel="shortcut icon"/>
 	<script type="text/javascript" src="swfobject.js"></script>
+	<script type="text/javascript" src="loader.js?v=20100928162820"></script>
 </head>
 <body>
 	<div id="cache"></div>
@@ -15,7 +16,7 @@
 	<div id="globalContainer">
 		<div class="black loadingMask"></div>
 		<div class="offline" id="siteBg">
-			<div id="homeLink"><a href="#" onclick="if (js.BackForward.urlBase==null) {js.XmlHttp.get('game');} else {js.XmlHttp.get(js.BackForward.urlBase,this);} return false;"><img alt="" src="img/design/pixel.gif"/></a></div>
+			<div id="homeLink"><a href="."><img alt="" src="img/design/pixel.gif"/></a></div>
 			<div id="siteHeader">
 				<div id="contentBg">
 					<div id="contentHeader">
@@ -64,6 +65,14 @@
 									}
 								//]]>
 								</script>
+								<!-- Ajout pour l'archive -->
+								<p>&nbsp;</p>
+								<p class="warning">
+									Flash Player n'est plus mis à jour ni pris en charge dans les navigateurs habituels.
+									Pour pallier ce problème, il est possible d'utiliser l'émulateur Ruffle en tant qu'extension.
+									Vous devez toutefois vous assurer que ce dernier est configuré de manière à permettre la lecture automatique des fichiers Flash (sans interaction préalable).
+								</p>
+								<!-- Fin -->
 							</div>
 						</div>
 					</div>
