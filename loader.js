@@ -977,7 +977,7 @@ js.BackForward.iframeLoaded = function(location) {
 }
 js.BackForward.check = function() {
 	var h = Std.string(js.Lib.window.location).split("#")[1];
-	if(h != js.BackForward.currentHash) {
+	if(h != undefined && h != js.BackForward.currentHash) {
 		var t = StringTools.urlDecode(h);
 		if(t != null && t.length > 3 && t != "null" && t != "undefined") {
 			js.XmlHttp.enqueue(t);

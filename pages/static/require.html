@@ -25,28 +25,24 @@
 						<div class="hidden" id="queue"></div>
 						<div id="contentFooter">
 							<div id="main">
-								<noscript>
-									<p class="nack">
-										Ce site nécessite JavaScript pour fonctionner.
-										Merci d'utiliser un navigateur compatible (Mozilla Firefox ou Internet Explorer 6 ou supérieur) et d'activer JavaScript.
-									</p>
-								</noscript>
 								<h1><strong>Problème de</strong> compatibilité</h1>
 								<p class="nack">Le site n'a pas réussi à s'initialiser correctement.</p>
 								<p>Pour fonctionner, CaféJeux a besoin :</p>
 								<ul>
-									<li id="CondBrowser">d'un navigateur compatible. Utilisez de préférence <strong>Firefox 2</strong> ou <strong>Internet Explorer 7</strong>. <a href="#" onclick="return false;">Téléchargez Firefox gratuitement</a>.</li>
+									<li id="CondBrowser">d'un navigateur compatible. Utilisez de préférence <strong>Firefox 2</strong> ou <strong>Internet Explorer 7</strong>. <a href="#" onclick="return false;">Téléchargez Firefox gratuitement.</a></li>
 									<li id="CondJS">de <strong>JavaScript</strong> activé.</li>
-									<li id="CondFlash">de <strong>Flash Player 8</strong> ou supérieur. <a href="#" onclick="return false;">Installez le dernier Flash Player</a>. <div class="hidden" id="FlashVersion"></div></li>
+									<li id="CondFlash">de <strong>Flash Player 8</strong> ou supérieur. <a href="#" onclick="return false;">Installez le dernier Flash Player.</a> <div class="hidden" id="FlashVersion"></div></li>
 									<li id="CondCookies">des <strong>cookies</strong> activés.</li>
 								</ul>
 								<script type="text/javascript">
 								//<![CDATA[
+									// JavaScript
 									document.getElementById("CondJS").style.display = "none";
 									// Flash
 									var vc = deconcept.SWFObjectUtil.getPlayerVersion();
+									var sf = navigator.plugins["Shockwave Flash"]; // Variable ajoutée pour l'archive, pour faire la distinction entre le "vrai" plugin Flash Player et les émulateurs comme Ruffle
 									if(vc.major == 99) vc.major = 0;
-									if(vc.major >= 8) {
+									if(vc.major >= 8 && (sf && (!sf.filename || sf.filename.indexOf(".dll") != -1))) {
 										document.getElementById("CondFlash").style.display = "none";
 									} else {
 										var d = document.getElementById("FlashVersion");
@@ -58,7 +54,7 @@
 									for(var i = 0; i < ca.length; i++) {
 										var c = ca[i];
 										while(c.charAt(0) == " ") c = c.substring(1, c.length);
-										if(c.indexOf("sid=") == 0) {
+										if(c.indexOf("sid=") == 0 || c.indexOf("PHPSESSID") == 0) { // "PHPSESSID" ajouté pour l'archive
 											document.getElementById("CondCookies").style.display = "none";
 											break;
 										}
