@@ -47,6 +47,25 @@
 		.turn {
 			border: 1px solid #FFF;
 		}
+		body.iframe {
+			margin: 0px !important;
+			padding: 0px !important;
+		}
+		body.iframe #container {
+			width: 600px !important;
+			margin: 0x !important;
+			text-align: left !important;
+		}
+		body.iframe #div_client_1, body.iframe #div_client_2 {
+			margin: 0px !important;
+		}
+		body.iframe #div_client_1.skip {
+			position: absolute !important;
+			left: 300px !important;
+		}
+		body.iframe #tools {
+			display: none !important;
+		}
 	</style>
 </head>
 <body>
@@ -66,12 +85,14 @@
 		<div id="messages"></div>
 	</div>
 	<script type="text/javascript">
+		var IN_IFRAME = window.self !== window.top;
+		var WINDOW_TOP = IN_IFRAME ? window.top : null;
 		var ENABLE_SPECTATOR_CLIENT = false;
-		var ENABLE_UNIQUE_CLIENT = !ENABLE_SPECTATOR_CLIENT && parseInt(window.location.href.split("unique=")[1], 10) === 1;
+		var ENABLE_UNIQUE_CLIENT = !IN_IFRAME && !ENABLE_SPECTATOR_CLIENT && parseInt(window.location.href.split("unique=")[1], 10) === 1;
 		var ENABLE_DEBUG_TRACE = true;
 		var ENABLE_AUDIO = true;
-		var PLAYER_1_NAME = "Joueur 1";
-		var PLAYER_2_NAME = "Joueur 2";
+		var PLAYER_1_NAME = !IN_IFRAME ? "Joueur 1" : WINDOW_TOP.Game_GetData("player1Name");
+		var PLAYER_2_NAME = !IN_IFRAME ? "Joueur 2" : WINDOW_TOP.Game_GetData("player2Name");
 		var PATH_SWF = "../games/swf/";
 		var PATH_SWF_EDITED = "edited_swf/";
 		var PATH_AUDIO = "../sound/";
@@ -114,7 +135,7 @@
 			script.onload = function() {
 				var html = "";
 				var total = ENABLE_SPECTATOR_CLIENT ? 3 : 2;
-				var flashvars = "fvSwf=" + game.swf + "&amp;fvName1=" + window.encodeURIComponent(PLAYER_1_NAME) + "&amp;fvName2=" + window.encodeURIComponent(PLAYER_2_NAME) + "&amp;fvIndex=" + game.index + "&amp;fvUnique=" + Number(ENABLE_UNIQUE_CLIENT) + "&amp;fvDebug=" + Number(ENABLE_DEBUG_TRACE);
+				var flashvars = "fvSwf=" + game.swf + "&amp;fvName1=" + window.encodeURIComponent(PLAYER_1_NAME) + "&amp;fvName2=" + window.encodeURIComponent(PLAYER_2_NAME) + "&amp;fvIndex=" + game.index + "&amp;fvUnique=" + Number(ENABLE_UNIQUE_CLIENT || IN_IFRAME) + "&amp;fvDebug=" + Number(ENABLE_DEBUG_TRACE);
 				for(var i = 1; i <= total; i++) {
 					html += '<div id="div_client_' + i + '"><embed ' +
 						'src="loader.swf" type="application/x-shockwave-flash" ' +
@@ -129,6 +150,10 @@
 		})();
 
 		/*****************************/
+
+		if(IN_IFRAME) {
+			document.body.className = "iframe";
+		}
 
 		window.addEventListener("load", function() {
 			if(!ENABLE_AUDIO) {
@@ -196,7 +221,11 @@
 		}
 
 		function playSound(sound) {
-			if(!ENABLE_AUDIO) return;
+			if(!IN_IFRAME) {
+				if(!ENABLE_AUDIO) return;
+			} else {
+				if(!WINDOW_TOP.Game_GetData("audioEnabled")) return;
+			}
 			var timer = Date.now();
 			if(timer - (playSound.lastTimer || 0) < 100) return;
 			playSound.lastTimer = timer;

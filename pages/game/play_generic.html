@@ -1,0 +1,282 @@
+<!-- Page recréée pour l'archive. -->
+<!-- Celle-ci est visuellement fidèle à celle de cafejeux.com et sans aucun doute complètement différente du point de vue technique. -->
+<!-- Autre différence : quitter la page en cours de jeu met un terme définitif à la partie. -->
+<script type="text/javascript" id="jsid-1">
+//<![CDATA[
+	window.Game_Id = parseInt(window.location.hash.split("/")[1], 10);
+	window.Game_FirstPlayer = (Math.random() > 0.5 ? "1" : "2");
+	window.Game_SecondPlayer = (Game_FirstPlayer === "2" ? "1" : "2");
+	window.Game_Event = function(event) {
+		var game = document.querySelector("#main div.game");
+		var table = game.querySelector("table");
+		var history = table.querySelector("#history");
+		switch(event[0]) {
+			case "start":
+				// C'est parti !
+				// Initialisation des chronomètres.
+				game.querySelector(".chrono .field1").innerHTML = "05:00";
+				game.querySelector(".chrono .field2").innerHTML = "05:00";
+				// Joueur qui a la main.
+				table.className = (Game_FirstPlayer === "1" ? "p1turn" : "p2turn");
+				// Textes d'El Papa.
+				var texts = "";
+				if(Game_FirstPlayer === "1") {
+					texts += js.App.c.applyTpl("chat@userlist", {_list: []}).replace("à la table", "au bar"); // Petit correctif perso. :)
+					texts += js.App.c.applyTpl("chat@join", {_u: {_uid: 999999, _name: Game_GetData("player2Name")}, _room: "party_" + Game_Id});
+				} else {
+					texts += js.App.c.applyTpl("chat@userlist", {_list: [{_u: {_uid: 18269, _name: Game_GetData("player2Name")}, _room: "party_" + Game_Id}]});
+				}
+				history.innerHTML = texts;
+				break;
+			case "end":
+				// Fin de partie. TODO
+				table.className = "";
+				var infos = table.querySelector("#infos");
+				for(var i = infos.children.length - 1; i >= 0; i--) {
+					var child = infos.children[i];
+					if(!child || child.className === "score0" || child.className === "score1") {
+						continue;
+					}
+					infos.removeChild(child);
+				}
+				var chatVainqueur = document.createElement("div");
+				chatVainqueur.className = "logMsg chatSystem";
+				chatVainqueur.innerHTML = event[1] + " remporte ce match.";
+				history.appendChild(chatVainqueur);
+				history.scrollTop = history.scrollHeight;
+				break;
+			case "turn":
+				// Au joueur suivant !
+				table.className = "p" + (event[1] === 1 ? Game_FirstPlayer : Game_SecondPlayer) + "turn";
+				break;
+			case "colors":
+				// Couleurs de chaque joueur.
+				if(event[1] !== undefined) {
+					var p1color = document.getElementById("p" + Game_FirstPlayer + "color");
+					p1color.style.display = "block";
+					p1color.style.backgroundColor = event[1];
+				}
+				if(event[2] !== undefined) {
+					var p2color = document.getElementById("p" + Game_SecondPlayer + "color");
+					p2color.style.display = "block";
+					p2color.style.backgroundColor = event[2];
+				}
+				break;
+			case "infos":
+				// Scores et infos diverses concernant la partie.
+				var html = event[1];
+				if(Game_FirstPlayer !== "1") {
+					html = html.replace("score1", "score0").replace("score0", "score1"); // L'ordre compte !
+				}
+				switch(Game_Id) {
+					case 1: // eXpanz
+					case 3: // Crumble
+						html = html.replace("<p>", '<p class="ifPlayer2">');
+						break;
+					case 5: // Quat'Cinelle
+						html = '<span class="ifPlayer2">' + html + '</span>';
+						break;
+				}
+				game.querySelector("#infos").innerHTML = html;
+				break;
+			case "message":
+				// Message du jeu affiché dans la partie chat.
+				var history = game.querySelector("#history");
+				var logMsg = document.createElement("div");
+				logMsg.className = "logMsg";
+				logMsg.innerHTML = event[1];
+				history.appendChild(logMsg);
+				history.scrollTop = history.scrollHeight;
+				break;
+		}
+	};
+	window.Game_GetData = function(action) {
+		var game = document.querySelector("#main div.game");
+		var table = game.querySelector("table");
+		switch(action) {
+			case "audioEnabled":
+				return document.querySelector("#siteSound a").className === "on";
+			case "player1Name":
+			case "player2Name":
+				return game.querySelector(".users .field" + (action === "player1Name" ? Game_FirstPlayer : Game_SecondPlayer)).textContent.trim().split(" ")[0].split("\n")[0].trim();
+			case "playerActiveName":
+				return (table.className === "p1turn" ? Game_GetData("player1Name") : (table.className === "p2turn" ? Game_GetData("player2Name") : null));
+		}
+		return undefined;
+	};
+	window.Game_PostChat = function(input) {
+		if(!input) return;
+		var value = input.value.trim();
+		input.value = "";
+		if(value.length === 0) return;
+		var xhr = new XMLHttpRequest();
+		xhr.open("GET", "dispatch.php?p=_parse_message_chat&str=" + encodeURIComponent(value), true);
+		xhr.onload = function() {
+			var history = document.querySelector("div.game #historyContainer #history");
+			if(history === null) return;
+			var name = Game_GetData("playerActiveName");
+			if(name === null) return;
+			var currentColor = document.getElementById("currentColor").className;
+			var text = this.responseText.split("|");
+			var time = text[0];
+			text[0] = "";
+			var message = text.join(""); // Les entités HTML sont déjà converties.
+			var div = document.createElement("div");
+			div.className = "chatMsg " + currentColor;
+			div.innerHTML = '<div class="name"><span class="time">[' + time + ']</span> <a href="#" onclick="return false;">' + name + '</a> :</div><div class="msg">' + message + '</div>';
+			history.appendChild(div);
+			history.scrollTop = history.scrollHeight;
+		};
+		xhr.send(null);
+	};
+	if(!window.__archiveStartGeneric) {
+		// Le contenu de ce bloc ne doit être exécuté qu'une fois, la navigation ne rechargeant pas les pages intégralement comme cela se fait habituellement sur les autres sites.
+		window.__archiveStartGeneric = true;
+		window.__archiveMenuBtnBar = document.getElementById("menuBtnBar").innerHTML;
+		(function() {
+			// Note 1 : La propriété "border-color:white;" n'est normalement appliquée que lorsque le joueur connecté a la main (via la classe `p1turn`).
+			// Cela est changé ici car les jeux fonctionnent de manière locale dans l'archive, et donc les deux joueurs partagent le même écran.
+			// Note 2 : Affiche un texte aligné à droite, pour une raison similaire à la note 1.
+			var style = document.createElement("style");
+			style.type = "text/css";
+			style.innerHTML =
+				".p2turn .gameClient .swf { border-color:white; } " + // cf. Note 1.
+				".p2turn #infos .ifPlayer2 { display:block; text-align:right !important; } " + // cf. Note 2.
+				"#main .game table { -webkit-user-select:none; -moz-user-select:none; user-select:none }";
+			document.head.appendChild(style);
+
+			// Supprime le bloc "Une partie est en cours" et le remplace par "Jouer au bar" lors du changement de page.
+			var XmlHttpGet = js.XmlHttp.get;
+			js.XmlHttp.get = function(url, obj) {
+				if(url && url !== "partnerFrame" && url.indexOf("smileyTip") !== 0) {
+					var menuBtnBar = document.getElementById("menuBtnPlaying");
+					if(menuBtnBar !== null) {
+						menuBtnBar.id = "menuBtnBar";
+						menuBtnBar.innerHTML = window.__archiveMenuBtnBar;
+					}
+				}
+				XmlHttpGet(url, obj);
+			};
+		})();
+	}
+	(function() {
+		var icon;
+		switch(Game_Id) {
+			default: icon = "expanz.gif"; break; case 2: icon = "amonite.gif"; break; case 3: icon = "crumble.gif"; break; case 4: icon = "magmax.gif"; break; case 5: icon = "quat.gif"; break;
+			case 6: icon = "miniwar.gif"; break; case 7: icon = "marbil.gif"; break; case 8: icon = "ferme.gif"; break; case 9: icon = "trifus.gif"; break; case 11: icon = "hordes.gif"; break;
+		}
+		var main = document.getElementById("main");
+		var game = main.querySelector("div.game");
+		var history = game.querySelector("#historyContainer");
+
+		// Suppression du fichier supposément préchargé.
+		document.getElementById("swf_gamePreload").innerHTML = "";
+
+		// Bloc d'infos.
+		game.querySelector("#infosContainer").innerHTML = '<div id="infos"></div>';
+
+		// Nom du jeu.
+		var nameTag = main.querySelector("h1");
+		var name = nameTag.innerHTML.split("</strong>")[1].trim();
+		var newName = name.split(" ");
+		if(newName.length > 1 && newName[1].length > 1) {
+			newName[0] = "<strong>" + newName[0] + "</strong>";
+		}
+		newName = newName.join(" ");
+		nameTag.innerHTML = newName;
+
+		// "Une partie est en cours".
+		var menuBar = document.getElementById("menuBtnBar");
+		menuBar.id = "menuBtnPlaying";
+		menuBar.innerHTML = '<a href="#" onclick="return false;"><img src="games/icon/' + icon + '" alt="" /></a> <a href="#" onclick="return false;">' + name + '</a> <em>une partie est en cours</em>';
+
+		// Bouton "Abandonner la partie".
+		var abandon = game.querySelector("#backButton a");
+		abandon.href = "#";
+		abandon.onclick = function() { return false; };
+		abandon.className = abandon.className.replace("b_delete", "b_abandon");
+		abandon.innerHTML = "Abandonner la partie !";
+
+		// Bouton "Voir l'aide".
+		var helpButton = game.querySelector("#rankingContainer a.button");
+		if(helpButton === null) {
+			helpButton = document.createElement("a");
+			helpButton.className = "button";
+		}
+		helpButton.onclick = function() { this.style.display = "none"; this.nextElementSibling.style.display = ""; js.Utils.setClass("historyContainer", "hidden"); js.Utils.setClass("helpContainer", ""); return false; };
+		helpButton.className += " b_help";
+		helpButton.style.display = "";
+		helpButton.innerHTML = "Voir l'aide de " + name;
+		history.parentNode.insertBefore(helpButton, history);
+
+		// Bouton "Revenir au chat".
+		var chatButton = game.querySelector("#helpContainer a.button");
+		if(chatButton === null) {
+			chatButton = document.createElement("a");
+			chatButton.className = "button";
+		}
+		chatButton.onclick = function() { this.style.display = "none"; this.previousElementSibling.style.display = ""; js.Utils.setClass("historyContainer", ""); js.Utils.setClass("helpContainer", "hidden"); return false; };
+		chatButton.className += " b_back";
+		chatButton.style.display = "none";
+		chatButton.innerHTML = "Revenir au chat";
+		history.parentNode.insertBefore(chatButton, history);
+
+		// Aide du jeu.
+		var helpDiv = game.querySelector("#helpContainer");
+		if(helpDiv === null) {
+			var helpParentDiv = document.createElement("div");
+			helpParentDiv.id = "helpContainer";
+			var helpChildDiv = game.querySelector(".gameHelp");
+			helpChildDiv.parentNode.replaceChild(helpParentDiv, helpChildDiv);
+			helpParentDiv.appendChild(helpChildDiv);
+			helpDiv = game.querySelector("#helpContainer");
+		}
+		helpDiv.className = "hidden";
+		history.parentNode.insertBefore(helpDiv, history);
+
+		// Chat.
+		game.querySelector("#historyContainer").innerHTML = '<div id="history"></div>' +
+			'<div id="input">' +
+			'<form onsubmit="Game_PostChat(this[0]); return false;" autocomplete="off">' +
+			'<input class="field" id="chatInput" type="text" />' +
+			'<div class="color_0" id="currentColor"><div class="col"></div></div>' +
+			'<a class="smileyButton" onclick="if(mt.js.Tip.lastRef == this) { mt.js.Tip.hide(); } else { js.XmlHttp.tipCache(\'smileyTip?id=st_14331;input=chatInput;room=party_' + Game_Id + '\', \'smileytip_chatInput_party_' + Game_Id + '\', this); }" id="st_14331"><img alt="" src="img/icons/small_smiley.gif" /></a> ' +
+			'<input class="button" id="chatSubmit" value="Dire" type="submit" />' +
+			'</form>' +
+			'</div>';
+
+		// Données HTML (aléatoires) de l'adversaire.
+		game.querySelector(".users .field2").innerHTML = "Invité{ARCHIVE_OTHER_USER_FEMALE} " +
+			'<div class="xpBar" onmouseover="mt.js.Tip.show(this, \'Niveau d\\\'expérience : 1 <p><em>Cette valeur révèle le niveau d\\\'expertise sur ce jeu.</em></p>\', null);" onmouseout="mt.js.Tip.hide();">' +
+			'<div>1</div> <img alt="" src="img/design/xpBar_fill.gif" style="width:0px;"></div>';
+
+		// Couleur attribuée à chaque joueur.
+		var player1 = game.querySelector(".users .field1");
+		player1.innerHTML = '<div id="p1color"></div>' + player1.innerHTML;
+		var player2 = game.querySelector(".users .field2");
+		player2.innerHTML = '<div id="p2color"></div>' + player2.innerHTML;
+
+		// Données Flash (aléatoires) de l'adversaire.
+		var divName = game.querySelector(".av2 .avatar div").getAttribute("id");
+		var so = new SWFObject("swf/viewer.swf?v=20100928162820", divName.replace("swf_", ""), "48", "70", "0", "null");
+		so.addParam("allowscriptaccess", "always");
+		so.addParam("scale", "noscale");
+		so.addParam("menu", "false");
+		so.addParam("wmode", "transparent");
+		so.addVariable("url", "/");
+		so.addVariable("dir", "1");
+		so.addVariable("gfx", "{ARCHIVE_OTHER_USER_GFX}");
+		so.addVariable("avatarurl", "swf/avatar.swf?v=20100928162820");
+		so.write(divName);
+
+		// Jeu et bouton "Signaler un comportement anormal".
+		// Note : "width:301px;" n'est pas une erreur. Flash Player ne produit pas de rendu graphique pour les éléments non visibles.
+		// Ce pixel supplémentaire oblige donc Flash Player à faire l'affichage, ce qui rend généralement le passage d'un client SWF (joueur) à l'autre imperceptible pour l'utilisateur.
+		var gameZone = game.querySelector("#gameZone");
+		gameZone.innerHTML = '<div class="gameClient">' +
+			'<iframe src="_toad06/?game={ARCHIVE_GAME_ID}" width="300" height="300" class="swf" frameborder="0" scrolling="no" style="width:301px; margin:0px; padding:0px; overflow:hidden;"></iframe>' +
+			'<a href="#" class="button b_stop" onclick="return false;" style="width:260px; margin-top:10px;">Signaler un comportement anormal</a>' +
+			'</div>';
+	})();
+//]]>
+</script>

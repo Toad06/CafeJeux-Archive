@@ -1,6 +1,7 @@
 # Les jeux multijoueurs de CaféJeux en mode local
-<em>Version 1.3 (21/01/2023)</em><br/>
+<em>Version 1.4-dev (22/11/2023)</em><br/>
 <em>Auteur : Toad06, sur la base des codes sources des jeux publiés par Motion Twin.</em>
+<em>Notes de version : Prise en charge des jeux qui furent publiés en leur temps au sein du site lui-même.</em>
 
 Cette section comporte plusieurs fichiers inédits permettant de faire fonctionner les jeux de CaféJeux en mode local.
 
@@ -50,7 +51,6 @@ Par ailleurs, si vous souhaitez n'afficher qu'une seule fenêtre de jeu sur la p
 ## Trigolo
 ### Index : 9
 - Jeu fonctionnel.
-- (1.3) ~~Bug majeur : Différents bugs d'affichage se produisent sur l'écran du joueur qui a la main.~~
 - Bug : Les cartes sont placées directement sur le plateau, sans jouer d'animation au préalable. Cela est dû à la solution de contournement actuellement utilisée pour permettre au jeu de fonctionner.
 
 ## Hordes Insurrection !

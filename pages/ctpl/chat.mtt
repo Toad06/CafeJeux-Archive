@@ -15,7 +15,7 @@
 				Installe-toi, il y a déjà
 				::foreach _list::
 					<a class="user" $$click(user/::_u._uid::)  onmouseover="js.App.userHighlight('::_room::',::_u._uid::)" onmouseout="js.App.userUnHighlight('::_room::',::_u._uid::)">::_u._name::</a>
-				::end::
+				::end:: !
 			::end::
 		</div>
 	]]></macro>

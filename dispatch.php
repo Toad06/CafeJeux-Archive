@@ -361,6 +361,13 @@ switch($page) {
 	case "user/sponsorWeb":
 		$data = get_content($pageUrlExt);
 		break;
+	case "_parse_message_chat": // NOTE : Cette page est spécifique à l'archive, elle est destinée à analyser et transformer les chaînes de caractères fournies sur les différents chats.
+		if(isset($_GET['str'])) {
+			$message = parse_message(trim($_GET['str']), false);
+			$data = date("H:i") . "|";
+			$data .= $message;
+		}
+		break;
 	case "forum/999999/post":
 	case "forum/thread/999999/reply":
 		if(isset($__recursiondata) && is_int($__recursiondata) && $__recursiondata > 0) {
@@ -473,6 +480,17 @@ switch($page) {
 		$data = str_replace("{ARCHIVE_LOAD_RANKINGS}", $load, $data);
 		$data = str_replace("{ARCHIVE_RANKINGS_RECENT}", $recent, $data);
 		$data = str_replace("{ARCHIVE_RANKINGS_OLD}", $old, $data);
+		break;
+	case "game/play_generic": // NOTE : Cette page permet d'afficher les jeux au sein même du site. Elle a été recréée sur la base de captures d'écran car elle n'était plus accessible sur cafejeux.com au moment du test.
+		// TODO
+		if(isset($_GET['id'])) {
+			$gameId = explode(";", $_GET['id'])[0];
+			$randomAvatar = random_avatar();
+			$data = get_content($pageUrlExt);
+			$data = str_replace("{ARCHIVE_GAME_ID}", $gameId, $data);
+			$data = str_replace("{ARCHIVE_OTHER_USER_GFX}", $randomAvatar['gfx'], $data);
+			$data = str_replace("{ARCHIVE_OTHER_USER_FEMALE}", ($randomAvatar['gender'] === "female" ? "e" : ""), $data);
+		}
 		break;
 	case "group/420":
 	case "group/6864":

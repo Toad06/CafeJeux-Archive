@@ -90,7 +90,6 @@ function random_avatar() {
 }
 
 // Formate un message en HTML, en remplaçant les balises BBCode, smileys, etc.
-// Utilisé uniquement sur la page "Aperçu" du forum, dans le cadre de cette archive.
 function parse_message($str, $allowImages) {
 	$str = htmlspecialchars($str);
 	$findTags = array(

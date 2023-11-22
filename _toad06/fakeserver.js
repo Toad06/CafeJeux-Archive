@@ -167,6 +167,9 @@ function CJGame_Action(data) {
 				playSound("game_started");
 			}
 		}
+		if(IN_IFRAME) {
+			WINDOW_TOP.Game_Event(["start"]);
+		}
 	}
 	CJGame_PlayData.lastAction = step;
 	return data;
@@ -178,9 +181,14 @@ function CJGame_PlayData(data) {
 		var val = data[1];
 		CJGame_PlayData[prop] = val;
 		if(prop === "turn") {
-			document.getElementById("player_1").className = (val === 1 ? "turn" : "");
-			document.getElementById("player_2").className = (val === 2 ? "turn" : "");
-			updateUniqueWindow(val);
+			if(!IN_IFRAME) {
+				document.getElementById("player_1").className = (val === 1 ? "turn" : "");
+				document.getElementById("player_2").className = (val === 2 ? "turn" : "");
+				updateUniqueWindow(val);
+			} else {
+				document.getElementById("div_client_1").className = (val === 1 ? "" : "skip");
+				WINDOW_TOP.Game_Event(["turn", val]);
+			}
 			playSound("my_turn");
 		}
 		return data[1];
@@ -262,8 +270,14 @@ function CJGame_SetColors(data) {
 			col1 = temp;
 		}
 	}
-	if(col1 !== undefined) document.getElementById("player_1").style.color = "#" + col1.toString(16).padStart(6, "0");
-	if(col2 !== undefined) document.getElementById("player_2").style.color = "#" + col2.toString(16).padStart(6, "0");
+	if(col1 !== undefined) col1 = "#" + col1.toString(16).padStart(6, "0");
+	if(col2 !== undefined) col2 = "#" + col2.toString(16).padStart(6, "0");
+	if(!IN_IFRAME) {
+		if(col1 !== undefined) document.getElementById("player_1").style.color = col1;
+		if(col2 !== undefined) document.getElementById("player_2").style.color = col2;
+	} else {
+		WINDOW_TOP.Game_Event(["colors", col1, col2]);
+	}
 }
 
 function CJGame_SetInfos(data) {
@@ -324,8 +338,12 @@ function CJGame_SetInfos(data) {
 			break;
 	}
 	if(html === null || html === "null") html = "";
-	var div = document.getElementById("infos");
-	div.innerHTML = html;
+	if(!IN_IFRAME) {
+		var div = document.getElementById("infos");
+		div.innerHTML = html;
+	} else {
+		WINDOW_TOP.Game_Event(["infos", html]);
+	}
 }
 
 function CJGame_LogMessage(data) {
@@ -336,12 +354,23 @@ function CJGame_LogMessage(data) {
 		case 3: // Crumble
 			if(player !== turn) return;
 			if(html.indexOf("Vous jouez") === 0) {
-				html = window["PLAYER_" + player + "_NAME"] + ", " + html.replace("Vous", "vous");
+				var link = ["", ""];
+				if(IN_IFRAME) {
+					link[0] = '<a href="#" onclick="return false;">';
+					link[1] = '</a>';
+				}
+				html = link[0] + window["PLAYER_" + player + "_NAME"] + link[1] + ", " + html.replace("Vous", "vous");
 			} else {
+				var player1Name = PLAYER_1_NAME;
+				var player2Name = PLAYER_2_NAME;
+				if(IN_IFRAME) {
+					player1Name = '<a href="#" onclick="return false;">' + player1Name + '</a>';
+					player2Name = '<a href="#" onclick="return false;">' + player2Name + '</a>';
+				}
 				if(player === 1) {
-					html = html.replace("$me", PLAYER_1_NAME).replace("$other", PLAYER_2_NAME);
+					html = html.replace("$me", player1Name).replace("$other", player2Name);
 				} else {
-					html = html.replace("$me", PLAYER_2_NAME).replace("$other", PLAYER_1_NAME);
+					html = html.replace("$me", player2Name).replace("$other", player1Name);
 				}
 			}
 			break;
@@ -351,8 +380,12 @@ function CJGame_LogMessage(data) {
 			html = html.replace("desintegré", "désintegré").replace("eparpillé", "éparpillé");
 			break;
 	}
-	var div = document.getElementById("messages");
-	div.innerHTML += "<p>" + html + "</p>";
+	if(!IN_IFRAME) {
+		var div = document.getElementById("messages");
+		div.innerHTML += "<p>" + html + "</p>";
+	} else {
+		WINDOW_TOP.Game_Event(["message", html]);
+	}
 }
 
 

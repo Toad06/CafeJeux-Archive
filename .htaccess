@@ -18,6 +18,8 @@ RewriteRule ^forum/search$ dispatch.php?p=forum/search&themeId=%1 [L]
 RewriteRule ^forum$ dispatch.php?p=forum [L]
 RewriteRule ^forum/(.+)$ dispatch.php?p=forum/$1 [L]
 
+RewriteCond %{QUERY_STRING} ^gameId=([^&]+)$
+RewriteRule ^game/play_generic$ dispatch.php?p=game/play_generic&id=%1 [L]
 RewriteCond %{QUERY_STRING} ^queue=([^&]+)$
 RewriteRule ^game/queue$ dispatch.php?p=game/queue&queue=%1 [L]
 RewriteCond %{QUERY_STRING} ^game=([^&]+)$

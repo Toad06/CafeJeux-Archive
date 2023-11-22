@@ -3636,6 +3636,10 @@ table.groupList tr td.date {
 	width: 356px;
 }
 
+.game .chat #infosContainer {
+	margin-left: 54px; /* ajouté pour l'archive */
+}
+
 .game a.button {
 	margin-bottom: 5px;
 	margin-left: 5px;

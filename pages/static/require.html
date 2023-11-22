@@ -54,7 +54,7 @@
 									for(var i = 0; i < ca.length; i++) {
 										var c = ca[i];
 										while(c.charAt(0) == " ") c = c.substring(1, c.length);
-										if(c.indexOf("sid=") == 0 || c.indexOf("PHPSESSID") == 0) { // "PHPSESSID" ajouté pour l'archive
+										if(c.indexOf("sid=") == 0 || c.indexOf("PHPSESSID=") == 0) { // "PHPSESSID=" ajouté pour l'archive
 											document.getElementById("CondCookies").style.display = "none";
 											break;
 										}
