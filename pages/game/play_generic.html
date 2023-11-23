@@ -1,6 +1,6 @@
 <!-- Page recréée pour l'archive. -->
-<!-- Celle-ci est visuellement fidèle à celle de cafejeux.com et sans aucun doute complètement différente du point de vue technique. -->
-<!-- Autre différence : quitter la page en cours de jeu met un terme définitif à la partie. -->
+<!-- Celle-ci est visuellement fidèle à celle de cafejeux.com... et sans aucun doute complètement différente du point de vue technique. -->
+<!-- Autre différence technique : quitter la page en cours de jeu met un terme définitif à la partie. -->
 <script type="text/javascript" id="jsid-1">
 //<![CDATA[
 	window.Game_Id = parseInt(window.location.hash.split("/")[1], 10);
@@ -9,6 +9,7 @@
 	window.Game_Event = function(event) {
 		var game = document.querySelector("#main div.game");
 		var table = game.querySelector("table");
+		var infos = table.querySelector("#infos");
 		var history = table.querySelector("#history");
 		switch(event[0]) {
 			case "start":
@@ -29,9 +30,11 @@
 				history.innerHTML = texts;
 				break;
 			case "end":
-				// Fin de partie. TODO
-				table.className = "";
-				var infos = table.querySelector("#infos");
+				// Fin de partie.
+				var winner = event[1];
+				var winnerInOrder = (winner === 1 ? Game_FirstPlayer : (winner === 2 ? Game_SecondPlayer : null));
+				var loserInOrder = (winnerInOrder === "2" ? "1" : (winnerInOrder === "1" ? "2" : null));
+				table.className = (loserInOrder !== null ? ("p" + loserInOrder + "offline") : "");
 				for(var i = infos.children.length - 1; i >= 0; i--) {
 					var child = infos.children[i];
 					if(!child || child.className === "score0" || child.className === "score1") {
@@ -39,15 +42,55 @@
 					}
 					infos.removeChild(child);
 				}
+				switch(Game_Id) {
+					case 4: // Magmax Battle
+						infos.innerHTML = "";
+						break;
+				}
 				var chatVainqueur = document.createElement("div");
 				chatVainqueur.className = "logMsg chatSystem";
-				chatVainqueur.innerHTML = event[1] + " remporte ce match.";
+				chatVainqueur.innerHTML = (winner !== null ? (Game_GetData("player" + String(winner) + "Name") + " remporte ce match.") : (Game_GetData("player1Name") + " et " + Game_GetData("player2Name") + " font match nul !"));
 				history.appendChild(chatVainqueur);
 				history.scrollTop = history.scrollHeight;
+				// Mise à jour de divers éléments sur la page.
+				var menuBtnBar = document.getElementById("menuBtnPlaying");
+				menuBtnBar.id = "menuBtnBar";
+				menuBtnBar.innerHTML = window.__archiveMenuBtnBar;
+				var backBar = game.querySelector("#backButton a");
+				backBar.href = "#play";
+				backBar.onclick = function() { js.XmlHttp.get("play", this); return false; };
+				backBar.className = backBar.className.replace("b_abandon", "b_back");
+				backBar.innerHTML = "Retour au bar";
+				var newGame = game.querySelector("#gameZone a.button");
+				newGame.href = "#game/" + Game_Id;
+				newGame.onclick = function() { js.XmlHttp.get("game/" + Game_Id, this); return false; };
+				newGame.className = newGame.className.replace("b_stop", "b_fight");
+				newGame.innerHTML = "Proposer la revanche à Invité{ARCHIVE_OTHER_USER_FEMALE}";
 				break;
 			case "turn":
 				// Au joueur suivant !
-				table.className = "p" + (event[1] === 1 ? Game_FirstPlayer : Game_SecondPlayer) + "turn";
+				table.className = table.className.replace("p" + (event[1] === 1 ? Game_SecondPlayer : Game_FirstPlayer) + "turn", "p" + (event[1] === 1 ? Game_FirstPlayer : Game_SecondPlayer) + "turn");
+				switch(Game_Id) {
+					case 3: // Crumble
+						infos.querySelector("p").innerHTML = "";
+						break;
+					case 4: // Magmax Battle
+						infos.innerHTML = "";
+						break;
+				}
+				break;
+			case "timer":
+				// Décrémentation du chronomètre du joueur actif.
+				var activePlayer = (event[1] === 1 ? Game_FirstPlayer : Game_SecondPlayer);
+				var minute = event[2];
+				var second = event[3];
+				if(minute === "00") {
+					var classAlert = "p" + activePlayer + "timealert";
+					if(table.className.indexOf(classAlert) === -1) {
+						table.className += " " + classAlert;
+					}
+				}
+				table.querySelector(".chrono .field" + activePlayer).innerHTML = minute + ":" + second;
 				break;
 			case "colors":
 				// Couleurs de chaque joueur.
@@ -71,6 +114,7 @@
 				switch(Game_Id) {
 					case 1: // eXpanz
 					case 3: // Crumble
+					case 9: // Trigolo
 						html = html.replace("<p>", '<p class="ifPlayer2">');
 						break;
 					case 5: // Quat'Cinelle
@@ -100,7 +144,7 @@
 			case "player2Name":
 				return game.querySelector(".users .field" + (action === "player1Name" ? Game_FirstPlayer : Game_SecondPlayer)).textContent.trim().split(" ")[0].split("\n")[0].trim();
 			case "playerActiveName":
-				return (table.className === "p1turn" ? Game_GetData("player1Name") : (table.className === "p2turn" ? Game_GetData("player2Name") : null));
+				return (table.className.indexOf("p1turn") !== -1 ? Game_GetData("player1Name") : (table.className.indexOf("p2turn") !== -1 ? Game_GetData("player2Name") : null));
 		}
 		return undefined;
 	};
@@ -137,18 +181,21 @@
 			// Note 1 : La propriété "border-color:white;" n'est normalement appliquée que lorsque le joueur connecté a la main (via la classe `p1turn`).
 			// Cela est changé ici car les jeux fonctionnent de manière locale dans l'archive, et donc les deux joueurs partagent le même écran.
 			// Note 2 : Affiche un texte aligné à droite, pour une raison similaire à la note 1.
+			// Note 3 : Le sélecteur ".p2offline" n'est normalement utilisé que pour indiquer que l'adversaire a été déconnecté du serveur de jeux. L'adversaire étant toujours à droite, ".p1offline" n'existe logiquement pas.
+			// Le sélecteur ".p1offline" est créé ici car on l'utilise, avec ".p2offline", pour mettre en évidence le joueur qui a perdu en fin de partie.
 			var style = document.createElement("style");
 			style.type = "text/css";
 			style.innerHTML =
 				".p2turn .gameClient .swf { border-color:white; } " + // cf. Note 1.
 				".p2turn #infos .ifPlayer2 { display:block; text-align:right !important; } " + // cf. Note 2.
+				".p1offline .chat .field1 { background-color:#85505e; color:#cd9899; } .p1offline .chat .av1 .avatar { border-color:red; } .p1offline .chat .users .field1 { background-image:url(img/icons/small_error.gif); background-position:98% 1px; background-repeat:no-repeat; }" + // cf. Note 3.
 				"#main .game table { -webkit-user-select:none; -moz-user-select:none; user-select:none }";
 			document.head.appendChild(style);
 
 			// Supprime le bloc "Une partie est en cours" et le remplace par "Jouer au bar" lors du changement de page.
 			var XmlHttpGet = js.XmlHttp.get;
 			js.XmlHttp.get = function(url, obj) {
-				if(url && url !== "partnerFrame" && url.indexOf("smileyTip") !== 0) {
+				if(url && url !== "partnerFrame" && url.indexOf("smileyTip") !== 0 && url.indexOf("user/siteSound") !== 0 && url.indexOf("user/tipContact") !== 0) {
 					var menuBtnBar = document.getElementById("menuBtnPlaying");
 					if(menuBtnBar !== null) {
 						menuBtnBar.id = "menuBtnBar";
@@ -209,7 +256,7 @@
 		helpButton.innerHTML = "Voir l'aide de " + name;
 		history.parentNode.insertBefore(helpButton, history);
 
-		// Bouton "Revenir au chat".
+		// Bouton "Retour au chat".
 		var chatButton = game.querySelector("#helpContainer a.button");
 		if(chatButton === null) {
 			chatButton = document.createElement("a");
@@ -218,7 +265,7 @@
 		chatButton.onclick = function() { this.style.display = "none"; this.previousElementSibling.style.display = ""; js.Utils.setClass("historyContainer", ""); js.Utils.setClass("helpContainer", "hidden"); return false; };
 		chatButton.className += " b_back";
 		chatButton.style.display = "none";
-		chatButton.innerHTML = "Revenir au chat";
+		chatButton.innerHTML = "Retour au chat";
 		history.parentNode.insertBefore(chatButton, history);
 
 		// Aide du jeu.

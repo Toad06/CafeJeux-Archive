@@ -1,7 +1,12 @@
 # Les jeux multijoueurs de CaféJeux en mode local
-<em>Version 1.4-dev (22/11/2023)</em><br/>
+<em>Version 1.4-dev (24/11/2023)</em><br/>
 <em>Auteur : Toad06, sur la base des codes sources des jeux publiés par Motion Twin.</em>
-<em>Notes de version : Prise en charge des jeux qui furent publiés en leur temps au sein du site lui-même.</em>
+
+<em>Notes de version :</em><br/>
+- Ajout de la prise en charge des jeux qui furent publiés en leur temps au sein du site lui-même.
+- Correction d'un bug rare qui pouvait survenir à l'initialisation du jeu et provoquer sur certains jeux le blocage de la page lorsque le second joueur agissait pour la première fois de la partie.
+
+---
 
 Cette section comporte plusieurs fichiers inédits permettant de faire fonctionner les jeux de CaféJeux en mode local.
 

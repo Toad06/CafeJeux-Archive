@@ -1,4 +1,5 @@
-function CJGame_Action(data) {
+function CJGame_Action(data) {console.error(new Date().getTime(), data)
+	if(data === undefined) return;
 	var game = data[0];
 	var player = ~~data[1];
 	data = data[2];
@@ -162,13 +163,24 @@ function CJGame_Action(data) {
 			CJGame_PlayData.game = game;
 			CJGame_PlayData.initData = data;
 		} else {
-			data = CJGame_PlayData.initData;
+			if(CJGame_PlayData.initData !== null) {
+				data = CJGame_PlayData.initData;
+			} else {
+				alert("Une erreur est survenue lors de l'initialisation du jeu.\nLa page va être rechargée.");
+				if(!IN_IFRAME) {
+					window.location.reload();
+				} else {
+					WINDOW_TOP.js.XmlHttp.get("game/" + game, null);
+				}
+				return;
+			}
 			if(CJGame_PlayData.game !== 13) {
 				playSound("game_started");
 			}
-		}
-		if(IN_IFRAME) {
-			WINDOW_TOP.Game_Event(["start"]);
+			if(IN_IFRAME) {
+				WINDOW_TOP.Game_Event(["start"]);
+				CJGame_UpdateTimers(-1);
+			}
 		}
 	}
 	CJGame_PlayData.lastAction = step;
@@ -187,6 +199,7 @@ function CJGame_PlayData(data) {
 				updateUniqueWindow(val);
 			} else {
 				document.getElementById("div_client_1").className = (val === 1 ? "" : "skip");
+				CJGame_UpdateTimers(val);
 				WINDOW_TOP.Game_Event(["turn", val]);
 			}
 			playSound("my_turn");
@@ -203,6 +216,8 @@ CJGame_PlayData.locked = false;
 CJGame_PlayData.seeds = null;
 CJGame_PlayData.turnDone = null;
 CJGame_PlayData.winner = null;
+CJGame_PlayData.timeOver = false;
+CJGame_PlayData.gameOver = false;
 
 function CJGame_SendDataToOtherClients(data) {
 	var player = data[0];
@@ -381,10 +396,59 @@ function CJGame_LogMessage(data) {
 			break;
 	}
 	if(!IN_IFRAME) {
-		var div = document.getElementById("messages");
-		div.innerHTML += "<p>" + html + "</p>";
+		var p = document.createElement("p");
+		p.innerHTML = html;
+		document.getElementById("messages").appendChild(p);
 	} else {
 		WINDOW_TOP.Game_Event(["message", html]);
+	}
+}
+
+function CJGame_Over(data) {
+	if(CJGame_PlayData.gameOver) return;
+	CJGame_PlayData.gameOver = true;
+	if(!IN_IFRAME) {
+		document.getElementById("player_1").className = "";
+		document.getElementById("player_2").className = "";
+	} else {
+		TimerActive.stop();
+		WINDOW_TOP.Game_Event(["end", data]);
+	}
+}
+
+function CJGame_UpdateTimers(turn) {
+	if(turn === -1) { // Initialisation.
+		window.TimerPlayer1 = new Timer();
+		window.TimerPlayer2 = new Timer();
+		window.TimerActive = TimerPlayer1;
+		TimerActive.turn = 1;
+		TimerActive.start();
+		window.TimerInterval = setInterval(function() {
+			var timeInSeconds = Math.round(TimerActive.getTime() / 1000);
+			if(TimerActive.timeInSeconds !== timeInSeconds) {
+				TimerActive.timeInSeconds = timeInSeconds;
+				var maxTime = 5 * 60;
+				if(timeInSeconds > maxTime) {
+					clearInterval(TimerInterval);
+					if(CJGame_PlayData.winner === null) {
+						var winner = (TimerActive.turn === 1 ? 2 : 1);
+						CJGame_PlayData.winner = winner;
+						CJGame_PlayData.timeOver = true;
+						CJGame_SendDataToAllClients([TimerActive.turn, ["timeover", winner], null]);
+					}
+				} else {
+					var elapsedTime = Math.max(0, maxTime - timeInSeconds);
+					var minute = Math.floor(elapsedTime % 3600 / 60).toString().padStart(2, "0");
+					var second = Math.floor(elapsedTime % 60).toString().padStart(2, "0");
+					WINDOW_TOP.Game_Event(["timer", TimerActive.turn, minute, second]);
+				}
+			}
+		}, 100);
+	} else {
+		TimerActive.stop();
+		TimerActive = (turn === 1 ? TimerPlayer1 : TimerPlayer2);
+		TimerActive.turn = turn;
+		TimerActive.start();
 	}
 }
 
@@ -717,6 +781,42 @@ function Boum_Victory() {}
 /**************************/
 
 
+function Timer() {
+	this.isRunning = false;
+	this.startTime = 0;
+	this.overallTime = 0;
+}
+Timer.prototype._getTimeElapsedSinceLastStart = function() {
+	if(!this.startTime) {
+		return 0;
+	}
+	return Date.now() - this.startTime;
+};
+Timer.prototype.start = function() {
+	if(this.isRunning) {
+		return;
+	}
+	this.isRunning = true;
+	this.startTime = Date.now();
+};
+Timer.prototype.stop = function() {
+	if(!this.isRunning) {
+		return;
+	}
+	this.isRunning = false;
+	this.overallTime = this.overallTime + this._getTimeElapsedSinceLastStart();
+};
+Timer.prototype.getTime = function() {
+	if(!this.startTime) {
+		return 0;
+	}
+	if(this.isRunning) {
+		return this.overallTime + this._getTimeElapsedSinceLastStart();
+	}
+	return this.overallTime;
+};
+
+// Prothèse d'émulation.
 if(!String.prototype.padStart) {
 	String.prototype.padStart = function padStart(targetLength, padString) {
 		targetLength = targetLength >> 0;

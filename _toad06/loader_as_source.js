@@ -30,20 +30,33 @@ function Init_MMApi() {
 		if(_global._mmHasWon !== -1) {
 			// On écrase cette fonction dans "MMApi" pout être certain qu'elle ne sera appelée qu'une seule fois.
 			_global["}-VbH"]["7T4cF("] = function() {};
-			setTimeout(function() {
+			var timeOver = JSCall("CJGame_PlayData", "timeOver");
+			var delay = 1000;
+			if(timeOver) {
+				delay = 0;
+			}
+			setTimeout(function(timeOver) {
 				var str;
 				var obfu = Game_Obfuscation();
 				_root.Game[obfu["main"]] = function() {};
 				if(_global.fvUnique || _global.fvPlayer === 3) {
 					var winner = JSCall("CJGame_PlayData", "winner");
+					JSCall("CJGame_Over", winner);
 					str = "FIN DE PARTIE !\n";
 					if(winner === null) {
 						str = str + "Aucun joueur n'a pu être départagé.";
 					} else {
 						var loser = winner === 1 ? 2 : 1;
-						str = str + _global["fvName" + winner] + " a vaincu " + _global["fvName" + loser] + " !";
+						var winnerName = _global["fvName" + winner];
+						var loserName = _global["fvName" + loser];
+						if(!timeOver) {
+							str = str + winnerName + " a vaincu " + loserName + " !";
+						} else {
+							str = str + loserName + " a épuisé tout son temps !\n" + winnerName + " remporte la partie !";
+						}
 					}
 				} else {
+					JSCall("CJGame_Over", null);
 					switch(_global._mmHasWon) {
 						case true:
 							str = "VICTOIRE !\nVous avez vaincu votre adversaire !";
@@ -57,9 +70,9 @@ function Init_MMApi() {
 					}
 				}
 				// Appelle la fonction "trace" de haXe pour afficher le résultat à l'écran.
-				// Basique mais suffisant pour le moment.
+				// Simpliste mais suffisant pour le moment.
 				_global[" D(1"]["]{i"]["-[Ra6"](str, "__end__");
-			}, 1000);
+			}, delay, timeOver);
 		}
 	};
 	var getOptions = function(mine) {
@@ -676,8 +689,8 @@ function Game_Obfuscation() {
 }
 
 function Game_Hacks(data, step) {
-	if(_global.fvIndex === 3 && typeof data[2] === "object") {
-		// Crumble, quand une flèche de direction est cliquée.
+	if(_global.fvIndex === 3 && typeof data === "object" && typeof data[2] === "object") {
+		// Crumble, quand une flèche de déplacement est cliquée.
 		// data[2] est un tableau mais définit également des propriétés comme un objet standard. Ces propriétés ne sont pas envoyées à JavaScript - parce que c'est un tableau -, ce qui empêche le jeu de fonctionner.
 		// Pour contourner le problème, il faut donc intervenir à l'envoi et à la réception des données.
 		var gc = _root.GameClip;
@@ -734,6 +747,12 @@ function JSCall(func, data, arg2) {
 function JSSend(data, turnDone, fromPlayer) {
 	// Cette fonction peut être appelée en JavaScript : "client.JS_to_AS(args)".
 	var obfu = Game_Obfuscation();
+	if(typeof data === "object" && data[0] === "timeover") {
+		// Cas spécial : Fin de partie par manque de temps, la fonction "MMApi.gameOver()" est appelée tout de suite.
+		_global._mmHasWon = data[1] === _global.fvPlayer;
+		_global["}-VbH"]["7T4cF("]();
+		return;
+	}
 	if(data !== null && fromPlayer !== _global.fvPlayer) {
 		Game_Hacks(data, 1);
 		_root.Game[obfu["onMessage"]](false, data);
@@ -742,9 +761,9 @@ function JSSend(data, turnDone, fromPlayer) {
 		if(!_global._mmAdvancedTurnMode) {
 			_root.Game[obfu["onTurnDone"]]();
 		} else {
-			setTimeout(function() {
+			setTimeout(function(obfu) {
 				_root.Game[obfu["onTurnDone"]]();
-			}, 100);
+			}, 100, obfu);
 		}
 	}
 }

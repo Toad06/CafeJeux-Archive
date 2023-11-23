@@ -251,7 +251,7 @@ switch($page) {
 		break;
 	case "sponsor/embed.js":
 		$isPagePublic = true;
-		$gInfo = isset($_GET['sz']) ? explode(";ref=", $_GET['sz']) : "";
+		$gInfo = isset($_GET['sz']) ? explode(";ref=", $_GET['sz']) : array("");
 		$sz = explode("x", $gInfo[0]);
 		$szW = intval($sz[0]);
 		$szH = isset($sz[1]) ? intval($sz[1]) : 0;
@@ -363,9 +363,9 @@ switch($page) {
 		break;
 	case "_parse_message_chat": // NOTE : Cette page est spécifique à l'archive, elle est destinée à analyser et transformer les chaînes de caractères fournies sur les différents chats.
 		if(isset($_GET['str'])) {
-			$message = parse_message(trim($_GET['str']), false);
+			$parsedMessage = parse_message(trim($_GET['str']), false);
 			$data = date("H:i") . "|";
-			$data .= $message;
+			$data .= $parsedMessage;
 		}
 		break;
 	case "forum/999999/post":
@@ -481,10 +481,9 @@ switch($page) {
 		$data = str_replace("{ARCHIVE_RANKINGS_RECENT}", $recent, $data);
 		$data = str_replace("{ARCHIVE_RANKINGS_OLD}", $old, $data);
 		break;
-	case "game/play_generic": // NOTE : Cette page permet d'afficher les jeux au sein même du site. Elle a été recréée sur la base de captures d'écran car elle n'était plus accessible sur cafejeux.com au moment du test.
-		// TODO
+	case "game/play_generic": // NOTE : Cette page permet d'afficher les jeux au sein même du site. Elle a été recréée sur la base de captures d'écran car elle n'était plus accessible sur cafejeux.com au moment de la constitution de l'archive.
 		if(isset($_GET['id'])) {
-			$gameId = explode(";", $_GET['id'])[0];
+			$gameId = htmlentities(explode(";", $_GET['id'])[0]);
 			$randomAvatar = random_avatar();
 			$data = get_content($pageUrlExt);
 			$data = str_replace("{ARCHIVE_GAME_ID}", $gameId, $data);
