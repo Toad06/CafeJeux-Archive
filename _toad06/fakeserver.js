@@ -1,5 +1,5 @@
-function CJGame_Action(data) {console.error(new Date().getTime(), data)
-	if(data === undefined) return;
+function CJGame_Action(data) {
+	if(data === undefined) return undefined;
 	var game = data[0];
 	var player = ~~data[1];
 	data = data[2];
@@ -166,13 +166,17 @@ function CJGame_Action(data) {console.error(new Date().getTime(), data)
 			if(CJGame_PlayData.initData !== null) {
 				data = CJGame_PlayData.initData;
 			} else {
+				// Ce n'est pas supposé arriver... mais ça peut parfois arriver ! On annule simplement la partie et on recharge la page dans ce cas de figure.
+				// Fait amusant : La page FAQ de la rubrique d'aide du site mentionne aussi l'existence d'un problème qui pouvait parfois survenir lors du démarrage du jeu.
+				CJGame_IsPreviousClientLoaded.clients.length = 0;
+				document.body.innerHTML = "";
 				alert("Une erreur est survenue lors de l'initialisation du jeu.\nLa page va être rechargée.");
 				if(!IN_IFRAME) {
 					window.location.reload();
 				} else {
 					WINDOW_TOP.js.XmlHttp.get("game/" + game, null);
 				}
-				return;
+				return undefined;
 			}
 			if(CJGame_PlayData.game !== 13) {
 				playSound("game_started");

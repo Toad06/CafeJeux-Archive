@@ -4666,6 +4666,11 @@ js.Client.prototype.connected = function(b) {
 		js.Client.prototype.connecting = function() {};
 		js.Client.prototype.connected = function() {};
 		if(this.__fakeConnection) delete this.__fakeConnection;
+		// On enregistre ici le pseudo de l'utilisateur, cela servira à pallier l'absence du serveur de jeu dans certaines situations.
+		var headBar = document.querySelector("#headBar");
+		if(headBar && headBar.innerHTML.indexOf("Bonjour") !== -1) {
+			this.__archiveUserName = headBar.querySelector("strong").innerHTML.replace(/</g, "").replace(/>/g, "");
+		}
 	} else {
 		b = false;
 		this.__fakeConnection = true;
@@ -5003,6 +5008,13 @@ js.App.leaveQueue = function(dc) {
 }
 js.App.chatTip = function(e,g) {
 	var l = js.App.c._chatUsers(g);
+	if(l.length === 0) {
+		// On affiche le pseudo de l'utilisateur au survol du nom de l'une des tables de jeu dans le menu, comme cela serait le cas si le serveur de jeu existait toujours.
+		var name = js.App.c.__archiveUserName;
+		if(name) {
+			l.push({_u: {_name: name}});
+		}
+	}
 	mt.js.Tip.show(e,js.App.c.applyTpl("chat@tip",{ _list : l}));
 }
 js.App.splitValues = function(s) {

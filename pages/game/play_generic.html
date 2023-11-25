@@ -144,7 +144,7 @@
 			case "player2Name":
 				return game.querySelector(".users .field" + (action === "player1Name" ? Game_FirstPlayer : Game_SecondPlayer)).textContent.trim().split(" ")[0].split("\n")[0].trim();
 			case "playerActiveName":
-				return (table.className.indexOf("p1turn") !== -1 ? Game_GetData("player1Name") : (table.className.indexOf("p2turn") !== -1 ? Game_GetData("player2Name") : null));
+				return (table.className.indexOf("p1turn") !== -1 ? Game_GetData("player" + Game_FirstPlayer + "Name") : (table.className.indexOf("p2turn") !== -1 ? Game_GetData("player" + Game_SecondPlayer + "Name") : null));
 		}
 		return undefined;
 	};
@@ -164,7 +164,7 @@
 			var text = this.responseText.split("|");
 			var time = text[0];
 			text[0] = "";
-			var message = text.join(""); // Les entités HTML sont déjà converties.
+			var message = text.join("|").replace("|", ""); // Les entités HTML sont déjà converties.
 			var div = document.createElement("div");
 			div.className = "chatMsg " + currentColor;
 			div.innerHTML = '<div class="name"><span class="time">[' + time + ']</span> <a href="#" onclick="return false;">' + name + '</a> :</div><div class="msg">' + message + '</div>';
@@ -240,7 +240,7 @@
 		// Bouton "Abandonner la partie".
 		var abandon = game.querySelector("#backButton a");
 		abandon.href = "#";
-		abandon.onclick = function() { return false; };
+		abandon.onclick = function() { if(confirm("Veuillez confirmer l'abandon de la partie.")) js.XmlHttp.get("game/" + Game_Id, this); return false; };
 		abandon.className = abandon.className.replace("b_delete", "b_abandon");
 		abandon.innerHTML = "Abandonner la partie !";
 
@@ -321,7 +321,7 @@
 		// Ce pixel supplémentaire oblige donc Flash Player à faire l'affichage, ce qui rend généralement le passage d'un client SWF (joueur) à l'autre imperceptible pour l'utilisateur.
 		var gameZone = game.querySelector("#gameZone");
 		gameZone.innerHTML = '<div class="gameClient">' +
-			'<iframe src="_toad06/?game={ARCHIVE_GAME_ID}" width="300" height="300" class="swf" frameborder="0" scrolling="no" style="width:301px; margin:0px; padding:0px; overflow:hidden;"></iframe>' +
+			'<iframe src="_toad06/?game={ARCHIVE_GAME_ID}{ARCHIVE_GAME_OPTIONS}" width="300" height="300" class="swf" frameborder="0" scrolling="no" style="width:301px; margin:0px; padding:0px; overflow:hidden;"></iframe>' +
 			'<a href="#" class="button b_stop" onclick="return false;" style="width:260px; margin-top:10px;">Signaler un comportement anormal</a>' +
 			'</div>';
 	})();

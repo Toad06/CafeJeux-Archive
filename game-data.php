@@ -36,7 +36,7 @@ $globalUserCity = (isset($_SESSION['cafeUsername']) && strtolower($_SESSION['caf
 $globalUserData = array("username" => "Toad06", "gender" => 0, "gfx" => "0,0,0,0,0,0,0,0,2,0,0,0,3,0,3,6,6,0"); // données définies sur la page d'inscription
 if(isset($_SESSION['cafeUsername']) && isset($_COOKIE['cafeUserData'])) {
 	$getUserData = json_decode($_COOKIE['cafeUserData'], true);
-	if(strtolower($_SESSION['cafeUsername']) === strtolower($getUserData['username'])) {
+	if($getUserData !== null && strtolower($_SESSION['cafeUsername']) === strtolower($getUserData['username'])) {
 		$_SESSION['cafeUsername'] = $getUserData['username'];
 		$globalUserData['username'] = $getUserData['username'];
 		$globalUserData['gender'] = $getUserData['gender'];
@@ -90,34 +90,41 @@ function random_avatar() {
 }
 
 // Formate un message en HTML, en remplaçant les balises BBCode, smileys, etc.
-function parse_message($str, $allowImages) {
+function parse_message($str, $allowTags, $allowImages = null) {
+	if($allowImages === null) {
+		$allowImages = $allowTags;
+	}
 	$str = htmlspecialchars($str);
-	$findTags = array(
-		'~\*(.*?)\*~s',
-		'~//(.*?)//~s',
-		'~__(.*?)__~s',
-		'~\[cite\]([^"><]*?)\[/cite\]~s',
-		'~\[lien\](https?)://([^"><]*?)\[/lien\]~s', // NOTE : cafejeux.com ne supportait pas les liens commençant par "https://".
-		'~\[lien=((https?)://[^"><]*?)\](.*?)\[/lien\]~s' // Idem ici.
-	);
-	if($allowImages) $findTags[] = '~@(https?://[^"><]*?)@~s';
-	$replaceTags = array(
-		'<strong>$1</strong>',
-		'<em>$1</em>',
-		'<span class="underline">$1</span>',
-		'<cite>$1</cite>',
-		'<a target="_blank" href="redir?url=$1://$2">$2</a>', // NOTE : cafejeux.com tronquait le texte du lien s'il dépassait 30 caractères et s'il était identique à l'adresse du lien : "..." était affiché à la place.
-		'<a target="_blank" href="redir?url=$1">$3</a>', // L'URL en paramètre devrait être encodée avec une fonction comme "urlencode()", ce que faisait cafejeux.com.
-	);
-	if($allowImages) $replaceTags[] = '<img src="$1" alt="" />';
-	$str = preg_replace($findTags, $replaceTags, $str);
-	$str = preg_replace_callback('/#([0-9]+)#(.*?)##/', function($m) {
-		if(!isset($m[2])) return "";
-		$font = intval($m[1]);
-		$text = $m[2];
-		if($font <= 0 || $font > 8) return $text;
-		return '<span class="color_' . $font . '">' . $text . '</span>';
-	}, $str);
+	if($allowTags) {
+		$findTags = array(
+			'~\*(.*?)\*~s',
+			'~//(.*?)//~s',
+			'~__(.*?)__~s',
+			'~===(.*?)===~s', // NOTE : Cette commande avait seulement été documentée dans la rubrique "Guide de CaféJeux" sur le site Motion Twin.
+			'~\[cite\]([^"><]*?)\[/cite\]~s',
+			'~\[lien\](https?)://([^"><]*?)\[/lien\]~s', // NOTE : cafejeux.com ne prenait pas en charge les liens commençant par "https://".
+			'~\[lien=((https?)://[^"><]*?)\](.*?)\[/lien\]~s' // Idem ici.
+		);
+		if($allowImages) $findTags[] = '~@(https?://[^"><]*?)@~s';
+		$replaceTags = array(
+			'<strong>$1</strong>',
+			'<em>$1</em>',
+			'<span class="underline">$1</span>',
+			'<h3>$1</h3>',
+			'<cite>$1</cite>',
+			'<a target="_blank" href="redir?url=$1://$2">$2</a>', // NOTE : cafejeux.com tronquait le texte du lien s'il dépassait 30 caractères et s'il était identique à l'adresse du lien : "..." était affiché à la place.
+			'<a target="_blank" href="redir?url=$1">$3</a>', // L'URL en paramètre devrait être encodée avec une fonction comme "urlencode()", ce que faisait cafejeux.com.
+		);
+		if($allowImages) $replaceTags[] = '<img src="$1" alt="" />';
+		$str = preg_replace($findTags, $replaceTags, $str);
+		$str = preg_replace_callback('/#([0-9]+)#(.*?)##/', function($m) {
+			if(!isset($m[2])) return "";
+			$font = intval($m[1]);
+			$text = $m[2];
+			if($font <= 0 || $font > 8) return $text;
+			return '<span class="color_' . $font . '">' . $text . '</span>';
+		}, $str);
+	}
 	$findSmileys = array(
 		":)", ":(", ":D", ";)", ":quoi:", ":o", "8O", "8)", ":x", ":P", ":!:", ":?", ":timide:", ":lol:", ":pleure:", ":mechant:", ":sadique:", ":innocent:", ":wink:", ":dontcare:",
 		":huh:", ":noon:", ":youpi:", ":idee:", ":charte:", ":fleche:", ":croix:", ":love:", ":sucreblanc:", ":sucre:", ":mail:", ":match:", ":table:", ":tasse:", ":caps:", ":chrono:",

@@ -77,21 +77,43 @@ function Init_MMApi() {
 	};
 	var getOptions = function(mine) {
 		// Détermine quelles options sont disponibles pour le joueur ("mine" == true) ou son adversaire ("mine" == false), dans les jeux Anticorp's et Magmax Battle.
+		var playerOptions;
+		if(_global.fvOptions === "null") {
+			// Options par défaut (telles que définies dans la suite de la fonction).
+			playerOptions = null;
+		} else {
+			playerOptions = _global.fvOptions.split(",");
+		}
+		var defaultOptions;
 		switch(_global.fvIndex) {
 			case 4:
 				// Magmax Battle.
-				// Autorise toutes les cartes bonus.
+				// Autorise toutes les cartes bonus. Si une carte bonus est disponible pour un joueur, elle pourra l'être également pour son adversaire (le jeu fonctionne ainsi).
 				_root.GameClip["44{N"][")=R;3"] = false;
-				return [true, true, true];
+				defaultOptions = [true, true, true];
+				break;
 			case 6:
 				// Anticorp's.
-				if(Math.random() >= 0.1) {
+				if(playerOptions !== null || Math.random() >= 0.1) {
 					// Autorise toutes les zones en option : parmi elles, une sera choisie aléatoirement par le jeu.
-					return [true, true, true, true, true, true];
+					defaultOptions = [true, true, true, true, true, true];
 				} else {
 					// La zone par défaut n'est jamais choisie si les deux joueurs possèdent au moins une carte optionnelle en commun, donc on créé cette situation où elle pourra être sélectionnée.
-					return [];
+					defaultOptions = [false, false, false, false, false, false];
 				}
+				break;
+		}
+		if(playerOptions === null) {
+			return defaultOptions;
+		} else {
+			if(playerOptions.length !== defaultOptions.length) {
+				playerOptions.length = defaultOptions.length;
+			}
+			var i = 0;
+			for(; i < playerOptions.length; i++) {
+				playerOptions[i] = !!Number(playerOptions[i]);
+			}
+			return playerOptions;
 		}
 	};
 	var hasControl = function() {
@@ -775,6 +797,7 @@ _global.JSSend = JSSend;
 _global.fvSwf = String(_root.fvSwf);
 _global.fvName1 = String(_root.fvName1);
 _global.fvName2 = String(_root.fvName2);
+_global.fvOptions = String(_root.fvOptions);
 _global.fvIndex = Number(_root.fvIndex);
 _global.fvPlayer = Number(_root.fvPlayer);
 _global.fvUnique = !!Number(_root.fvUnique);

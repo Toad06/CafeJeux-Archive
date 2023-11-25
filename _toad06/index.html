@@ -125,6 +125,24 @@
 			document.title = game.name + " - CaféJeux - Mode multijoueurs local par Toad06";
 			return game;
 		})();
+		var options = (function() {
+			var options = window.location.href.split("options=")[1];
+			if(options === undefined) return "null";
+			options = window.decodeURIComponent(options).split("&")[0].split(",");
+			if(options.length === 1 && options[0].length === 0) return "0";
+			var opts = [];
+			var isIncorrect = false;
+			for(var i = 0; i < options.length; i++) {
+				var option = options[i].trim();
+				if(option === "0" || option === "1") {
+					opts.push(option);
+				} else {
+					isIncorrect = true;
+				}
+			}
+			if(opts.length === 0 && isIncorrect) return "null";
+			return opts.join(",");
+		})();
 
 		document.getElementById("player_1").innerHTML = PLAYER_1_NAME;
 		document.getElementById("player_2").innerHTML = PLAYER_2_NAME;
@@ -135,7 +153,7 @@
 			script.onload = function() {
 				var html = "";
 				var total = ENABLE_SPECTATOR_CLIENT ? 3 : 2;
-				var flashvars = "fvSwf=" + game.swf + "&amp;fvName1=" + window.encodeURIComponent(PLAYER_1_NAME) + "&amp;fvName2=" + window.encodeURIComponent(PLAYER_2_NAME) + "&amp;fvIndex=" + game.index + "&amp;fvUnique=" + Number(ENABLE_UNIQUE_CLIENT || IN_IFRAME) + "&amp;fvDebug=" + Number(ENABLE_DEBUG_TRACE);
+				var flashvars = "fvSwf=" + game.swf + "&amp;fvName1=" + window.encodeURIComponent(PLAYER_1_NAME) + "&amp;fvName2=" + window.encodeURIComponent(PLAYER_2_NAME) + "&amp;fvIndex=" + game.index + "&amp;fvOptions=" + options + "&amp;fvUnique=" + Number(ENABLE_UNIQUE_CLIENT || IN_IFRAME) + "&amp;fvDebug=" + Number(ENABLE_DEBUG_TRACE);
 				for(var i = 1; i <= total; i++) {
 					html += '<div id="div_client_' + i + '"><embed ' +
 						'src="loader.swf" type="application/x-shockwave-flash" ' +

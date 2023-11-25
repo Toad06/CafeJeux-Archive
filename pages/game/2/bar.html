@@ -1,7 +1,23 @@
+<!-- Page recréée pour l'archive. -->
 <script>js.App.leaveQueue();</script>
 <resumeparty></resumeparty>
+
 <fill id="backButton">
 	<a href="#game/2" class="button b_delete" onclick="js.XmlHttp.get('game/2',this); return false;">Annuler</a>
 </fill>
+
+<fill id="infosContainer">
+	<div id="infos">
+		<div class="bar">
+			<div class="title">Recherche d'un adversaire...</div>
+			<div id="waitBarFill" class="fill"></div>
+		</div>
+		<p class="help">Temps d'attente estimé : 3s</p>
+	</div>
+</fill>
+
+<script type="text/javascript" id="jsid-1">
+	js.App.c.partyWaitTime(5.0);
+</script>
 
 <load>game/play_generic?gameId=2</load>

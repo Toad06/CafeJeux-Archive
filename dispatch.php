@@ -394,7 +394,7 @@ switch($page) {
 						$date = cj_date_today();
 						$fullDate = $date[0];
 						$partialDate = $date[1];
-						$parsedContent = parse_message($pContent, false);
+						$parsedContent = parse_message($pContent, true, false);
 					} else {
 						if($pTitle !== null && strlen($pTitle) === 0) {
 							$errorArray[0] = '<div class="nack">Le titre ne doit pas être vide.</div>';
@@ -481,12 +481,26 @@ switch($page) {
 		$data = str_replace("{ARCHIVE_RANKINGS_RECENT}", $recent, $data);
 		$data = str_replace("{ARCHIVE_RANKINGS_OLD}", $old, $data);
 		break;
-	case "game/play_generic": // NOTE : Cette page permet d'afficher les jeux au sein même du site. Elle a été recréée sur la base de captures d'écran car elle n'était plus accessible sur cafejeux.com au moment de la constitution de l'archive.
+	case "game/play_generic": // NOTE : Cette page permet d'afficher les jeux au sein même du site. Elle a été recréée sur la base de captures d'écran car elle n'était plus accessible sur cafejeux.com au moment où cette archive a été constituée.
 		if(isset($_GET['id'])) {
+			sleep(mt_rand(1, 3)); // Simule l'attente d'un adversaire.
 			$gameId = htmlentities(explode(";", $_GET['id'])[0]);
+			$gameOptions = isset($_SESSION['cafeOptions']) ? $_SESSION['cafeOptions'] : "";
+			switch($gameId) {
+				case "4": $gameOptions = substr($gameOptions, 0, 3); break; // Magmax Battle : 3 options.
+				case "6": $gameOptions = substr($gameOptions, 3); break; // Anticorp's : 6 options.
+				default: $gameOptions = ""; break;
+			}
+			if($gameOptions === false) $gameOptions = "";
+			if(strlen($gameOptions) > 0) {
+				$gameOptions = str_split($gameOptions, 1);
+				$gameOptions = implode(",", $gameOptions);
+				$gameOptions = "&amp;options=" . htmlentities($gameOptions);
+			}
 			$randomAvatar = random_avatar();
 			$data = get_content($pageUrlExt);
 			$data = str_replace("{ARCHIVE_GAME_ID}", $gameId, $data);
+			$data = str_replace("{ARCHIVE_GAME_OPTIONS}", $gameOptions, $data);
 			$data = str_replace("{ARCHIVE_OTHER_USER_GFX}", $randomAvatar['gfx'], $data);
 			$data = str_replace("{ARCHIVE_OTHER_USER_FEMALE}", ($randomAvatar['gender'] === "female" ? "e" : ""), $data);
 		}
@@ -1017,12 +1031,28 @@ switch($page) {
 		}
 		break;
 	case "user/goptions":
-		if(isset($_POST['submit'])) {
-			// NOTE : Il faudrait également récupérer ici les différentes options activées ou désactivées, par exemple "$_POST['opt_4_0']".
-			// La page devrait ensuite être actualisée, donc $data devrait en réalité commencer avec "<load>user/goptions</load>".
-			$data = "<alert>Vos choix d'options ont été enregistrés.</alert>";
-		} else {
-			$data = get_content($pageUrlExt);
+		$data = get_content($pageUrlExt);
+		$options = array("4_0", "4_1", "4_2", "6_0", "6_1", "6_2", "6_3", "6_4", "6_5");
+		$totalOptions = count($options);
+		$opts = "";
+		for($i = 0; $i < $totalOptions; $i++) {
+			$option = $options[$i];
+			$postOption = "opt_" . $option;
+			$replaceOption = '{ARCHIVE_OPTION_CHECKED_' . $option . '}';
+			if(isset($_POST['submit'])) {
+				$opts .= isset($_POST[$postOption]) ? "1" : "0";
+			} else {
+				$checked = 'checked="checked"';
+				if(isset($_SESSION['cafeOptions']) && $_SESSION['cafeOptions'][$i] === "0") {
+					$checked = "";
+				}
+				$data = str_replace($replaceOption, $checked, $data);
+			}
+		}
+		if(strlen($opts) > 0) {
+			$_SESSION['cafeOptions'] = $opts;
+			$data = "<load>user/goptions</load>";
+			$data .= "<alert>Vos choix d'options ont été enregistrés.</alert>";
 		}
 		break;
 	case "user/logout":
