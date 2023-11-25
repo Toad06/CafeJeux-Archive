@@ -944,8 +944,10 @@ js.BackForward.isFirefox = null;
 js.BackForward.isSafari = null;
 js.BackForward.urlBase = null;
 js.BackForward.init = function() {
-	js.BackForward.isFirefox = new EReg("firefox","i").match(js.Lib.window.navigator.userAgent);
-	js.BackForward.isSafari = new EReg("safari","i").match(js.Lib.window.navigator.userAgent);
+	// Le site était optimisé pour Firefox, à une époque où Chrome n'existait pas encore et de nombreuses différences d'implémentation existaient entre les navigateurs.
+	// Ce ne devrait plus être le cas désormais et les deux lignes suivantes ont donc été changées (Chrome était par ailleurs incorrectement détecté comme étant Safari !).
+	js.BackForward.isFirefox = true;
+	js.BackForward.isSafari = false;
 	js.BackForward.history = new List();
 	if(!js.BackForward.isSafari) {
 		js.BackForward.check();
