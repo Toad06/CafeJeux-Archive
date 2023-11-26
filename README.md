@@ -7,7 +7,7 @@ Cette archive contient l'ensemble des pages, images et fichiers Flash de CafeJeu
 
 L'archive est essentiellement statique, les parties dynamiques ne sont souvent là que pour refléter le comportement du site d'origine en termes d'affichage... et donc donner l'illusion.
 
-Les jeux et quelques inédits sont fonctionnels en mode local (monoposte) en accédant au dossier <a href="_toad06">_toad06</a>. Les jeux qui furent publiés en leur temps seront également intégrés au sein même du site lors d'une prochaine mise à jour.
+Les jeux et quelques inédits sont fonctionnels en mode local (monoposte) en accédant au dossier <a href="_toad06">_toad06</a>. Les jeux qui furent publiés en leur temps sont également intégrés au sein même du site.
 
 
 ## Installation

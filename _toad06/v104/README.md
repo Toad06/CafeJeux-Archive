@@ -14,7 +14,7 @@
 
 Cette section comporte plusieurs fichiers inédits permettant de faire fonctionner les jeux de CaféJeux en mode local (monoposte).
 
-Pour ce faire, suivez la procédure d'installation de l'archive indiquée dans le fichier <a href="../README.md">README.md</a> principal, puis ouvrez `_toad06/?game=[INDEX]` depuis le navigateur. `[INDEX]` doit être remplacé par l'identifiant du jeu à charger, les index sont les mêmes que ceux du site CaféJeux (avec quelques petites exclusivités en plus !). Ils sont également indiqués ci-dessous, accompagnés de différentes remarques sur l'état de fonctionnement des jeux.
+Pour ce faire, suivez la procédure d'installation de l'archive indiquée dans le fichier <a href="../../README.md">README.md</a> principal, puis ouvrez `_toad06/?game=[INDEX]` depuis le navigateur. `[INDEX]` doit être remplacé par l'identifiant du jeu à charger, les index sont les mêmes que ceux du site CaféJeux (avec quelques petites exclusivités en plus !). Ils sont également indiqués ci-dessous, accompagnés de différentes remarques sur l'état de fonctionnement des jeux.
 
 Par ailleurs, si vous souhaitez n'afficher qu'une seule fenêtre de jeu sur la page (celle du joueur dont c'est le tour), ajoutez le paramètre `&unique=1` dans l'URL.
 

@@ -67,7 +67,7 @@ switch($page) {
 			$data = str_replace("{ARCHIVE_DRINK_CSS}", $globalDrinks[$d]['css'], $data);
 			$data = str_replace("{ARCHIVE_DRINK_DESC}", str_replace("'", "\'", $globalDrinks[$d]['desc']), $data);
 			$data = str_replace("{ARCHIVE_DRINK_COLDCUP}", $coldCup, $data);
-			$data = str_replace("play.cafejeux.com", "play.localhost", $data);
+			$data = str_replace("play.cafejeux.com", "play.cafejeux.localhost", $data);
 		}
 		break;
 	case "help":
