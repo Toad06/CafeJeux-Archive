@@ -166,7 +166,9 @@ function CJGame_Action(data) {
 			if(CJGame_PlayData.initData !== null) {
 				data = CJGame_PlayData.initData;
 			} else {
-				// Ce n'est pas supposé arriver... mais ça peut parfois arriver ! On annule simplement la partie et on recharge la page dans ce cas de figure.
+				// Ce n'est pas supposé arriver... mais ça peut parfois arriver : le client 1 a incorrectement renvoyé la valeur "undefined" pour l'argument "data".
+				// Cela rend donc impossible pour le client 2 de récupérer les données communes d'initialisation, si celui-ci démarre avant la nouvelle tentative du client 1.
+				// On annule simplement la partie et on recharge la page dans ce cas de figure.
 				// Fait amusant : La page FAQ de la rubrique d'aide du site mentionne aussi l'existence d'un problème qui pouvait parfois survenir lors du démarrage du jeu.
 				CJGame_IsPreviousClientLoaded.clients.length = 0;
 				document.body.innerHTML = "";
@@ -197,6 +199,12 @@ function CJGame_PlayData(data) {
 		var val = data[1];
 		CJGame_PlayData[prop] = val;
 		if(prop === "turn") {
+			if(ENABLE_UNIQUE_CLIENT || IN_IFRAME) {
+				document.getElementById("overlay").style.display = "block";
+				setTimeout(function() {
+					document.getElementById("overlay").style.display = "none";
+				}, 500);
+			}
 			if(!IN_IFRAME) {
 				document.getElementById("player_1").className = (val === 1 ? "turn" : "");
 				document.getElementById("player_2").className = (val === 2 ? "turn" : "");
@@ -425,33 +433,32 @@ function CJGame_UpdateTimers(turn) {
 		window.TimerPlayer1 = new Timer();
 		window.TimerPlayer2 = new Timer();
 		window.TimerActive = TimerPlayer1;
-		TimerActive.turn = 1;
 		TimerActive.start();
 		window.TimerInterval = setInterval(function() {
 			var timeInSeconds = Math.round(TimerActive.getTime() / 1000);
+			var turn = (TimerActive === TimerPlayer1 ? 1 : 2);
 			if(TimerActive.timeInSeconds !== timeInSeconds) {
 				TimerActive.timeInSeconds = timeInSeconds;
 				var maxTime = 5 * 60;
 				if(timeInSeconds > maxTime) {
 					clearInterval(TimerInterval);
 					if(CJGame_PlayData.winner === null) {
-						var winner = (TimerActive.turn === 1 ? 2 : 1);
+						var winner = (turn === 1 ? 2 : 1);
 						CJGame_PlayData.winner = winner;
 						CJGame_PlayData.timeOver = true;
-						CJGame_SendDataToAllClients([TimerActive.turn, ["timeover", winner], null]);
+						CJGame_SendDataToAllClients([turn, ["timeover", winner], null]);
 					}
 				} else {
 					var elapsedTime = Math.max(0, maxTime - timeInSeconds);
 					var minute = Math.floor(elapsedTime % 3600 / 60).toString().padStart(2, "0");
 					var second = Math.floor(elapsedTime % 60).toString().padStart(2, "0");
-					WINDOW_TOP.Game_Event(["timer", TimerActive.turn, minute, second]);
+					WINDOW_TOP.Game_Event(["timer", turn, minute, second]);
 				}
 			}
 		}, 100);
 	} else {
 		TimerActive.stop();
 		TimerActive = (turn === 1 ? TimerPlayer1 : TimerPlayer2);
-		TimerActive.turn = turn;
 		TimerActive.start();
 	}
 }

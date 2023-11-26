@@ -77,13 +77,6 @@ function Init_MMApi() {
 	};
 	var getOptions = function(mine) {
 		// Détermine quelles options sont disponibles pour le joueur ("mine" == true) ou son adversaire ("mine" == false), dans les jeux Anticorp's et Magmax Battle.
-		var playerOptions;
-		if(_global.fvOptions === "null") {
-			// Options par défaut (telles que définies dans la suite de la fonction).
-			playerOptions = null;
-		} else {
-			playerOptions = _global.fvOptions.split(",");
-		}
 		var defaultOptions;
 		switch(_global.fvIndex) {
 			case 4:
@@ -94,7 +87,7 @@ function Init_MMApi() {
 				break;
 			case 6:
 				// Anticorp's.
-				if(playerOptions !== null || Math.random() >= 0.1) {
+				if(Math.random() >= 0.1) {
 					// Autorise toutes les zones en option : parmi elles, une sera choisie aléatoirement par le jeu.
 					defaultOptions = [true, true, true, true, true, true];
 				} else {
@@ -102,10 +95,14 @@ function Init_MMApi() {
 					defaultOptions = [false, false, false, false, false, false];
 				}
 				break;
+			default:
+				defaultOptions = [];
+				break;
 		}
-		if(playerOptions === null) {
+		if(_global.fvOptions === "null") {
 			return defaultOptions;
 		} else {
+			var playerOptions = _global.fvOptions.split(",");
 			if(playerOptions.length !== defaultOptions.length) {
 				playerOptions.length = defaultOptions.length;
 			}

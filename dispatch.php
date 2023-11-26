@@ -67,6 +67,7 @@ switch($page) {
 			$data = str_replace("{ARCHIVE_DRINK_CSS}", $globalDrinks[$d]['css'], $data);
 			$data = str_replace("{ARCHIVE_DRINK_DESC}", str_replace("'", "\'", $globalDrinks[$d]['desc']), $data);
 			$data = str_replace("{ARCHIVE_DRINK_COLDCUP}", $coldCup, $data);
+			$data = str_replace("play.cafejeux.com", "play.localhost", $data);
 		}
 		break;
 	case "help":
@@ -481,9 +482,9 @@ switch($page) {
 		$data = str_replace("{ARCHIVE_RANKINGS_RECENT}", $recent, $data);
 		$data = str_replace("{ARCHIVE_RANKINGS_OLD}", $old, $data);
 		break;
-	case "game/play_generic": // NOTE : Cette page permet d'afficher les jeux au sein même du site. Elle a été recréée sur la base de captures d'écran car elle n'était plus accessible sur cafejeux.com au moment où cette archive a été constituée.
+	case "game/play_generic": // NOTE : Cette page permet d'afficher les jeux au sein même du site. Elle a été recréée sur la base de captures d'écran trouvées sur internet car elle n'était plus accessible sur cafejeux.com au moment où cette archive a été constituée.
 		if(isset($_GET['id'])) {
-			sleep(mt_rand(1, 3)); // Simule l'attente d'un adversaire.
+			sleep(mt_rand(1, 3)); // "Simule" le temps d'attente d'un adversaire.
 			$gameId = htmlentities(explode(";", $_GET['id'])[0]);
 			$gameOptions = isset($_SESSION['cafeOptions']) ? $_SESSION['cafeOptions'] : "";
 			switch($gameId) {
@@ -1038,7 +1039,7 @@ switch($page) {
 		for($i = 0; $i < $totalOptions; $i++) {
 			$option = $options[$i];
 			$postOption = "opt_" . $option;
-			$replaceOption = '{ARCHIVE_OPTION_CHECKED_' . $option . '}';
+			$replaceOption = "{ARCHIVE_OPTION_CHECKED_" . $option . "}";
 			if(isset($_POST['submit'])) {
 				$opts .= isset($_POST[$postOption]) ? "1" : "0";
 			} else {

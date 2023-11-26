@@ -1,19 +1,20 @@
 # Les jeux multijoueurs de CaféJeux en mode local
-<em>Version 1.4-dev (24/11/2023)</em><br/>
+<em>Version 1.4-dev (26/11/2023)</em><br/>
 <em>Auteur : Toad06, sur la base des codes sources des jeux publiés par Motion Twin.</em>
 
 <em>Notes de version :</em><br/>
 - Ajout de la prise en charge des jeux qui furent publiés en leur temps au sein du site lui-même.
 - Ajout de la gestion du temps (via le chronomètre des joueurs, sur la partie site de l'archive uniquement).
+- Ajout d'un petit intervalle de temps pendant lequel aucune interaction n'est possible, quand la main vient de passer au joueur suivant.
 - Ajout d'une fonction de rappel en fin de partie (essentiellement utile sur la partie site).
 - Ajout de la possibilité de choisir les options en jeu dans Magmax Battle et Anticorp's (voir les détails dans la rubrique de chacun de ces jeux, ci-dessous).
 - Correction d'un bug rare qui pouvait survenir lors de l'initialisation des jeux et provoquer, sur certains d'eux, le blocage de la page lorsque le second joueur agissait pour la première fois de la partie.
 
 ---
 
-Cette section comporte plusieurs fichiers inédits permettant de faire fonctionner les jeux de CaféJeux en mode local.
+Cette section comporte plusieurs fichiers inédits permettant de faire fonctionner les jeux de CaféJeux en mode local (monoposte).
 
-Pour ce faire, suivez la procédure d'installation de l'archive indiquée dans le fichier <a href="../README.md">README.md</a> principal, puis ouvrez `_toad06/?game=[INDEX]` depuis le navigateur. `[INDEX]` doit être remplacé par l'identifiant du jeu à charger, les index sont les mêmes que ceux du site CaféJeux. Ils sont également indiqués ci-dessous, avec différentes remarques sur l'état de fonctionnement des jeux.
+Pour ce faire, suivez la procédure d'installation de l'archive indiquée dans le fichier <a href="../README.md">README.md</a> principal, puis ouvrez `_toad06/?game=[INDEX]` depuis le navigateur. `[INDEX]` doit être remplacé par l'identifiant du jeu à charger, les index sont les mêmes que ceux du site CaféJeux (avec quelques exclusivités en plus !). Ils sont également indiqués ci-dessous, accompagnés de différentes remarques sur l'état de fonctionnement des jeux.
 
 Par ailleurs, si vous souhaitez n'afficher qu'une seule fenêtre de jeu sur la page (celle du joueur dont c'est le tour), ajoutez le paramètre `&unique=1` dans l'URL.
 
@@ -25,7 +26,7 @@ Par ailleurs, si vous souhaitez n'afficher qu'une seule fenêtre de jeu sur la p
 ## Amonite
 ### Index : 2
 - Jeu fonctionnel.
-- Bug mineur possible : Quand un joueur déplace un pion vers une case vide, ce dernier se déplace immédiatement sans jouer d'animation (sauf sur l'écran de l'adversaire). Cela n'affecte pas le déroulement de la partie.
+- Bug mineur : Quand un joueur déplace un pion vers une case vide, ce dernier se déplace immédiatement sans jouer d'animation (sauf sur l'écran de l'adversaire). Cela n'affecte en rien le déroulement de la partie.
 
 ## Crumble
 ### Index : 3

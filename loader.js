@@ -4671,7 +4671,7 @@ js.Client.prototype.connected = function(b) {
 		// On enregistre ici le pseudo de l'utilisateur, cela servira à pallier l'absence du serveur de jeu dans certaines situations.
 		var headBar = document.querySelector("#headBar");
 		if(headBar && headBar.innerHTML.indexOf("Bonjour") !== -1) {
-			this.__archiveUserName = headBar.querySelector("strong").innerHTML.replace(/</g, "").replace(/>/g, "");
+			this.__archiveUserName = headBar.querySelector("strong").innerHTML;
 		}
 	} else {
 		b = false;

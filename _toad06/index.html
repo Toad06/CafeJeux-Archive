@@ -20,6 +20,14 @@
 			text-align: center;
 			visibility: hidden;
 		}
+		#overlay {
+			 position: absolute;
+			 display: none;
+			 width: 100%;
+			 height: 100%;
+			 top: 0px;
+			 left: 0px;
+		}
 		#div_client_1, #div_client_2 {
 			display: inline-block;
 			width: 300px;
@@ -36,6 +44,7 @@
 			display: inline-block;
 			width: 120px;
 			font-weight: bold;
+			border: 1px solid transparent;
 		}
 		#infos {
 			margin: 10px auto;
@@ -45,8 +54,9 @@
 			width: 120px;
 		}
 		.turn {
-			border: 1px solid #FFF;
+			border-color: #FFF !important;
 		}
+		/* IFRAME */
 		body.iframe {
 			margin: 0px !important;
 			padding: 0px !important;
@@ -61,6 +71,7 @@
 		}
 		body.iframe #div_client_1.skip {
 			position: absolute !important;
+			top: 0px !important;
 			left: 300px !important;
 		}
 		body.iframe #tools {
@@ -70,6 +81,7 @@
 </head>
 <body>
 	<div id="container">
+		<div id="overlay"></div>
 		<div id="game"></div>
 		<div id="colors">
 			<span id="player_1" class="turn"></span>
