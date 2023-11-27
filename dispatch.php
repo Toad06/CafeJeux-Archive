@@ -121,7 +121,13 @@ switch($page) {
 			// NOTE : Cette fonctionnalité servait à rediriger les utilisateurs vers une page externe à cafejeux.com. Elle était par exemple utilisée pour les liens postés sur les forums.
 			// Le code HTTP 302 était bien renvoyé. Comme tous les liens postés sont désormais morts ou douteux, on n'effectue aucune redirection ici.
 			http_response_code(302);
-			$data = '<script type="text/javascript">window.close();</script>';
+			if(strpos($url, "http://support.motion-twin.com") === 0) {
+				// Seule exception pour tous les liens "support.motion-twin.com" que l'on redirige vers le Guide CaféJeux du site Motion Twin.
+				header("Location: pages/static/_support-motion-twin/");
+				exit;
+			} else {
+				$data = '<script type="text/javascript">window.close();</script>';
+			}
 		}
 		break;
 	case "user/askPass":

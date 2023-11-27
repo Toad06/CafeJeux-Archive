@@ -1,0 +1,650 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+		<title>Aide CaféJeux - Aide &amp; Support Motion-Twin</title>
+		<link rel="stylesheet" type="text/css" href="style.css?v=3" />
+		<script type="text/javascript" src="app.js?v=2"></script>
+		<link href="data/2319.png" type="image/png" rel="shortcut icon" />
+	</head>
+	<body class="global" onload="js.App.onLoad();">
+		<div id="gContent">
+			<div id="header">
+				<a id="logo" href="#" onclick="return false;"></a>
+				<div class="titre">Aide CaféJeux</div>
+				<a class="goHome" href="#" onclick="return false;">Voir l'aide d'un autre site Motion-Twin</a>
+				<div class="menu">
+					<ul>
+						<li class="selected">
+							<a href="#" onclick="return false;">
+								<img src="data/fr.png" alt="" /> Français
+							</a>
+						</li>
+						<li class="">
+							<a href="#" onclick="return false;">
+								<img src="data/en.png" alt="" /> English
+							</a>
+						</li>
+						<li class="">
+							<a href="#" onclick="return false;">
+								<img src="data/es.png" alt="" /> Español
+							</a>
+						</li>
+						<li class="">
+							<a href="#" onclick="return false;">
+								<img src="data/de.png" alt="" /> Deutsch
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<table class="contstructure">
+				<tr>
+					<td class="left">
+						<div id="sider">
+							<form method="get" action="#" onsubmit="return false;">
+								<div class="box helpBox">
+									<h2 class="search">On peut vous aider ?</h2>
+									<input type="hidden" name="site" value="18" />
+									<input type="text" id="helpSearchInput" name="s" value="Tapez ici votre question" onfocus="if( this.value == this.getAttribute('value') ) this.value = '';" />
+									<button onclick="var i = document.getElementById('helpSearchInput'); if( i != null && i.value == i.getAttribute('value') ) i.value = ''; return true;">Chercher !</button>
+								</div>
+							</form>
+							<div class="box">
+								<h2 class="faq">Rubriques d'aide</h2>
+								<div id="helpTree">
+									<ul>
+										<li>
+											<div id="hc_66">
+												<img src="data/2273.png" alt="" /> Informations générales
+											</div>
+											<ul>
+												<li>
+													<div id="hc_27">
+														<img src="data/2250.png" alt="" /> Problèmes techniques
+													</div>
+												</li>
+												<li>
+													<div id="hc_296">
+														<img src="data/1783.png" alt="" /> Sécurité de mon compte
+													</div>
+												</li>
+												<li>
+													<div id="hc_799">
+														<img src="data/2222.png" alt="" /> Sécurité des enfants
+													</div>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<div id="hc_1">
+												<img src="data/2100.png" alt="" /> Paiement
+											</div>
+											<ul>
+												<li>
+													<div id="hc_4">
+														<img src="data/2239.png" alt="" /> MTPass
+													</div>
+												</li>
+												<li>
+													<div id="hc_2">
+														<img src="data/2239.png" alt="" /> Carte bancaire et Paypal
+													</div>
+												</li>
+												<li>
+													<div id="hc_3">
+														<img src="data/2239.png" alt="" /> Téléphone fixe, mobile, Internet+
+													</div>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<div id="hc_777">
+												<img src="data/2278.png" alt="" /> Communautés Motion-Twin
+											</div>
+										</li>
+										<li>
+											<div id="hc_784">
+												<img src="data/site_cafe.gif" alt="" /> Le Guide de CaféJeux
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="box">
+								<h2 class="login">Identifiez-vous</h2>
+								<form method="post" action="#" onsubmit="return false;">
+									<div class="row">
+										<div class="label">
+											<label for="site">Site</label>
+										</div>
+										<div class="input">
+											<select class="site" id="site" name="site" onkeyup="this.onchange()" onchange="this.style.backgroundImage=this.options[this.selectedIndex].style.backgroundImage;" style="background-image: url('data/site_cafe.gif');">
+												<option value="null">Choisir...</option>
+												<option value="29" style="background-image: url('data/site_alpha.gif');">Alphabounce</option>
+												<option value="95" style="background-image: url('data/site_arkadeo.ico');">Arkadeo</option>
+												<option value="18" style="background-image: url('data/site_cafe.gif');" selected="selected">CaféJeux</option>
+												<option value="32" style="background-image: url('data/site_cara.gif');">Carapass</option>
+												<option value="21" style="background-image: url('data/site_croque.gif');">CroqueMonster</option>
+												<option value="20" style="background-image: url('data/site_dcard.gif');">Dinocard</option>
+												<option value="4" style="background-image: url('data/site_dparc.gif');">Dinoparc</option>
+												<option value="31" style="background-image: url('data/site_drpg.gif');">DinoRPG</option>
+												<option value="17" style="background-image: url('data/site_hfest.gif');">Hammerfest</option>
+												<option value="34" style="background-image: url('data/site_hordes.gif');">Hordes</option>
+												<option value="27" style="background-image: url('data/site_hyper.gif');">Hyperliner</option>
+												<option value="1" style="background-image: url('data/site_kk.gif');">KadoKado</option>
+												<option value="104" style="background-image: url('data/site_mh.png');">Monster Hotel</option>
+												<option value="92" style="background-image: url('data/site_mush.png');">Mush</option>
+												<option value="44" style="background-image: url('data/site_muxxu.gif');">Muxxu</option>
+												<option value="52" style="background-image: url('data/site_nc.ico');">Naturalchimie 2</option>
+												<option value="22" style="background-image: url('data/site_popo.gif');">Popotamo</option>
+												<option value="103" style="background-image: url('data/site_rf.ico');">Rockfaller Journey</option>
+												<option value="36" style="background-image: url('data/site_sk.gif');">SkyWar</option>
+												<option value="96" style="background-image: url('data/site_ts.ico');">Teacher Story</option>
+											</select>
+										</div>
+										<div class="clear"></div>
+									</div>
+									<div class="row text">
+										<div class="label">
+											<label class="titre" for="login">Mon compte</label>
+										</div>
+										<div class="input">
+											<input class="field" type="text" name="login" id="login" value="" />
+										</div>
+									</div>
+									<div class="row">
+										<div class="label">
+											<label for="pass">Code secret</label>
+										</div>
+										<div class="input">
+											<input class="field" type="password" name="pass" id="pass" value="" />
+										</div>
+										<div class="clear"></div>
+									</div>
+									<div class="row">
+										<button type="submit" name="submit">Entrer</button>
+										<div class="clear"></div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</td>
+					<td class="right">
+						<div id="container">
+							<div id="helpContent">
+								<div class="category">
+									<h1 class="tree">
+										<a class="link" href="#" onclick="return false;">CaféJeux</a><span class="end">Le Guide de CaféJeux</span>
+									</h1>
+									<ol>
+										<li>
+											<h3>Qui a rédigé ce Guide de jeu ?</h3>
+											<div id="hcd_3104" class="response">
+												<p>Ce Guide de jeu a été rédigé par l'Equipe de Modération de CaféJeux.<br />Les Modérateurs actuels de CaféJeux sont <b>Tomdu56</b>, <b>kenpashii</b>, <b>lilidu3311</b>, <b>githe</b> et <b>7atane</b>.<br />Pour en savoir plus sur le rôle des Modérateurs, <a class="helplink" href="#" onclick="return false;">rendez-vous ici.</a></p>
+												<p><i>Note : Ce Guide a été écrit en 2011 et ne tient donc pas compte des changements apportés sur CaféJeux après cette date.</i></p>
+												<div class="clear clearay"></div>
+											</div>
+										</li>
+									</ol>
+									<h2>Les bugs</h2>
+									<ol>
+										<li>
+											<h3>Sur Trigolo</h3>
+											<div id="hcd_3106" class="response">
+												<p>Voici les bugs pouvant se produire sur Trigolo :</p>
+												<ul>
+													<li>
+														<b>Durant la partie, il m'est impossible de sélectionner une carte élémentaire.</b>
+														<ul>
+															<li>Changez de page, puis retournez sur la partie. Lorsque ce bug se produit, le chronomètre continue de s'écouler, il faut donc agir rapidement.</li>
+														</ul>
+													</li>
+												</ul>
+												<ul>
+													<li>
+														<b>A la fin ou durant la partie, le message &quot;bug null&quot; apparaît.</b>
+														<ul>
+															<li>Ce bug est rare et il n'y a rien à faire. La partie s'arrête toute seule et cela de façon irréversible.</li>
+														</ul>
+													</li>
+												</ul>
+												<ul>
+													<li>
+														<b>La partie est terminée mais le chronomètre continue de défiler.</b>
+														<ul>
+															<li>Si vous gagnez la partie, changez de page. Si la partie ne se termine pas, actualisez la page. Si la partie ne se termine toujours pas, vous devrez compter sur le fair-play de votre adversaire pour qu'il abandonne la partie.</li>
+															<li>Si vous avez perdu la partie mais qu'elle ne se termine pas, ayez la bonté d'abandonner la partie.</li>
+														</ul>
+													</li>
+												</ul>
+												<div class="clear clearay"></div>
+											</div>
+										</li>
+										<li>
+											<h3>Sur Marbils</h3>
+											<div id="hcd_3105" class="response">
+												<p>Voici les bugs pouvant se produire sur Marbils :</p>
+												<ul>
+													<li>
+														<b>Je ne reçois ni mes points ni mes caps lorsque je gagne une partie de Marbils.</b>
+														<ul>
+															<li>Commencez par changer de page, en allant par exemple dans les &quot;Messages&quot; ou à la &quot;Boutique&quot;. La partie se terminera d'elle-même et, au bout de quelques minutes, vous recevrez votre caps et vos points.</li>
+															<li>Si vous ne recevez pas votre caps, actualisez la page. Si cela ne donne rien, revisionnez la partie. En dernier recours, déconnectez-vous et reconnectez-vous. Si malgré toutes ces solutions votre caps n'arrive pas à destination, sachez qu'il arrivera tôt ou tard.</li>
+														</ul>
+													</li>
+												</ul>
+												<ul>
+													<li>
+														<b>Le perdant quitte la partie mais le chronomètre continue de défiler.</b>
+														<ul>
+															<li>Commencez par changer de page, en allant par exemple dans les &quot;Messages&quot; ou à la &quot;Boutique&quot;. La partie se terminera d'elle-même et, au bout de quelques minutes, vous recevrez votre caps et vos points.</li>
+															<li>Si vous ne recevez pas votre caps, actualisez la page. Si cela ne donne rien, revisionnez la partie. En dernier recours, déconnectez-vous et reconnectez-vous. Si malgré toutes ces solutions, votre caps n'arrive pas à destination, sachez qu'il arrivera tôt ou tard.</li>
+														</ul>
+													</li>
+												</ul>
+												<ul>
+													<li>
+														<b>Je gagne une partie mais un message en haut de la page m'indique que j'ai perdu.</b>
+														<ul>
+															<li>C'est un simple bug d'affichage.</li>
+															<li>Revisionnez la partie si nécessaire.</li>
+														</ul>
+													</li>
+												</ul>
+												<div class="clear clearay"></div>
+											</div>
+										</li>
+										<li>
+											<h3>Sur Crumble et Hordes Insurrection</h3>
+											<div id="hcd_3353" class="response">
+												<p>Voici les bugs pouvant se produire sur Crumble et Hordes Insurrection :</p>
+												<ul>
+													<li>
+														<b>Sur Crumble, j'ai utilisé le biscuit &quot;Double charge&quot; mais mes pions n'ont avancé qu'une seule fois.</b>
+														<ul>
+															<li>Cela est dû à l'impatience des joueurs. Lorsqu'on utilise ce biscuit, il est préférable de prendre son temps avant de déplacer les pions.</li>
+														</ul>
+													</li>
+												</ul>
+												<ul>
+													<li>
+														<b>Sur Hordes Insurrection, mon adversaire a posé l'une de ses troupes sur l'une des miennes.</b>
+														<ul>
+															<li>Il s'agit d'un bug minime qui n'arrive pas souvent et qui n'assure pas la victoire, loin de là. Ceci dit, si plusieurs parties d'un même joueur présentent des bugs de ce genre, il vous est demandé de le signaler à <a href="#" onclick="return false;" class="extern">cette adresse</a>.</li>
+														</ul>
+													</li>
+												</ul>
+												<ul>
+													<li>
+														<b>Sur Hordes Insurrection, je ne peux pas poser de troupes ni utiliser d'options.</b>
+														<ul>
+															<li>Lorsque c'est à vous de jouer, le plateau est éclairé et lorsque c'est le tour de l'adversaire ou des hordes, le plateau est légèrement assombri. Si le plateau reste dans l'ombre et que vous ne pouvez rien faire alors que c'est à vous de jouer, il faut tout simplement actualiser la page. La page reviendra automatiquement sur la partie qui affichera alors &quot;Synchronisation en cours...&quot;. Si cela met trop de temps, vous pouvez essayer d'actualiser la page encore une fois mais, si vous le faites trop, vous perdrez du temps et risquez même de perdre la partie.</li>
+														</ul>
+													</li>
+												</ul>
+												<p>
+													<b>
+														<em>NB :</em>
+													</b> Lors d'une partie, et en particulier sur Hordes Insurrection, il est conseillé de rester sur la partie et de ne pas aller sur le tchat d'une table ou sur les forums. Parce qu'à votre retour sur le jeu, vous aurez probablement &quot;Synchronisation en cours...&quot; et cela peut mettre plus ou moins de temps.
+												</p>
+												<div class="clear clearay"></div>
+											</div>
+										</li>
+										<li>
+											<h3>Que faut-il faire lorsque la tasse en haut à droite est rouge et qu'il est marqué &quot;Erreur&quot; ?</h3>
+											<div id="hcd_3134" class="response">
+												<p>Cliquez une fois sur la tasse ou attendez 20 secondes et il sera alors écrit &quot;Connexion en cours...&quot; puis &quot;Online&quot;.</p>
+												<div class="clear clearay"></div>
+											</div>
+										</li>
+									</ol>
+									<h2>Les tables</h2>
+									<ol>
+										<li>
+											<h3>Comment rejoindre une table ?</h3>
+											<div id="hcd_3651" class="response">
+												<p>Pour rejoindre une table, allez sur la page &quot;Tables de jeu&quot; qui se situe dans la colonne de gauche. En cliquant sur &quot;J'aimerais rejoindre une table&quot; ou sur &quot;Rejoindre une table&quot;, vous arriverez sur les dernières annonces promotionnelles qui ont été faites. Cliquer sur &quot;Liste des tables&quot; affichera toutes les tables classées par ordre de création à partir de la plus récente. Après avoir sélectionné une table, il ne vous restera plus qu'à &quot;Rejoindre cette table !&quot;. En fonction de la méthode de recrutement choisie par le créateur de la table, soit vous serez accepté automatiquement, soit votre adhésion devra d'abord être validée par le créateur de la table.</p>
+												<p>
+													<b>
+														<em>NB :</em>
+													</b> Pour rejoindre une table, il n'y a rien à payer. C'est entièrement gratuit ! Si le créateur de la table réclame des sucres roux, sachez que vous n'avez pas à en donner.
+												</p>
+												<div class="clear clearay"></div>
+											</div>
+										</li>
+										<li>
+											<h3>Comment créer sa propre table ?</h3>
+											<div id="hcd_3653" class="response">
+												<p>Si vous souhaitez créer une table, allez dans &quot;Tables de jeu&quot;, puis cliquez sur &quot;Créer une table&quot; ou sur &quot;Je veux créer ma table (30 sucres roux)&quot;. Choisissez un nom pour votre table, les jeux auxquels vos membres pourront jouer en matchs de table, le mode de recrutement et, si vous en avez déjà préparé une, une présentation pour la table. Il ne reste plus qu'à &quot;Créer ma table !&quot;. A part le nom de la table, tout pourra être modifié par la suite.</p>
+												<div class="clear clearay"></div>
+											</div>
+										</li>
+										<li>
+											<h3>Quelles sont les commandes du tchat ?</h3>
+											<div id="hcd_3657" class="response">
+												<p>Outre les smileys, il existe des commandes spécifiques au tchat. Il suffit de saisir &quot;/lol&quot; pour que l'avatar &quot;éclate de rire&quot;. Pour effectuer d'autres actions, remplacez &quot;lol&quot; par &quot;mdr&quot;, &quot;sort&quot;, &quot;out&quot;, &quot;aime&quot;, &quot;love&quot;, &quot;oui&quot;, &quot;yes&quot;, &quot;non&quot;, &quot;no&quot;, &quot;content&quot;, &quot;pleure&quot;, &quot;cry&quot;, &quot;vomi&quot;, &quot;saute&quot;, &quot;jump&quot;, &quot;defi&quot;, &quot;jouer&quot;, &quot;sucre&quot;, ou &quot;enerve&quot;. N'oubliez pas le slash &quot;/&quot; devant chaque mot. Vous pouvez également écrire une phrase de votre choix en faisant par exemple &quot;/me veut du lait de poule&quot; ou &quot;/me se cache derrière la plante&quot;.</p>
+												<div class="clear clearay"></div>
+											</div>
+										</li>
+										<li>
+											<h3>Quels sont les différents grades sur une table ?</h3>
+											<div id="hcd_3654" class="response">
+												<ul>
+													<li>
+														<b>Le créateur d'une table.</b>
+														<ul>
+															<li>Il peut tout faire : éditer la présentation et le logo de sa table, déplacer les meubles sur la page du tchat, supprimer des messages du forum, remettre le classement de la table à zéro, renvoyer un membre, donner des droits aux membres de son choix, accepter de nouveaux membres, inviter des joueurs, écrire une annonce promotionnelle, ou encore dissoudre définitivement sa table.</li>
+														</ul>
+													</li>
+												</ul>
+												<ul>
+													<li>
+														<b>Le ou les sous-chefs d'une table.</b>
+														<ul>
+															<li>Ils sont choisis par le créateur d'une table qui peut leur donner des droits tels que &quot;Editer la présentation&quot;, &quot;Accepter un nouveau membre&quot;, &quot;Supprimer un message du forum&quot;, &quot;Poster une annonce&quot; ou encore &quot;Ejecter un membre&quot;. Les sous-chefs ne peuvent rien faire d'autre.</li>
+														</ul>
+													</li>
+												</ul>
+												<ul>
+													<li>
+														<b>Le membre d'une table.</b>
+														<ul>
+															<li>Il peut discuter sur le tchat de la table, poster un message sur le forum et inviter un joueur.</li>
+														</ul>
+													</li>
+												</ul>
+												<div class="clear clearay"></div>
+											</div>
+										</li>
+										<li>
+											<h3>Quelles sont les dimensions pour le logo et les images sur la page d'accueil de la table ?</h3>
+											<div id="hcd_3111" class="response">
+												<p>Pour le logo, les dimensions idéales sont de 200 pixels de largeur et 135 pixels de hauteur. Pour une image sur la page d'accueil, la largeur maximale est de 680 pixels : une dimension plus grande fera dépasser l'image du cadre.</p>
+												<div class="clear clearay"></div>
+											</div>
+										</li>
+									</ol>
+									<h2>Les sucres</h2>
+									<ol>
+										<li>
+											<h3>A quoi servent les sucres et comment en obtenir ?</h3>
+											<div id="hcd_3645" class="response">
+												<ul>
+													<li>Il existe deux sortes de sucres : les sucres blancs et les sucres roux. Chaque joueur reçoit chaque jour 3 sucres blancs qui seront perdus le lendemain s'ils ne sont pas joués. Les sucres roux sont payants et peuvent être achetés de différentes manières dans la section &quot;+ de sucres&quot; dans la colonne de gauche du site.</li>
+												</ul>
+												<ul>
+													<li>Les sucres permettent de jouer au bar, de jouer des matchs amicaux ou de table. Les sucres roux permettent également de créer une ou des tables, de poster des annonces promotionnelles ou peuvent être offerts à d'autres joueurs.</li>
+												</ul>
+												<p>
+													<b>
+														<em>NB :</em>
+													</b> Les sucres roux ne seront pas perdus le lendemain s'ils ne sont pas joués.
+												</p>
+												<div class="clear clearay"></div>
+											</div>
+										</li>
+										<li>
+											<h3>Comment offrir des sucres roux ?</h3>
+											<div id="hcd_3109" class="response">
+												<p>Vous pouvez offrir des sucres roux à qui vous voulez. Pour cela, allez en bas de la page de profil de l'heureux élu et cliquez sur &quot;Offrir des sucres roux !&quot;. Il ne vous reste plus qu'à inscrire le nombre de sucres à offrir et votre mot de passe. Les sucres arriveront à destination dans les secondes à suivre.</p>
+												<div class="clear clearay"></div>
+											</div>
+										</li>
+										<li>
+											<h3>Comment jouer sans sucre ?</h3>
+											<div id="hcd_3103" class="response">
+												<p>Pour jouer sans sucre, il faut que vous ayez joué toutes vos parties gratuites quotidiennes (sucres blancs) et que vous ne possédiez aucune partie payante (sucres roux). Le lien &quot;Jouer sans sucre&quot; est alors visible sur la page d'accueil.</p>
+												<p>Si le message &quot;Vous n'avez pas assez de sucre&quot; apparait quand vous cliquez sur ce lien, cela est dû au fait que vous avez cliqué sur &quot;Abandonner la partie&quot; trop de fois au début de vos matchs. La fonction &quot;Jouer sans sucre&quot; ne vous est alors plus disponible pendant une certaine période.</p>
+												<div class="clear clearay"></div>
+											</div>
+										</li>
+									</ol>
+									<h2>Les forums</h2>
+									<ol>
+										<li>
+											<h3>Comment poster un message ?</h3>
+											<div id="hcd_3658" class="response">
+												<p>Pour poster un message dans les forums, allez sur le sujet de votre choix, cliquez sur &quot;Répondre&quot; en bas de la page, puis écrivez votre texte dans l'espace prévu à cet effet. Vous avez la possibilité de prévisualiser votre message et il est conseillé de vous relire avant de cliquer sur &quot;J'ai relu, je valide !&quot; : votre message ne pourra pas être modifié par la suite.</p>
+												<div class="clear clearay"></div>
+											</div>
+										</li>
+										<li>
+											<h3>Quelles sont les commandes du forum ?</h3>
+											<div id="hcd_3663" class="response">
+												<ul>
+													<li>
+														<b>Pour souligner.</b>
+														<ul>
+															<li>Il faut mettre 2 underscores (tiret du bas &quot;_&quot;) au début et à la fin de son texte.</li>
+														</ul>
+													</li>
+												</ul>
+												<ul>
+													<li>
+														<b>Pour faire un titre.</b>
+														<ul>
+															<li>Il faut mettre 3 signes &quot;=&quot; au début et à la fin de son texte.</li>
+														</ul>
+													</li>
+												</ul>
+												<ul>
+													<li>
+														<b>Pour écrire en gras.</b>
+														<ul>
+															<li>Il faut surligner son texte et cliquer sur le bouton &quot;G&quot; en haut de la zone de réponse. Autre possibilité : mettre un astérisque (*) au début et à la fin de son texte.</li>
+														</ul>
+													</li>
+												</ul>
+												<ul>
+													<li>
+														<b>Pour écrire en couleur.</b>
+														<ul>
+															<li>Il faut surligner son texte et cliquer sur la couleur que vous souhaitez utiliser juste au-dessus des smileys. Autre possibilité : en connaissant le chiffre de la couleur, taper la formule &quot;#chiffre#texte##&quot;.
+																<ul>
+																	<li>Attention ! Pour écrire d'une certaine couleur, il faut d'abord avoir acheté l'encre correspondante dans la boutique.</li>
+																</ul>
+															</li>
+														</ul>
+													</li>
+												</ul>
+												<ul>
+													<li>
+														<b>Pour mettre un lien dans un message.</b>
+														<ul>
+															<li>Il faut cliquer sur &quot;Lien&quot; en haut de la zone de réponse. Il apparait une première fenêtre qui vous demande l'URL (l'adresse du lien), il suffit de la saisir ou la coller. Veillez à ce que &quot;http://&quot; soit bien présent au début du lien, sinon celui-ci ne fonctionnera pas. Validez, une autre fenêtre apparaît alors : indiquez le titre que vous voulez donner au lien, puis validez à nouveau.</li>
+															<li>Autres possibilités : &quot;[lien]URL[/lien]&quot; ou &quot;[lien=URL]titre du lien[/lien]&quot;</li>
+														</ul>
+													</li>
+												</ul>
+												<div class="clear clearay"></div>
+											</div>
+										</li>
+										<li>
+											<h3>Comment naviguer plus vite sur les sujets des forums ?</h3>
+											<div id="hcd_3112" class="response">
+												<p>Pour aller à la dernière page d'un sujet de plusieurs dizaines de pages, la méthode la plus simple est de cliquer sur &quot;Marquer tout comme lu&quot; qui se trouve en dessous des deux sections des forums : &quot;Le Café Jeux&quot; et &quot;Les tables&quot;. Cette fonction vous permettra d'arriver directement à la dernière page de tous les sujets existants.</p>
+												<p>Il existe une deuxième méthode (indisponible avec Google Chrome) qui est de changer le numéro de la page dans la barre d'adresse du navigateur.</p>
+												<div class="clear clearay"></div>
+											</div>
+										</li>
+										<li>
+											<h3>Que dois-je faire lorsqu'on me dit que &quot;Le message est trop court&quot; ?</h3>
+											<div id="hcd_3113" class="response">
+												<p>Sélectionnez votre texte et mettez-le en couleur avec une encre. Vous verrez apparaître ceci avant votre texte : un dièse (#), un chiffre et un autre dièse ; et après votre texte : deux dièses. Avant les deux dièses de la fin, faites une série d'espaces (une trentaine). Votre message sera alors assez long, envoyé et en couleur.</p>
+												<p>Une autre solution... Utilisez plusieurs fois la balise &quot;Cite&quot; à la fin de votre message. Le message sera assez long et les balises ne seront pas visibles.</p>
+												<div class="clear clearay"></div>
+											</div>
+										</li>
+									</ol>
+									<h2>La boutique</h2>
+									<ol>
+										<li>
+											<h3>A quoi correspondent les options de jeu ?</h3>
+											<div id="hcd_3350" class="response">
+												<p>La boutique propose parmi les options de jeu :</p>
+												<ul>
+													<li>3 cartes pour le jeu Magmax Battle : &quot;Lunettes tri-phaz&quot;, &quot;Glissade&quot; et &quot;Rayon lumineux&quot;.
+														<ul>
+															<li>Il s'agit de nouvelles cartes qui peuvent être utilisées par les deux joueurs durant la partie si au moins l'un des deux adversaires a activé ces options.</li>
+														</ul>
+													</li>
+												</ul>
+												<ul>
+													<li>4 zones pour le jeu Anticorp's : &quot;Zone 1 : Scissure de Sylvius&quot;, &quot;Zone 2 : La caverne du Larynx&quot;, &quot;Zone 3 : Le poudingue alveolé&quot; et &quot;Zone 4 : Fistule pancréatique&quot;.
+														<ul>
+															<li>Il s'agit de nouvelles zones qui ne peuvent être utilisées que si les deux adversaires ont activé ces options. Si les 4 zones sont activées de chaque côté, l'une d'elles sera choisie au hasard. Si aucune zone n'est activée, c'est la zone de base du jeu qui sera alors choisie.</li>
+														</ul>
+													</li>
+												</ul>
+												<p>
+													<b>
+														<em>NB :</em>
+													</b> Pour activer ou désactiver les options de jeu, allez dans &quot;Ma page&quot;, puis en bas dans &quot;Mes options de jeux&quot;. Vous pourrez alors cocher et décocher les options que vous possédez. N'oubliez pas de cliquer sur &quot;Enregistrer&quot;.
+												</p>
+												<p>
+													<b>
+														<em>NB :</em>
+													</b> En raison de nombreux bugs, le jeu Anticorp's avait été retiré du bar (il n'y sera pas réintroduit) vers 2009. Il est seulement disponible en parties amicales pour tous les joueurs depuis août 2011.
+												</p>
+												<div class="clear clearay"></div>
+											</div>
+										</li>
+										<li>
+											<h3>Que faire s'il n'y a pas ma taille de t-shirt ?</h3>
+											<div id="hcd_3110" class="response">
+												<p>Les t-shirts sont disponibles à la boutique pour 575 caps. Il ne reste malheureusement plus que la taille S et les stocks ne seront plus réapprovisionnés. Si votre taille n'est pas disponible, vous pouvez soit acheter un t-shirt de taille S pour un ami (ou votre enfant), en acheter un pour le plaisir ou ne pas en acheter, tout simplement.</p>
+												<div class="clear clearay"></div>
+											</div>
+										</li>
+										<li>
+											<h3>A quoi servent les encres, les boissons et les meubles ?</h3>
+											<div id="hcd_3648" class="response">
+												<ul>
+													<li>Les encres vous permettent d'écrire de la couleur de votre choix sur les forums, les tchats des tables et des parties. Il en existe 8 et elles sont disponibles à différents prix.</li>
+												</ul>
+												<ul>
+													<li>Les boissons n'ont pas d'utilité particulière, à part changer l'apparence de la tasse dans l'interface du site et sur les tchats des tables pour la journée. Il en existe 10 et elles sont disponibles à différents prix. Vous pouvez choisir la boisson de votre choix (parmi celles que vous possédez) lors de votre première connexion journalière sur CaféJeux.</li>
+												</ul>
+												<ul>
+													<li>De la &quot;Cloison&quot; à 10 caps à la &quot;Grande Tijue fleurie&quot; à 500 caps, les 26 meubles existants sur CaféJeux permettent de décorer les tables de jeu à la volonté de leurs créateurs.</li>
+												</ul>
+												<div class="clear clearay"></div>
+											</div>
+										</li>
+									</ol>
+									<h2>Les messages</h2>
+									<ol>
+										<li>
+											<h3>Comment envoyer un message privé ?</h3>
+											<div id="hcd_3647" class="response">
+												<ul>
+													<li>Première solution. Dans la colonne de gauche figure une enveloppe sous laquelle est écrit &quot;Messages&quot;. Cliquez dessus, puis allez dans &quot;Nouveau message&quot;. Il ne vous reste plus qu'à inscrire le nom du destinataire, écrire le message et &quot;Envoyer le message&quot;.</li>
+												</ul>
+												<ul>
+													<li>Deuxième solution. Allez sur la page de profil du joueur à qui vous souhaitez envoyer un message. Dans le rectangle où se trouvent ses informations, il y a également une enveloppe sous laquelle est écrit &quot;Ecrire&quot;. En cliquant dessus, vous arriverez au même endroit qu'avec la première solution.<br />
+													</li>
+												</ul>
+												<div class="clear clearay"></div>
+											</div>
+										</li>
+										<li>
+											<h3>Liste noire : comment bloquer ou débloquer un joueur ?</h3>
+											<div id="hcd_3108" class="response">
+												<p>En bas de la page de profil de chaque joueur, il y a le bouton &quot;Bloquer ce joueur&quot;; ou &quot;Débloquer&quot; si celui-ci est dans votre liste noire.</p>
+												<p>Pour accéder à votre liste noire, cliquez sur l'icône &quot;Messages&quot; du menu, puis &quot;Préférences&quot; dans la page affichée. Votre liste noire se trouve en dessous de la zone &quot;Mode de filtrage&quot;.</p>
+												<div class="clear clearay"></div>
+											</div>
+										</li>
+										<li>
+											<h3>Comment faire pour recevoir seulement les messages des joueurs qui sont dans la liste d'amis ?</h3>
+											<div id="hcd_3476" class="response">
+												<p>Allez dans &quot;Messages&quot;, puis dans &quot;Préférences&quot;.<br />Vous pourrez alors choisir le mode de filtrage de votre choix :<br />- &quot;Accepter les messages de tous les joueurs, sauf ceux de ma liste noire.&quot; <br />- &quot;Accepter les messages des joueurs dans ma liste d'amis uniquement.&quot;</p>
+												<p></p>
+												<div class="clear clearay"></div>
+											</div>
+										</li>
+									</ol>
+									<h2>Questions diverses</h2>
+									<ol>
+										<li>
+											<h3>Comment faire pour parrainer et à quoi ça sert ?</h3>
+											<div id="hcd_3660" class="response">
+												<ul>
+													<li>Pour parrainer, vous pouvez envoyer un mail à vos amis depuis l'interface du site, leur transmettre votre lien de parrainage ou tout simplement leur dire de s'inscrire en mettant votre pseudo comme parrain.</li>
+												</ul>
+												<ul>
+													<li>Chaque joueur qui s'inscrit en vous mettant comme parrain vous permet d'obtenir un bonus de 15% des sucres roux qu'il achète. Par exemple, si votre filleul utilise un MT-Pass, il recevra 30 sucres roux et vous 5.</li>
+												</ul>
+												<div class="clear clearay"></div>
+											</div>
+										</li>
+										<li>
+											<h3>Questions en vrac</h3>
+											<div id="hcd_3351" class="response">
+												<ul>
+													<li>
+														<b>Comment faire pour changer mon avatar ?</b>
+														<ul>
+															<li>Lors de votre inscription, vous vous créez un avatar parmi les centaines de combinaisons possibles. Cet avatar sera toujours le même et ne pourra en aucun cas être modifié.</li>
+														</ul>
+													</li>
+												</ul>
+												<ul>
+													<li>
+														<b>Comment faire pour léguer ma table à la personne que je souhaite ?</b>
+														<ul>
+															<li>Afin d'éviter tout abus et toute perte de temps, les tables ne peuvent pas être léguées d'un joueur à un autre par l'intervention d'un administrateur.<br />
+																<b>
+																	<em>NB :</em>
+																</b> C'est le membre le plus ancien qui hérite de la table si le compte de son créateur est supprimé.
+															</li>
+														</ul>
+													</li>
+												</ul>
+												<ul>
+													<li>
+														<b>Pourquoi les chaises de prestige bugguent-elles lorsqu'on s'asseoit dessus ?</b>
+														<ul>
+															<li>Les chaises de prestige (ou chaises confortables) doivent être obligatoirement placées face à vous (telles que vous les voyez à l'écran) pour avoir leur utilité (s'asseoir !). Dans le cas contraire, elles ne fonctionneront pas. Il s'agit malheureusement d'un bug qui ne sera pas corrigé.</li>
+														</ul>
+													</li>
+												</ul>
+												<ul>
+													<li>
+														<b>Pourquoi m'est-il possible de poster sur les forums alors que je ne possède pas le Pass Forum (anciennement déblocable pour 20 caps) ?</b>
+														<ul>
+															<li>Le Pass Forum a été supprimé afin de faire profiter un maximum de joueurs des forums.</li>
+														</ul>
+													</li>
+												</ul>
+												<div class="clear clearay"></div>
+											</div>
+										</li>
+									</ol>
+									<p class="morespc">Je n'ai pas trouvé ma réponse : <a class="big" href="#" onclick="return false;">Contacter le support</a>
+									</p>
+									<script type="text/javascript">
+										js.App.initHelpAccordion('helpContent');
+										js.Utils.menuSelect("helpTree", "hc_784", "selected");
+									</script>
+								</div>
+							</div>
+							<div class="clearMe"></div>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="footer">&copy; 2011 
+			<a href="#" onclick="return false;">
+				<img alt="Motion-Twin" src="data/motiontwin_logo_pixelart.gif" />
+			</a>
+			<br />
+			<a href="#" onclick="return false;"><img src="data/fr.png" alt="Français" /></a>
+			<a href="#" onclick="return false;"><img src="data/en.png" alt="English" /></a>
+			<a href="#" onclick="return false;"><img src="data/es.png" alt="Español" /></a>
+			<a href="#" onclick="return false;"><img src="data/de.png" alt="Deutsch" /></a>
+		</div>
+	</body>
+</html>
