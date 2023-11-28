@@ -31,6 +31,7 @@
 				break;
 			case "end":
 				// Fin de partie.
+				// cafejeux.com utilisait "js.Client.prototype.displayVictory".
 				var winner = event[1];
 				var winnerInOrder = (winner === 1 ? Game_FirstPlayer : (winner === 2 ? Game_SecondPlayer : null));
 				var loserInOrder = (winnerInOrder === "2" ? "1" : (winnerInOrder === "1" ? "2" : null));
@@ -71,6 +72,7 @@
 				break;
 			case "turn":
 				// Au joueur suivant !
+				// cafejeux.com utilisait "js.Client.prototype.dataChanged".
 				table.className = table.className.replace("p" + (event[1] === 1 ? Game_SecondPlayer : Game_FirstPlayer) + "turn", "p" + (event[1] === 1 ? Game_FirstPlayer : Game_SecondPlayer) + "turn");
 				switch(Game_Id) {
 					case 3: // Crumble
@@ -84,6 +86,7 @@
 				break;
 			case "timer":
 				// Décrémentation du chronomètre du joueur actif.
+				// cafejeux.com utilisait "js.Client.prototype.dataChanged".
 				var activePlayer = (event[1] === 1 ? Game_FirstPlayer : Game_SecondPlayer);
 				var minute = event[2];
 				var second = event[3];
@@ -97,6 +100,7 @@
 				break;
 			case "colors":
 				// Couleurs de chaque joueur.
+				// cafejeux.com utilisait "js.Client.prototype.setColors".
 				if(event[1] !== undefined) {
 					var p1color = document.getElementById("p" + Game_FirstPlayer + "color");
 					p1color.style.display = "block";
@@ -177,25 +181,11 @@
 		};
 		xhr.send(null);
 	};
-	if(!window.__archiveStartGeneric) {
+	if(!window.__archivePlayGeneric) {
 		// Le contenu de ce bloc ne doit être exécuté qu'une fois, la navigation ne rechargeant pas les pages intégralement comme cela se fait habituellement sur les autres sites.
-		window.__archiveStartGeneric = true;
+		window.__archivePlayGeneric = true;
 		window.__archiveMenuBtnBar = document.getElementById("menuBtnBar").innerHTML;
 		(function() {
-			// Note 1 : La propriété "border-color:white;" n'est normalement appliquée que lorsque le joueur connecté a la main (via la classe `p1turn`).
-			// Cela est changé ici car les jeux fonctionnent de manière locale dans l'archive, et donc les deux joueurs partagent le même écran.
-			// Note 2 : Affiche un texte aligné à droite, pour une raison similaire à la note 1.
-			// Note 3 : Le sélecteur ".p2offline" n'est normalement utilisé que pour indiquer que l'adversaire a été déconnecté du serveur de jeux. L'adversaire étant toujours à droite, ".p1offline" n'existe logiquement pas.
-			// Le sélecteur ".p1offline" est créé ici car on l'utilise, avec ".p2offline", pour mettre en évidence le joueur qui a perdu en fin de partie.
-			var style = document.createElement("style");
-			style.type = "text/css";
-			style.innerHTML =
-				".p2turn .gameClient .swf { border-color:white; } " + // cf. Note 1.
-				".p2turn #infos .ifPlayer2 { display:block; text-align:right !important; } " + // cf. Note 2.
-				".p1offline .chat .field1 { background-color:#85505e; color:#cd9899; } .p1offline .chat .av1 .avatar { border-color:red; } .p1offline .chat .users .field1 { background-image:url(img/icons/small_error.gif); background-position:98% 1px; background-repeat:no-repeat; }" + // cf. Note 3.
-				"#main .game table { -webkit-user-select:none; -moz-user-select:none; user-select:none }";
-			document.head.appendChild(style);
-
 			// Supprime le bloc "Une partie est en cours" et le remplace par "Jouer au bar" lors du changement de page.
 			var XmlHttpGet = js.XmlHttp.get;
 			js.XmlHttp.get = function(url, obj) {

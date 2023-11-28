@@ -119,10 +119,10 @@ switch($page) {
 		$url = isset($_GET['url']) ? $_GET['url'] : "";
 		if(strpos($url, "http://") === 0 || strpos($url, "https://") === 0) {
 			// NOTE : Cette fonctionnalité servait à rediriger les utilisateurs vers une page externe à cafejeux.com. Elle était par exemple utilisée pour les liens postés sur les forums.
-			// Le code HTTP 302 était bien renvoyé. Comme tous les liens postés sont désormais morts ou douteux, on n'effectue aucune redirection ici.
+			// Le code HTTP 302 était bien renvoyé. Comme tous les liens postés sont désormais morts ou douteux, on n'effectue aucune redirection ici...
 			http_response_code(302);
 			if(strpos($url, "http://support.motion-twin.com") === 0) {
-				// Seule exception pour tous les liens "support.motion-twin.com" que l'on redirige vers le Guide CaféJeux du site Motion Twin.
+				// ... Seule exception pour les liens "support.motion-twin.com" que l'on redirige tous vers le Guide CaféJeux de l'ancien site d'assistance Motion Twin.
 				header("Location: pages/static/_support-motion-twin/");
 				exit;
 			} else {
@@ -276,9 +276,9 @@ switch($page) {
 	case "_special/1": case "_special/2": case "_special/3": case "_special/4": case "_special/5": case "_special/6": case "_special/7": case "_special/8": case "_special/9": case "_special/11":
 	case "_special/game": case "_special/bar_1": case "_special/bar_11": case "_special/unlock_3": case "_special/unlock_8": case "_special/unlock_9":
 	case "bank": // NOTE : Il s'agit de l'ancienne page "+ de sucres", spécifique à cafejeux.com. La dernière version de la page était commune à tous les sites Motion Twin et n'avait que peu d'intérêt.
-	case "bank/audio": // La page principale "bank" n'existait donc plus au moment où cette archive a été constituée. Mais elle a pu être reproduite à partir d'une capture d'écran et est identique à la page originale.
-	case "bank/cb": // Aucune capture d'écran n'existait en revanche pour les sous-pages de la rubrique. Elles ont donc été reproduites sur la base du modèle de Alphabounce, un autre site de Motion Twin.
-	case "bank/neosurf": // Le rendu n'est donc pas garanti conforme à l'original pour ces pages, en revanche les images proviennent bien de cafejeux.com. La feuille de style n'a également PAS été modifiée pour l'occasion.
+	case "bank/audio": // Même remarque pour toutes les pages de la catégorie "bank".
+	case "bank/cb":
+	case "bank/neosurf":
 	case "bank/phone":
 	case "bank/phoneTropic":
 	case "bank/sms":
