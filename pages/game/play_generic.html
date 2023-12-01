@@ -3,6 +3,10 @@
 <!-- Autre différence technique : quitter la page en cours de jeu met un terme définitif à la partie. -->
 <script type="text/javascript" id="jsid-1">
 //<![CDATA[
+	if(document.getElementById("menuBtnBar") === null) {
+		window.location.reload();
+		throw "Barre de menu non initialisée";
+	}
 	window.Game_Id = parseInt("{ARCHIVE_GAME_ID}", 10);
 	window.Game_FirstPlayer = (Math.random() > 0.5 ? "1" : "2");
 	window.Game_SecondPlayer = (Game_FirstPlayer === "2" ? "1" : "2");

@@ -375,6 +375,11 @@ switch($page) {
 			$data .= $parsedMessage;
 		}
 		break;
+	case "_redirect_to_edit_room": // NOTE : Cette page est spécifique à l'archive, elle effectue la redirection vers la page "Déplacer les meubles" de la table "CaféJeux 2007-2020" depuis la rubrique spéciale.
+		$data = get_content("pages/group/6951.html");
+		$data .= "<load>group/6951/editRoom</load>";
+		$data = str_replace("{ARCHIVE_LOAD_TABLE}", "chat", $data);
+		break;
 	case "forum/999999/post":
 	case "forum/thread/999999/reply":
 		if(isset($__recursiondata) && is_int($__recursiondata) && $__recursiondata > 0) {
@@ -584,9 +589,15 @@ switch($page) {
 		break;
 	case "group/420/chat":
 	case "group/6951/chat":
+		$idTable = explode("/", $page)[1];
+		$flashvars = "";
+		if($idTable === "6951" && isset($_SESSION['cafeTableFurnitures'])) {
+			$flashvars = PHP_EOL . 'so.addVariable("raw", "' . htmlentities($_SESSION['cafeTableFurnitures']) . '");' . PHP_EOL;
+		}
 		$date = date("Y-m-d H:i:s");
 		$data = get_content($pageUrlExt);
 		$data = str_replace("{ARCHIVE_TABLE_DATETIME}", $date, $data);
+		$data = str_replace("{ARCHIVE_TABLE_ADD_RAW_VARIABLE}", $flashvars, $data);
 		break;
 	case "group/420/delete":
 		if(isset($_GET['sid'])) {
@@ -613,9 +624,9 @@ switch($page) {
 				$f = "_edit";
 			}
 		}
-		// NOTE : Le "seed" ci-dessous ne devrait pas être généré aléatoirement. Sur cafejeux.com, sa valeur était toujours la même pour une table donnée.
-		// La valeur du "seed" correspond en effet au style et à la couleur du tapis de la salle. Celui-ci ne change jamais et est sélectionné aléatoirement à la création de la table.
-		// Néanmoins, le "seed" influence aussi la position des personnages et leurs interactions dans la salle, sur la vignette Flash. Pour cette raison, il est intéressant ici de le générer aléatoirement.
+		// NOTE : La "seed" (graine) ci-dessous ne devrait pas être générée aléatoirement. Sur cafejeux.com, sa valeur était toujours la même pour une table donnée.
+		// La valeur de la "seed" correspond en effet au style et à la couleur du tapis de la salle. Celle-ci ne change jamais et est sélectionnée aléatoirement à la création de la table.
+		// Néanmoins, la "seed" influence aussi la position des personnages et leurs interactions dans la salle, sur la vignette Flash. Pour cette raison, il est intéressant ici de la générer aléatoirement.
 		$data = get_content($pageUrl . $f . $pageExt);
 		$data = str_replace("{ARCHIVE_TABLE_DATETIME}", $date, $data);
 		$data = str_replace("{ARCHIVE_TABLE_SEED}", strval(mt_rand(10000, 99999)), $data);
@@ -626,16 +637,31 @@ switch($page) {
 		}
 		break;
 	case "group/420/editDescription":
-		// NOTE : Les champs "logo" et "description" envoyés par le formulaire peuvent être vides. Si l'adresse du logo ne commence pas par "http://", une valeur vide semblait enregistrée en base de données.
+		// NOTE : Les champs "logo" et "description" envoyés par le formulaire peuvent être vides. Si l'adresse du logo ne commence pas par "http://", une valeur vide semblait être enregistrée en base de données.
 		$data = "<load>group/420/description</load>";
 		break;
 	case "group/420/editRoom":
 	case "group/6951/editRoom":
 		if(isset($_POST['raw'])) {
 			// NOTE : Ce formulaire est envoyé par "swf/rooms.swf" lorsque les changements apportés à l'organisation des meubles sont validés.
-			$data = "";
+			$raw = strval($_POST['raw']);
+			$idTable = explode("/", $page)[1];
+			if($idTable === "6951") {
+				$data = "ok";
+				if(strlen($raw) < 1000) {
+					$_SESSION['cafeTableFurnitures'] = $raw;
+				}
+			} else {
+				$data = "error";
+			}
 		} else {
+			$flashvars = "";
+			$flashvars .= 'so.addVariable("inv", "' . full_inventory() . '");';
+			if(isset($_SESSION['cafeTableFurnitures'])) {
+				$flashvars .= 'so.addVariable("raw", "' . htmlentities($_SESSION['cafeTableFurnitures']) . '");';
+			}
 			$data = get_content($pageUrlExt);
+			$data = str_replace("{ARCHIVE_TABLE_ADD_VARIABLES}", $flashvars, $data);
 		}
 		break;
 	case "group/420/eject":
@@ -1065,6 +1091,8 @@ switch($page) {
 	case "user/logout":
 		$_SESSION['cafePrevUsername'] = $_SESSION['cafeUsername'];
 		unset($_SESSION['cafeUsername']);
+		if(isset($_SESSION['cafeOptions'])) unset($_SESSION['cafeOptions']);
+		if(isset($_SESSION['cafeTableFurnitures'])) unset($_SESSION['cafeTableFurnitures']);
 		$data = "<reboot/>";
 		break;
 	case "user/mailMyFriends":
