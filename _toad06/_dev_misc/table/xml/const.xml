@@ -1,0 +1,152 @@
+﻿<const>
+	<errors>
+		<e id="UnknowError">Une erreur inconnue s'est produite.</e>
+		<e id="PatternLength">Vous devez indiquer au moins 4 caractères pour effectuer une recherche.</e>
+		<e id="UserOffline">Cet utilisateur n'est pas connecté.</e>
+		<e id="UserDeleted">Cet utilisateur a été supprimé.</e>
+		<e id="Maintain">Le site est actuellement en maintenance. Il sera à nouveau disponible très prochainement.</e>
+		<e id="NotEnoughMoney">Vous n'avez pas assez de sucre.</e>
+		<e id="NoAutoGiveMoney">Vous essayez de faire quoi là exactement ?</e>
+		<e id="EmailAlreadySent">Un message a déjà été envoyé à cette adresse.</e>
+		<e id="PartyLogNotFound">L'historique de cette partie n'est plus disponible.</e>
+
+		<!-- Login / Register -->
+		<e id="UNameLength">Un pseudo doit faire entre 4 et 20 caractères.</e>
+		<e id="UNameSChars">Un pseudo ne doit contenir que des chiffres et des lettres.</e>
+		<e id="UNameExists">Ce pseudo est déjà utilisé, veuillez en choisir un autre.</e>
+		<e id="UPassLength">Votre code secret doit faire entre 6 et 32 caractères.</e>
+		<e id="UPassDiff">Vous avez tapé deux codes secrets différents, veuillez donner deux fois le même.</e>
+		<e id="UserNotFound">Cet utilisateur n'existe pas.</e>
+		<e id="BadPass">Ce code secret n'est pas valide. Attention, les différences entre minuscules et majuscules sont prises en compte.</e>
+		<e id="CguMustAccept">Vous devez accepter les conditions générales d'utilisation pour pouvoir vous inscrire</e>
+		<e id="MaintainNotAdmin">Seul les admin peuvent s'identifier durant une maintenance.</e>
+		<e id="SponsorNotFound">Parrain introuvable : aucun joueur du café n'a été trouvé avec ce pseudo.</e>
+
+		<!-- Group -->
+		<e id="GroupNotFound">Aucune table n'a été trouvé avec ce nom.</e>
+		<e id="GroupNameExists">Une table utilise déjà ce nom, choisissez en un autre.</e>
+		<e id="GroupNameLength">Le nom d'une table doit faire entre 4 et 30 caractères.</e>
+		<e id="EmptyDescription">Merci d'écrire une petite présentation de votre table.</e>
+		<e id="GroupDeleted">Cette table a été supprimée.</e>
+		<e id="UserIsGroupOwner">Vous ne pouvez pas ejecter le propriétaire de la table !</e>
+		<e id="GroupOneGameRequired">Vous devez choisir au moins un jeu pour le classement interne.</e>
+		<e id="GroupIsPlaying">Vous ne pouvez pas modifier le classement : une partie est en cours.</e>
+		<e id="GroupAutoJoinFailed">Aucune table n'a été trouvée automatiquement : voici la liste des tables disponibles.</e>
+
+		<!-- GroupAd -->
+		<e id="AdLength">Votre annonce doit faire entre 30 et 180 caractères.</e>
+
+
+		<!-- PvMessage -->
+		<e id="MsgSubjectLength">Le sujet de votre message doit faire au moins 4 caractères</e>
+		<e id="MsgContentLength">Votre message doit faire au moins 4 caractères</e>
+		<e id="MsgRefused">Votre message ne peut pas être envoyé : le destinataire l'a réfusé.</e>
+		<e id="MsgLocked">Vous ne pouvez pas envoyer de message actuellement : vous avez été bloqué.</e>
+		<e id="MsgContentBadWord">Votre message n'a pas été envoyé : il contient des mots interdits.</e>
+
+		<!-- Challenge -->
+		<e id="ChallengeStarted">Ce défi est en cours, cette action est impossible.</e>
+		<e id="ChallengeFull">La table que vous souhaitez défier a déjà trop de demandes de défi en cours.</e>
+		<e id="ChallengeOpponentFull">Vous avez atteint le nombre maximum de demandes de défi simultanées. Vous pouvez en annuler ou attendre la réponse des tables défiées.</e>
+		<e id="ChallengeOpponentNotAvailable">Votre adversaire a un défi en cours, ce défi ne peut donc pas être démarré pour l'instant.</e>
+		<e id="ChallengeAuto">Vous ne pouvez pas défier votre propre table.</e>
+		<e id="UserPlayingInGroup">Il n'est pas possible de quitter une table lorsqu'on y joue une partie.</e>
+
+		<!-- Modif User Infos -->
+		<e id="BirthdayFormat">La date de naissance n'est pas valide.</e>
+		<e id="EmailFormat">Cette adresse e-mail n'est pas à un format valide.</e>
+		<e id="EmailBadDomain">Cette adresse e-mail n'est pas valide (mauvais nom de domaine).</e>
+		<e id="CityLength">Votre ville ou région ne doit pas dépasser 50 caractères.</e>
+
+		<!-- Ask change pass -->
+		<e id="ChangePassRecent">Une demande de changement de code secret a déjà été envoyée récement.</e>
+		<e id="ChangePassBadEmail">Aucune adresse e-mail valide n'est définie pour cet utilisateur, cette procédure ne peut aboutir.</e>
+
+		<!-- Defy -->
+		<e id="DefyNeedMoney">Vous n'avez pas assez de sucre pour lancer ce match.</e>
+		<e id="DefyOppNeedMoney">Votre adversaire n'a pas assez de sucre pour lancer ce match.</e>
+		<e id="DefyUserPlaying">Un des joueurs est déjà en train de jouer.</e>
+		<e id="DefyUserOffline">Un des joueurs n'est pas connecté au serveur de jeux.</e>
+
+		<!-- GoodiesShipment -->
+		<e id="FirstnameRequired">Merci d'indiquer votre prénom.</e>
+		<e id="LastnameRequired">Merci d'indiquer votre nom.</e>
+		<e id="AddressRequired">Merci d'indiquer votre adresse.</e>
+		<e id="CityRequired">Merci d'indiquer votre ville.</e>
+		<e id="PostalCodeRequired">Merci d'indiquer votre code postal.</e>
+		<e id="PostalCodeFormat">Ce code postal n'est pas valide.</e>
+		<e id="EmailRequired">Merci d'indiquer votre adresse mail.</e>
+	</errors>
+	<infos>
+		<e id="UserModifOk">Les modifications de votre compte ont été enregistrées avec succès.</e>
+		<e id="PassModifOk">Votre nouveau code secret a été enregistré avec succès.</e>
+		<e id="DeleteOk">Votre demande a été enregistrée avec succès. Votre compte sera supprimé dans 72 heures environ. Vous pouvez annuler votre demande d'ici là.</e>
+		<e id="CancelDeleteOk">La demande de suppression a été annulée. Votre compte ne sera pas supprimé.</e>
+		<e id="ContactAddOk">Cet utilisateur a été ajouté dans votre liste de contacts.</e>
+		<e id="ContactRemOk">Cet utilisateur a été retiré de votre liste de contacts.</e>
+		<e id="BlackContactAddOk">Cet utilisateur a été ajouté dans votre liste noire.</e>
+		<e id="BlackContactRemOk">Cet utilisateur a été retiré de votre liste noire.</e>
+		<e id="DefyOk">Votre proposition de match a été envoyée.</e>
+		<e id="DefyRefuseOk">Vous avez refusé le défi.</e>
+		<e id="GroupInviteSubject">Invitation à une table</e>
+		<e id="GroupRefusedSubject">Adhésion à une table refusée</e>
+		<e id="GiveMoneySubject">Don de sucre</e>
+		<e id="NewSponsoredSubject">Nouveau filleul !</e>
+		<e id="FirstVictorySubject">Bravo pour cette victoire !</e>
+		<e id="TenthPartySubject">Déjà 10 parties !</e>
+		<e id="ThirdDaySubject">Ca fait plaisir de vous revoir :)</e>
+		<e id="ChatReportOk">Votre alerte a bien été enregistrée. L'accès au chat sera bloqué en cas de récidive.</e>
+		<e id="GroupAutoJoinOk">Voici une table de jeu : vous pouvez dès maintenant bavarder avec les autres joueurs :)</e>
+		<e id="GroupChatBanOk">Cet utilisateur a été banni du chat de la table.</e>
+		<e id="GroupChatUnbanOk">Cet utilisateur a été débanni du chat de la table.</e>
+		<e id="XpLevelUpSubject">Vous passez au niveau 2 !</e>
+		<e id="GroupEmptyDescription">La présentation de cette table a été supprimée par un modérateur en raison de son contenu.</e>
+	</infos>
+	<genders>
+		<e id="Unknow">Non précisé</e>
+		<e id="Male">Masculin</e>
+		<e id="Female">Féminin</e>
+	</genders>
+	<groupauth>
+		<e id="EditDescription">Editer la présentation</e>
+		<e id="ConfirmMember">Accepter un nouveau membre</e>
+		<e id="EjectMember">Ejecter un membre</e>
+		<e id="PostAd">Poster une annonce (avec ses propres sucres)</e>
+		<e id="DeletePost">Supprimer un message du forum</e>
+		<e id="EjectPublic">Bannir un visiteur du chat</e>
+	</groupauth>
+	<drinks>
+		<e id="0" img="coffee"		name="Café «Intense»">Le grand classique du Café Jeux. Son goût unique et ses arômes intenses en font la réputation sur tout le net.</e>
+		<e id="1" img="choco"		name="ChocoJeux chaud">ChocoJeux c'est un délicieux chocolat, faible en matières grasses et riche en vitamines, fer et calcium !</e>
+		<e id="2" img="tea"			name="Thé classique">Ce thé original au goût intact saura vous emporter dans un voyage spirituel aux origines mystiques d'une civilisation de légende.</e>
+		<e id="3" img="cappu"		name="Cappuccino «Mystère»">Savourez sa mousse onctueuse et généreuse pendant une partie sur Café Jeux.</e>
+		<e id="4" img="mint"		name="Thé «Mint Royale»">Goûtez aux parfums enivrants de ce thé venu d'Orient et porteur de toute la sagesse des vieux chameaux du désert.</e>
+		<e id="5" img="black"		name="Expresso corsé">Un coup de fouet pour les réveils difficiles.</e>
+		<e id="6" img="frutish"		name="Café framboisino">La rencontre surprenante d'un café de caractère et d'un fruit aux accents boisés.</e>
+		<e id="7" img="fruit"		name="Fruithé rouge">Délicatement parfumé aux fruits des bois, le Fruithé a sû restituer les arômes subtils d'un soir d'automne.</e>
+		<e id="8" img="grog"		name="Grog">La recette originale du Grog vanillé du Scumm Bar, aux accents de rhum des îles (contient du Kérosène, du Propylène glycol, de la graisse d'essieu, du pepperoni, entre autres...)</e>
+		<e id="9" img="coffmarsh"	name="Café marshmallow">Un goût parfaitement équilibré et une merveilleuse puissance aromatique: vous serez séduit par son onctuosité si agréable au palais.</e>
+		<e id="10" img="chocmarsh"	name="ChocoJeux Marshmallow">ChocoJeux Marshmallow vous apporte énergie et bonne humeur pour bien démarrer la journée.</e>
+		<e id="11" img="orange"		name="Ultra Orange" cold="1">Faites le plein d'énergie positive et rigolote avec un délicieux jus d'oranges pressées et laissez vous bercer par les doux rayons de soleil du matin !</e>
+		<e id="12" img="blue"		name="L'Anarchipel" cold="1">Partez à l'aventure avec ce coktail aux mystérieuses saveurs exotiques et aux surprenants accents tropicaux !</e>
+	</drinks>
+	<fnotif>
+		<e id="ThreadDeleted">Votre sujet ::title:: a été supprimé : ::reason::.</e>
+		<e id="MessageDeleted">Votre message sur le sujet ::title:: a été supprimé : ::reason::.</e>
+		<e id="ThreadMoved">Votre sujet ::title:: a été déplacé dans le forum ::forum::.</e>
+	</fnotif>
+	<room>
+		<e id="button_inv">STOCKS</e>
+		<e id="button_del">RANGER</e>
+		<e id="button_save">SAUVER</e>
+		<e id="button_back">Retour</e>
+		<e id="close">Il est 2h, El Papa décide d'aller se coucher...</e>
+		<e id="time">Il est maintenant</e>
+		<e id="open">Il est 10h, le bar est ouvert !</e>
+		<e id="help_del">Cliquez sur le meuble à retirer...</e>
+		<e id="help_keys">ESPACE: tourner l'objet | SUPPR: le ranger</e>
+		<e id="save_ok">Nouvelle déco sauvegardée !</e>
+		<e id="save_error">Erreur de sauvegarde !</e>
+		<e id="error">Erreur :</e>
+	</room>
+</const>

@@ -1,0 +1,73 @@
+<furnitures>
+	<group link="mc_furnitures" baseId="0">
+		<f frame="1"	name="bench2"		w="2"	h="1"	p="35"		rname="Banquette confortable"	desc="La version classique de la Banquette du Café, designée par Jean-Paul Gromelin en 1915." />
+		<f frame="2"	name="plant"		w="1"	h="1"	p="15"		rname="Ficus Caféiné"			desc="Un Ficus Caféinus-Banalis, fourni avec son système d'auto-arrosage." />
+		<f frame="3"	name="plantDead"	w="1"	h="1"	p="40"		rname="Ficus Overdosé"			desc="Ce Ficus overdosé diffuse un léger parfum de café, très agréable." />
+		<f frame="4"	name="gameSNK"		w="2"	h="1"	p="150"		rname="Borne Fatal Flurry"		desc="Le passe-temps idéal seul ou entre amis: uppercuts, marteau-pilon et manchettes." />
+		<f frame="5"	name="flipperBall"	w="1"	h="2"	p="200"		rname="Flipper Motion Ball"		desc="Le meilleur jeu de billes de tous les temps !" />
+		<f frame="6"	name="baby"			w="2"	h="3"	p="200"		rname="Stade de poche"			desc="Revivez l'ambiance survoltée des stades dans votre Café, idéal pour les soirs de matches !" />
+		<f frame="7"	name="pool"			w="2"	h="3"	p="250"		rname="Table de Marbil's"		desc="Une version table du célèbre Marbil's" />
+		<f frame="8"	name="bar"			w="1"	h="10"	p="0"		rname=""						desc="" />
+		<f frame="9"	name="barChair"		w="1"	h="1"	p="0"		rname=""						desc="" />
+		<f frame="10"	name="flipperBlack"	w="1"	h="2"	p="150"		rname="Flipper Retour du Jeudi"	desc="Détruisez l'étoile noire pour débloquer le multi-ball !"/>
+		<f frame="11"	name="flipperFire"	w="1"	h="2"	p="250"		rname="Flipper Magmax"			desc="Un grand jeu adapté en flipper brûlant par la Coopérative MT." />
+		<f frame="12"	name="gameHfest"	w="2"	h="1"	p="100"		rname="Borne Hammerfest"		desc="Une version arcade du célèbre jeu Hammerfest (disponible sur www.hammerfest.fr)" />
+		<f frame="13"	name="gameKaluga"	w="2"	h="1"	p="150"		rname="Borne Kaluga"			desc="Collectez les pommes en contrôlant Kaluga, la Tzongre ! (disponible sur www.frutiparc.com)" />
+		<f frame="14"	name="jukebox"		w="2"	h="1"	p="300"		rname="Boîte à musique"			desc="Parfait pour animer vos nuits entre amis." />
+		<f frame="15"	name="bench3"		w="3"	h="1"	p="50"		rname="Banquette très confortable"			desc="La version super-moltonnée et rallongée de la Banquette classique" />
+		<f frame="16"	name="bench4"		w="4"	h="1"	p="80"		rname="Banquette de luxe auto-chauffante"	desc="La Banquette classique version grand luxe grace à un système auto-chauffant et auto-massant." />
+		<f frame="17"	name="ddr"			w="3"	h="1"	p="300"		rname="Borne de Dance Saute-Partout"		desc="Frimez entre amis en révélant vos qualités de danseur sur les grands tubes du moment !" />
+		<f frame="18"	name="ddrBar"		w="1"	h="1"	p="0"		rname=""						desc="" />
+		<f frame="19"	name="innerWall"	w="2"	h="1"	p="10"		rname="Cloison "				desc="Un séparateur en papier de riz, très commode pour aménager votre salon." />
+		<f frame="20"	name="wood_plant_1"	w="1"	h="1"	p="100"		rname="Petit Touffu"			desc="Cet adorable baobab nain fera la joie des petits et des grands par la douce chaleur qu'il dégage. Arrosez une fois tous les 10 jours et évitez la lumière directe." />
+		<f frame="21"	name="wood_plant_2"	w="1"	h="1"	p="250"		rname="Grande Tijue fleurie"	desc="Une espèce très rare de Salsifia Julivius blanche qui ne pousse que dans les bars et les cafés. C'est à cela qu'on lui attribue son délicat parfum d'Arabica mêlé à un soupçon de cacao. On raconte que ce serait même Eugène Gromelin lui-même qui aurait créé cette espèce..." />
+		<f frame="22"	name="trophy_1"		w="1"	h="1"	p="5000"	rname="Trophée de champion"		desc="Cette récompense prestigieuse est offerte aux meilleurs joueurs du CaféJeux. Elle est la marque des grands stratèges et des joueurs de haut niveau !" />
+	</group>
+
+	<group link="mc_tables" baseId="100">
+		<f frame="1"	name="table3x3"		w="3"	h="3"	p="20"		rname="Petite table"			desc="La table de base en chêne du Bois-Joli, estampillée CJ (4 places)" />
+		<f frame="2"	name="table3x4"		w="3"	h="4"	p="30"		rname="Table rallongée"			desc="La table avec rallonge en chêne du Bois-Joli, estampillée CJ (6 places)" />
+		<f frame="3"	name="table3x5"		w="3"	h="5"	p="50"		rname="Grande table"			desc="Une grande table en chêne du Bois-Joli, estampillée CJ (8 places)" />
+		<f frame="4"	name="table3x6"		w="3"	h="6"	p="100"		rname="Table immense"			desc="Une table de banquet en chêne du Bois-Joli, estampillée CJ (10 places)" />
+		<f frame="5"	name="tableNappe"	w="3"	h="3"	p="100"		rname="Table romantique"		desc="La version grand standing de la table classique, vernie et taillée dans les plus beaux bois." />
+		<f frame="6"	name="ev_amonite"	w="3"	h="3"	p="1500"	rname="Trophée Amonite"			desc="Cette table exclusive n'existe qu'en un seul exemplaire et a été fabriquée spécialement pour récompenser le meilleur joueur de Amonite ! Elle est signée du maître artisan Émilien Nuiprofonde." />
+		<f frame="7"	name="ev_anticorps"	w="3"	h="3"	p="1500"	rname="Trophée Anticorp's"		desc="Cette table exclusive n'existe qu'en un seul exemplaire et a été fabriquée spécialement pour récompenser le meilleur joueur de Anticorp's ! Elle est signée du maître artisan Émilien Nuiprofonde." />
+		<f frame="8"	name="ev_crumble"	w="3"	h="3"	p="1500"	rname="Trophée Crumble"			desc="Cette table exclusive n'existe qu'en un seul exemplaire et a été fabriquée spécialement pour récompenser le meilleur joueur de Crumble ! Elle est signée du maître artisan Émilien Nuiprofonde." />
+		<f frame="9"	name="ev_expanz"	w="3"	h="3"	p="1500"	rname="Trophée Expanz"			desc="Cette table exclusive n'existe qu'en un seul exemplaire et a été fabriquée spécialement pour récompenser le meilleur joueur de Expanz ! Elle est signée du maître artisan Émilien Nuiprofonde." />
+		<f frame="10"	name="ev_ferme"		w="3"	h="3"	p="1500"	rname="Trophée Ferme-la"		desc="Cette table exclusive n'existe qu'en un seul exemplaire et a été fabriquée spécialement pour récompenser le meilleur joueur de Ferme-la ! Elle est signée du maître artisan Émilien Nuiprofonde." />
+		<f frame="11"	name="ev_magmax"	w="3"	h="3"	p="1500"	rname="Trophée Magmax Battle"	desc="Cette table exclusive n'existe qu'en un seul exemplaire et a été fabriquée spécialement pour récompenser le meilleur joueur de Magmax Battle ! Elle est signée du maître artisan Émilien Nuiprofonde." />
+		<f frame="12"	name="ev_marbils"	w="3"	h="3"	p="1500"	rname="Trophée Marbils"			desc="Cette table exclusive n'existe qu'en un seul exemplaire et a été fabriquée spécialement pour récompenser le meilleur joueur de Marbils ! Elle est signée du maître artisan Émilien Nuiprofonde." />
+		<f frame="13"	name="ev_quat"		w="3"	h="3"	p="1500"	rname="Trophée Quat'cinelle"	desc="Cette table exclusive n'existe qu'en un seul exemplaire et a été fabriquée spécialement pour récompenser le meilleur joueur de Quat'cinelle ! Elle est signée du maître artisan Émilien Nuiprofonde." />
+		<f frame="14"	name="ev_trigo"		w="3"	h="3"	p="1500"	rname="Trophée Trigolo"			desc="Cette table exclusive n'existe qu'en un seul exemplaire et a été fabriquée spécialement pour récompenser le meilleur joueur de Trigolo ! Elle est signée du maître artisan Émilien Nuiprofonde." />
+		<f frame="15"	name="tableBar"		w="1"	h="1"	p="150"		rname="Table très classe"		desc="Dessinée par le célèbre couturier Philémon Cizelé, cette table basse prestigieuse ne se trouve qu'au CaféJeux et nulle part ailleurs." />
+	</group>
+
+	<group link="mc_chairs" baseId="200">
+		<f frame="1"	name="chairRight"	w="1"	h="1"	p="10"		rname="Chaise CaféJeux"			desc="La chaise standard du Café, confortable, fonctionnelle et finement sculptée." />
+		<f frame="2"	name="chairDown"	w="1"	h="1"	p="0"		rname="Chaise CaféJeux"			desc="" />
+		<f frame="3"	name="chairLeft"	w="1"	h="1"	p="0"		rname="Chaise CaféJeux"			desc="" />
+		<f frame="4"	name="chairUp"		w="1"	h="1"	p="0"		rname="Chaise CaféJeux"			desc="" />
+		<f frame="5"	name="chairClassRight"	w="1"	h="1"	p="50"		rname="Chaise confortable"	desc="Une version revisitée de la classique chaise CaféJeux par le couturier Philémon Cizelé. Incroyablement confortable, elle vous fera passer un excellent moment en compagnie de vos amis." />
+		<f frame="6"	name="chairClassDown"	w="1"	h="1"	p="0"		rname="Chaise confortable"	desc="" />
+		<f frame="7"	name="chairClassLeft"	w="1"	h="1"	p="0"		rname="Chaise confortable"	desc="" />
+		<f frame="8"	name="chairClassUp"		w="1"	h="1"	p="0"		rname="Chaise confortable"	desc="" />
+	</group>
+
+	<group link="mc_wallFurn" baseId="1000">
+		<f frame="1"	name="paintA"		w="0"	h="0"	p="0"		rname="Songes d'Automne" />
+		<f frame="2"	name="darts"		w="0"	h="0"	p="0"		rname="Lance-Piquettes" />
+		<f frame="3"	name="katana"		w="0"	h="0"	p="0"		rname="Katana de Toudou" />
+		<f frame="4"	name="windyA"		w="0"	h="0"	p="0"		rname="Eventail de guerre" />
+		<f frame="5"	name="windyB"		w="0"	h="0"	p="0"		rname="Eventail de séduction" />
+		<f frame="6"	name="maskGreen"	w="0"	h="0"	p="0"		rname="Masque vaudon effrayant" />
+		<f frame="7"	name="sword"		w="0"	h="0"	p="0"		rname="Epée de barbare niveau 8" />
+		<f frame="8"	name="maskGhost"	w="0"	h="0"	p="0"		rname="Masque de Tournéboulé" />
+		<f frame="9"	name="paintB"		w="0"	h="0"	p="0"		rname="Cri Mauve sur fond Blanc" />
+		<f frame="10"	name="paintC"		w="0"	h="0"	p="0"		rname="Croûte sans grande valeur" />
+		<f frame="11"	name="paintD"		w="0"	h="0"	p="0"		rname="Espérances sanctifiées" />
+		<f frame="12"	name="headDeer"		w="0"	h="0"	p="0"		rname="Trophée de l'été dernier" />
+		<f frame="13"	name="headTiger"	w="0"	h="0"	p="0"		rname="Gros chat très joueur" />
+		<f frame="14"	name="headWhite"	w="0"	h="0"	p="0"		rname="Souvenir de Hammerfest" />
+		<f frame="15"	name="headTizoc"	w="0"	h="0"	p="0"		rname="Marteau Pilon de Tizoc" />
+	</group>
+</furnitures>

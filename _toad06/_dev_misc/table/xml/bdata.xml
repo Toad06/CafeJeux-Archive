@@ -1,0 +1,211 @@
+<bdata>
+	<comments>
+		<com id="0" v="famille"/>
+		<com id="1" v=""/>
+		<com id="2" v="tshirt"/>
+		<com id="3" v="pantalon"/>
+		<com id="4" v="coiffures"/>
+		<com id="5" v="couleur peau"/>
+		<com id="6" v="couleur t-shirt H"/>
+		<com id="7" v="couleur pantalon H"/>
+		<com id="8" v="couleur cheveux H"/>
+		<com id="9" v="couleur costard"/>
+		<com id="10" v="couleur blouson"/>
+		<com id="11" v="couleur t-shirt F"/>
+		<com id="12" v="couleur pantalon F"/>
+		<com id="13" v="couleur cheveux F"/>
+		<com id="14" v="couleur accessoire F"/>
+		<com id="15" v="couleur fringue motif"/>
+	</comments>
+
+	<data>
+		<default_skin v="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+	</data>
+
+
+	<palettes>
+
+		<palette id="0" comment="peau">
+			<col id="0" c="#f9b37f"/>
+			<col id="1" c="#f5c9ab"/>
+			<col id="2" c="#f49c93"/>
+			<col id="3" c="#e29969"/>
+			<col id="4" c="#ffe6d5"/>
+			<col id="5" c="#fac87c"/>
+			<col id="6" c="#ad6128"/>
+		</palette>
+
+		<palette id="1" comment="homme: tshirt">
+			<col id="0" c="#fff8f7"/>
+			<col id="1" c="#beeff3"/>
+			<col id="2" c="#a8f0c5"/>
+			<col id="3" c="#b1de84"/>
+			<col id="4" c="#77a850"/>
+			<col id="5" c="#e69480"/>
+			<col id="6" c="#d95e40"/>
+			<col id="7" c="#aa3d22"/>
+			<col id="8" c="#fd8535"/>
+			<col id="9" c="#3f95aa"/>
+			<col id="10" c="#7dbece"/>
+			<col id="11" c="#fee99a"/>
+			<col id="12" c="#ffd200"/>
+			<col id="13" c="#d78028"/>
+			<col id="14" c="#595959"/>
+		</palette>
+
+		<palette id="2" comment="homme: pant">
+			<col id="0" c="#3f95aa"/>
+			<col id="1" c="#a98e80"/>
+			<col id="2" c="#fff8f7"/>
+			<col id="3" c="#c65555"/>
+			<col id="4" c="#dbb38a"/>
+			<col id="5" c="#a2a2a2"/>
+			<col id="6" c="#595959"/>
+			<col id="7" c="#5d6c9e"/>
+			<col id="8" c="#969696"/>
+			<col id="9" c="#fcf7e8"/>
+			<col id="10" c="#ffd4de"/>
+		</palette>
+
+		<palette id="3" comment="homme: cheveux">
+			<col id="0" c="#ffd200"/>
+			<col id="1" c="#be8900"/>
+			<col id="2" c="#997c6c"/>
+			<col id="3" c="#68534a"/>
+			<col id="4" c="#fd8535"/>
+			<col id="5" c="#6c7899"/>
+			<col id="6" c="#fbedc9"/>
+			<col id="7" c="#f8dfa9"/>
+			<col id="8" c="#77a850"/>
+		</palette>
+
+		<palette id="4" comment="homme: costard">
+			<col id="0" c="#5d6c9e"/>
+			<col id="1" c="#969696"/>
+			<col id="2" c="#fcf7e8"/>
+			<col id="3" c="#ffd4de"/>
+			<col id="4" c="#595959"/>
+		</palette>
+
+		<palette id="5" comment="homme: blouson">
+			<col id="0" c="#bf7646"/>
+			<col id="1" c="#bf4646"/>
+			<col id="2" c="#77a850"/>
+			<col id="3" c="#506da8"/>
+			<col id="4" c="#595959"/>
+		</palette>
+
+		<palette id="6" comment="femme: tshirt">
+			<col id="0" c="#fff8f7"/>
+			<col id="1" c="#fbd0d0"/>
+			<col id="2" c="#f9a8a8"/>
+			<col id="3" c="#d95e40"/>
+			<col id="4" c="#aa3d22"/>
+			<col id="5" c="#fd8535"/>
+			<col id="6" c="#3f95aa"/>
+			<col id="7" c="#7dbece"/>
+			<col id="8" c="#fee99a"/>
+			<col id="9" c="#ffd200"/>
+			<col id="10" c="#beeff3"/>
+			<col id="11" c="#a8f0c5"/>
+			<col id="12" c="#b1de84"/>
+			<col id="13" c="#77a850"/>
+			<col id="14" c="#a27ac9"/>
+		</palette>
+
+		<palette id="7" comment="femme: pant">
+			<col id="0" c="#fff8f7"/>
+			<col id="1" c="#fbd0d0"/>
+			<col id="2" c="#f9a8a8"/>
+			<col id="3" c="#d95e40"/>
+			<col id="4" c="#aa3d22"/>
+			<col id="5" c="#fd8535"/>
+			<col id="6" c="#3f95aa"/>
+			<col id="7" c="#7dbece"/>
+			<col id="8" c="#fee99a"/>
+			<col id="9" c="#ffd200"/>
+			<col id="10" c="#beeff3"/>
+			<col id="11" c="#a8f0c5"/>
+			<col id="12" c="#b1de84"/>
+			<col id="13" c="#77a850"/>
+			<col id="14" c="#a27ac9"/>
+		</palette>
+
+		<palette id="8" comment="femme: cheveux">
+			<col id="0" c="#ffd200"/>
+			<col id="1" c="#be8900"/>
+			<col id="2" c="#997c6c"/>
+			<col id="3" c="#68534a"/>
+			<col id="4" c="#fd8535"/>
+			<col id="5" c="#a27ac9"/>
+			<col id="6" c="#fbedc9"/>
+			<col id="7" c="#f8dfa9"/>
+			<col id="8" c="#ffbab3"/>
+		</palette>
+
+		<palette id="9" comment="femme: accessoire">
+			<col id="0" c="#fff8f7"/>
+			<col id="1" c="#F9A8A8"/>
+			<col id="2" c="#FFD200"/>
+			<col id="3" c="#B1DE84"/>
+			<col id="4" c="#C468DB"/>
+			<col id="5" c="#8FCEF8"/>
+		</palette>
+
+		<palette id="10" comment="homme: motifs">
+			<col id="0" c="#fff8f7"/>
+			<col id="1" c="#beeff3"/>
+			<col id="2" c="#a8f0c5"/>
+			<col id="3" c="#b1de84"/>
+			<col id="4" c="#77a850"/>
+			<col id="5" c="#e69480"/>
+			<col id="6" c="#d95e40"/>
+			<col id="7" c="#aa3d22"/>
+			<col id="8" c="#fd8535"/>
+			<col id="9" c="#3f95aa"/>
+			<col id="10" c="#7dbece"/>
+			<col id="11" c="#fee99a"/>
+			<col id="12" c="#ffd200"/>
+			<col id="13" c="#d78028"/>
+			<col id="14" c="#595959"/>
+		</palette>
+
+		<palette id="11" comment="femme: motifs">
+			<col id="0" c="#fff8f7"/>
+			<col id="1" c="#beeff3"/>
+			<col id="2" c="#a8f0c5"/>
+			<col id="3" c="#b1de84"/>
+			<col id="4" c="#77a850"/>
+			<col id="5" c="#e69480"/>
+			<col id="6" c="#d95e40"/>
+			<col id="7" c="#aa3d22"/>
+			<col id="8" c="#fd8535"/>
+			<col id="9" c="#3f95aa"/>
+			<col id="10" c="#7dbece"/>
+			<col id="11" c="#fee99a"/>
+			<col id="12" c="#ffd200"/>
+			<col id="13" c="#d78028"/>
+			<col id="14" c="#595959"/>
+		</palette>
+
+		<palette id="12" comment="ratures pantalon">
+			<col id="0" c="#fff8f7"/>
+			<col id="1" c="#beeff3"/>
+			<col id="2" c="#a8f0c5"/>
+			<col id="3" c="#b1de84"/>
+			<col id="4" c="#77a850"/>
+			<col id="5" c="#e69480"/>
+			<col id="6" c="#d95e40"/>
+			<col id="7" c="#aa3d22"/>
+			<col id="8" c="#fd8535"/>
+			<col id="9" c="#3f95aa"/>
+			<col id="10" c="#7dbece"/>
+			<col id="11" c="#fee99a"/>
+			<col id="12" c="#ffd200"/>
+			<col id="13" c="#d78028"/>
+			<col id="14" c="#595959"/>
+		</palette>
+
+
+	</palettes>
+</bdata>

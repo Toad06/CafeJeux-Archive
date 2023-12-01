@@ -1,0 +1,6 @@
+DirectoryIndex show.listing
+
+
+RewriteEngine On
+RewriteCond %{QUERY_STRING} !^$
+RewriteRule ^$ index.html

@@ -1,0 +1,32 @@
+<room>
+
+	<statics>
+		<furn name="bar"		x="8"	y="9"/>
+		<furn name="barChair"	x="9"	y="7"/>
+		<furn name="barChair"	x="9"	y="5"/>
+		<furn name="barChair"	x="9"	y="3"/>
+	</statics>
+
+	<free>
+		<furn name="table3x3"	x="21"	y="5"/>
+		<furn name="table3x4"	x="17"	y="11"/>
+		<furn name="plant"		x="12"	y="0"/>
+		<furn name="plant"		x="18"	y="0"/>
+		<furn name="chairUp"	x="16"	y="12"/>
+		<furn name="chairRight"	x="14"	y="10"/>
+		<furn name="chairDown"	x="16"	y="7"/>
+		<furn name="chairRight"	x="14"	y="9"/>
+		<furn name="chairRight"	x="18"	y="4"/>
+		<furn name="chairDown"	x="20"	y="2"/>
+		<furn name="chairUp"	x="20"	y="6"/>
+		<furn name="chairLeft"	x="22"	y="4"/>
+		<furn name="chairLeft"	x="18"	y="9"/>
+		<furn name="chairLeft"	x="18"	y="10"/>
+	</free>
+
+	<walls>
+		<furn name="darts"		x="170"	y="12"/>
+		<furn name="paintA"		x="305"	y="58"/>
+	</walls>
+
+</room>

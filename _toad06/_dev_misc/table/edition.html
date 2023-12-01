@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="fr">
+<head>
+	<title>CaféJeux DEV</title>
+	<meta charset="utf-8" />
+	<style type="text/css">
+		body {
+			margin: 0px;
+			padding: 0px;
+			color: #FFF;
+			background-color: #000;
+		}
+		select {
+			height: 28px;
+			border: 1px solid #FFF;
+		}
+		a:link, a:visited {
+			color: #FFF;
+			text-decoration: underline;
+		}
+		a:hover, a:active {
+			text-decoration: none;
+		}
+		#container {
+			max-width: 1200px;
+			margin: 12px auto 0px auto;
+			text-align: center;
+		}
+		#tools {
+			margin-top: 20px;
+		}
+		#infos {
+			margin-top: 40px;
+		}
+	</style>
+	<script type="text/javascript" src="../../../swfobject.js?v=20100928162820"></script>
+</head>
+<body>
+	<div id="container">
+		<div id="table"></div>
+		<div id="tools">
+			<select onchange="changeSize(this.options[this.selectedIndex].value);">
+				<option value="normal">Surface normale</option>
+				<option value="big">Surface plus grande</option>
+			</select>
+			<select onchange="changeInventory(this.options[this.selectedIndex].value);">
+				<option value="existing_usable">Tous les meubles pouvant être placés, ceux de la boutique CaféJeux</option>
+				<option value="full_usable">Tous les meubles pouvant être placés, y compris des exclusifs</option>
+				<option value="wall">Seulement les objets muraux (non positionnables)</option>
+				<option value="all">Tous les objets existants</option>
+			</select>
+		</div>
+		<div id="infos">
+			<p>
+				Sur cette page, vous pouvez aménager une table de jeu avec tous les meubles existants, y compris ceux dont l'existence n'avait jamais été dévoilée par Motion Twin.<br />
+				La longueur de la salle peut également être étendue, même si cela n'a pas vraiment été étudié pour.
+			</p>
+			<p>
+				Plus d'informations sur les meubles peuvent être trouvées dans le fichier <a href="xml/furnitures.xml" target="_blank">xml/furnitures.xml</a>.<br />
+				Ce fichier XML, comme tous ceux du dossier <a href="xml" target="_blank">xml</a>, a été extrait du fichier Flash des tables de jeu (tel qu'affiché sur cette page) dans lequel il existe sous forme sérialisée.
+			</p>
+			<p>
+				Le fichier Flash de la page a été modifié pour retourner plusieurs valeurs dans la console de débogage du navigateur :<br />
+				- Lors de l'initialisation, il s'agit de la valeur décodée du paramètre "inv" des FlashVars (un tableau d'objets) - voir la fonction "RoomDecodedData" sur cette page.<br />
+				- En cliquant sur le bouton "Sauver", il s'agit d'une valeur encodée pouvant servir pour le paramètre "inv" - voir la fonction "RoomEncodeData" sur cette page.
+			</p>
+			<p>
+				Quelques remarques diverses :<br />
+				- C'est le paramètre "seed" des FlashVars qui influence le style et la couleur du tapis. Celui-ci n'a cependant aucun effet en mode édition et le tapis sera donc toujours vert.<br />
+				- Les objets muraux par défaut sont toujours les mêmes, quelle que soit la table. La situation aurait pourtant pu être différente mais les objets existants ne s'accrochent pas au mur (!).
+			</p>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var defaultData = { w: "420", h: "350", inv: "existing_usable" };
+		var currentData = JSON.parse(JSON.stringify(defaultData));
+
+		window.addEventListener("load", setSWF, false);
+
+		function setSWF() {
+			var inv = currentData.inv;
+			switch(inv) {
+				case "existing_usable":
+				default:
+					inv = "IYZ9q0aWtL6lSqumpddg_idbLx4yjayoO5EI7efddWWKfbAJL6lSqumpdcquhQoxOUXbqW8mjbqPQoxOUXbqW8mjbqRQoxOUXbqW8mjbqTQoxOUXbqW8mjbqVQoxOUXbqW8mjbqXQoxOUXbqW8mjbqZQoxOUXbqW8mjbq1QoxOUXbqW8mjbq3QoxOUXbqW8mjbq5QoxOUXbqW8mjbq7QoxOUXbqW8mjbq9QoxOUXbqW8mjbq_QoxOUXbqW8mjbriAJL6lSqumpdcqusoO5EI7efddWWKfeLQoxOUXbqW8mjbrj6JL6lSqumpdcqusMO5EI7efddWWKjeRQoxOUXbqW8mjcrlAJL6lSqumpdcqKs-O5EI7efddWWKjeXQoxOUXbqW8mjcrm6JL6lSqumpdcqKtwO5EI7efddWWKje3QoxOUXbqW8mjcroAJL6lSqumpdcqKtUO5EI7efddWWKje9QoxOUXbqW8mjdrp6JL6lSqumpdcq0ugO5EI7efddWWKnfdQoxOUXbqW8mjdrrAJL6lSqumpdcq0uEO5EI7efddWWKnfjQoxOUXbqW8mjdrs6JL6lSqumpdcq0u2O5EI7efddWWKnfpQoxOUXbqW8mjdruAJL6lSqumpdcrrftQoxOUXbqW8mjfevwO5EI7efddWWKurv6JL6lSqumpdcrrfzQoxOUXbqW8mjfevUO5EI7efddWWKvrxAJL6lSqumpdcrvfFQoxOUXbqW8mjfuwgO5EI7efddWWKvry6JL6lSqumpdcrvfLQoxOUXbqW8mjfKwEO5EI7efddWWKwrAAJL6lSqumpdcrzfRQoxOUXbqW8mjfKw2O5EI7efddWWKwrB6JL6lSqumpdcrDfXQoxOUXbqW8mjf0xoO5EI7efddWWKxrDAJL6lSqumpdcrDf3QoxOUXbqW8mjf0xMO5EI7efddWWKArE6JL6lSqumpdcrPf9QoxOUXbqW8mjgKx-O5EI7efddWWKArGaGAJL6lSqumpdcrPgacdQoxOUXbqW8mjg0yaiwO5EI7efddWWKBrGaH6JL6lSqumpdcrTgacjQoxOUXbqW8mjg0yaiUO5EI7efddWWKBrGaJAJL6lSqumpdcrXgacpQoxOUXbqW8mjheyajgO5EI7efddWWKCrGaK6JL6lSqumpdcrXgacvQoxOUXbqW8mjheyajEO5EI7efddWWKDrGaMAJL6lSqumpdcr1gacBQoxOUXbqW8mjhuyaj2O5EI7efddWWKDrGaN6JL6lSqumpdcr1gacHQoxOUXbqW8mjhKyakoO5EI7efddWWKErGaPAJL6lSqumpdcr9gacNQoxOUXbqW8mjh0yakMO5EI7efddWWKFrGaQ6JL6lSqumpdcr9gacTQoxOUXbqW8mjh0yak-O5EI7efddWWKFrGaSAJL6lSqumpdcr9gacZQoxOUXbqW8mjh0yalwO5EI7efddWWKFrGaT6JL6lSqumpdcr9gac5QoxOUXbqW8mjjbgac7QoxOUXbqW8mjjbgac9QoxOUXbqW8mjjbgac_QoxOUXbqW8mjjbgadbQoxOUXbqW8mjjbgaddQoxOUXbqW8mjjfgadfQoxOUXbqW8mjjfgadhQoxOUXbqW8mjjfgadjQoxOUXbqW8mjjfgadlQoxOUXbqW8mjjfgadnQoxOUXbqW8mjjngadpQoxOUXbqW8mjjngadrQoxOUXbqW8mjjngadtQoxOUXbqW8mjjngadvQoxOUXbqW8mjjngadxQoxOUXbqW8mjjngadzQoxOUXbqW8mjjngadBQoxOUXbqW8mjjngadDQoxOUXbqW8mjjngadFQoxOUXbqW8mjjngadHQoxOUXbqW8mjjngadJQoxOUXbqW8mjjngadLQoxOUXbqW8mjjngadNQoxOUXbqW8mjjngadPQoxOUXbqW8mjjngadRQoxOUXbqW8mjjngadTQoxOUXbqW8mjjngadVQoxOUXbqW8mjjngadXQoxOUXbqW8mjjngadZQoxOUXbqW8mjjngad1QoxOUXbqW8mjjrgad3QoxOUXbqW8mjjrgad5QoxOUXbqW8mjjrgad7QoxOUXbqW8mjjrgad9QoxOUXbqW8mjjrgad_QoxOUXbqW8mjjrgaebQoxOUXbqW8mjjrgaedQoxOUXbqW8mjjrgaefQoxOUXbqW8mjjrgaehQoxOUXbqW8mjjrgaejQoxOUXbqW8mjjvgaelQoxOUXbqW8mjjvgaenQoxOUXbqW8mjjvgaepQoxOUXbqW8mjjvgaerQoxOUXbqW8mjjvgaetQoxOUXbqW8mjjvgaevQoxOUXbqW8mjjvgaexQoxOUXbqW8mjjvgaezQoxOUXbqW8mjjvgaeBQoxOUXbqW8mjjvgaeDQoxOUXbqW8mjmagvgaeFQoxOUXbqW8mjmagvgaeHQoxOUXbqW8mjmagvgaeJQoxOUXbqW8mjmagvgaeLQoxOUXbqW8mjmagvgaeNQoxOUXbqW8mjmagzgaePQoxOUXbqW8mjmagzgaeRQoxOUXbqW8mjmagzgaeTQoxOUXbqW8mjmagzgaeVQoxOUXbqW8mjmagzgaeXQoxOUXbqW8mjmagDgaeZQoxOUXbqW8mjmagDgae1QoxOUXbqW8mjmagDgae3QoxOUXbqW8mjmagDgae5QoxOUXbqW8mjmagDgae7QoxOUXbqW8mjmagHgae9QoxOUXbqW8mjmagHgae_QoxOUXbqW8mjmagHgafbQoxOUXbqW8mjmagHgafdQoxOUXbqW8mjmagHgaffQoxOUXbqW8mjmagLgafhQoxOUXbqW8mjmagLgafjQoxOUXbqW8mjmagLgaflQoxOUXbqW8mjmagLgafnQoxOUXbqW8mjmagLgafpQoxOUXbqW8mjmahngafrQoxOUXbqW8mjmahngaftQoxOUXbqW8mjmahngafvQoxOUXbqW8mjmahngafxQoxOUXbqW8mjmahngafzQoxOUXbqW8mjmahngafBQoxOUXbqW8mjmahngafDQoxOUXbqW8mjmahngafFQoxOUXbqW8mjmahngafHQoxOUXbqW8mjmahngafJQoxOUXbqW8mjmahngafLQoxOUXbqW8mjmahngafNQoxOUXbqW8mjmahngafPQoxOUXbqW8mjmahngafRQoxOUXbqW8mjmahngafTQoxOUXbqW8mjmahngafVQoxOUXbqW8mjmahngafXQoxOUXbqW8mjmahngafZQoxOUXbqW8mjmahngaf1QoxOUXbqW8mjmahngaf3QoxOUXbqW8mjmamLgaf5QoxOUXbqW8mjmamLgaf7QoxOUXbqW8mjmamLgaf9QoxOUXbqW8mjmamLgaf_QoxOUXbqW8mjmamLgagbQoxOUXbqW8mjmamLgagdQoxOUXbqW8mjmamLgagfQoxOUXbqW8mjmamLgaghQoxOUXbqW8mjmamLgagjQoxOUXbqW8mjmamLgaglQoxOUXbqW8mjmamLgagnQoxOUXbqW8mjmamLgagpQoxOUXbqW8mjmamLgagrQoxOUXbqW8mjmamLgagtQoxOUXbqW8mjmamLgagvQoxOUXbqW8mjmamLgagxQoxOUXbqW8mjmamLgagzQoxOUXbqW8mjmamLgagBQoxOUXbqW8mjmamLgagDQoxOUXbqW8mjmamLgagFQoxOUXbqW8mjmam1gagHQoxOUXbqW8mjmam1gagJQoxOUXbqW8mjmam1gagLQoxOUXbqW8mjmam1gagNQoxOUXbqW8mjmam1gagPQoxOUXbqW8mjmam1gagRQoxOUXbqW8mjmam1gagTQoxOUXbqW8mjmam1gagVQoxOUXbqW8mjmam1gagXQoxOUXbqW8mjmam1gagZQoxOUXbqW8mjmam1gag1QoxOUXbqW8mjmam1gag3QoxOUXbqW8mjmam1gag5QoxOUXbqW8mjmam1gag7QoxOUXbqW8mjmam1gag9QoxOUXbqW8mjmam1gag_QoxOUXbqW8mjmam1gahbQoxOUXbqW8mjmam1gahdQoxOUXbqW8mjmam1gahfQoxOUXbqW8mjmam1gahh4Wzea";
+					break;
+				case "full_usable":
+					inv = "IYZ9q0aWtL6lSqumpddg_idbLx4yjayoO5EI7efddWWKfbAJL6lSqumpdcquhQoxOUXbqW8mjbqPQoxOUXbqW8mjbqRQoxOUXbqW8mjbqTQoxOUXbqW8mjbqVQoxOUXbqW8mjbqXQoxOUXbqW8mjbqZQoxOUXbqW8mjbq1QoxOUXbqW8mjbq3QoxOUXbqW8mjbq5QoxOUXbqW8mjbq7QoxOUXbqW8mjbq9QoxOUXbqW8mjbq_QoxOUXbqW8mjbriAJL6lSqumpdcqusoO5EI7efddWWKfeLQoxOUXbqW8mjbrj6JL6lSqumpdcqusMO5EI7efddWWKjeRQoxOUXbqW8mjcrlAJL6lSqumpdcqKs-O5EI7efddWWKjeXQoxOUXbqW8mjcrm6JL6lSqumpdcqKtwO5EI7efddWWKje3QoxOUXbqW8mjcroAJL6lSqumpdcqKtUO5EI7efddWWKje9QoxOUXbqW8mjdrp6JL6lSqumpdcq0ugO5EI7efddWWKnfdQoxOUXbqW8mjdrrAJL6lSqumpdcq0uEO5EI7efddWWKnfjQoxOUXbqW8mjdrs6JL6lSqumpdcq0u2O5EI7efddWWKnfpQoxOUXbqW8mjdruAJL6lSqumpdcrrftQoxOUXbqW8mjfevwO5EI7efddWWKurv6JL6lSqumpdcrrfzQoxOUXbqW8mjfevUO5EI7efddWWKvrxAJL6lSqumpdcrvfFQoxOUXbqW8mjfuwgO5EI7efddWWKvry6JL6lSqumpdcrvfLQoxOUXbqW8mjfKwEO5EI7efddWWKwrAAJL6lSqumpdcrzfRQoxOUXbqW8mjfKw2O5EI7efddWWKwrB6JL6lSqumpdcrDfXQoxOUXbqW8mjf0xoO5EI7efddWWKxrDAJL6lSqumpdcrDf3QoxOUXbqW8mjf0xMO5EI7efddWWKArE6JL6lSqumpdcrPf9QoxOUXbqW8mjgKx-O5EI7efddWWKArGaGAJL6lSqumpdcrPgacdQoxOUXbqW8mjg0yaiwO5EI7efddWWKBrGaH6JL6lSqumpdcrTgacjQoxOUXbqW8mjg0yaiUO5EI7efddWWKBrGaJAJL6lSqumpdcrXgacpQoxOUXbqW8mjheyajgO5EI7efddWWKCrGaK6JL6lSqumpdcrXgacvQoxOUXbqW8mjheyajEO5EI7efddWWKDrGaMAJL6lSqumpdcr1gacBQoxOUXbqW8mjhuyaj2O5EI7efddWWKDrGaN6JL6lSqumpdcr1gacHQoxOUXbqW8mjhKyakoO5EI7efddWWKErGaPAJL6lSqumpdcr9gacNQoxOUXbqW8mjh0yakMO5EI7efddWWKFrGaQ6JL6lSqumpdcr9gacTQoxOUXbqW8mjh0yak-O5EI7efddWWKFrGaSAJL6lSqumpdcr9gacZQoxOUXbqW8mjh0yalwO5EI7efddWWKFrGaT6JL6lSqumpdcr9gac5QoxOUXbqW8mjjbgac7QoxOUXbqW8mjjbgac9QoxOUXbqW8mjjbgac_QoxOUXbqW8mjjbgadbQoxOUXbqW8mjjbgaddQoxOUXbqW8mjjfgadfQoxOUXbqW8mjjfgadhQoxOUXbqW8mjjfgadjQoxOUXbqW8mjjfgadlQoxOUXbqW8mjjfgadnQoxOUXbqW8mjjngadpQoxOUXbqW8mjjngadrQoxOUXbqW8mjjngadtQoxOUXbqW8mjjngadvQoxOUXbqW8mjjngadxQoxOUXbqW8mjjngadzQoxOUXbqW8mjjngadBQoxOUXbqW8mjjngadDQoxOUXbqW8mjjngadFQoxOUXbqW8mjjngadHQoxOUXbqW8mjjngadJQoxOUXbqW8mjjngadLQoxOUXbqW8mjjngadNQoxOUXbqW8mjjngadPQoxOUXbqW8mjjngadRQoxOUXbqW8mjjngadTQoxOUXbqW8mjjngadVQoxOUXbqW8mjjngadXQoxOUXbqW8mjjngadZQoxOUXbqW8mjjngad1QoxOUXbqW8mjjrgad3QoxOUXbqW8mjjrgad5QoxOUXbqW8mjjrgad7QoxOUXbqW8mjjrgad9QoxOUXbqW8mjjrgad_QoxOUXbqW8mjjrgaebQoxOUXbqW8mjjrgaedQoxOUXbqW8mjjrgaefQoxOUXbqW8mjjrgaehQoxOUXbqW8mjjrgaejQoxOUXbqW8mjjvgaelQoxOUXbqW8mjjvgaenQoxOUXbqW8mjjvgaepQoxOUXbqW8mjjvgaerQoxOUXbqW8mjjvgaetQoxOUXbqW8mjjvgaevQoxOUXbqW8mjjvgaexQoxOUXbqW8mjjvgaezQoxOUXbqW8mjjvgaeBQoxOUXbqW8mjjvgaeDQoxOUXbqW8mjjzgaeFQoxOUXbqW8mjmagvgaeHQoxOUXbqW8mjmagvgaeJQoxOUXbqW8mjmagvgaeLQoxOUXbqW8mjmagvgaeNQoxOUXbqW8mjmagvgaePQoxOUXbqW8mjmagzgaeRQoxOUXbqW8mjmagzgaeTQoxOUXbqW8mjmagzgaeVQoxOUXbqW8mjmagzgaeXQoxOUXbqW8mjmagzgaeZQoxOUXbqW8mjmagDgae1QoxOUXbqW8mjmagDgae3QoxOUXbqW8mjmagDgae5QoxOUXbqW8mjmagDgae7QoxOUXbqW8mjmagDgae9QoxOUXbqW8mjmagHgae_QoxOUXbqW8mjmagHgafbQoxOUXbqW8mjmagHgafdQoxOUXbqW8mjmagHgaffQoxOUXbqW8mjmagHgafhQoxOUXbqW8mjmagLgafjQoxOUXbqW8mjmagLgaflQoxOUXbqW8mjmagLgafnQoxOUXbqW8mjmagLgafpQoxOUXbqW8mjmagLgafrQoxOUXbqW8mjmagPgaftQoxOUXbqW8mjmagTgafvQoxOUXbqW8mjmagXgafxQoxOUXbqW8mjmag1gafzQoxOUXbqW8mjmag5gafBQoxOUXbqW8mjmag9gafDQoxOUXbqW8mjmahbgafFQoxOUXbqW8mjmahfgafHQoxOUXbqW8mjmahjgafJQoxOUXbqW8mjmahngafLQoxOUXbqW8mjmahngafNQoxOUXbqW8mjmahngafPQoxOUXbqW8mjmahngafRQoxOUXbqW8mjmahngafTQoxOUXbqW8mjmahngafVQoxOUXbqW8mjmahngafXQoxOUXbqW8mjmahngafZQoxOUXbqW8mjmahngaf1QoxOUXbqW8mjmahngaf3QoxOUXbqW8mjmahngaf5QoxOUXbqW8mjmahngaf7QoxOUXbqW8mjmahngaf9QoxOUXbqW8mjmahngaf_QoxOUXbqW8mjmahngagbQoxOUXbqW8mjmahngagdQoxOUXbqW8mjmahngagfQoxOUXbqW8mjmahngaghQoxOUXbqW8mjmahngagjQoxOUXbqW8mjmahngaglQoxOUXbqW8mjmamLgagnQoxOUXbqW8mjmamLgagpQoxOUXbqW8mjmamLgagrQoxOUXbqW8mjmamLgagtQoxOUXbqW8mjmamLgagvQoxOUXbqW8mjmamLgagxQoxOUXbqW8mjmamLgagzQoxOUXbqW8mjmamLgagBQoxOUXbqW8mjmamLgagDQoxOUXbqW8mjmamLgagFQoxOUXbqW8mjmamLgagHQoxOUXbqW8mjmamLgagJQoxOUXbqW8mjmamLgagLQoxOUXbqW8mjmamLgagNQoxOUXbqW8mjmamLgagPQoxOUXbqW8mjmamLgagRQoxOUXbqW8mjmamLgagTQoxOUXbqW8mjmamLgagVQoxOUXbqW8mjmamLgagXQoxOUXbqW8mjmamLgagZQoxOUXbqW8mjmam1gag1QoxOUXbqW8mjmam1gag3QoxOUXbqW8mjmam1gag5QoxOUXbqW8mjmam1gag7QoxOUXbqW8mjmam1gag9QoxOUXbqW8mjmam1gag_QoxOUXbqW8mjmam1gahbQoxOUXbqW8mjmam1gahdQoxOUXbqW8mjmam1gahfQoxOUXbqW8mjmam1gahhQoxOUXbqW8mjmam1gahjQoxOUXbqW8mjmam1gahlQoxOUXbqW8mjmam1gahnQoxOUXbqW8mjmam1gahpQoxOUXbqW8mjmam1gahrQoxOUXbqW8mjmam1gahtQoxOUXbqW8mjmam1gahvQoxOUXbqW8mjmam1gahxQoxOUXbqW8mjmam1gahzQoxOUXbqW8mjmam1gahB4qlpa";
+					break;
+				case "wall":
+					inv = "IYZ9q0aWtL6lSqumpddg_idma-MvFHGKbG6JL6lSqumpdctapQqwO5EI7efddWWKWd60hQoxOUXbqW8mjma-XcMO5EI7efddWWKWd7uk6JL6lSqumpdctapUqTQoxOUXbqW8mjma-9c-O5EI7efddWWKWd8emAJL6lSqumpdctapXqZQoxOUXbqW8mjma_jdwO5EI7efddWWKWd80n6JL6lSqumpdctap0q5QoxOUXbqW8mjma_vdUO5EI7efddWWKWd9KpAJL6lSqumpdctap3q_441_I";
+					break;
+				case "all":
+					inv = "IYZ9q0aWtL6lSqumpddg_idbLx4yjayoO5EI7efddWWKjbAJL6lSqumpdcq0hQoxOUXbqW8mjfekAJL6lSqumpdcrvcUO5EI7efddWWKwqTQoxOUXbqW8mjf0l6JL6lSqumpdcrHdgO5EI7efddWWKzqZQoxOUXbqW8mjgKnAJL6lSqumpdcrTdEO5EI7efddWWKCq5QoxOUXbqW8mjhuo6JL6lSqumpdcr5d2O5EI7efddWWKFq_QoxOUXbqW8mjjbeHQoxOUXbqW8mjjfeJQoxOUXbqW8mjjjeLQoxOUXbqW8mjjneNQoxOUXbqW8mjjrePQoxOUXbqW8mjjveRQoxOUXbqW8mjjzeTQoxOUXbqW8mjmagveVQoxOUXbqW8mjmagzeXQoxOUXbqW8mjmagDeZQoxOUXbqW8mjmagHe1QoxOUXbqW8mjmagLe3QoxOUXbqW8mjmagPe5QoxOUXbqW8mjmagTe7QoxOUXbqW8mjmagXe9QoxOUXbqW8mjmag1e_QoxOUXbqW8mjmag5fbQoxOUXbqW8mjmag9fdQoxOUXbqW8mjmahbffQoxOUXbqW8mjmahffhQoxOUXbqW8mjmahjfjQoxOUXbqW8mjmahnflQoxOUXbqW8mjmamLfnQoxOUXbqW8mjmamPfpQoxOUXbqW8mjmamTfrQoxOUXbqW8mjmamXftQoxOUXbqW8mjmam1fvQoxOUXbqW8mjmam5fxQoxOUXbqW8mjmam9fzQoxOUXbqW8mjmanbfBQoxOUXbqW8mjma-LfDQoxOUXbqW8mjma-PfFQoxOUXbqW8mjma-TfHQoxOUXbqW8mjma-XfJQoxOUXbqW8mjma-1fLQoxOUXbqW8mjma-5fNQoxOUXbqW8mjma-9fPQoxOUXbqW8mjma_bfRQoxOUXbqW8mjma_ffTQoxOUXbqW8mjma_jfVQoxOUXbqW8mjma_nfXQoxOUXbqW8mjma_rfZQoxOUXbqW8mjma_vf1QoxOUXbqW8mjma_zf3QoxOUXbqW8mjma_Df54GoNp";
+					break;
+			}
+			var so = new SWFObject("roomsDEV.swf", "rooms", currentData.w, currentData.h, "0", "null");
+			so.addParam("allowscriptaccess", "always");
+			so.addParam("scale", "noscale");
+			so.addParam("menu", "false");
+			so.addParam("wmode", "transparent");
+			so.addVariable("gid", "6951");
+			so.addVariable("date", "2023-12-01 12:00:00");
+			so.addVariable("seed", "752817");
+			so.addVariable("inv", inv);
+			so.write("table");
+		}
+
+		function changeSize(size) {
+			if(size === "big") {
+				currentData.w = "656";
+				currentData.h = "518";
+			} else {
+				currentData.w = defaultData.w;
+				currentData.h = defaultData.h;
+			}
+			setSWF();
+		}
+
+		function changeInventory(inv) {
+			if(!inv) return;
+			currentData.inv = inv;
+			setSWF();
+		}
+
+		function RoomDecodedData(data) {
+			console.log("RoomDecodedData()", data);
+		}
+
+		function RoomEncodeData() {
+			var arr = [];
+			var dbid = 0;
+			for(var i = 1; true; i++) {
+				if(i === 23) i = 101; // 0 < n < 23 = "mc_furnitures"
+				else if(i === 116) i = 201; // 100 < n < 116 = "mc_tables"
+				else if(i === 209) i = 1001; // 200 < n < 209 = "mc_chair"
+				else if(i === 1016) break; // 1000 < n < 1016 = "mc_wallFurn"
+				var qty = 5;
+				switch(currentData.inv) {
+					case "existing_usable":
+					case "full_usable":
+					default:
+						var isExclusive = (currentData.inv === "full_usable");
+						switch(i) {
+							case 1: qty = 20; break; // banquette confortable
+							case 2: qty = 10; break; // ficus caféiné
+							case 3: qty = 10; break // ficus overdosé
+							case 8: qty = 0; break; // comptoir
+							case 9: qty = 0; break; // chaise du comptoir
+							case 14: qty = 2; break; // boîte à musique
+							case 15: qty = 10; break // banquette très confortable
+							case 18: qty = 0; break; // élément de décor de la borne de danse
+							case 19: qty = 20; break; // cloison
+							case 20: qty = 10; break; // petit touffu
+							case 21: qty = 10; break; // grande tijue fleurie
+							case 22: qty = Number(isExclusive); break; // trophée
+							case 106: case 107: case 108: case 109: case 110: case 111: case 112: case 113: case 114: qty = Number(isExclusive); break; // tables de champion
+							case 115: qty = 20; break; // table très classe
+							case 201: case 205: qty = 20; break; // chaises
+							case 202: case 203: case 204: case 206: case 207: case 208: qty = 0; break; // chaises (les mêmes que 201 et 205, données uniquement présentes pour des raisons techniques)
+							default:
+								if(i > 1000) qty = 0; // tableaux et objets muraux
+								break;
+						}
+						break;
+					case "wall":
+						qty = 0;
+						if(i > 1000) qty = 1;
+						break;
+					case "all":
+						qty = 1;
+						break;
+				}
+				for(var j = 0; j < qty; j++) {
+					arr.push({
+						_dbid: ++dbid,
+						_id: i,
+						_uname: "El Papa"
+					});
+				}
+			}
+			console.log("RoomEncodeData()", arr);
+			return arr;
+		}
+	</script>
+</body>
+</html>

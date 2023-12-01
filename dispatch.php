@@ -614,7 +614,7 @@ switch($page) {
 			}
 		}
 		// NOTE : Le "seed" ci-dessous ne devrait pas être généré aléatoirement. Sur cafejeux.com, sa valeur était toujours la même pour une table donnée.
-		// La valeur du "seed" correspond en effet à la position et la couleur du tapis de la salle. Celui-ci ne change jamais et est sélectionné aléatoirement à la création de la table.
+		// La valeur du "seed" correspond en effet au style et à la couleur du tapis de la salle. Celui-ci ne change jamais et est sélectionné aléatoirement à la création de la table.
 		// Néanmoins, le "seed" influence aussi la position des personnages et leurs interactions dans la salle, sur la vignette Flash. Pour cette raison, il est intéressant ici de le générer aléatoirement.
 		$data = get_content($pageUrl . $f . $pageExt);
 		$data = str_replace("{ARCHIVE_TABLE_DATETIME}", $date, $data);

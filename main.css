@@ -47,6 +47,9 @@ a.buttonOff, a.button, a.groupButton {
 #groupMain .table.tableClick.members a {
 	text-decoration: none;
 }
+#rankingContainer .gameHelp.gameScore .gameHelpHeader {
+	overflow-x: hidden;
+}
 
 /***********************************/
 
