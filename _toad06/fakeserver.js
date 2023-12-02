@@ -147,7 +147,7 @@ function CJGame_Action(data) {
 				Paturage_Move(data);
 			}
 			break;
-		case 13: // Boum - Prototype de Anticorp's
+		case 14: // Boum - Prototype de Anticorp's
 			if(step === 0) {
 				isInit = true;
 				Boum_Init(data);
@@ -155,6 +155,16 @@ function CJGame_Action(data) {
 				Boum_SendTurn(data);
 			} else {
 				Boum_Victory();
+			}
+			break;
+		case 15: // Utopiz
+			if(step === 0) {
+				isInit = true;
+				Utopiz_Init(data);
+			} else if(step === 1) {
+				Utopiz_AddBlock(data);
+			} else {
+				Utopiz_EndBlock(data);
 			}
 			break;
 	}
@@ -180,7 +190,7 @@ function CJGame_Action(data) {
 				}
 				return undefined;
 			}
-			if(CJGame_PlayData.game !== 13) {
+			if(CJGame_PlayData.game !== 14) {
 				playSound("game_started");
 			}
 			if(IN_IFRAME) {
@@ -787,6 +797,21 @@ function Boum_SendTurn(data) {
 }
 
 function Boum_Victory() {}
+
+
+function Utopiz_Init(data) {
+	var team = data[2];
+}
+
+function Utopiz_AddBlock(data) {
+	var type = data[2];
+	var bottom = data[3];
+}
+
+function Utopiz_EndBlock(data) {
+	var type = data[2];
+	var bottom = data[3];
+}
 
 
 /**************************/

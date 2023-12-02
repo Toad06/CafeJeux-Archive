@@ -115,14 +115,16 @@
 			{name: "Crumble", swf: PATH_SWF + "crumble.20071115175911.swf"},							// 3
 			{name: "Magmax Battle", swf: PATH_SWF + "magmax.20071115180341.swf"},						// 4
 			{name: "Quat'Cinelle", swf: PATH_SWF + "quat.20071115180452.swf"},							// 5
-			{name: "Anticorp's", swf: PATH_SWF_EDITED + "miniwar_mine_plus.swf"},						// 6
+			{name: "Anticorp's", swf: PATH_SWF_EDITED + "miniwar_mine_plus_grenadefix.swf"},			// 6
 			{name: "Marbils", swf: PATH_SWF + "marbil.20071115175812.swf"},								// 7
 			{name: "Ferme-la !", swf: PATH_SWF_EDITED + "ferme.swf"},									// 8
 			{name: "Trigolo", swf: PATH_SWF + "trifus.20110927104829.swf"},								// 9
-			null,
+			null, // (erreur ou l'un des jeux jamais sortis ?)
 			{name: "Hordes Insurrection !", swf: PATH_SWF_EDITED + "hordes.swf"},						// 11
 			{name: "Starsheep Brouteurs", swf: PATH_SWF + "paturage.unreleased.swf"},					// 12
-			{name: "Boum : Prototype de Anticorp's", swf: PATH_SWF + "miniwar.prototype.swf"}			// 13
+			null, // réservé pour "Arlequin", si le code source est communiqué un jour
+			{name: "Boum : Prototype de Anticorp's", swf: PATH_SWF + "miniwar.prototype.swf"},			// 14
+			{name: "Utopiz", swf: PATH_SWF_EDITED + "utopiz/utopiz_v100.swf"}							// 15
 		];
 		var game = (function() {
 			var DEFAULT_GAME = 1;
@@ -132,7 +134,7 @@
 				index = DEFAULT_GAME;
 				game = games[DEFAULT_GAME];
 			}
-			if(index === 13 && ENABLE_UNIQUE_CLIENT) ENABLE_UNIQUE_CLIENT = false;
+			if(index === 14 && ENABLE_UNIQUE_CLIENT) ENABLE_UNIQUE_CLIENT = false;
 			game.index = index;
 			document.title = game.name + " - CaféJeux - Mode multijoueurs local par Toad06";
 			return game;

@@ -375,7 +375,7 @@ switch($page) {
 			$data .= $parsedMessage;
 		}
 		break;
-	case "_redirect_to_edit_room": // NOTE : Cette page est spécifique à l'archive, elle effectue la redirection vers la page "Déplacer les meubles" de la table "CaféJeux 2007-2020" depuis la rubrique spéciale.
+	case "_redirect_to_edit_room": // NOTE : Cette page est spécifique à l'archive, elle effectue la redirection vers la page "Déplacer les meubles" de la table "CaféJeux 2007-2020", depuis la rubrique spéciale.
 		$data = get_content("pages/group/6951.html");
 		$data .= "<load>group/6951/editRoom</load>";
 		$data = str_replace("{ARCHIVE_LOAD_TABLE}", "chat", $data);

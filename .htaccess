@@ -1,3 +1,4 @@
+AddCharset UTF-8 .css .html .js .txt .xml
 Options +Indexes
 
 

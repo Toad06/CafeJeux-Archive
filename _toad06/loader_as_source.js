@@ -700,7 +700,7 @@ function Game_Obfuscation() {
 		onTurnDone: "4fHu{",
 		onVictory: "8Z[e,("
 	};
-	if(_global.fvIndex === 13) {
+	if(_global.fvIndex === 14) {
 		// "1nTw,(" = "message". Utilisé par le prototype de Anticorp's qui semble dépendre d'une ancienne version du loader.
 		obj["onMessage"] = "1nTw,(";
 	}
