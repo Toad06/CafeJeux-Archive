@@ -206,9 +206,10 @@
 	}
 	(function() {
 		var icon;
+		var shortName = null;
 		switch(Game_Id) {
 			default: icon = "expanz.gif"; break; case 2: icon = "amonite.gif"; break; case 3: icon = "crumble.gif"; break; case 4: icon = "magmax.gif"; break; case 5: icon = "quat.gif"; break;
-			case 6: icon = "miniwar.gif"; break; case 7: icon = "marbil.gif"; break; case 8: icon = "ferme.gif"; break; case 9: icon = "trifus.gif"; break; case 11: icon = "hordes.gif"; break;
+			case 6: icon = "miniwar.gif"; break; case 7: icon = "marbil.gif"; break; case 8: icon = "ferme.gif"; break; case 9: icon = "trifus.gif"; break; case 11: icon = "hordes.gif"; shortName = "Insurrection"; break;
 		}
 		var main = document.getElementById("main");
 		var game = main.querySelector("div.game");
@@ -222,7 +223,7 @@
 
 		// Nom du jeu.
 		var nameTag = main.querySelector("h1");
-		var name = nameTag.innerHTML.split("</strong>")[1].trim();
+		var name = nameTag.innerHTML.split("</strong>")[1].trim().replace(/  +/g, " ");
 		var newName = name.split(" ");
 		if(newName.length > 1 && newName[1].length > 1) {
 			newName[0] = "<strong>" + newName[0] + "</strong>";
@@ -233,7 +234,7 @@
 		// "Une partie est en cours".
 		var menuBar = document.getElementById("menuBtnBar");
 		menuBar.id = "menuBtnPlaying";
-		menuBar.innerHTML = '<a href="#" onclick="return false;"><img src="games/icon/' + icon + '" alt="" /></a> <a href="#" onclick="return false;">' + name + '</a> <em>une partie est en cours</em>';
+		menuBar.innerHTML = '<a href="#" onclick="return false;"><img src="games/icon/' + icon + '" alt="" /></a> <a href="#" onclick="return false;">' + (shortName !== null ? shortName : name) + '</a> <em>une partie est en cours</em>';
 
 		// Bouton "Abandonner la partie".
 		var abandon = game.querySelector("#backButton a");
@@ -315,11 +316,10 @@
 		so.write(divName);
 
 		// Jeu et bouton "Signaler un comportement anormal".
-		// Note : "width:301px;" n'est pas une erreur. Flash Player ne produit pas de rendu graphique pour les éléments non visibles.
-		// Ce pixel supplémentaire oblige donc Flash Player à faire l'affichage, ce qui rend généralement le passage d'un client SWF (joueur) à l'autre imperceptible pour l'utilisateur.
+		// Note : cafejeux.com chargeait directement le fichier SWF au lieu de le faire via un élément IFRAME.
 		var gameZone = game.querySelector("#gameZone");
 		gameZone.innerHTML = '<div class="gameClient">' +
-			'<iframe src="_toad06/?game={ARCHIVE_GAME_ID}{ARCHIVE_GAME_OPTIONS}" width="300" height="300" class="swf" frameborder="0" scrolling="no" style="width:301px; margin:0px; padding:0px; overflow:hidden;"></iframe>' +
+			'<iframe src="_toad06/?game={ARCHIVE_GAME_ID}{ARCHIVE_GAME_OPTIONS}" width="300" height="300" class="swf" frameborder="0" scrolling="no" style="overflow:hidden;"></iframe>' +
 			'<a href="#" class="button b_stop" onclick="return false;" style="width:260px; margin-top:10px;">Signaler un comportement anormal</a>' +
 			'</div>';
 	})();

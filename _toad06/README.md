@@ -1,18 +1,25 @@
 # Les jeux multijoueurs de CaféJeux en mode local
-<em>Version 1.5-dev (02/12/2023)</em><br/>
+<em>Version 1.5-dev (04/12/2023)</em><br/>
 <em>Auteur : Toad06, sur la base des codes sources des jeux publiés par Motion Twin.</em>
 
 <em>Notes de version :</em><br/>
 - Ajout de Utopiz (voir la section sur ce jeu en bas du présent document pour plus d'informations).
-- Correction d'un bug dans Anticorp's qui était déjà présent dans le jeu d'origine, quand une grenade reste coincée dans le décor au moment de son lancement.
+- Ajout de la possibilité de spécifier les noms des deux joueurs via un paramètre dans l'URL.
+- Ajout d'un bouton permettant de masquer l'historique des messages envoyés par certains jeux.
+- Amélioration du rendu visuel quand la fenêtre de jeu unique est activée (meilleure transition d'un joueur à l'autre).
+- Correction d'un bug affectant "Ferme-la" qui affichait le texte "Tour de votre adversaire : $other" en fin de partie.
+- Correction d'un bug dans "Anticorp's" déjà présent dans le jeu d'origine, quand une grenade reste coincée dans le décor au moment de son lancement.
 
 ---
 
 Cette section comporte plusieurs fichiers inédits permettant de faire fonctionner les jeux de CaféJeux en mode local (monoposte).
 
-Pour ce faire, suivez la procédure d'installation de l'archive indiquée dans le fichier <a href="../README.md">README.md</a> principal, puis ouvrez `_toad06/?game=[INDEX]` depuis le navigateur. `[INDEX]` doit être remplacé par l'identifiant du jeu à charger, les index sont les mêmes que ceux du site CaféJeux (avec quelques petites exclusivités en plus !). Ils sont également indiqués ci-dessous, accompagnés de différentes remarques sur l'état de fonctionnement des jeux.
+Pour ce faire, suivez la procédure d'installation de l'archive indiquée dans le fichier <a href="../README.md">README.md</a> principal, puis ouvrez `_toad06/?game=[INDEX]` depuis le navigateur. `[INDEX]` doit être remplacé par l'identifiant du jeu à charger, les index sont les mêmes que ceux du site CaféJeux (avec quelques petites exclusivités en plus !). Ils sont également indiqués plus bas sur ce document, accompagnés de différentes remarques sur l'état de fonctionnement des jeux.
 
-Par ailleurs, si vous souhaitez n'afficher qu'une seule fenêtre de jeu sur la page (celle du joueur dont c'est le tour), ajoutez le paramètre `&unique=1` dans l'URL.
+Des paramètres de configuration optionnels sont également disponibles :
+- Pour n'afficher qu'une seule fenêtre de jeu sur la page (celle du joueur dont c'est le tour), ajoutez le paramètre `&unique=1` dans l'URL.
+- Pour afficher le nom des deux joueurs, ajoutez le paramètre `&players=[NOM_1],[NOM_2]` dans l'URL, en remplaçant `[NOM_1]` et `[NOM_2]` par les noms à utiliser. L'ordre de départ des joueurs est déterminé aléatoirement.
+- Certains jeux utilisent des paramètres qui leur sont spécifiques. Vous les trouverez ci-dessous.
 
 
 ## eXpanz
@@ -80,4 +87,4 @@ Par ailleurs, si vous souhaitez n'afficher qu'une seule fenêtre de jeu sur la p
 ## Utopiz - Jeu non finalisé
 ### Index : 15
 - Jeu fonctionnel. Son développement n'a toutefois jamais été finalisé par Motion Twin et il n'y a donc ni objectif ni moyen d'arriver au terme d'une partie en l'état actuel.
-- Ce jeu donne l'impression de ne pas avoir été conçu pour CaféJeux au départ : le style graphique fait penser à Frutiparc et les éléments de décor sont redimensionnés et apparaissent petits à l'écran.
+- Ce jeu donne l'impression de ne pas avoir été conçu pour CaféJeux en premier lieu : le nom se terminant par "iz" et le style graphique font penser à Frutiparc; de plus, les éléments de décor sont redimensionnés et apparaissent petits à l'écran.

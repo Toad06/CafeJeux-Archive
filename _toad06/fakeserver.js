@@ -1,10 +1,10 @@
 function CJGame_Action(data) {
 	if(data === undefined) return undefined;
 	var game = data[0];
-	var player = ~~data[1];
+	var player = Math.floor(data[1]);
 	data = data[2];
 	// console.error(data);
-	var step = ~~data[1];
+	var step = Math.floor(data[1]);
 	var isInit = false;
 	switch(game) {
 		case 1: // eXpanz
@@ -190,12 +190,14 @@ function CJGame_Action(data) {
 				}
 				return undefined;
 			}
-			if(CJGame_PlayData.game !== 14) {
-				playSound("game_started");
-			}
-			if(IN_IFRAME) {
-				WINDOW_TOP.Game_Event(["start"]);
-				CJGame_UpdateTimers(-1);
+			if(player === 2) {
+				if(CJGame_PlayData.game !== 14) {
+					playSound("game_started");
+				}
+				if(IN_IFRAME) {
+					WINDOW_TOP.Game_Event(["start"]);
+					CJGame_UpdateTimers(-1);
+				}
 			}
 		}
 	}
@@ -355,7 +357,9 @@ function CJGame_SetInfos(data) {
 			if(player !== turn) return;
 			break;
 		case 8: // Ferme-la !
+		case 15: // Utopiz
 			if(player !== turn) return;
+			if(html.indexOf("$other") !== -1) return;
 			html = reverseScores(html, player);
 			html = html.replace("$me", window["PLAYER_" + player + "_NAME"]).replace(" ,", ",");
 			break;
@@ -434,6 +438,9 @@ function CJGame_Over(data) {
 		document.getElementById("player_2").className = "";
 	} else {
 		TimerActive.stop();
+		if(!CJGame_PlayData.timeOver) {
+			clearInterval(TimerInterval);
+		}
 		WINDOW_TOP.Game_Event(["end", data]);
 	}
 }

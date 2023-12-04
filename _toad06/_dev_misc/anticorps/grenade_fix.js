@@ -1,4 +1,5 @@
 // Correction du bug de la grenade dans Anticorp's.
+// Inclut dans l'archive à partir de la version 1.5 du loader.
 //
 // Ce problème survient lorsque le cosmo se situe dans une zone tellement serrée que sa tête touche une paroi opposée à celle où il a ses pieds.
 // En utilisant une grenade dans cette situation, celle-ci reste coincée dans la paroi et n'explose jamais. Cela a pour conséquence de bloquer la partie (softlock).
@@ -6,6 +7,7 @@
 
 
 // Fichier : Cosmo.hx (dans le code source fourni par Motion Twin)
+
 function newShot(type:Int, angle:Float, ?power:Float) {
 	if(power == null) power = 1;
 
@@ -30,7 +32,8 @@ function newShot(type:Int, angle:Float, ?power:Float) {
 
 
 // Le code précédent peut être changé directement dans le fichier Flash avec le logiciel "JPEXS Free Flash Decompiler", en ajoutant le P-code ci-dessous au bon endroit dans la fonction mentionnée.
-// Du fait de l'offuscation, la fonction "newShot" se nomme "8A1T3(" dans le SWF. Les autres valeurs sont également différentes, comme vous le constaterez ci-dessous.
+// Du fait de l'offuscation, la fonction "newShot" se nomme "8A1T3(" dans le SWF. Les autres valeurs sont également différentes, comme cela peut être constaté ci-dessous.
+
 Push register2, 3
 Equals2
 PushDuplicate
