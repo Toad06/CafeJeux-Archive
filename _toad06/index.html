@@ -18,16 +18,15 @@
 		#container {
 			margin: auto;
 			text-align: center;
-			visibility: hidden;
 		}
 		#overlay {
 			 position: absolute;
-			 display: none;
 			 width: 100%;
 			 height: 100%;
 			 top: 0px;
 			 left: 0px;
 			 z-index: 1000;
+			 background-color: #000;
 		}
 		#div_client_1, #div_client_2 {
 			display: inline-block;
@@ -143,9 +142,16 @@
 				index = DEFAULT_GAME;
 				game = games[DEFAULT_GAME];
 			}
-			if(index === 14 && ENABLE_UNIQUE_CLIENT) ENABLE_UNIQUE_CLIENT = false;
+			game = JSON.parse(JSON.stringify(game));
 			game.index = index;
 			document.title = game.name + " - CaféJeux - Mode multijoueurs local par Toad06";
+			if(index === 14 && ENABLE_UNIQUE_CLIENT) ENABLE_UNIQUE_CLIENT = false;
+			if(index === 6) {
+				var specialFile = parseInt(window.location.href.split("reverse=")[1], 10);
+				if(specialFile === 1 || (specialFile === 99 && Math.random() > 0.5)) {
+					game.swf = PATH_SWF_EDITED + "miniwar_fun_bluefirst.swf";
+				}
+			}
 			return game;
 		})();
 		var options = (function() {
@@ -214,7 +220,9 @@
 			}
 			var gameIntervalInit = setInterval(function() {
 				if(CJGame_IsPreviousClientLoaded.clients.length >= 2 + Number(ENABLE_SPECTATOR_CLIENT)) {
-					document.getElementById("container").style.visibility = "visible";
+					var overlay = document.getElementById("overlay");
+					overlay.style.display = "none";
+					overlay.style.backgroundColor = "transparent";
 					updateUniqueWindow(-1);
 					clearInterval(gameIntervalInit);
 				}

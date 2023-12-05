@@ -1,5 +1,5 @@
-// Correction du bug de la grenade dans Anticorp's.
-// Inclut dans l'archive à partir de la version 1.5 du loader.
+// Correctif pour le bug de la grenade dans Anticorp's.
+// Inclus dans l'archive à partir de la version 1.5 du loader.
 //
 // Ce problème survient lorsque le cosmo se situe dans une zone tellement serrée que sa tête touche une paroi opposée à celle où il a ses pieds.
 // En utilisant une grenade dans cette situation, celle-ci reste coincée dans la paroi et n'explose jamais. Cela a pour conséquence de bloquer la partie (softlock).

@@ -1,4 +1,4 @@
-function CJGame_Action(data) {
+function CJGame_Action(data) {console.log(data)
 	if(data === undefined) return undefined;
 	var game = data[0];
 	var player = Math.floor(data[1]);
@@ -191,8 +191,13 @@ function CJGame_Action(data) {
 				return undefined;
 			}
 			if(player === 2) {
-				if(CJGame_PlayData.game !== 14) {
+				if(game !== 14) {
 					playSound("game_started");
+					if(game === 6) {
+						// Affichage "manuel" des couleurs pour Anticorp's, puisque le jeu ne le prévoit pas.
+						if(games[game].swf === window.game.swf) CJGame_SetColors([1, 0xFF0000, 0x5F8EFE]);
+						else CJGame_SetColors([1, 0x5F8EFE, 0xFF0000]);
+					}
 				}
 				if(IN_IFRAME) {
 					WINDOW_TOP.Game_Event(["start"]);
@@ -298,8 +303,8 @@ function CJGame_SetColors(data) {
 		}
 		if(CJGame_PlayData.game === 12) {
 			// Dans Starsheep Brouteurs, les couleurs définies n'ont rien à voir avec celles des moutons, on corrige cela ici.
-			col1 = 16692404;
-			col2 = 12239103;
+			col1 = 0xFEB4B4;
+			col2 = 0xBAC0FF;
 		}
 	} else {
 		// Dans eXpanz, la couleur des joueurs change à chaque tour.

@@ -50,6 +50,16 @@ a.buttonOff, a.button, a.groupButton {
 #rankingContainer .gameHelp.gameScore .gameHelpHeader {
 	overflow-x: hidden;
 }
+a.contactButton {
+	margin-top: 0px;
+}
+.game .chat #input input.button {
+	line-height: normal;
+}
+.groupChat input.button {
+	font-size: 10pt;
+	line-height: normal;
+}
 
 /***********************************/
 
@@ -98,7 +108,7 @@ a.buttonOff, a.button, a.groupButton {
 }
 
 /* La feuille de style originale prévoit d'afficher le texte en gras pour ces deux règles. */
-/* Dans les faits, ce n'était pas le cas car les pseudos étaient insérés dans des éléments <a> dont l'une des règles CSS est... d'utiliser un niveau de graisse normale. */
+/* Dans les faits, ce n'était pas le cas sur cafejeux.com car les pseudos étaient insérés dans des éléments <a> dont l'une des règles CSS est... d'utiliser un niveau de graisse normale. */
 /* Les pseudos ne sont pas pas cliquables dans l'archive, notamment pour éviter des interactions non désirées, d'où l'ajout ci-dessous. */
 .p2turn .chat .users .field2, .p1turn .chat .users .field1 {
 	font-weight: normal;
