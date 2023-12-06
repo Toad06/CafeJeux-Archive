@@ -6,8 +6,8 @@
 - Ajout de Utopiz (voir la section sur ce jeu en bas du présent document pour plus d'informations).
 - Ajout de la possibilité de spécifier les noms des deux joueurs via un paramètre dans l'URL.
 - Ajout d'un bouton permettant de masquer l'historique des messages envoyés par certains jeux.
-- Ajout du système de couleurs pour Anticorp's, indiquant à quelle équipe un cosmo est rattaché.
-- Ajout d'une option dans Anticorp's permettant aux cosmos bleus de commencer en premier.
+- Ajout du système de couleurs pour Anticorp's, rappelant aux joueurs l'équipe qu'ils dirigent.
+- Ajout d'une option pour Anticorp's permettant aux cosmos bleus de commencer en premier.
 - Amélioration du rendu visuel quand la fenêtre de jeu unique est activée (meilleure transition d'un joueur à l'autre), cela concerne aussi la partie site.
 - Correction d'un bug affectant "Ferme-la" qui affichait le texte "Tour de votre adversaire : $other" en fin de partie.
 - Correction d'un bug dans "Anticorp's" qui était déjà présent dans le jeu d'origine, quand une grenade reste coincée dans le décor au moment de son lancement.
@@ -18,7 +18,7 @@ Cette section comporte plusieurs fichiers inédits permettant de faire fonctionn
 
 Pour ce faire, suivez la procédure d'installation de l'archive indiquée dans le fichier <a href="../README.md">README.md</a> principal, puis ouvrez `_toad06/?game=[INDEX]` depuis le navigateur. `[INDEX]` doit être remplacé par l'identifiant du jeu à charger, les index sont les mêmes que ceux du site CaféJeux (avec quelques petites exclusivités en plus !). Ils sont également indiqués plus bas dans ce document, accompagnés de différentes remarques sur l'état de fonctionnement des jeux.
 
-Des paramètres de configuration optionnels sont également disponibles :
+Par ailleurs, des paramètres de configuration optionnels sont disponibles :
 - Pour n'afficher qu'une seule fenêtre de jeu sur la page (celle du joueur dont c'est le tour), ajoutez le paramètre `&unique=1` dans l'URL.
 - Pour personnaliser le nom des deux joueurs, ajoutez le paramètre `&players=[NOM_1],[NOM_2]` dans l'URL, en remplaçant `[NOM_1]` et `[NOM_2]` par les noms à utiliser. L'ordre de départ des joueurs est déterminé aléatoirement.
 - Certains jeux utilisent des paramètres qui leur sont propres. Vous les trouverez ci-dessous.

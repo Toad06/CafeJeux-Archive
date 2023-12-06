@@ -54,9 +54,9 @@ switch($page) {
 	case "head":
 	case "_special/head":
 		$isPagePublic = true;
-		if(!$isUserFullLoggedIn || $dayChanged) {
+		if($page === "head" && (!$isUserFullLoggedIn || $dayChanged)) {
 			$data = get_content($pageUrl . "_guest" . $pageExt);
-			if($dayChanged && $page === "head") {
+			if($dayChanged) {
 				$data .= '<fill id="headBar"></fill><fill id="menu"></fill>';
 			}
 		} else {

@@ -11,8 +11,8 @@ public function onMessage(flMine:Bool, msg) {
 	switch(msg) {
 		case Init(levelType, seed):
 			// (...)
-			colorId = 1; // Changer la valeur, de 0 à 1.
-			if(!flMain) colorId = 0; // // Changer la valeur, de 1 à 0.
+			colorId = 1; // Valeur changée, de 0 à 1.
+			if(!flMain) colorId = 0; // Valeur changée, de 1 à 0.
 			// (...)
 	}
 }
@@ -22,9 +22,9 @@ public function onMessage(flMine:Bool, msg) {
 
 public function new(mc, type, flMine) {
 	// (...)
-	colorId = 1; // Changer la valeur, de 0 à 1.
+	colorId = 1; // Valeur changée, de 0 à 1.
 	// (...)
-	if(!flColor) colorId = 0; // Changer la valeur, d'une incrémentation à une valeur fixe de 0.
+	if(!flColor) colorId = 0; // Valeur changée, d'une incrémentation à une valeur fixe de 0.
 	// (...)
 }
 

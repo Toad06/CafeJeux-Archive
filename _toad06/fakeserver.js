@@ -1,4 +1,4 @@
-function CJGame_Action(data) {console.log(data)
+function CJGame_Action(data) {
 	if(data === undefined) return undefined;
 	var game = data[0];
 	var player = Math.floor(data[1]);

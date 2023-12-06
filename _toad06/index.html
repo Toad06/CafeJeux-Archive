@@ -180,7 +180,7 @@
 			if(names.length !== 2) return;
 			names[0] = names[0].trim(); names[1] = names[1].trim();
 			if(names[0].length === 0 || names[1].length === 0) return;
-			var first = Number(Math.random() > 0.5);
+			var first = (Math.random() > 0.5 ? 0 : 1);
 			PLAYER_1_NAME = names[first];
 			PLAYER_2_NAME = names[1 >> first];
 		})();
@@ -231,12 +231,12 @@
 
 		function changeSize(elem) {
 			var w = 300, h = 300;
-			if(elem.innerHTML === elem.defaultText || !elem.defaultText) {
-				if(!elem.defaultText) elem.defaultText = elem.innerHTML;
-				elem.innerHTML = elem.defaultText.replace("x1", "x2");
+			if(elem.innerHTML === elem._defaultText || !elem._defaultText) {
+				if(!elem._defaultText) elem._defaultText = elem.innerHTML;
+				elem.innerHTML = elem._defaultText.replace("x1", "x2");
 				w *= 2; h *= 2;
 			} else {
-				elem.innerHTML = elem.defaultText;
+				elem.innerHTML = elem._defaultText;
 			}
 			var divClient1 = document.getElementById("div_client_1");
 			var divClient2 = document.getElementById("div_client_2");
@@ -280,23 +280,23 @@
 
 		function changeHistoryVisibility(elem) {
 			var visible = true;
-			if(elem.innerHTML === elem.defaultText || !elem.defaultText) {
-				if(!elem.defaultText) elem.defaultText = elem.innerHTML;
-				elem.innerHTML = elem.defaultText.replace("Visible", "Caché");
+			if(elem.innerHTML === elem._defaultText || !elem._defaultText) {
+				if(!elem._defaultText) elem._defaultText = elem.innerHTML;
+				elem.innerHTML = elem._defaultText.replace("Visible", "Caché");
 				visible = false;
 			} else {
-				elem.innerHTML = elem.defaultText;
+				elem.innerHTML = elem._defaultText;
 			}
 			document.getElementById("messages").style.display = (visible ? "" : "none");
 		}
 
 		function changeAudioStatus(elem) {
-			if(elem.innerHTML === elem.defaultText || !elem.defaultText) {
-				if(!elem.defaultText) elem.defaultText = elem.innerHTML;
-				elem.innerHTML = elem.defaultText.replace("Activé", "Désactivé");
+			if(elem.innerHTML === elem._defaultText || !elem._defaultText) {
+				if(!elem._defaultText) elem._defaultText = elem.innerHTML;
+				elem.innerHTML = elem._defaultText.replace("Activé", "Désactivé");
 				ENABLE_AUDIO = false;
 			} else {
-				elem.innerHTML = elem.defaultText;
+				elem.innerHTML = elem._defaultText;
 				ENABLE_AUDIO = true;
 			}
 		}
