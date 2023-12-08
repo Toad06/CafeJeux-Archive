@@ -106,11 +106,15 @@ switch($page) {
 	case "help/tokens":
 	case "help/xp":
 	case "log": // NOTE : Cette page est appelée quand un problème survient lors de l'initialisation du site, avec l'erreur précise et différentes données de l'utilisateur dans un paramètre POST.
-	case "partnerFrame":
 	case "static/present":
 	case "static/present2":
 	case "static/require": // NOTE : Cette page s'affiche quand le site ne parvient pas à s'initialiser. Pour cette raison, elle contient tout le code HTML nécessaire.
 		$isPagePublic = true;
+		$data = get_content($pageUrlExt);
+		break;
+	case "partnerFrame":
+		$isPagePublic = true;
+		if($dayChanged) $dayChanged = false;
 		$data = get_content($pageUrlExt);
 		break;
 	case "redir":
@@ -464,11 +468,11 @@ switch($page) {
 		break;
 	case "forum/readAll":
 		// NOTE : Cette action devrait en réalité retourner "<load>forum</load>". A la place, on se contente d'en "émuler" la conséquence visuelle sur la page.
-		$data = "<script>while(true) { var elem = document.querySelector('.readed_false'); if(!elem) break; elem.className = 'readed_true'; }</script>";
+		$data = '<script type="text/javascript">while(true) { var elem = document.querySelector(".readed_false"); if(!elem) break; elem.className = "readed_true"; }</script>';
 		break;
 	case "game/queue":
 		if(false && ($globalUserFreeMoney > 0 || $globalUserMoney > 0)) {
-			// NOTE : Cette page ne devrait effectivement être accessible que lorsque le nombre total de sucres est égal 0 (et qu'aucune partie n'est en cours).
+			// NOTE : Cette page ne devrait effectivement être accessible que lorsque le nombre total de sucres est égal à 0 (et qu'aucune partie n'est en cours).
 			$data = "<load>game</load>";
 		} else {
 			// NOTE : Un lien "Jouer sans sucre" devrait être affiché sur la page "Jouer au bar".
@@ -709,7 +713,7 @@ switch($page) {
 		if($gV === "0") $gV = "false";
 		elseif($gV === "1") $gV = "true";
 		if($gV === "true" || $gV === "false") {
-			$data = "<script>js.App.updateWatchChat('group_" . $idTable . "'," . $gV . ");</script>";
+			$data = "<script type=\"text/javascript\">js.App.updateWatchChat('group_" . $idTable . "'," . $gV . ");</script>";
 		}
 		break;
 	case "group/6864/join":
@@ -993,13 +997,13 @@ switch($page) {
 	case "user/changeFriendlyObservable":
 		// NOTE : Le changement sur la visibilité des matchs amicaux devrait être effectué ici, puis la page rechargée avec "<load>user/18269</load>".
 		// A la place, on utilise quelques lignes de JavaScript pour modifier immédiatement le texte.
-		$data = "<script><![CDATA[";
+		$data = '<script type="text/javascript"><![CDATA[';
 		$data .= 'var ArchiveMatchsElement = document.getElementsByClassName("misc")[0].getElementsByTagName("li")[3].getElementsByTagName("span")[0];';
 		$data .= 'if(!window.ArchiveMatchsObservables) window.ArchiveMatchsObservables = ArchiveMatchsElement.outerHTML;';
 		$data .= 'if(!window.ArchiveMatchsPrives) window.ArchiveMatchsPrives = "<span onmouseover=\"mt.js.Tip.show(this,\'Vos parties amicales ne peuvent actuellement &lt;strong&gt;pas être observées par d&bsol;\'autres ';
 		$data .= 'joueurs&lt;/strong&gt;. Cliquez sur Modifier pour les rendre à nouveau publiques.\',null)\" onmouseout=\"mt.js.Tip.hide()\">Privés</span>";';
 		$data .= 'ArchiveMatchsElement.outerHTML = ArchiveMatchsElement.outerHTML === ArchiveMatchsObservables ? ArchiveMatchsPrives : ArchiveMatchsObservables;';
-		$data .= "]]></script>";
+		$data .= ']]></script>';
 		break;
 	case "user/chooseDrink":
 		if($isUserFullLoggedIn && (($dayChanged) || (isset($_SESSION['cafePrevUsername']) && strtolower($_SESSION['cafePrevUsername']) !== strtolower($_SESSION['cafeUsername'])))) {

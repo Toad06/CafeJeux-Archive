@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="fr">
+<head>
+	<title>CaféJeux DEV</title>
+	<meta charset="utf-8" />
+	<style type="text/css">
+		body {
+			margin: 0px;
+			padding: 0px;
+			color: #FFF;
+			background-color: #000;
+		}
+		select {
+			height: 28px;
+			border: 1px solid #FFF;
+		}
+		a:link, a:visited {
+			color: #FFF;
+			text-decoration: underline;
+		}
+		a:hover, a:active {
+			text-decoration: none;
+		}
+		#container {
+			max-width: 1200px;
+			margin: 40px auto 0px auto;
+			text-align: center;
+		}
+		#list {
+			margin-top: 20px;
+		}
+		#infos {
+			margin-top: 40px;
+		}
+	</style>
+	<script type="text/javascript" src="../../../swfobject.js?v=20100928162820"></script>
+</head>
+<body>
+	<div id="container">
+		<div id="list">
+			<p>Cette page contient divers éléments qui n'ont pas été utilisés (ou ont été par la suite abandonnés) dans les jeux ou sur le site.</p>
+			<p>&nbsp;</p>
+			<p>
+				Jeu : 
+				<select onchange="setGame(this.options[this.selectedIndex].value);">
+					<option value="expanz">eXpanz</option>
+					<option value="amonite">Amonite</option>
+					<option value="crumble">Crumble</option>
+					<option value="quat">Quat'Cinelle</option>
+					<option value="anticorps">Anticorp's</option>
+					<option value="marbils">Marbils</option>
+					<option value="ferme">Ferme-la</option>
+					<option value="trigolo">Trigolo</option>
+					<option value="hordes">Hordes Insurrection</option>
+				</select>
+			</p>
+		</div>
+		<div id="files"></div>
+		<div id="infos"></div>
+	</div>
+	<script type="text/javascript">
+		window.addEventListener("load", setGame, false);
+
+		function setGame(game) {
+			if(typeof game === "object") {
+				return document.querySelector("#list select").onchange();
+			}
+			var infos = "";
+			document.getElementById("files").innerHTML = "";
+			switch(game) {
+				case "expanz":
+					setSWF("expanz_ufo.swf", "100", "200");
+					setSWF("expanz_ufo2.swf", "100", "200");
+					setSWF("expanz_ufo3.swf", "100", "200");
+					infos = "<p>Cette soucoupe volante est présente dans les assets graphiques du code source fourni par Motion Twin.</p><p>Son rôle aurait pû être de retirer un bloc aléatoire de l'aire de jeu au moment où elle passe à l'action.<br />Il aurait également pu s'agir d'une option déblocable en boutique et utilisable une seule fois en cours de jeu.</p>";
+					break;
+				case "amonite":
+					infos = '<p><img src="data/amonite_grapiz.png" alt=""/></p><p>Dans les sources de Motion Twin, ce jeu se trouve dans le dossier "grapiz", ce qui correspond au nom du jeu sur le site Frutiparc.</p><p>Si Amonite réutilise bien (en partie) le code source de Grapiz, le nom même du jeu était également utilisé durant la phase de bêta-test de CaféJeux.</p>';
+					break;
+				case "crumble":
+					infos = '<p>Dans les sources de Motion Twin, ce jeu se trouve dans le dossier "bandas", ce qui correspond au nom du jeu sur le site Frutiparc.</p><p>Crumble réutilise (en partie) le code source de Bandas.</p>';
+					break;
+				case "quat":
+					setSWF("quat_intruder.swf", "100", "100", {wmode: "window"});
+					infos = "<p>Cet insecte intrus est présent dans les sprites du fichier Flash.</p><p>Il aurait sans doute eu pour rôle de de parasiter la partie.<br />Il aurait également pu s'agir d'une option déblocable en boutique et utilisable une seule fois en cours de jeu.</p>";
+					break;
+				case "anticorps":
+					infos = "<p>Différents types de personnage ayant chacun leurs caractéristiques existent.</p><p>Il est possible de les rendre disponibles dans l'archive.</p>";
+					break;
+				case "marbils":
+					setSWF("marbils_smile.swf", "100", "100");
+					break;
+			}
+			document.getElementById("infos").innerHTML = infos;
+		}
+
+		function setSWF(swf, width, height, options) {
+			if(!options) options = {};
+
+			var swfId = swf.split(".")[0];
+			var span = document.createElement("span");
+			span.id = swfId;
+			document.getElementById("files").appendChild(span);
+
+			var so = new SWFObject("data/" + swf, "swf_" + swfId, width, height, "0", "null");
+			so.addParam("scale", "noscale");
+			so.addParam("menu", "false");
+			so.addParam("wmode", (options.wmode ? options.wmode : "transparent"));
+			so.write(swfId);
+		}
+	</script>
+</body>
+</html>
