@@ -1,7 +1,7 @@
 <?php
 
 // Archive du site CaféJeux par Toad06.
-// https://github.com/Toad06/CafeJeux-Site
+// https://github.com/Toad06/CafeJeux-Archive
 
 session_start();
 
@@ -139,7 +139,7 @@ $dayChanged = isset($_SESSION['cafeDayChanged']);
 					if(x == null) throw "Could not find flash object";
 					if(x.externalRemotingCall == null) throw "Flash object not initialized";
 					o.stop();
-					js.App.DATA = "./pages/";
+					js.App.DATA = "./";
 					js.App.main("CMfEH6Ceji6XNeDDPgUNe6eKGZW2FgOd");
 					js.XmlHttp.enqueue("head");
 					if(js.Lib.window.location.hash.length <= 1<?php echo ($dayChanged ? " || true" : ""); ?>) js.XmlHttp.enqueue('<?php echo $fullLogged && !$dayChanged ? "game" : ($logged ? "user/chooseDrink" : "static/present"); ?>');

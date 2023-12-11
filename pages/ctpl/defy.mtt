@@ -8,9 +8,9 @@
 		<![CDATA[
 		<a $$click(defy)>
 		::if (_group == null)::
-			<strong>::_name::</strong> vous propose un match amical sur <strong><img src="::DATA::games/icon/::_gameShort::.gif" alt=""/>::_game::</strong>
+			<strong>::_name::</strong> vous propose un match amical sur <strong><img src="::DATA::games/icon/::_gameShort::.gif" alt=""/>::_game::</strong> !
 		::else::
-			<strong>::_name::</strong> de la table <strong>::_group::</strong> vous défie sur <strong><img src="::DATA::games/icon/::_gameShort::.gif" alt=""/>::_game::</strong> (<em>attention, il s'agit d'un match sur Table</em>)
+			<strong>::_name::</strong> de la table <strong>::_group::</strong> vous défie sur <strong><img src="::DATA::games/icon/::_gameShort::.gif" alt=""/>::_game::</strong> (<em>attention, il s'agit d'un match sur Table</em>) !
 		::end::
 		</a>
 		]]>

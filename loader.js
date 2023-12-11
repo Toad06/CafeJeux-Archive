@@ -4670,8 +4670,8 @@ js.Client.prototype.connected = function(b) {
 		if(this.__fakeConnection) delete this.__fakeConnection;
 		// On enregistre ici le pseudo de l'utilisateur, cela servira à pallier l'absence du serveur de jeu dans certaines situations.
 		var headBar = document.querySelector("#headBar");
-		if(headBar && headBar.innerHTML.indexOf("Bonjour") !== -1) {
-			this.__archiveUserName = headBar.querySelector("strong").innerHTML;
+		if(headBar && headBar.textContent.trim().indexOf("Bonjour") === 0) {
+			this.__archiveUserName = headBar.querySelector("strong").textContent;
 		}
 	} else {
 		b = false;

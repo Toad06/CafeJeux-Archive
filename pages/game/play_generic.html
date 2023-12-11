@@ -1,11 +1,18 @@
 <!-- Page recréée pour l'archive. -->
 <!-- Celle-ci est visuellement fidèle à celle de cafejeux.com... et sans aucun doute complètement différente du point de vue technique ! -->
 <!-- Autre différence technique : quitter la page en cours de jeu met un terme définitif à la partie. -->
+<fill id="defy">
+	<a href="#defy" onclick="js.XmlHttp.get('defy', this); return false;" onmouseover="mt.js.Tip.show(this, 'Personne ne vous propose de match amical pour le moment...', null);" onmouseout="mt.js.Tip.hide();"><img src="img/design/pixel.gif" alt=""/></a>
+</fill>
+
 <script type="text/javascript" id="jsid-1">
 //<![CDATA[
 	if(document.getElementById("menuBtnBar") === null) {
 		window.location.reload();
 		throw "Barre de menu non initialisée";
+	}
+	if(document.getElementById("headBar").textContent.trim().indexOf("Bonjour") !== 0) {
+		document.getElementById("headBar").innerHTML = "";
 	}
 	window.Game_Id = parseInt("{ARCHIVE_GAME_ID}", 10);
 	window.Game_FirstPlayer = (Math.random() > 0.5 ? "1" : "2");
@@ -61,6 +68,8 @@
 				history.scrollTop = history.scrollHeight;
 				// Mise à jour de divers éléments sur la page.
 				var menuBtnBar = document.getElementById("menuBtnPlaying");
+				var nameForHeadBar = menuBtnPlaying.querySelector("a:nth-child(2)").textContent;
+				var iconForHeadBar = menuBtnBar.querySelector("img").getAttribute("src").split("/")[2].split(".")[0];
 				menuBtnBar.id = "menuBtnBar";
 				menuBtnBar.innerHTML = window.__archiveMenuBtnBar;
 				var backBar = game.querySelector("#backButton a");
@@ -70,9 +79,18 @@
 				backBar.innerHTML = "Retour au bar";
 				var newGame = game.querySelector("#gameZone a.button");
 				newGame.href = "#game/" + Game_Id;
-				newGame.onclick = function() { js.XmlHttp.get("game/" + Game_Id, this); return false; };
+				newGame.onclick = function() {
+					if(document.querySelector("#siteSound a").className === "on") {
+						var audio = new Audio("sound/_NewDefy.mp3");
+						audio.play();
+					}
+					document.getElementById("defy").innerHTML = js.App.c.applyTpl("defy@icon");
+					js.App.c.headBar("defy@new", {_name: "{ARCHIVE_OTHER_USER_NAME}", _game: nameForHeadBar, _gameShort: iconForHeadBar}, 5000);
+					js.XmlHttp.get("game/" + Game_Id, this);
+					return false;
+				};
 				newGame.className = newGame.className.replace("b_stop", "b_fight");
-				newGame.innerHTML = "Proposer la revanche à Invité{ARCHIVE_OTHER_USER_FEMALE}";
+				newGame.innerHTML = "Proposer la revanche à {ARCHIVE_OTHER_USER_NAME}";
 				break;
 			case "turn":
 				// Au joueur suivant !
@@ -292,7 +310,7 @@
 			'</div>';
 
 		// Données HTML (aléatoires) de l'adversaire.
-		game.querySelector(".users .field2").innerHTML = "Invité{ARCHIVE_OTHER_USER_FEMALE} " +
+		game.querySelector(".users .field2").innerHTML = "{ARCHIVE_OTHER_USER_NAME} " +
 			'<div class="xpBar" onmouseover="mt.js.Tip.show(this, \'Niveau d\\\'expérience : 1 <p><em>Cette valeur révèle le niveau d\\\'expertise sur ce jeu.</em></p>\', null);" onmouseout="mt.js.Tip.hide();">' +
 			'<div>1</div> <img alt="" src="img/design/xpBar_fill.gif" style="width:0px;"></div>';
 

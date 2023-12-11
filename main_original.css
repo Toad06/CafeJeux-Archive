@@ -2624,7 +2624,7 @@ a.manualButton {
 
 a.manualButton {
 	color: #999;
-	margin-left: 93px;
+	float: right; /* ligne incorrectement changée pour "margin-left:93px" en 2010 */
 	background-image: url("img/icons/huge_manual.gif");
 }
 

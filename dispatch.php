@@ -33,12 +33,14 @@ $isUserFullLoggedIn = $isUserLoggedIn && isset($_SESSION['cafeDrink']);
 
 $day = date("j");
 $dayChanged = isset($_SESSION['cafeDayChanged']);
+$disableDayChangedCheck = false;
 
 $data = null;
 
 switch($page) {
 	/*** Pages accessibles à tous ***/
 	case "ctpl/chat.mtt":
+	case "ctpl/defy.mtt":
 	case "ctpl/game.mtt":
 	case "ctpl/global.mtt":
 	case "ctpl/shop.mtt":
@@ -114,7 +116,7 @@ switch($page) {
 		break;
 	case "partnerFrame":
 		$isPagePublic = true;
-		if($dayChanged) $dayChanged = false;
+		$disableDayChangedCheck = true;
 		$data = get_content($pageUrlExt);
 		break;
 	case "redir":
@@ -338,6 +340,7 @@ switch($page) {
 	case "group/6951/recruit":
 	case "group/list":
 	case "group/my":
+	case "group/myFromSpecial":
 	case "pvmsg": // NOTE : S'il n'y a pas de message à afficher, le code HTML sur cafejeux.com était le suivant : "<em>Aucun message.</em>"
 	case "pvmsg/38365":
 	case "pvmsg/42443":
@@ -347,7 +350,7 @@ switch($page) {
 	case "pvmsg/2284448":
 	case "pvmsg/6381127":
 	case "pvmsg/6392115": // NOTE : Si la table avait déjà été supprimée au moment de la lecture du message d'invitation, cafejeux.com affichait ceci à la place : "Cette table n'existe plus !"
-	case "pvmsg/list": // NOTE : Pagination ajoutée pour l'archive : sur cafejeux.com, la pagination fonctionnait de manière logique selon le nombre de pages et celle actuellement affichée. 10 messages par page au maximum.
+	case "pvmsg/list": // NOTE : Pagination ajoutée pour l'archive : sur cafejeux.com, la pagination fonctionnait de manière logique selon le nombre de pages et celle en cours d'affichage. 10 messages par page au maximum.
 	case "pvmsg/mDelete":
 	case "pvmsg/prefs":
 	case "shop/1": case "shop/3": case "shop/4": case "shop/5": case "shop/6": case "shop/7": case "shop/8": case "shop/9": case "shop/10": case "shop/11": case "shop/12": case "shop/13": case "shop/14": case "shop/15":
@@ -373,6 +376,7 @@ switch($page) {
 		$data = get_content($pageUrlExt);
 		break;
 	case "_parse_message_chat": // NOTE : Cette page est spécifique à l'archive, elle est destinée à analyser et transformer les chaînes de caractères fournies sur les différents chats.
+		$disableDayChangedCheck = true;
 		if(isset($_GET['str'])) {
 			$parsedMessage = parse_message(trim($_GET['str']), false);
 			$data = date("H:i") . "|";
@@ -380,6 +384,7 @@ switch($page) {
 		}
 		break;
 	case "_redirect_to_edit_room": // NOTE : Cette page est spécifique à l'archive, elle effectue la redirection vers la page "Déplacer les meubles" de la table "CaféJeux 2007-2020", depuis la rubrique spéciale.
+		$disableDayChangedCheck = true;
 		$data = get_content("pages/group/6951.html");
 		$data .= "<load>group/6951/editRoom</load>";
 		$data = str_replace("{ARCHIVE_LOAD_TABLE}", "chat", $data);
@@ -518,7 +523,7 @@ switch($page) {
 			$data = str_replace("{ARCHIVE_GAME_ID}", $gameId, $data);
 			$data = str_replace("{ARCHIVE_GAME_OPTIONS}", $gameOptions, $data);
 			$data = str_replace("{ARCHIVE_OTHER_USER_GFX}", $randomAvatar['gfx'], $data);
-			$data = str_replace("{ARCHIVE_OTHER_USER_FEMALE}", ($randomAvatar['gender'] === "female" ? "e" : ""), $data);
+			$data = str_replace("{ARCHIVE_OTHER_USER_NAME}", ($randomAvatar['gender'] === "female" ? "Invitée" : "Invité"), $data);
 		}
 		break;
 	case "group/420":
@@ -850,7 +855,8 @@ switch($page) {
 			$data = str_replace("{ARCHIVE_SEND_PVMESSAGE_ERRORS}", $errors, $data);
 		} else {
 			// NOTE : Que doit-il s'afficher lorsque le message est bien envoyé ? Cette fonctionnalité de cafejeux.com était hors d'usage au moment du test.
-			$data = '<fill class="error" id="formError"></fill>';
+			// (Toad06) Dans mes souvenirs, c'était quelque chose d'aussi simple que la valeur de $data ci-dessous.
+			$data = '<fill id="main"><div class="ack">Votre message a été envoyé.</div></fill>';
 		}
 		break;
 	case "shop":
@@ -887,6 +893,7 @@ switch($page) {
 		}
 		break;
 	case "smileyTip":
+		$disableDayChangedCheck = true;
 		$id = isset($_GET['id']) ? $_GET['id'] : "st_14331";
 		$idSplit = explode(";", $id);
 		$elementId = htmlentities($idSplit[0]);
@@ -1223,6 +1230,7 @@ switch($page) {
 		break;
 	case "user/siteSound":
 		// NOTE : L'état du son semblait être enregistré en base de données sur cafejeux.com.
+		$disableDayChangedCheck = true;
 		$gSound = isset($_GET['v']) ? intval($_GET['v']) : 0;
 		if($gSound < 0 || $gSound > 1) $gSound = 0;
 		$data = get_content($pageUrlExt);
@@ -1232,6 +1240,7 @@ switch($page) {
 		$data = str_replace("{ARCHIVE_SOUND_UPDATE_STATE_ID}", ($gSound === 1 ? "0" : "1"), $data);
 		break;
 	case "user/tipContact":
+		$disableDayChangedCheck = true;
 		$gElementId = isset($_GET['rid']) ? htmlentities(explode(";", $_GET['rid'])[0]) : "cl_96463";
 		if($gElementId !== "cl_96463") {
 			$elementIdField = ($gElementId === "cl_72259" || $gElementId === "cl_27685") ? "name" : "to";
@@ -1292,7 +1301,7 @@ if($data !== null) {
 			http_response_code(302);
 			$data = "<load>user/chooseDrink</load>";
 		} elseif(isset($_SESSION['cafeUsername'])) {
-			if(isset($_SESSION['cafeDay']) && $_SESSION['cafeDay'] !== $day && !isset($_SESSION['cafeDayChanged'])) {
+			if(!$disableDayChangedCheck && isset($_SESSION['cafeDay']) && $_SESSION['cafeDay'] !== $day && !isset($_SESSION['cafeDayChanged'])) {
 				// NOTE : En se rendant sur la page du bar (liste des jeux), cafejeux.com forçait toujours l'affichage de la page de choix de boisson.
 				$_SESSION['cafeDayChanged'] = true;
 				$data = '<user money="{ARCHIVE_USER_MONEY}" freeMoney="0"/><load>user/dayChanged</load>'; // NOTE : Dès le changement de jour, le nombre de sucres blancs restant de la veille passe à 0.

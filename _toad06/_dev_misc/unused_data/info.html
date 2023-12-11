@@ -14,6 +14,13 @@
 			height: 28px;
 			border: 1px solid #FFF;
 		}
+		pre {
+			margin-top: 0px;
+			text-align: left;
+			overflow-x: scroll;
+			color: #000;
+			background-color: #F5DEB3;
+		}
 		a:link, a:visited {
 			color: #FFF;
 			text-decoration: underline;
@@ -32,6 +39,9 @@
 		#infos {
 			margin-top: 40px;
 		}
+		.nobottom {
+			margin-bottom: 0px;
+		}
 	</style>
 	<script type="text/javascript" src="../../../swfobject.js?v=20100928162820"></script>
 </head>
@@ -41,17 +51,19 @@
 			<p>Cette page contient divers éléments qui n'ont pas été utilisés (ou ont été par la suite abandonnés) dans les jeux ou sur le site.</p>
 			<p>&nbsp;</p>
 			<p>
-				Jeu : 
 				<select onchange="setGame(this.options[this.selectedIndex].value);">
-					<option value="expanz">eXpanz</option>
-					<option value="amonite">Amonite</option>
-					<option value="crumble">Crumble</option>
-					<option value="quat">Quat'Cinelle</option>
-					<option value="anticorps">Anticorp's</option>
-					<option value="marbils">Marbils</option>
-					<option value="ferme">Ferme-la</option>
-					<option value="trigolo">Trigolo</option>
-					<option value="hordes">Hordes Insurrection</option>
+					<optgroup label="Jeux">
+						<option value="expanz">eXpanz</option>
+						<option value="amonite">Amonite</option>
+						<option value="crumble">Crumble</option>
+						<option value="quat">Quat'Cinelle</option>
+						<option value="anticorps">Anticorp's</option>
+						<option value="marbils">Marbils</option>
+						<option value="hordes">Hordes Insurrection</option>
+					</optgroup>
+					<optgroup label="Site">
+						<option value="table">Tables de jeu</option>
+					</optgroup>
 				</select>
 			</p>
 		</div>
@@ -72,23 +84,78 @@
 					setSWF("expanz_ufo.swf", "100", "200");
 					setSWF("expanz_ufo2.swf", "100", "200");
 					setSWF("expanz_ufo3.swf", "100", "200");
-					infos = "<p>Cette soucoupe volante est présente dans les assets graphiques du code source fourni par Motion Twin.</p><p>Son rôle aurait pû être de retirer un bloc aléatoire de l'aire de jeu au moment où elle passe à l'action.<br />Il aurait également pu s'agir d'une option déblocable en boutique et utilisable une seule fois en cours de jeu.</p>";
+					infos = "<p>Cette soucoupe volante est présente dans les assets graphiques du code source fourni par Motion Twin.<br />Son rôle aurait pû être de retirer un bloc aléatoire de l'aire de jeu au moment où elle passe à l'action.<br />Il aurait également pu s'agir d'une option déblocable en boutique et utilisable une seule fois en cours de jeu.</p>";
 					break;
 				case "amonite":
-					infos = '<p><img src="data/amonite_grapiz.png" alt=""/></p><p>Dans les sources de Motion Twin, ce jeu se trouve dans le dossier "grapiz", ce qui correspond au nom du jeu sur le site Frutiparc.</p><p>Si Amonite réutilise bien (en partie) le code source de Grapiz, le nom même du jeu était également utilisé durant la phase de bêta-test de CaféJeux.</p>';
+					infos = '<p><img src="data/amonite_grapiz.png" alt=""/></p><p>Dans les sources de Motion Twin, ce jeu se trouve dans le dossier "grapiz", ce qui correspond au nom du jeu sur le site Frutiparc.<br />Si Amonite réutilise bien (en partie) le code source de Grapiz, le nom même du jeu était également utilisé durant la phase de bêta-test de CaféJeux.</p>';
 					break;
 				case "crumble":
-					infos = '<p>Dans les sources de Motion Twin, ce jeu se trouve dans le dossier "bandas", ce qui correspond au nom du jeu sur le site Frutiparc.</p><p>Crumble réutilise (en partie) le code source de Bandas.</p>';
+					infos = '<p>Dans les sources de Motion Twin, ce jeu se trouve dans le dossier "bandas", ce qui correspond au nom du jeu sur le site Frutiparc.<br />Crumble réutilise (en partie) le code source de Bandas.</p>';
 					break;
 				case "quat":
 					setSWF("quat_intruder.swf", "100", "100", {wmode: "window"});
-					infos = "<p>Cet insecte intrus est présent dans les sprites du fichier Flash.</p><p>Il aurait sans doute eu pour rôle de de parasiter la partie.<br />Il aurait également pu s'agir d'une option déblocable en boutique et utilisable une seule fois en cours de jeu.</p>";
+					infos = "<p>Cet insecte intrus est présent dans les sprites du fichier Flash.<br />Il aurait sans doute eu pour rôle de venir parasiter la partie à un moment aléatoire.<br />Il aurait également pu s'agir d'une option déblocable en boutique et utilisable une seule fois en cours de jeu.</p>";
 					break;
 				case "anticorps":
-					infos = "<p>Différents types de personnage ayant chacun leurs caractéristiques existent.</p><p>Il est possible de les rendre disponibles dans l'archive.</p>";
+					infos = "<p>Différents types de personnages ayant chacun leurs caractéristiques existent.<br />Il est possible de les rendre accessibles dans l'archive.</p>";
 					break;
 				case "marbils":
-					setSWF("marbils_smile.swf", "100", "100");
+					setSWF("marbils_smile.swf", "100", "100", {menu: "true", wmode: "window"});
+					infos = '<p>Un "visage" est présent dans les sprites du fichier Flash.</p>';
+					break;
+				case "hordes":
+					infos = "<p>Un mode de victoire alternatif et deux options dont l'implémentation n'a pas été finalisée existent.<br />Il est possible de les rendre disponibles dans l'archive.</p>";
+					//
+					infos += "<p>La constante \"MODE_DUEL\" est définie afin de savoir s'il est possible de jouer les options restantes en fin de partie, quand il ne reste plus aucune case de libre.<br />Néanmoins, sa valeur est toujours définie à \"false\" dans le code source.</p>";
+					//
+					infos += '<p class="nobottom">Le fonctionnement même du jeu aurait pu être différent d\'une partie à l\'autre, selon le type énuméré "GameOption" présent dans le code source du jeu, mais cela n\'a pas été implémenté :</p>';
+					infos += "<pre>enum GameMode {\n";
+					infos += "	Neutral;		// En cas de domination, on se contente de récupérer les cases adjacentes plus faibles. // --> OK\n";
+					infos += "	Strengthen;		// En cas de domination, on ajoute une unité à chaque unité alliée adjacente.\n";
+					infos += "	Hexile;			// En cas de domination, on ajoute une unité à chaque unité alliée adjacente plus faible ET on en retranche une à chaque fois sur la case de base.\n";
+					infos += "	Weaken;			// En cas de domination, on retranche une unité à chaque case alliée adjacente.\n";
+					infos += "	Restricted;		// Seules les cases adjacentes à celles jouées peuvent être jouées.\n";
+					infos += "	Risk;			// Un deuxième objectif est donné et permet d'amener à la victoire s'il est atteint.\n";
+					infos += "	Survivor;		// La partie est également finie si un joueur n'a plus d'unités présentes dans la partie.\n";
+					infos += "	NoHorde;		// Pas d'attaque de la Horde dans cette version.\n";
+					infos += "	FixedUnits;		// Le nombre d'unités est fixé à l'avance.\n";
+					infos += "	FixedTurns;		// Le nombre de tours est fixé à l'avance.\n";
+					infos += "	Raw;			// Jeu sans options.\n";
+					infos += "	Gore;			// Les citoyens meurent et ne sont pas regénérés.\n";
+					infos += "}</pre>";
+					//
+					infos += '<p class="nobottom">Différents textes sont définis mais ne sont pas utilisés :</p>';
+					infos += "<pre>static var CUSTOM = [\n";
+					infos += '	"Citoyens, prudence...",		// Utilisé.\n';
+					infos += '	"Tour des Bannis",\n';
+					infos += '	"Tour des citoyens",\n';
+					infos += '	"Tour de votre adversaire...",		// Utilisé.\n';
+					infos += '	"Les hordes arrivent !",		// Utilisé.\n';
+					infos += "];\n";
+					infos += "static var INFO_NAME = [\n";
+					infos += '	"Portes",\n';
+					infos += '	"Mode Territoires",\n';
+					infos += '	"Mode Pouvoir",\n';
+					infos += '	"Groupe en cours",\n';
+					infos += '	"Zone Vierge",\n';
+					infos += '	"Zone Ennemie",\n';
+					infos += '	"Zone Terrifiante",\n';
+					infos += '	"Portes"\n';
+					infos += "];\n";
+					infos += "static var INFO_DESC = [\n";
+					infos += '	"Les portes doivent être fermées avant le nombre de tours indiqués, sinon...",\n';
+					infos += '	"Vous devez conquérir le plus de zones possibles.",\n';
+					infos += '	"Vous devez avoir le plus grand nombre d\'unités en ville.",\n';
+					infos += '	"Le premier chiffre indique la taille du groupe à poser à ce tour. Le second est votre coup suivant.",\n';
+					infos += '	"Déposez votre groupe dans cette zone pour la conquérir.",\n';
+					infos += '	"Cette zone appartient à votre ennemi.... Pour l\'instant...",\n';
+					infos += '	"Cette zone est détenue par des zombies.... Pour l\'instant...",\n';
+					infos += '	"Les portes sont fermées, les zombies ne peuvent plus entrer en ville."\n';
+					infos += "];</pre>";
+					infos += "<p>Plusieurs parties de code font référence à la porte de la ville (l'un des éléments incontournables dans Hordes.fr) mais l'idée a semble-t-il été abandonnée pendant le développement du jeu.</p>";
+					break;
+				case "table":
+					infos = '<p><img src="../../../img/bar.jpg" alt="" /></p>';
 					break;
 			}
 			document.getElementById("infos").innerHTML = infos;
@@ -104,7 +171,7 @@
 
 			var so = new SWFObject("data/" + swf, "swf_" + swfId, width, height, "0", "null");
 			so.addParam("scale", "noscale");
-			so.addParam("menu", "false");
+			so.addParam("menu", (options.menu ? options.menu : "false"));
 			so.addParam("wmode", (options.wmode ? options.wmode : "transparent"));
 			so.write(swfId);
 		}

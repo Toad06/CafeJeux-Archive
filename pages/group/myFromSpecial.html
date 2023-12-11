@@ -1,0 +1,37 @@
+<fill id="main">
+	
+		<h1><strong>Les tables</strong> du café</h1>
+		<ul class="tabs">
+			<li class="selected"><a href="#group/my" onclick="js.XmlHttp.get('group/my',this); return false;">Accueil</a></li>
+			<li><a href="#group" onclick="js.XmlHttp.get('group',this); return false;">Rejoindre une table</a></li>
+			<li><a href="#group/create" onclick="js.XmlHttp.get('group/create',this); return false;">Créer une table</a></li>
+			<li><a href="#group/list" onclick="js.XmlHttp.get('group/list',this); return false;">Liste des tables</a></li>
+		</ul>
+	
+	<img class="art" alt="Table de jeu" src="img/artworks/screen_chat.gif" title="Table du Café Jeux"/>
+
+	<p>
+		Les joueurs peuvent se rejoindre autour d'une table pour discuter entre eux (chat et forum)
+		et s'affronter sur les jeux de leur choix !
+	</p>
+	<p class="help">
+		Un joueur peut faire partie de 8 tables au maximum.
+	</p>
+	<p>
+		Pour tout savoir sur les tables et leur fonctionnement, vous pouvez <a href="#help?section=group" onclick="js.XmlHttp.get('help?section=group',this); return false;">consulter l'aide</a> à tout moment.
+	</p>
+	<div class="clear"></div>
+
+	<div class="firstJoin">
+		<a href="#" class="autoButton" onclick="return false;">Trouver une table en&nbsp;un&nbsp;clic</a>
+		<a href="#group" class="manualButton" onclick="js.XmlHttp.get('group', this); return false;">Accéder à la liste de toutes les tables</a>
+		<div class="clear"></div>
+		<a href="#group/create" class="button" onclick="js.XmlHttp.get('group/create', this); return false;">
+			Je veux créer ma table ! 
+			( <span class="tokens" onmouseover="mt.js.Tip.show(this, 'Les sucres roux sont achetés à la banque et conservés jusqu\'à leur utilisation.', null);" onmouseout="mt.js.Tip.hide();">30<img alt="sucre(s)" src="img/icons/small_bought.gif"/></span> )
+		</a>
+	</div>
+
+	<div class="clear"></div>
+
+</fill>
