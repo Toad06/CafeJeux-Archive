@@ -42,6 +42,9 @@
 		.nobottom {
 			margin-bottom: 0px;
 		}
+		.italic {
+			font-style: italic;
+		}
 	</style>
 	<script type="text/javascript" src="../../../swfobject.js?v=20100928162820"></script>
 </head>
@@ -60,6 +63,9 @@
 						<option value="anticorps">Anticorp's</option>
 						<option value="marbils">Marbils</option>
 						<option value="hordes">Hordes Insurrection</option>
+						<option value="starsheep">Starsheep Brouteurs</option>
+						<option value="arlequin">Arlequin</option>
+						<option value="utopiz">Utopiz</option>
 					</optgroup>
 					<optgroup label="Site">
 						<option value="table">Tables de jeu</option>
@@ -84,7 +90,7 @@
 					setSWF("expanz_ufo.swf", "100", "200");
 					setSWF("expanz_ufo2.swf", "100", "200");
 					setSWF("expanz_ufo3.swf", "100", "200");
-					infos = "<p>Cette soucoupe volante est présente dans les assets graphiques du code source fourni par Motion Twin.<br />Son rôle aurait pû être de retirer un bloc aléatoire de l'aire de jeu au moment où elle passe à l'action.<br />Il aurait également pu s'agir d'une option déblocable en boutique et utilisable une seule fois en cours de jeu.</p>";
+					infos = "<p>Cette soucoupe volante est présente dans les assets graphiques du code source fourni par Motion Twin.<br />Il semblerait que son rôle était de retirer un bloc aléatoire de l'aire de jeu lors de son passage à l'action.<br />Il aurait également pu s'agir d'une option déblocable en boutique et utilisable une seule fois en cours de jeu.</p>";
 					break;
 				case "amonite":
 					infos = '<p><img src="data/amonite_grapiz.png" alt=""/></p><p>Dans les sources de Motion Twin, ce jeu se trouve dans le dossier "grapiz", ce qui correspond au nom du jeu sur le site Frutiparc.<br />Si Amonite réutilise bien (en partie) le code source de Grapiz, le nom même du jeu était également utilisé durant la phase de bêta-test de CaféJeux.</p>';
@@ -94,7 +100,7 @@
 					break;
 				case "quat":
 					setSWF("quat_intruder.swf", "100", "100", {wmode: "window"});
-					infos = "<p>Cet insecte intrus est présent dans les sprites du fichier Flash.<br />Il aurait sans doute eu pour rôle de venir parasiter la partie à un moment aléatoire.<br />Il aurait également pu s'agir d'une option déblocable en boutique et utilisable une seule fois en cours de jeu.</p>";
+					infos = "<p>Cet insecte intrus est présent dans les sprites du fichier Flash.<br />Il aurait sans doute eu pour rôle de parasiter la partie à un moment aléatoire.<br />Il aurait également pu s'agir d'une option déblocable en boutique et utilisable une seule fois en cours de jeu.</p>";
 					break;
 				case "anticorps":
 					infos = "<p>Différents types de personnages ayant chacun leurs caractéristiques existent.<br />Il est possible de les rendre accessibles dans l'archive.</p>";
@@ -154,8 +160,17 @@
 					infos += "];</pre>";
 					infos += "<p>Plusieurs parties de code font référence à la porte de la ville (l'un des éléments incontournables dans Hordes.fr) mais l'idée a semble-t-il été abandonnée pendant le développement du jeu.</p>";
 					break;
+				case "starsheep":
+					infos = '<p>Starsheep Brouteurs est l\'un des deux jeux non publiés dont Motion Twin avait indiqué l\'existence.<br />Dans les sources de l\'entreprise, ce jeu se trouve dans le dossier "paturage".</p>';
+					break;
+				case "arlequin":
+					infos = '<p>Arlequin est l\'un des deux jeux non publiés dont Motion Twin avait indiqué l\'existence.<br />Son code source n\'a pas été communiqué par l\'entreprise.</p>';
+					break;
+				case "utopiz":
+					infos = '<p><img src="data/utopiz_frusiondisc.png" alt="" /></p><p>Initialement prévu pour le site Frutiparc, Utopiz aurait dû sortir sur CaféJeux, mais son développement a finalement été annulé.<br />Le code source du jeu, évidemment incomplet, est disponible dans les sources fournies par Motion Twin.<br />Il est également possible d\'y jouer dans l\'archive, à compter de la version 1.5 du loader.</p><p>Les utilisateurs de Frutiparc avaient eu connaissance de ce projet par le biais d\'un fond d\'écran disponible sur le site.<br />Aucune autre information n\'avait été communiquée sur le développement du jeu, pas plus que sur les raisons de son abandon.</p><p><img src="data/utopiz_background.jpg" alt="" /></p><p class="italic">Fond d\'écran fourni par Renault, ancien joueur de Frutiparc</p>';
+					break;
 				case "table":
-					infos = '<p><img src="../../../img/bar.jpg" alt="" /></p>';
+					infos = '<p><img src="../../../img/bar.jpg" alt="" /></p><p>Cette image servait d\'illustration durant les premières semaines d\'existence de CaféJeux.</p>';
 					break;
 			}
 			document.getElementById("infos").innerHTML = infos;
