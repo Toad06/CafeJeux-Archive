@@ -63,6 +63,8 @@
 						<option value="anticorps">Anticorp's</option>
 						<option value="marbils">Marbils</option>
 						<option value="hordes">Hordes Insurrection</option>
+					</optgroup>
+					<optgroup label="Jeux abandonnés">
 						<option value="starsheep">Starsheep Brouteurs</option>
 						<option value="arlequin">Arlequin</option>
 						<option value="utopiz">Utopiz</option>
@@ -107,7 +109,7 @@
 					break;
 				case "marbils":
 					setSWF("marbils_smile.swf", "100", "100", {menu: "true", wmode: "window"});
-					infos = '<p>Un "visage" est présent dans les sprites du fichier Flash.</p>';
+					infos = '<p>Un "visage" et un "oeil" sont présents dans les sprites du fichier Flash (clic droit, puis "En avant" ou "En arrière" pour afficher l\'une ou l\'autre des images).<br />Ces deux éléments ne sont probablement que des variantes visuelles qui auraient été appliquées aux billes ; ils n\'auraient eu aucun effet particulier sur le déroulement de la partie.</p>';
 					break;
 				case "hordes":
 					infos = "<p>Un mode de victoire alternatif et deux options dont l'implémentation n'a pas été finalisée existent.<br />Il est possible de les rendre disponibles dans l'archive.</p>";
@@ -170,7 +172,7 @@
 					infos = '<p><img src="data/utopiz_frusiondisc.png" alt="" /></p><p>Initialement prévu pour le site Frutiparc, Utopiz aurait dû sortir sur CaféJeux, mais son développement a finalement été annulé.<br />Le code source du jeu, évidemment incomplet, est disponible dans les sources fournies par Motion Twin.<br />Il est également possible d\'y jouer dans l\'archive, à compter de la version 1.5 du loader.</p><p>Les utilisateurs de Frutiparc avaient eu connaissance de ce projet par le biais d\'un fond d\'écran disponible sur le site.<br />Aucune autre information n\'avait été communiquée sur le développement du jeu, pas plus que sur les raisons de son abandon.</p><p><img src="data/utopiz_background.jpg" alt="" /></p><p class="italic">Fond d\'écran fourni par Renault, ancien joueur de Frutiparc</p>';
 					break;
 				case "table":
-					infos = '<p><img src="../../../img/bar.jpg" alt="" /></p><p>Cette image servait d\'illustration durant les premières semaines d\'existence de CaféJeux.</p>';
+					infos = '<p><img src="../../../img/bar.jpg" alt="" /></p><p>Cette image était utilisée comme illustration durant les premières semaines d\'existence de CaféJeux.</p>';
 					break;
 			}
 			document.getElementById("infos").innerHTML = infos;
