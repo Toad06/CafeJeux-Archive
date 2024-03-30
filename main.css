@@ -17,7 +17,7 @@ iframe#HistoryFrame, iframe#LoginFrame {
 	height: 8px;
 }
 
-/* Améliore l'alignement vertical du texte de certains liens et boutons. */
+/* Améliore l'alignement vertical de l'icône accompagnant certains liens et boutons. */
 a.buttonOff, a.button, a.groupButton {
 	background-position: 3px 50%;
 }
@@ -31,6 +31,10 @@ a.buttonOff, a.button, a.groupButton {
 	background-position: 2px 50%;
 }
 #menu a.logout {
+	background-position: 15px 50%;
+	text-wrap: nowrap;
+}
+#menu a.admin {
 	background-position: 15px 50%;
 }
 .game .chat .chrono .field1 {
