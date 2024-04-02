@@ -28,12 +28,13 @@ $pageUrl = "pages/" . $page;
 $pageUrlExt = $pageUrl . $pageExt;
 
 $isPagePublic = false;
+$isPageComponent = false;
+
 $isUserLoggedIn = isset($_SESSION['cafeUsername']);
 $isUserFullLoggedIn = $isUserLoggedIn && isset($_SESSION['cafeDrink']);
 
 $day = date("j");
 $dayChanged = isset($_SESSION['cafeDayChanged']);
-$disableDayChangedCheck = false;
 
 $data = null;
 
@@ -45,17 +46,20 @@ switch($page) {
 	case "ctpl/global.mtt":
 	case "ctpl/shop.mtt":
 		$isPagePublic = true;
+		$isPageComponent = true;
 		$data = get_content($pageUrl);
 		break;
 	case "defm":
 		// NOTE : Cette page est appelée par "swf/client.swf" avec le paramètre GET "sid=[key1];m=[key2]".
 		// Sert-elle à établir la connexion avec le serveur de jeu ?
 		$isPagePublic = true;
+		$isPageComponent = true;
 		$data = "";
 		break;
 	case "head":
 	case "_special/head":
 		$isPagePublic = true;
+		$isPageComponent = true;
 		if($page === "head" && (!$isUserFullLoggedIn || $dayChanged)) {
 			$data = get_content($pageUrl . "_guest" . $pageExt);
 			if($dayChanged) {
@@ -116,11 +120,12 @@ switch($page) {
 		break;
 	case "partnerFrame":
 		$isPagePublic = true;
-		$disableDayChangedCheck = true;
+		$isPageComponent = true;
 		$data = get_content($pageUrlExt);
 		break;
 	case "redir":
 		$isPagePublic = true;
+		$isPageComponent = true;
 		$data = "";
 		$url = isset($_GET['url']) ? $_GET['url'] : "";
 		if(strpos($url, "http://") === 0 || strpos($url, "https://") === 0) {
@@ -264,6 +269,7 @@ switch($page) {
 		break;
 	case "sponsor/embed.js":
 		$isPagePublic = true;
+		$isPageComponent = true;
 		$gInfo = isset($_GET['sz']) ? explode(";ref=", $_GET['sz']) : array("");
 		$sz = explode("x", $gInfo[0]);
 		$szW = intval($sz[0]);
@@ -376,7 +382,7 @@ switch($page) {
 		$data = get_content($pageUrlExt);
 		break;
 	case "_parse_message_chat": // NOTE : Cette page est spécifique à l'archive, elle est destinée à analyser et transformer les chaînes de caractères fournies sur les différents chats.
-		$disableDayChangedCheck = true;
+		$isPageComponent = true;
 		if(isset($_GET['str'])) {
 			$parsedMessage = parse_message(trim($_GET['str']), false);
 			$data = date("H:i") . "|";
@@ -384,7 +390,7 @@ switch($page) {
 		}
 		break;
 	case "_redirect_to_edit_room": // NOTE : Cette page est spécifique à l'archive, elle effectue la redirection vers la page "Déplacer les meubles" de la table "CaféJeux 2007-2020", depuis la rubrique spéciale.
-		$disableDayChangedCheck = true;
+		$isPageComponent = true;
 		$data = get_content("pages/group/6951.html");
 		$data .= "<load>group/6951/editRoom</load>";
 		$data = str_replace("{ARCHIVE_LOAD_TABLE}", "chat", $data);
@@ -893,7 +899,7 @@ switch($page) {
 		}
 		break;
 	case "smileyTip":
-		$disableDayChangedCheck = true;
+		$isPageComponent = true;
 		$id = isset($_GET['id']) ? $_GET['id'] : "st_14331";
 		$idSplit = explode(";", $id);
 		$elementId = htmlentities($idSplit[0]);
@@ -1149,7 +1155,7 @@ switch($page) {
 			   (is_int($pBirthdayD) && ($pBirthdayD < 1 || $pBirthdayD > 31))) {
 				// NOTE : La vérification n'était pas plus poussée que cela sur cafejeux.com, ce qui causait certains bugs. Par exemple :
 				// - En précisant le jour, le mois mais en omettant l'année de naissance, la page de profil indiquait "null ans".
-				// - En mettant 31 comme jour, 12 comme mois, et l'année civile en cours, la page de profil indiquait "-1 ans" (sauf le 31/12).
+				// - En mettant 31 comme jour, 12 comme mois et l'année civile en cours, la page de profil indiquait "-1 ans" (sauf le 31/12).
 				$errors .= "<li>La date de naissance n'est pas valide.</li>";
 			}
 			if(strlen($pCity) > 50) {
@@ -1230,7 +1236,7 @@ switch($page) {
 		break;
 	case "user/siteSound":
 		// NOTE : L'état du son semblait être enregistré en base de données sur cafejeux.com.
-		$disableDayChangedCheck = true;
+		$isPageComponent = true;
 		$gSound = isset($_GET['v']) ? intval($_GET['v']) : 0;
 		if($gSound < 0 || $gSound > 1) $gSound = 0;
 		$data = get_content($pageUrlExt);
@@ -1240,7 +1246,7 @@ switch($page) {
 		$data = str_replace("{ARCHIVE_SOUND_UPDATE_STATE_ID}", ($gSound === 1 ? "0" : "1"), $data);
 		break;
 	case "user/tipContact":
-		$disableDayChangedCheck = true;
+		$isPageComponent = true;
 		$gElementId = isset($_GET['rid']) ? htmlentities(explode(";", $_GET['rid'])[0]) : "cl_96463";
 		if($gElementId !== "cl_96463") {
 			$elementIdField = ($gElementId === "cl_72259" || $gElementId === "cl_27685") ? "name" : "to";
@@ -1293,15 +1299,13 @@ switch($page) {
 		break;
 }
 
-$isPageAvailable = $isPagePublic || $isUserLoggedIn;
-
 if($data !== null) {
-	if($isPageAvailable) {
-		if($isUserLoggedIn && !$isUserFullLoggedIn && $page !== "user/chooseDrink") {
+	if($isPagePublic || $isUserLoggedIn) {
+		if(!$isPageComponent && $isUserLoggedIn && !$isUserFullLoggedIn && $page !== "user/chooseDrink") {
 			http_response_code(302);
 			$data = "<load>user/chooseDrink</load>";
 		} elseif(isset($_SESSION['cafeUsername'])) {
-			if(!$disableDayChangedCheck && isset($_SESSION['cafeDay']) && $_SESSION['cafeDay'] !== $day && !isset($_SESSION['cafeDayChanged'])) {
+			if(!$isPageComponent && isset($_SESSION['cafeDay']) && $_SESSION['cafeDay'] !== $day && !isset($_SESSION['cafeDayChanged'])) {
 				// NOTE : En se rendant sur la page du bar (liste des jeux), cafejeux.com forçait toujours l'affichage de la page de choix de boisson.
 				$_SESSION['cafeDayChanged'] = true;
 				$data = '<user money="{ARCHIVE_USER_MONEY}" freeMoney="0"/><load>user/dayChanged</load>'; // NOTE : Dès le changement de jour, le nombre de sucres blancs restant de la veille passe à 0.
