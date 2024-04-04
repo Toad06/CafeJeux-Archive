@@ -645,10 +645,19 @@ switch($page) {
 		$data = get_content($pageUrl . $f . $pageExt);
 		$data = str_replace("{ARCHIVE_TABLE_DATETIME}", $date, $data);
 		$data = str_replace("{ARCHIVE_TABLE_SEED}", strval(mt_rand(10000, 99999)), $data);
-		if($idTable === "6864") {
-			$isDummy = isset($_SESSION['cafeTableDummy']) ? $_SESSION['cafeTableDummy'] : true;
-			$data = str_replace("{ARCHIVE_TABLE_TOTAL_MEMBERS}", (!$isDummy ? "59" : "60"), $data);
-			$data = str_replace("{ARCHIVE_TABLE_60TH_MEMBER}", (!$isDummy ? "" : ":29,0,4,2,3,0,0,0,2,0,0,13,0,0,3,6,6,0"), $data);
+		switch($idTable) {
+			case "6864":
+				$isDummy = isset($_SESSION['cafeTableDummy']) ? $_SESSION['cafeTableDummy'] : true;
+				$data = str_replace("{ARCHIVE_TABLE_TOTAL_MEMBERS}", (!$isDummy ? "59" : "60"), $data);
+				$data = str_replace("{ARCHIVE_TABLE_60TH_MEMBER}", (!$isDummy ? "" : ":29,0,4,2,3,0,0,0,2,0,0,13,0,0,3,6,6,0"), $data);
+				break;
+			case "6951":
+				$raw = "IYR8meGmcj-Uyavut9GCJFILGrVYaZapQ1aataeXiUJaqWd6DqaeKYhddqWaYDqaeKsgJaqWaYDqaeKYfZbqWaYDqaeKsgtaqWaYDqaeMsgdaqWaYDqaeMYfJbqWaYDqaeMYgJdqWaYDqaeNsgdcqWaYDqaeLsgtcqWaYDqaeLsgJcqWaYDqaeCiaWec1aasuiBmbdabM1aasCizmbdabL8G3sa";
+				if(isset($_SESSION['cafeTableFurnitures'])) {
+					$raw = htmlentities($_SESSION['cafeTableFurnitures']);
+				}
+				$data = str_replace("{ARCHIVE_TABLE_RAW}", $raw, $data);
+				break;
 		}
 		break;
 	case "group/420/editDescription":
@@ -892,7 +901,7 @@ switch($page) {
 				// Le sid doit servir à vérifier que la transaction provient bien de l'utilisateur. Il devrait normalement correspondre à la valeur passée en argument sur la fonction JS "js.App.main".
 				$data = '<confirm macro="shop@confirmBuy" name="cet objet" price="le prix indiqué en" url="shop/' . $gId . '/buy?sid=' . $sid . '"/>';
 			} else {
-				// NOTE : L'achat d'une boisson devrait changer le header, voir un exemple dans "shop/buy_drink.html".
+				// NOTE : L'achat d'une boisson devrait changer le header, voir un exemple dans "pages/shop/buy_drink.html".
 				$data = get_content("pages/shop/buy_generic.html");
 				$data = str_replace("{ARCHIVE_BUY_SUBSHOP}", "Furniture", $data);
 			}
