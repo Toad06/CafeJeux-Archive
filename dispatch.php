@@ -617,7 +617,7 @@ switch($page) {
 	case "group/420/delete":
 		if(isset($_GET['sid'])) {
 			// NOTE : Le sid doit servir à vérifier que l'action provient bien de l'utilisateur.
-			// Impossible toutefois de savoir ce qu'il se passe précisément après avoir supprimé la table : cette fonctionnalité de cafejeux.com était hors d'usage au moment du test.
+			// Impossible toutefois de savoir ce qu'il s'affiche après avoir supprimé la table : cette fonctionnalité de cafejeux.com était hors d'usage au moment du test.
 		}
 		$data = get_content($pageUrlExt);
 		break;
@@ -702,8 +702,9 @@ switch($page) {
 	case "group/420/invite":
 	case "group/6951/invite":
 		// NOTE : Lorsque le nom saisi est correct, un message est envoyé au membre invité via la messagerie interne du site. Néanmoins, cette fonctionnalité de cafejeux.com était hors d'usage au moment du test.
+		// (Toad06) Aucune certitude sur l'exactitude de la valeur de retour indiquée ci-dessous, lorsque l'invitation est bien envoyée.
 		$pName = isset($_POST['name']) ? $_POST['name'] : "";
-		$data = '<fill class="error" id="formError"></fill>';
+		$data = '<fill class="ack" id="formError">Votre message a été envoyé.</fill><input id="name"/>';
 		if(strlen($pName) < 4 || strlen($pName) > 20) {
 			$data = get_content($pageUrl . "_error" . $pageExt);
 		}
@@ -963,7 +964,7 @@ switch($page) {
 			$error = "";
 			if(strlen($pPass) < 6 || strlen($pPass) > 32) {
 				$error = "Ce code secret n'est pas valide. Attention, les différences entre minuscules et majuscules sont prises en compte.";
-			} elseif($pSugar <= 0 || $pSugar > ($globalUserFreeMoney + $globalUserMoney)) {
+			} elseif($pSugar <= 0 || $pSugar > $globalUserMoney) {
 				$error = "Vous n'avez pas assez de sucres.";
 			} elseif($isUserLoggedIn && $playerName === $_SESSION['cafeUsername']) {
 				$error = "Vous essayez de faire quoi là exactement ?";
@@ -972,8 +973,9 @@ switch($page) {
 				$data = get_content($pageUrl . "_form_error" . $pageExt);
 				$data = str_replace("{ARCHIVE_GIVE_MONEY_ERROR}", $error, $data);
 			} else {
-				// NOTE : Un message est envoyé au bénéficiaire en cas de succès. Impossible toutefois d'en savoir plus car cette fonctionnalité de cafejeux.com était hors d'usage au moment du test.
-				$data = '<fill class="error" id="formError"></fill>';
+				// NOTE : Un message est envoyé au bénéficiaire en cas de succès mais cette fonctionnalité de cafejeux.com était hors d'usage au moment du test.
+				// (Toad06) Il me semble que le message affiché était très similaire à celui du bénéficiaire du don.
+				$data = '<fill class="ack" id="formError">Vous avez offert <span class="tokens">' . $pSugar . '<img alt="" src="img/icons/small_bought.gif"/></span>. Quelle générosité !</fill><input id="qty">1</input><input id="pass"/>';
 			}
 		} else {
 			$data = get_content($pageUrlExt);

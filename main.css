@@ -89,6 +89,11 @@ a.contactButton {
 	margin-left: 240px;
 }
 
+/* Empêche le texte "Vous ne pouvez pas le défier pour le moment" de déborder du cadre. */
+.matchOptions a.largeButton.disabled em {
+	line-height: 8pt;
+}
+
 /***********************************/
 
 /* Pages des jeux */
@@ -117,7 +122,7 @@ a.contactButton {
 
 /* La feuille de style originale prévoit d'afficher le texte en gras pour ces deux règles. */
 /* Dans les faits, ce n'était pas le cas sur cafejeux.com car les pseudos étaient insérés dans des éléments <a> dont l'une des règles CSS est... d'utiliser un niveau de graisse normale. */
-/* Les pseudos ne sont pas pas cliquables dans l'archive, notamment pour éviter des interactions non désirées, d'où l'ajout ci-dessous. */
+/* Les pseudos ne sont pas pas cliquables dans cette partie-là de l'archive, essentiellement pour éviter des interactions non désirées, d'où l'ajout ci-dessous. */
 .p2turn .chat .users .field2, .p1turn .chat .users .field1 {
 	font-weight: normal;
 }
