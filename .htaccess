@@ -130,10 +130,10 @@ RewriteRule ^user/([0-9]+)/remContact$ dispatch.php?p=user/[id]/remContact&id=$1
 RewriteRule ^user/(.+)$ dispatch.php?p=user/$1 [L]
 
 
-# Le nom des fichiers mp3 a été changé par inadvertance dans l'archive, il ne s'agit donc plus des noms d'origine.
-# Ceux-ci sont pourtant requis par le fichier "swf/client.swf". On "réécrit" donc leur nom ici.
+# Le nom des fichiers mp3 avait été changé par inadvertance dans l'archive. Leur nom d'origine a depuis été rétabli.
+# Les noms qui avaient été utilisés restent conservés ici pour les versions 1.2 à 1.5 du loader (dossier "_toad06").
 RewriteRule ^sound/__constructs__.mp3$ sound/empty.mp3 [L] # Il s'agit d'une erreur de programmation, un fichier factice a été ajouté pour éviter une erreur 404.
-RewriteRule ^sound/_MyTurn.mp3$ sound/my_turn.mp3 [L]
-RewriteRule ^sound/_NewDefy.mp3$ sound/new_challenge.mp3 [L]
-RewriteRule ^sound/_NewMail.mp3$ sound/new_mail.mp3 [L]
-RewriteRule ^sound/_PartyStarted.mp3$ sound/game_started.mp3 [L]
+RewriteRule ^sound/my_turn.mp3$ sound/_MyTurn.mp3 [L]
+RewriteRule ^sound/new_challenge.mp3$ sound/_NewDefy.mp3 [L]
+RewriteRule ^sound/new_mail.mp3$ sound/_NewMail.mp3 [L]
+RewriteRule ^sound/game_started.mp3$ sound/_PartyStarted.mp3 [L]

@@ -184,8 +184,9 @@ switch($page) {
 		}
 		break;
 	case "user/register":
-		// Le site cafejeux.com utilisait le système de cookies de Flash Player pour détecter les tentatives de créations de multi-comptes. Le message suivant était alors affiché sur la page :
+		// NOTE : Le site cafejeux.com utilisait le système de cookies de Flash Player pour détecter les tentatives de créations de multi-comptes. Le message suivant était alors affiché sur la page :
 		// `<div class="nack">Un trop grand nombre d'inscriptions a été détecté depuis votre ordinateur. Voir les <a href="#" target="_blank">Conditions Générales d'Utilisation du site</a>.</div>`
+		// Par ailleurs, le champ "Parrain" du formulaire devrait être pré-rempli avec la valeur du paramètre GET "ref", si ce paramètre était spécifié dans l'URL lors de la première navigation sur le site.
 		$isPagePublic = true;
 		$f = "_ok";
 		$repGfx = "";
@@ -974,7 +975,7 @@ switch($page) {
 				$data = str_replace("{ARCHIVE_GIVE_MONEY_ERROR}", $error, $data);
 			} else {
 				// NOTE : Un message est envoyé au bénéficiaire en cas de succès mais cette fonctionnalité de cafejeux.com était hors d'usage au moment du test.
-				// (Toad06) Il me semble que le message affiché était très similaire à celui du bénéficiaire du don.
+				// (Toad06) Il me semble que le message affiché était très similaire à celui reçu par le bénéficiaire du don.
 				$data = '<fill class="ack" id="formError">Vous avez offert <span class="tokens">' . $pSugar . '<img alt="" src="img/icons/small_bought.gif"/></span>. Quelle générosité !</fill><input id="qty">1</input><input id="pass"/>';
 			}
 		} else {

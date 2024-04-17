@@ -1,4 +1,5 @@
 DirectoryIndex show.listing
+IndexIgnoreReset ON
 
 
 RewriteEngine On
