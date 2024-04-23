@@ -883,7 +883,7 @@ switch($page) {
 		$gType = $gType === 0 && isset($_GET['type']) ? htmlentities(explode(";", $_GET['type'])[0]) : $gType;
 		$load = "";
 		if(is_int($gType)) {
-			if(($gType >= 1 && $gType <= 50 && $gType !== 2) || $gType === 54 || $gType === 55 || $gType === 65 || $gType === 67 ||  $gType === 68) {
+			if(($gType >= 1 && $gType <= 50 && $gType !== 2) || $gType === 54 || $gType === 55 || $gType === 65 || $gType === 67 || $gType === 68) {
 				$load = "<load>shop/" . $gType . "</load>";
 			}
 		} elseif(strlen($gType) > 0) {

@@ -59,7 +59,7 @@ function cj_date_today() {
 // Le personnage par défaut sur la page d'inscription a ces caractéristiques : "viewer.swf?gfx=0,0,0,0,0,0,0,0,2,0,0,0,3,0,3,6,6,0".
 // Les valeurs générées correspondent à l'ordre des différentes options dans le SWF de la page d'inscription.
 function random_avatar() {
-	$gender = 0;
+	$gender = "";
 	$gfx = "";
 	for($i = 0; $i < 18; $i++) {
 		if($i > 0) $gfx .= ",";
@@ -67,9 +67,9 @@ function random_avatar() {
 		switch($i) {
 			case 0: $r = mt_rand(0, 1) === 0 ? 0 : 29; $gender = $r === 29 ? "female" : "male"; break; // homme (0 à 28) ou femme (29 à 58) - seules les valeurs 0 et 29 sont en réalité utilisées
 			case 1: $r = 0; break; // usage inconnu - toujours 0, quel que soit le contexte - cette valeur servait peut-être à identifier la boisson à afficher sur une table mais le système a pu être implémenté différemment
-			case 2: if($gender === 1) $r = mt_rand(0, 7); else $r = mt_rand(0, 10); break; // style vestimentaire haut
-			case 3: if($gender === 1) $r = mt_rand(0, 3); else $r = mt_rand(0, 2); break; // style vestimentaire bas
-			case 4: if($gender === 1) $r = mt_rand(0, 8); else $r = mt_rand(0, 17); break; // style capillaire (et barbe, pour homme)
+			case 2: if($gender === "female") $r = mt_rand(0, 7); else $r = mt_rand(0, 10); break; // style vestimentaire haut
+			case 3: if($gender === "female") $r = mt_rand(0, 3); else $r = mt_rand(0, 2); break; // style vestimentaire bas
+			case 4: if($gender === "female") $r = mt_rand(0, 8); else $r = mt_rand(0, 17); break; // style capillaire (et barbe, pour homme)
 			case 5: $r = mt_rand(0, 6); break; // couleur de peau
 			case 6: $r = mt_rand(0, 14); break; // homme seulement : couleur du t-shirt
 			case 7: $r = mt_rand(0, 10); break; // homme seulement : couleur du pantalon

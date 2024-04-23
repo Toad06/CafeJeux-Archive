@@ -33,7 +33,7 @@
 				// Textes d'El Papa.
 				var texts = "";
 				if(Game_FirstPlayer === "1") {
-					texts += js.App.c.applyTpl("chat@userlist", {_list: []}).replace("à la table", "au bar"); // Petit changement perso. :)
+					texts += js.App.c.applyTpl("chat@userlist", {_list: []}).replace("à la table", "au bar"); // Petit changement perso pour un peu plus de cohérence.
 					texts += js.App.c.applyTpl("chat@join", {_u: {_uid: 999999, _name: Game_GetData("player2Name")}, _room: "party_" + Game_Id});
 				} else {
 					texts += js.App.c.applyTpl("chat@userlist", {_list: [{_u: {_uid: 18269, _name: Game_GetData("player2Name")}, _room: "party_" + Game_Id}]});
