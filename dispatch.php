@@ -65,7 +65,8 @@ switch($page) {
 			if($dayChanged) {
 				$data .= '<fill id="headBar"></fill><fill id="menu"></fill>';
 			}
-		} else {
+		} elseif($isUserFullLoggedIn) {
+			$isPagePublic = false;
 			$d = intval($_SESSION['cafeDrink']);
 			$coldCup = $d >= 11 ? '<div class="coldCup"></div>' : "";
 			$data = get_content($pageUrl . ($page === "head" ? "_logged" : "") . $pageExt);
@@ -1118,10 +1119,12 @@ switch($page) {
 		}
 		break;
 	case "user/logout":
-		$_SESSION['cafePrevUsername'] = $_SESSION['cafeUsername'];
-		unset($_SESSION['cafeUsername']);
-		if(isset($_SESSION['cafeOptions'])) unset($_SESSION['cafeOptions']);
-		if(isset($_SESSION['cafeTableFurnitures'])) unset($_SESSION['cafeTableFurnitures']);
+		if($isUserLoggedIn) {
+			$_SESSION['cafePrevUsername'] = $_SESSION['cafeUsername'];
+			unset($_SESSION['cafeUsername']);
+			if(isset($_SESSION['cafeOptions'])) unset($_SESSION['cafeOptions']);
+			if(isset($_SESSION['cafeTableFurnitures'])) unset($_SESSION['cafeTableFurnitures']);
+		}
 		$data = "<reboot/>";
 		break;
 	case "user/mailMyFriends":
@@ -1318,7 +1321,7 @@ if($data !== null) {
 			$data = "<load>user/chooseDrink</load>";
 		} elseif(isset($_SESSION['cafeUsername'])) {
 			if(!$isPageComponent && isset($_SESSION['cafeDay']) && $_SESSION['cafeDay'] !== $day && !isset($_SESSION['cafeDayChanged'])) {
-				// NOTE : En se rendant sur la page du bar (liste des jeux), cafejeux.com forçait toujours l'affichage de la page de choix de boisson.
+				// NOTE : En se rendant sur la page "Jouer au bar", cafejeux.com forçait toujours l'affichage de la page de choix de boisson.
 				$_SESSION['cafeDayChanged'] = true;
 				$data = '<user money="{ARCHIVE_USER_MONEY}" freeMoney="0"/><load>user/dayChanged</load>'; // NOTE : Dès le changement de jour, le nombre de sucres blancs restant de la veille passe à 0.
 			}
