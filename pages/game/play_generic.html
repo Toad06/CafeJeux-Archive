@@ -180,9 +180,10 @@
 	};
 	window.Game_PostChat = function(input) {
 		if(!input) return;
+		var name = Game_GetData("playerActiveName");
+		if(name === null) return;
 		var value = input.value.trim();
 		input.value = "";
-		if(value.length === 0) return;
 		var xhr = new XMLHttpRequest();
 		xhr.open("GET", "dispatch.php?p=_parse_message_chat&str=" + encodeURIComponent(value), true);
 		xhr.onload = function() {
@@ -190,17 +191,36 @@
 			if(history === null) return;
 			var name = Game_GetData("playerActiveName");
 			if(name === null) return;
-			var currentColor = document.getElementById("currentColor").className;
+			if(this.status !== 200) return this._onfail();
+			name = this._name;
+			var currentColor = document.getElementById("currentColor").className.replace("color_", "");
 			var text = this.responseText.split("|");
-			var time = text[0];
+			var metadata = text[0].split(",");
+			var time = metadata[0];
+			var playerId = (metadata[1] === name ? "18269" : "999999");
+			var type = metadata[2];
+			if(type === "msg") name = '<a href="#" onclick="return false;">' + name + '</a>';
 			text[0] = "";
 			var message = text.join("|").replace("|", ""); // Les entités HTML sont déjà converties.
+			var messageTpl;
+			try {
+				messageTpl = js.App.c.applyTpl("chat@" + type, {_stranger: false, _user: name, _uid: playerId, _time: time, _c: currentColor, _s: message});
+			} catch(_e) { return this._onfail(); }
 			var div = document.createElement("div");
-			div.className = "chatMsg " + currentColor;
-			div.innerHTML = '<div class="name"><span class="time">[' + time + ']</span> <a href="#" onclick="return false;">' + name + '</a> :</div><div class="msg">' + message + '</div>';
-			history.appendChild(div);
+			div.innerHTML = messageTpl;
+			history.appendChild(div.childNodes[0]);
 			history.scrollTop = history.scrollHeight;
 		};
+		xhr._name = name;
+		xhr._input = input;
+		xhr._onfail = function() {
+			var input = this._input;
+			input.style.borderColor = "red";
+			haxe.Timer.delay(function() {
+				input.style.borderColor = "";
+			}, 100);
+		};
+		if(value.length === 0) return xhr._onfail();
 		xhr.send(null);
 	};
 	if(!window.__archivePlayGeneric) {

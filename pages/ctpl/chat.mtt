@@ -56,14 +56,14 @@
 	]]></macro>
 	<macro name="ejected">Vous avez été éjecté de cette table.</macro>
 	<macro name="speech"><div class="chatEmote">::_user:: ::_s::</div></macro>
-	<macro name="msg"><div class="chatMsg color_::_c::"><span class="name ::if (_stranger)::visitor::end::"><span class="time">[::_time::]</span> ::_user:::</span> <span class="msg">::_s::</span></div></macro>
+	<macro name="msg"><div class="chatMsg color_::_c::"><span class="name ::if (_stranger)::visitor::end::"><span class="time">[::_time::]</span> ::_user:: :</span> <span class="msg">::_s::</span></div></macro>
 	<macro name="cmd"><![CDATA[
 			<a class="sender" $$click(user/::_u._uid::) onmouseover="js.App.userHighlight('::_room::',::_u._uid::)" onmouseout="js.App.userUnHighlight('::_room::',::_u._uid::)">::_u._name::</a>
 	]]></macro>
 	<macro name="cmd_Lol"><div class="chatEmote">::_user:: éclate de rire.</div></macro>
 	<macro name="cmd_Yes"><div class="chatEmote">::_user:: est d'accord.</div></macro>
 	<macro name="cmd_No"><div class="chatEmote">::_user:: n'est pas d'accord !</div></macro>
-	<macro name="cmd_Love"><div class="chatEmote">::_user:: aime tout le monde :)</div></macro>
+	<macro name="cmd_Love"><div class="chatEmote">::_user:: aime tout le monde. :)</div></macro>
 	<macro name="cmd_Cry"><div class="chatEmote">::_user:: pleure.</div></macro>
 	<macro name="cmd_Out"><div class="chatEmote">::_user:: trouve ça lamentable : tu sors !</div></macro>
 	<macro name="cmd_Happy"><div class="chatEmote">::_user:: respire la joie !</div></macro>

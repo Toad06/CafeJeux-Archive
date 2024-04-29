@@ -386,9 +386,20 @@ switch($page) {
 	case "_parse_message_chat": // NOTE : Cette page est spécifique à l'archive, elle est destinée à analyser et transformer les chaînes de caractères fournies sur les différents chats.
 		$isPageComponent = true;
 		if(isset($_GET['str'])) {
-			$parsedMessage = parse_message(trim($_GET['str']), false);
-			$data = date("H:i") . "|";
-			$data .= $parsedMessage;
+			$message = trim($_GET['str']);
+			$command = parse_chat_command($message);
+			if($command === null) {
+				$commandType = "msg";
+				$message = parse_message($message, false);
+			} else {
+				$commandType = $command[0];
+				$message = $command[1];
+				if($commandType === "invalid") {
+					http_response_code(400);
+				}
+			}
+			$data = date("H:i") . "," . $globalUserData['username'] . "," . $commandType . "|";
+			$data .= $message;
 		}
 		break;
 	case "_redirect_to_edit_room": // NOTE : Cette page est spécifique à l'archive, elle effectue la redirection vers la page "Déplacer les meubles" de la table "CaféJeux 2007-2020", depuis la rubrique spéciale.
@@ -409,7 +420,7 @@ switch($page) {
 				$topicName = null;
 				switch($__recursiondata) {
 					case 64083: $topicName = "Sortir de Terre"; break; case 68580: $topicName = "Présentation de table"; break;
-					case 131526: $topicName = "(HELP) Questions & réponses"; break; case 186881: $topicName = "Hello la MT"; break; case 186884: $topicName = "Infos en vrac sur Café Jeux"; break;
+					case 131526: $topicName = "(HELP) Questions & réponses"; break; case 186881: $topicName = "Hello la MT"; break; case 186884: $topicName = "Infos en vrac sur CaféJeux"; break;
 				}
 			}
 			if($topicName !== null) {
@@ -1033,7 +1044,7 @@ switch($page) {
 		break;
 	case "user/chooseDrink":
 		if($isUserFullLoggedIn && (($dayChanged) || (isset($_SESSION['cafePrevUsername']) && strtolower($_SESSION['cafePrevUsername']) !== strtolower($_SESSION['cafeUsername'])))) {
-			// NOTE : 1 seule boisson par jour par utilisateur, cette portion de code ne sert qu'à simuler ce principe.
+			// NOTE : 1 seule boisson par jour par utilisateur, cette portion de code ne sert qu'à simuler grossièrement ce principe.
 			$isUserFullLoggedIn = false;
 			if(isset($_SESSION['cafePrevUsername'])) unset($_SESSION['cafePrevUsername']);
 			if(isset($_SESSION['cafeDrink'])) unset($_SESSION['cafeDrink']);

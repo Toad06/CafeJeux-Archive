@@ -160,4 +160,40 @@ function parse_message($str, $allowTags, $allowImages = null) {
 	return nl2br($str);
 }
 
+// Détecte les commandes spéciales utilisées sur les chats.
+function parse_chat_command($str) {
+	if(strpos($str, "/") !== 0) return null;
+	$action = strtolower(explode(" ", $str)[0]);
+	if($action === "/me") {
+		$type = "speech";
+		$str = substr($str, 3);
+		if(empty($str)) {
+			// NOTE : La requête est invalide si cette commande n'est pas suivie d'un message.
+			$type = "invalid";
+		}
+	} else {
+		$actions = array( // "/commande" => "nom de la propriété dans `_ChatCommand`, côté JavaScript et ActionScript"
+			"/lol" => "_Lol", "/mdr" => "_Lol",
+			"/yes" => "_Yes", "/oui" => "_Yes", "/vi" => "_Yes",
+			"/no" => "_No", "/non" => "_No",
+			"/love" => "_Love", "/aime" => "_Love",
+			"/cry" => "_Cry", "/pleure" => "_Cry",
+			"/out" => "_Out", "/sort" => "_Out", "/sors" => "_Out",
+			"/cool" => "_Happy", "/content" => "_Happy",
+			"/puke" => "_Puke", "/vomi" => "_Puke",
+			"/jump" => "_Jump", "/saute" => "_Jump", "/hop" => "_Jump",
+			"/play" => "_Fight", "/duel" => "_Fight", "/defi" => "_Fight", "/jouer" => "_Fight",
+			"/angry" => "_Angry", "/enerve" => "_Angry",
+			"/token" => "_Token", "/sucre" => "_Token"
+		);
+		if(array_key_exists($action, $actions)) {
+			$type = "cmd" . $actions[$action];
+		} else {
+			// NOTE : Les messages commençant par "/" mais qui ne sont pas des commandes spéciales valides doivent être ignorés.
+			$type = "invalid";
+		}
+	}
+	return array($type, $str);
+}
+
 ?>
