@@ -22,7 +22,7 @@ $globalDrinks = array(
 
 // Liste des joueurs dont les pages sont conservées.
 $globalPlayers = array(
-	81 => "tchong", 33208 => "3Dos", 16732 => "Zehir", /*18269 => "Toad06",*/ 190420 => "all200", 243719 => "totolescargo", 258748 => "Mario06", 265566 => "adeli", 275028 => "cedric85",
+	81 => "tchong", 16732 => "Zehir", /*18269 => "Toad06",*/ 33208 => "3Dos", 190420 => "all200", 243719 => "totolescargo", 258748 => "Mario06", 265566 => "adeli", 275028 => "cedric85",
 	296239 => "tony42", 302576 => "CashMan", 307984 => "yanndu28", 328173 => "natoun", 340881 => "rastahman", 353165 => "BzzlaMouche", 455222 => "Stampinette"
 );
 $globalPlayers[18269] = isset($_SESSION['cafeUsername']) ? $_SESSION['cafeUsername'] : "Toad06";
@@ -161,18 +161,19 @@ function parse_message($str, $allowTags, $allowImages = null) {
 }
 
 // Détecte les commandes spéciales utilisées sur les chats.
-function parse_chat_command($str) {
+function parse_command($str) {
 	if(strpos($str, "/") !== 0) return null;
-	$action = strtolower(explode(" ", $str)[0]);
-	if($action === "/me") {
+	$command = strtolower(explode(" ", $str)[0]);
+	if($command === "/me") {
 		$type = "speech";
 		$str = substr($str, 3);
 		if(empty($str)) {
 			// NOTE : La requête est invalide si cette commande n'est pas suivie d'un message.
+			// (Toad06) cafejeux.com ne faisait peut-être pas cette vérification, mais elle semble pourtant avoir du sens.
 			$type = "invalid";
 		}
 	} else {
-		$actions = array( // "/commande" => "nom de la propriété dans `_ChatCommand`, côté JavaScript et ActionScript"
+		$commands = array( // "/commande" => "nom de la propriété dans `_ChatCommand`, côté Flash et JavaScript"
 			"/lol" => "_Lol", "/mdr" => "_Lol",
 			"/yes" => "_Yes", "/oui" => "_Yes", "/vi" => "_Yes",
 			"/no" => "_No", "/non" => "_No",
@@ -186,14 +187,14 @@ function parse_chat_command($str) {
 			"/angry" => "_Angry", "/enerve" => "_Angry",
 			"/token" => "_Token", "/sucre" => "_Token"
 		);
-		if(array_key_exists($action, $actions)) {
-			$type = "cmd" . $actions[$action];
+		if(array_key_exists($command, $commands)) {
+			$type = "cmd" . $commands[$command];
 		} else {
 			// NOTE : Les messages commençant par "/" mais qui ne sont pas des commandes spéciales valides doivent être ignorés.
 			$type = "invalid";
 		}
 	}
-	return array($type, $str);
+	return array($type, htmlspecialchars($str));
 }
 
 ?>

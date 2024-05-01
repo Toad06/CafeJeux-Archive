@@ -387,7 +387,7 @@ switch($page) {
 		$isPageComponent = true;
 		if(isset($_GET['str'])) {
 			$message = trim($_GET['str']);
-			$command = parse_chat_command($message);
+			$command = parse_command($message);
 			if($command === null) {
 				$commandType = "msg";
 				$message = parse_message($message, false);
@@ -979,7 +979,7 @@ switch($page) {
 				$error = "Ce code secret n'est pas valide. Attention, les différences entre minuscules et majuscules sont prises en compte.";
 			} elseif($pSugar <= 0 || $pSugar > $globalUserMoney) {
 				$error = "Vous n'avez pas assez de sucres.";
-			} elseif($isUserLoggedIn && $playerName === $_SESSION['cafeUsername']) {
+			} elseif($playerId === "18269") {
 				$error = "Vous essayez de faire quoi là exactement ?";
 			}
 			if(strlen($error) > 0) {
