@@ -63,9 +63,33 @@
 				}
 				var chatVainqueur = document.createElement("div");
 				chatVainqueur.className = "logMsg chatSystem";
+				// NOTE : Le texte annonçant le résultat du match est celui que verrait un membre simplement spectateur de la partie ; cela a en effet davantage de sens ici par rapport au fonctionnement de l'archive.
+				// Autrement, le message "Vous avez gagné !" ou "Vous avez perdu !" serait affiché, suivi, s'il ne s'agissait pas d'un match amical, de cette autre information :
+				// `<div class="chatInfo">Votre position actuelle : <img src="img/icons/small_rank_1.gif"/> <strong>[position]<sup>ème</sup></strong> ([points]pts)</div>`.
+				// Le nombre de points, ajouté ou déduit, dépendait du résultat de la partie et du classement de l'adversaire. La formule de calcul exacte n'est pas connue.
+				// Ainsi, un joueur bien classé qui gagnait contre un mal classé n'engendrait que peu de points ; un match nul lui en faisait perdre, une défaite davantage encore.
 				chatVainqueur.innerHTML = (winner !== null ? (Game_GetData("player" + String(winner) + "Name") + " remporte ce match.") : (Game_GetData("player1Name") + " et " + Game_GetData("player2Name") + " font match nul !"));
 				history.appendChild(chatVainqueur);
 				history.scrollTop = history.scrollHeight;
+				// Affichage de l'expérience gagnée par les deux joueurs.
+				// NOTE : Chaque partie jouée permet d'engendrer de l'expérience, indépendamment du résultat du match, la progression devenant plus lente après chaque passage au niveau supérieur.
+				// La formule de calcul exacte n'est pas connue. Quand la barre d'expérience était intégralement remplie, le message suivant s'affichait : "Vous passez au niveau [niveau suivant] !".
+				var xpBarInterval = setInterval(function() {
+					var bars = document.querySelectorAll(".xpBar img");
+					if(!document.contains(chatVainqueur) || bars.length !== 2) {
+						clearInterval(xpBarInterval);
+						return;
+					}
+					for(var i = 0; i < 2; i++) {
+						var bar = bars[i];
+						if(!bar.style.borderRightWidth) {
+							var level = parseInt(bar.parentNode.querySelector("div").textContent, 10) || 1;
+							var width = Math.ceil(Math.max(1, 100 / level / 2.5));
+							bar.style.borderRightWidth = String(Math.min(100 - parseInt(bar.style.width, 10), width)) + "px";
+						}
+						bar.className = (bar.className === "blink" ? "" : "blink");
+					}
+				}, 200);
 				// Mise à jour de divers éléments sur la page.
 				var menuBtnBar = document.getElementById("menuBtnPlaying");
 				var nameForHeadBar = menuBtnPlaying.querySelector("a:nth-child(2)").textContent;
@@ -89,6 +113,10 @@
 					js.XmlHttp.get("game/" + Game_Id, this);
 					return false;
 				};
+				// NOTE : Le texte du bouton devrait être "Trouver un autre adversaire" mais cela ne ferait pas sens par rapport au fonctionnement monoposte de l'archive.
+				// Matchs au bar : texte "Trouver un autre adversaire", classe "button b_play".
+				// Matchs de table : texte "Retour à la table", classe "button".
+				// Matchs amicaux : texte "Proposer la revanche à [adversaire]", classe "button b_fight".
 				newGame.className = newGame.className.replace("b_stop", "b_fight");
 				newGame.innerHTML = "Proposer la revanche à {ARCHIVE_OTHER_USER_NAME}";
 				break;
@@ -194,7 +222,8 @@
 			if(this.status !== 200) return this._onfail();
 			name = this._name;
 			var currentColor = document.getElementById("currentColor").className.replace("color_", "");
-			var text = this.responseText.split("|");
+			var response = (!this._stranger ? this.responseText : arguments[0]);
+			var text = response.split("|");
 			var metadata = text[0].split(",");
 			var time = metadata[0];
 			var playerId = (metadata[1] === name ? "18269" : "999999");
@@ -204,14 +233,54 @@
 			var message = text.join("|").replace("|", ""); // Les entités HTML sont déjà converties.
 			var messageTpl;
 			try {
-				messageTpl = js.App.c.applyTpl("chat@" + type, {_stranger: false, _user: name, _uid: playerId, _time: time, _c: currentColor, _s: message});
+				messageTpl = js.App.c.applyTpl("chat@" + type, {_stranger: this._stranger, _user: name, _uid: playerId, _time: time, _c: currentColor, _s: message});
 			} catch(_e) { return this._onfail(); }
 			var div = document.createElement("div");
 			div.innerHTML = messageTpl;
 			history.appendChild(div.childNodes[0]);
 			history.scrollTop = history.scrollHeight;
+			// Simule l'arrivée d'un spectateur.
+			if(!Game_PostChat._strangerJoined && Math.random() > 0.9) {
+				Game_PostChat._strangerJoined = true;
+				var that = this;
+				var strangerName = "Trouble-Fête";
+				this._name = strangerName;
+				this._stranger = true;
+				var joinPostAndLeave = function(type) {
+					if(!document.contains(history)) return;
+					if(Game_GetData("playerActiveName") === null) return;
+					if(type === "post") {
+						var time = history.querySelectorAll(".time");
+						if(time.length > 0) {
+							time = time[time.length - 1].textContent.replace("[", "").replace("]", "");
+							var players = [Game_GetData("player1Name"), Game_GetData("player2Name")];
+							if(Math.random() > 0.5) { var temp = players[0]; players[0] = players[1]; players[1] = temp; }
+							var text = time + "," + strangerName + ",msg|" + (
+								["Je n'ai rien d'intéressant à dire, et je tiens à vous le faire savoir !",
+								"Je parie que " + players[0] + " va remporter ce match haut la main. Sans rancune, " + players[1] + " !",
+								"Crois-tu aux miracles, " + players[0] + " ? Il va en falloir pour gagner contre " + players[1] + " !",
+								"Je regarde tous les matchs de " + players[0] + " et je suis formel : c'est le joueur le plus nul du Café Jeux !",
+								"Tu sais quelle serait la pire honte de ta vie, " + players[0] + " ? Perdre contre " + players[1] + " !",
+								"Le point commun entre " + players[0] + " et " + players[1] + " ? Les deux jouent comme un pied !"
+								][Math.floor(Math.random() * 6)]
+							);
+							that.onload(text);
+						}
+					} else {
+						var str = js.App.c.applyTpl("chat@" + type, {_u: {_uid: 999999, _name: strangerName}, _room: "party_" + Game_Id});
+						var div = document.createElement("div");
+						div.innerHTML = str;
+						history.appendChild(div.childNodes[1]);
+						history.scrollTop = history.scrollHeight;
+					}
+					if(type === "join") setTimeout(joinPostAndLeave, 4000 + (Math.random() * 6000), "post");
+					else if(type === "post") setTimeout(joinPostAndLeave, 2000 + (Math.random() * 2000), "leave");
+				};
+				setTimeout(joinPostAndLeave, 2000 + (Math.random() * 6000), "join");
+			}
 		};
 		xhr._name = name;
+		xhr._stranger = false;
 		xhr._input = input;
 		xhr._onfail = function() {
 			var input = this._input;
@@ -354,7 +423,7 @@
 		so.write(divName);
 
 		// Jeu et bouton "Signaler un comportement anormal".
-		// Note : cafejeux.com chargeait directement le fichier SWF au lieu de le faire via un élément IFRAME.
+		// NOTE : cafejeux.com chargeait directement le fichier SWF au lieu de le faire via un élément IFRAME.
 		var gameZone = game.querySelector("#gameZone");
 		gameZone.innerHTML = '<div class="gameClient">' +
 			'<iframe src="_toad06/?game={ARCHIVE_GAME_ID}{ARCHIVE_GAME_OPTIONS}" width="300" height="300" class="swf" frameborder="0" scrolling="no" style="overflow:hidden;"></iframe>' +
