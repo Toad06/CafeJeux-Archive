@@ -150,6 +150,11 @@
 				var specialFile = parseInt(window.location.href.split("reverse=")[1], 10);
 				if(specialFile === 1 || (specialFile === 99 && Math.random() > 0.5)) {
 					game.swf = PATH_SWF_EDITED + "miniwar_fun_bluefirst.swf";
+				} else {
+					specialFile = parseInt(window.location.href.split("glue=")[1], 10);
+					if(specialFile === 1) {
+						game.swf = PATH_SWF_EDITED + "miniwar_fun_gluefix.swf";
+					}
 				}
 			}
 			return game;

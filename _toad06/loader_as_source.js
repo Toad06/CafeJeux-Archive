@@ -764,7 +764,7 @@ function JSCall(func, data, arg2) {
 }
 
 function JSSend(data, turnDone, fromPlayer) {
-	// Cette fonction peut être appelée en JavaScript : "client.JS_to_AS(args)".
+	// Cette fonction peut être appelée en JavaScript : "client['JS_to_AS_' + clientID](args)".
 	var obfu = Game_Obfuscation();
 	if(typeof data === "object" && data[0] === "timeover") {
 		// Cas spécial : Fin de partie par manque de temps, la fonction "MMApi.gameOver()" est appelée tout de suite.
@@ -814,7 +814,7 @@ _root.onEnterFrame = function() {
 			if(JSCall("CJGame_IsPreviousClientLoaded", _global.fvPlayer)) {
 				Init_HaxePolyfillsPost(gc);
 				Init_MMApi();
-				flash.external.ExternalInterface.addCallback("JS_to_AS", null, JSSend);
+				flash.external.ExternalInterface.addCallback("JS_to_AS_" + _global.fvPlayer, null, JSSend);
 				_root.Game = new gc[obfu["Game"]](gc);
 				g = _root.Game;
 				var data = g[obfu["initialize"]]();

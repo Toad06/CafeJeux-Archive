@@ -192,7 +192,7 @@ function CJGame_Action(data) {
 			}
 			if(player === 2) {
 				if(game !== 14) {
-					playSound("game_started");
+					playSound("_PartyStarted");
 					if(game === 6) {
 						// Affichage "manuel" des couleurs pour Anticorp's, puisque le jeu ne le prévoit pas.
 						if(games[game].swf === window.game.swf) CJGame_SetColors([1, 0xFF0000, 0x5F8EFE]);
@@ -231,7 +231,7 @@ function CJGame_PlayData(data) {
 				CJGame_UpdateTimers(val);
 				WINDOW_TOP.Game_Event(["turn", val]);
 			}
-			playSound("my_turn");
+			playSound("_MyTurn");
 		}
 		return data[1];
 	}
@@ -259,11 +259,11 @@ function CJGame_SendDataToOtherClients(data) {
 		if(i === player) continue;
 		var client = document.getElementById("client_" + i);
 		if(client === null) continue;
-		if(!client.JS_to_AS) {
-			console.error("Impossible d'appeler JS_to_AS()");
+		if(!client["JS_to_AS_" + i]) {
+			console.error("Impossible d'appeler JS_to_AS_" + i + "()");
 			continue;
 		}
-		client.JS_to_AS(data, turnDone, CJGame_PlayData.turnDone);
+		client["JS_to_AS_" + i](data, turnDone, CJGame_PlayData.turnDone);
 	}
 }
 
@@ -274,7 +274,7 @@ function CJGame_SendDataToAllClients(data) {
 		CJGame_PlayData.turnDone = player;
 	}
 	var client = document.getElementById("client_" + player);
-	client.JS_to_AS(data[1], turnDone, CJGame_PlayData.turnDone);
+	client["JS_to_AS_" + player](data[1], turnDone, CJGame_PlayData.turnDone);
 	CJGame_SendDataToOtherClients(data);
 }
 
