@@ -106,6 +106,13 @@ a.contactButton {
 
 /*** AJOUTS ***/
 
+/* Retire la bordure par défaut présente sur certains navigateurs. */
+input, textarea {
+	outline-style: none;
+}
+
+/***********************************/
+
 /* Page : "game/play_generic.html" */
 
 /* La propriété "border-color: white;" n'est normalement appliquée que lorsque le joueur connecté a la main (via la classe "p1turn"). */

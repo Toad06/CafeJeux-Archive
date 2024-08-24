@@ -1,7 +1,7 @@
 # Archive CaféJeux
 
 <em>Auteur : Toad06</em><br/>
-<em>Contributeurs : Tom_</em>
+<em>Contributeurs : Tomdu56</em>
 
 Cette archive contient l'ensemble des pages, images et fichiers Flash de CafeJeux.com, site de jeux en ligne créé et édité par la société Motion Twin de 2007 à 2021.
 
