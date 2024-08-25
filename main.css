@@ -106,7 +106,7 @@ a.contactButton {
 
 /*** AJOUTS ***/
 
-/* Retire la bordure par défaut présente sur certains navigateurs. */
+/* Retire la bordure par défaut des champs de texte, présente sur certains navigateurs lorsque l'élément est actif. */
 input, textarea {
 	outline-style: none;
 }

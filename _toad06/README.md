@@ -3,15 +3,15 @@
 <em>Auteur : Toad06, sur la base des codes sources des jeux publiés par Motion Twin.</em>
 
 <em>Notes de version :</em><br/>
-- Ajout de la prise en charge des jeux avec l'émulateur Ruffle : un problème - <a href="https://github.com/ruffle-rs/ruffle/issues/10685">qui a par ailleurs toujours cours</a> - l'en empêchait mais une solution de contournement a été trouvée, de sorte que la fonction de rappel "JS_to_AS" ait toujours un nom différent d'un client à l'autre, en suffixant simplement chaque nom avec l'index du client en question.
-- Ajout d'une option dans Anticorp's (voir les détails dans la rubrique du jeu, ci-dessous).
+- Ajout de la prise en charge des jeux avec l'émulateur Ruffle : un problème étrange - <a href="https://github.com/ruffle-rs/ruffle/issues/10685">qui a par ailleurs toujours cours</a> - l'en empêchait mais une solution de contournement a été trouvée, de sorte que la fonction de rappel "JS_to_AS" ait toujours un nom différent d'un client à l'autre, en suffixant simplement chaque nom avec l'index du client en question.
+- Ajout d'une option dans Anticorp's concernant l'adhérence des cosmos à la surface jaune (voir les détails dans la rubrique du jeu, ci-dessous).
 - Correction du nom des fichiers audio : les noms d'origine sont désormais utilisés.
 
 ---
 
 Cette section comporte plusieurs fichiers inédits permettant de faire fonctionner les jeux de CaféJeux en mode local (monoposte).
 
-Pour ce faire, suivez la procédure d'installation de l'archive indiquée dans le fichier <a href="../README.md">README.md</a> principal, puis ouvrez `_toad06/?game=[INDEX]` depuis le navigateur. `[INDEX]` doit être remplacé par l'identifiant du jeu à charger, les index sont les mêmes que ceux du site CaféJeux (avec quelques petites exclusivités en plus !). Ils sont également indiqués plus bas dans ce document, accompagnés de différentes remarques sur l'état de fonctionnement des jeux.
+Pour ce faire, suivez la procédure d'installation de l'archive indiquée dans le fichier <a href="../README.md">README.md</a> principal, puis ouvrez `_toad06/?game=[INDEX]` depuis le navigateur. `[INDEX]` doit être remplacé par l'identifiant du jeu à charger, les index sont les mêmes que ceux du site CaféJeux (avec quelques exclusivités à partir de l'index 12, en provenance de l'archive publiée par Motion Twin). Ils sont également indiqués plus bas dans ce document, accompagnés de différentes remarques sur l'état de fonctionnement des jeux.
 
 Par ailleurs, des paramètres de configuration optionnels sont disponibles :
 - Pour n'afficher qu'une seule fenêtre de jeu sur la page (celle du joueur dont c'est le tour), ajoutez le paramètre `&unique=1` dans l'URL.
@@ -79,6 +79,12 @@ Par ailleurs, des paramètres de configuration optionnels sont disponibles :
 ### Index : 12
 - Jeu fonctionnel.
 - Ce jeu n'est jamais sorti sur cafejeux.com mais les administrateurs de Motion Twin avaient évoqué son existence, son nom et son but : manger toute l'herbe !
+
+## Arlequin - Jeu inédit
+### Index : 13
+- Jeu non fonctionnel. Celui-ci n'est tout simplement pas disponible dans les codes sources publiés par Motion Twin.
+- Ce jeu n'est jamais sorti sur cafejeux.com mais les joueurs avaient eu connaissance de son existence, son nom et son but : "A l'occasion d'un bal, Arlequin cherche Isabella et Isabella cherche Arlequin. Le plus rapide des deux à trouver l'autre sera sacré meilleur danseur du bal...".
+- Une partie des règles était également dévoilée : "Vous pouvez également démasquer un pion adversaire positionné sur une case adjacente. Cela prend un tour.".
 
 ## Boum - Prototype de Anticorp's
 ### Index : 14
