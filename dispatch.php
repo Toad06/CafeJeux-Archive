@@ -75,6 +75,14 @@ switch($page) {
 			$data = str_replace("{ARCHIVE_DRINK_DESC}", str_replace("'", "\'", $globalDrinks[$d]['desc']), $data);
 			$data = str_replace("{ARCHIVE_DRINK_COLDCUP}", $coldCup, $data);
 			$data = str_replace("play.cafejeux.com", "play.cafejeux.localhost", $data);
+			if($page === "head") {
+				$sSound = isset($_SESSION['cafeSound']) ? intval($_SESSION['cafeSound']) : 0;
+				if($sSound < 0 || $sSound > 1) $sSound = 0;
+				$data = str_replace("{ARCHIVE_SOUND_CURRENT_STATE_ID}", strval($sSound), $data);
+				$data = str_replace("{ARCHIVE_SOUND_CURRENT_STATE_DESC}", str_replace("{}", ($sSound === 1 ? "" : "dés"), "Sons {}activés"), $data);
+				$data = str_replace("{ARCHIVE_SOUND_CURRENT_STATE_STR}", ($sSound === 1 ? "on" : "off"), $data);
+				$data = str_replace("{ARCHIVE_SOUND_UPDATE_STATE_ID}", ($sSound === 1 ? "0" : "1"), $data);
+			}
 		}
 		break;
 	case "help":
@@ -708,6 +716,7 @@ switch($page) {
 				$data = "<alert>Vous ne pouvez pas éjecter le propriétaire de la table !</alert>";
 			} else {
 				// NOTE : Cette fonctionnalité de cafejeux.com était hors d'usage au moment du test.
+				// (Toad06) Il est probable que la liste des membres était simplement rafraichie. De mémoire, aucun message automatique annonçant son exclusion de la table n'était envoyé au membre concerné.
 				$data = "";
 			}
 		}
@@ -911,9 +920,14 @@ switch($page) {
 			$gId = intval($_GET['id']);
 			if(!isset($_GET['sid'])) {
 				$sid = mt_rand(1000, 10000);
-				// NOTE : cafejeux.com indiquait bien sûr le nom réel de l'objet et son prix en chiffres, dans la balise <confirm/> ci-dessous.
+				// NOTE : cafejeux.com renvoyait la balise <confirm/> ci-dessous. Ce procédé nécessite l'utilisation d'une base de données ou d'un moyen similaire pour retrouver le nom de l'objet et son prix.
+				// Il est toutefois possible de produire un affichage identique avec quelques lignes de JavaScript. Cette solution est donc choisie ici.
+				// <confirm macro="shop@confirmBuy" name="[ITEM_NAME]" price="[ITEM_PRICE]" url="shop/[ITEM_ID]/buy?sid=[USER_SID]"/>
 				// Le sid doit servir à vérifier que la transaction provient bien de l'utilisateur. Il devrait normalement correspondre à la valeur passée en argument sur la fonction JS "js.App.main".
-				$data = '<confirm macro="shop@confirmBuy" name="cet objet" price="le prix indiqué en" url="shop/' . $gId . '/buy?sid=' . $sid . '"/>';
+				$data = '<script type="text/javascript">';
+				$data .= 'if(confirm(js.App.c.applyTpl("shop@confirmBuy", {name: document.querySelector("#shopMain .name").textContent.trim(), price: document.querySelector("#shopMain .price").textContent.trim()})))';
+				$data .= 'js.XmlHttp.enqueue("shop/' . $gId . '/buy?sid=' . $sid . '");';
+				$data .= '</script>';
 			} else {
 				// NOTE : L'achat d'une boisson devrait changer le header, voir un exemple dans "pages/shop/buy_drink.html".
 				$data = get_content("pages/shop/buy_generic.html");
@@ -1133,6 +1147,7 @@ switch($page) {
 		if($isUserLoggedIn) {
 			$_SESSION['cafePrevUsername'] = $_SESSION['cafeUsername'];
 			unset($_SESSION['cafeUsername']);
+			if(isset($_SESSION['cafeSound'])) unset($_SESSION['cafeSound']);
 			if(isset($_SESSION['cafeOptions'])) unset($_SESSION['cafeOptions']);
 			if(isset($_SESSION['cafeTableFurnitures'])) unset($_SESSION['cafeTableFurnitures']);
 		}
@@ -1261,10 +1276,10 @@ switch($page) {
 		}
 		break;
 	case "user/siteSound":
-		// NOTE : L'état du son semblait être enregistré en base de données sur cafejeux.com.
 		$isPageComponent = true;
 		$gSound = isset($_GET['v']) ? intval($_GET['v']) : 0;
 		if($gSound < 0 || $gSound > 1) $gSound = 0;
+		$_SESSION['cafeSound'] = $gSound;
 		$data = get_content($pageUrlExt);
 		$data = str_replace("{ARCHIVE_SOUND_CURRENT_STATE_ID}", strval($gSound), $data);
 		$data = str_replace("{ARCHIVE_SOUND_CURRENT_STATE_DESC}", str_replace("{}", ($gSound === 1 ? "" : "dés"), "Sons {}activés"), $data);

@@ -1,18 +1,20 @@
 # Archive CaféJeux
 
 <em>Auteur : Toad06</em><br/>
-<em>Contributeurs : Tomdu56</em>
+<em>Contributeur : Tomdu56</em>
 
 Cette archive contient l'ensemble des pages, images et fichiers Flash de CafeJeux.com, site de jeux en ligne créé et édité par la société Motion Twin de 2007 à 2021.
 
-L'archive est essentiellement statique, les parties dynamiques ne sont souvent là que pour refléter le comportement du site d'origine en termes d'affichage... et donc donner l'illusion.
+L'archive est essentiellement statique, les parties dynamiques ne sont souvent là que pour refléter le comportement du site d'origine en termes d'affichage... et donc donner l'illusion. La liste des fonctionnalités dynamiques disponibles est détaillée dans la dernière section de ce document.
 
 Les jeux et quelques inédits sont fonctionnels en mode local (monoposte) en accédant au dossier <a href="_toad06">_toad06</a>. Les jeux qui furent publiés en leur temps sont également intégrés au sein même du site.
 
 
 ## Installation
 
-Vous devez disposer d'un serveur web avec les logiciels Apache et PHP. Plus particulièrement, l'archive a été conçue pour Apache 2.4 et PHP 7.4 mais les versions ultérieures devraient également fonctionner.
+Vous devez disposer d'un serveur web disposant des logiciels Apache et PHP. Plus particulièrement, l'archive a été conçue avec Apache 2.4 et PHP 7.4 mais l'ensemble des versions indiquées ci-dessous fonctionnent également :
+- Apache : 2.4
+- PHP : 5.6, 7.4, 8.0 à 8.3 
 
 L'installation de l'archive en elle-même est très simple : il vous suffit d'extraire tout le contenu du fichier zip téléchargé vers votre serveur et d'accéder à la page `index.php` depuis un navigateur qui prend toujours en charge le plugin Flash Player, comme Basilisk. L'émulateur <a href="https://github.com/ruffle-rs/ruffle">Ruffle</a> peut également être utilisé dans les navigateurs plus habituels tels Chrome ou Firefox, pour pallier l'obsolescence de Flash Player : vous devez toutefois vous assurer qu'il est configuré de manière à permettre la lecture automatique des fichiers Flash (sans interaction préalable).
 
@@ -20,3 +22,22 @@ Vous pouvez signaler tout problème <a href="https://github.com/Toad06/CafeJeux-
 
 
 <a href="https://github.com/Toad06/CafeJeux-Archive"><img src="presentation.png?raw=true" alt="" /></a>
+
+
+## Fonctionnalités dynamiques
+
+Les actions suivantes ont un effet concret au sein de l'archive :
+
+- La création d'un compte depuis la page d'inscription. Plus exactement, seuls le pseudo et l'avatar sont gardés en mémoire par le système de cookies. Créer un nouveau profil remplace automatiquement le précédent.
+
+- Le choix de la boisson quotidienne, influençant l'image de la tasse en haut du site. Ce choix est uniquement conservé tant que la session en cours reste active ; ou jusqu'à minuit, heure du serveur.
+
+- Le bouton "ON / OFF" pour le son, essentiellement utile pour tout ce qui concerne les jeux. Ce choix est uniquement conservé tant que la session en cours reste active.
+
+- Le déplacement des meubles sur la table "CaféJeux 2007-2020" (le lien vers cette page est à trouver). Ce choix est uniquement conservé tant que la session en cours reste active.
+
+- Le choix des options en jeu depuis la page "Ma page -> Mes options de jeux". Ce choix est uniquement conservé tant que la session en cours reste active. Si vous ne validez jamais ce formulaire (avec ou sans modifications), la carte par défaut pourra être sélectionnée dans le jeu "Anticorp's", ce qui diffère (volontairement) de ce que faisait CafeJeux.com.
+
+- L'écriture de messages sur les t'chats des jeux, selon les règles de mise en forme qui étaient autorisées sur CafeJeux.com.
+
+- La prévisualisation de messages sur les forums lors de sa rédaction, selon les règles de mise en forme qui étaient autorisées sur CafeJeux.com.

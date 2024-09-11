@@ -108,11 +108,11 @@ function parse_message($str, $allowTags, $allowImages = null) {
 			'~//(.*?)//~s',
 			'~__(.*?)__~s',
 			'~===(.*?)===~s', // NOTE : Cette commande avait seulement été documentée dans la rubrique "Guide de CaféJeux" sur le site Motion Twin.
-			'~\[cite\]([^"><]*?)\[/cite\]~s',
-			'~\[lien\](https?)://([^"><]*?)\[/lien\]~s', // NOTE : cafejeux.com ne prenait pas en charge les liens commençant par "https://".
-			'~\[lien=((https?)://[^"><]*?)\](.*?)\[/lien\]~s' // Idem ici.
+			'~\[cite\](.*?)\[/cite\]~s',
+			'~\[lien\](https?)://([^"><]*?)\[/lien\]~', // NOTE : cafejeux.com ne prenait pas en charge les liens commençant par "https://".
+			'~\[lien=((https?)://[^"><]*?)\](.*?)\[/lien\]~' // Idem ici.
 		);
-		if($allowImages) $findTags[] = '~@(https?://[^"><]*?)@~s';
+		if($allowImages) $findTags[] = '~@(https?://[^"><]*?)@~';
 		$replaceTags = array(
 			'<strong>$1</strong>',
 			'<em>$1</em>',
@@ -124,7 +124,7 @@ function parse_message($str, $allowTags, $allowImages = null) {
 		);
 		if($allowImages) $replaceTags[] = '<img src="$1" alt="" />';
 		$str = preg_replace($findTags, $replaceTags, $str);
-		$str = preg_replace_callback('/#([0-9]+)#(.*?)##/', function($m) {
+		$str = preg_replace_callback('/#([0-9]+)#(.*?)##/s', function($m) {
 			if(!isset($m[2])) return "";
 			$font = intval($m[1]);
 			$text = $m[2];
@@ -148,7 +148,7 @@ function parse_message($str, $allowTags, $allowImages = null) {
 	}
 	$str = str_replace($findSmileys, $replaceSmileys, $str);
 	// NOTE : cafejeux.com effectuait une césure des chaînes dont la longueur dépassait les 30 caractères (ou, plus exactement, 30 bytes).
-	// Le code ci-dessous reproduit approximativement ce comportement.
+	// Le code ci-dessous reproduit très approximativement ce comportement.
 	$arr = explode(" ", $str);
 	$arrLength = count($arr);
 	for($i = 0; $i < $arrLength; $i++) {
@@ -169,7 +169,7 @@ function parse_command($str) {
 		$str = substr($str, 3);
 		if(empty($str)) {
 			// NOTE : La requête est invalide si cette commande n'est pas suivie d'un message.
-			// (Toad06) cafejeux.com ne faisait peut-être pas cette vérification, mais elle semble pourtant avoir du sens.
+			// (Toad06) cafejeux.com ne faisait sans doute pas cette vérification, mais elle semble pourtant avoir du sens.
 			$type = "invalid";
 		}
 	} else {

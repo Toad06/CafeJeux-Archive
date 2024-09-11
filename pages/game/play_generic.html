@@ -221,7 +221,7 @@
 			if(name === null) return;
 			if(this.status !== 200) return this._onfail();
 			name = this._name;
-			var currentColor = document.getElementById("currentColor").className.replace("color_", "");
+			var currentColor = (!this._stranger ? document.getElementById("currentColor").className.replace("color_", "") : "0");
 			var response = (!this._stranger ? this.responseText : arguments[0]);
 			var text = response.split("|");
 			var metadata = text[0].split(",");
