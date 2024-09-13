@@ -393,7 +393,7 @@ switch($page) {
 		break;
 	case "_parse_message_chat": // NOTE : Cette page est spécifique à l'archive, elle est destinée à analyser et transformer les chaînes de caractères fournies sur les différents chats.
 		$isPageComponent = true;
-		if(isset($_GET['str'])) {
+		if(isset($_GET['str']) && $isUserLoggedIn) {
 			$message = trim($_GET['str']);
 			$command = parse_command($message);
 			if($command === null) {
@@ -406,7 +406,7 @@ switch($page) {
 					http_response_code(400);
 				}
 			}
-			$data = date("H:i") . "," . $globalUserData['username'] . "," . $commandType . "|";
+			$data = date("H:i") . "," . $_SESSION['cafeUsername'] . "," . $commandType . "|";
 			$data .= $message;
 		}
 		break;
@@ -716,7 +716,7 @@ switch($page) {
 				$data = "<alert>Vous ne pouvez pas éjecter le propriétaire de la table !</alert>";
 			} else {
 				// NOTE : Cette fonctionnalité de cafejeux.com était hors d'usage au moment du test.
-				// (Toad06) Il est probable que la liste des membres était simplement rafraichie. De mémoire, aucun message automatique annonçant son exclusion de la table n'était envoyé au membre concerné.
+				// (Toad06) Il est probable que la liste des membres était simplement rafraichie. De mémoire, aucun message automatique informant de son exclusion de la table n'était envoyé au membre concerné.
 				$data = "";
 			}
 		}
@@ -727,7 +727,7 @@ switch($page) {
 		// (Toad06) Aucune certitude sur l'exactitude de la valeur de retour indiquée ci-dessous, lorsque l'invitation est bien envoyée.
 		$pName = isset($_POST['name']) ? $_POST['name'] : "";
 		$data = '<fill class="ack" id="formError">Votre message a été envoyé.</fill><input id="name"/>';
-		if(strlen($pName) < 4 || strlen($pName) > 20) {
+		if(strlen($pName) < 4 || strlen($pName) > 20 || preg_match('/[^A-Za-z0-9]/', $pName)) {
 			$data = get_content($pageUrl . "_error" . $pageExt);
 		}
 		break;
@@ -882,7 +882,7 @@ switch($page) {
 		$errors = "";
 		if(strlen($gTo) < 4 || strlen($gTo) > 20) {
 			$errors .= "<li>Un pseudo doit faire entre 4 et 20 caractères.</li>";
-		} elseif($gTo === strtoupper($gTo)) { // prétexte pour afficher un message d'erreur
+		} elseif(preg_match('/[^A-Za-z0-9]/', $gTo)) {
 			$errors .= "<li>Cet utilisateur n'existe pas.</li>";
 		}
 		if(strlen($gContent) < 4) {
@@ -922,7 +922,7 @@ switch($page) {
 				$sid = mt_rand(1000, 10000);
 				// NOTE : cafejeux.com renvoyait la balise <confirm/> ci-dessous. Ce procédé nécessite l'utilisation d'une base de données ou d'un moyen similaire pour retrouver le nom de l'objet et son prix.
 				// Il est toutefois possible de produire un affichage identique avec quelques lignes de JavaScript. Cette solution est donc choisie ici.
-				// <confirm macro="shop@confirmBuy" name="[ITEM_NAME]" price="[ITEM_PRICE]" url="shop/[ITEM_ID]/buy?sid=[USER_SID]"/>
+				// `<confirm macro="shop@confirmBuy" name="[ITEM_NAME]" price="[ITEM_PRICE]" url="shop/[ITEM_ID]/buy?sid=[USER_SID]"/>`
 				// Le sid doit servir à vérifier que la transaction provient bien de l'utilisateur. Il devrait normalement correspondre à la valeur passée en argument sur la fonction JS "js.App.main".
 				$data = '<script type="text/javascript">';
 				$data .= 'if(confirm(js.App.c.applyTpl("shop@confirmBuy", {name: document.querySelector("#shopMain .name").textContent.trim(), price: document.querySelector("#shopMain .price").textContent.trim()})))';
@@ -1241,14 +1241,17 @@ switch($page) {
 		}
 		break;
 	case "user/search":
-		if(isset($_POST['name'])) {
+		if(isset($_POST['name']) && $isUserLoggedIn) {
 			$f = "_error";
 			$error = "";
 			$pName = "";
+			$pOnline = isset($_POST['online']);
+			$selfName = false;
 			if(strlen($_POST['name']) < 4) {
 				$error = "Vous devez indiquer au moins 4 caractères pour effectuer une recherche.";
 			} else {
-				if(!isset($_POST['online'])) {
+				$selfName = stripos($_SESSION['cafeUsername'], $_POST['name']) === 0;
+				if((!$pOnline || $selfName) && strlen($_POST['name']) <= 20 && !preg_match('/[^A-Za-z0-9]/', $_POST['name'])) {
 					$f = "_ok";
 					$pName = htmlentities($_POST['name']);
 				} else {
@@ -1259,11 +1262,18 @@ switch($page) {
 			if(strlen($error) > 0) {
 				$data = str_replace("{ARCHIVE_SEARCH_ERROR}", $error, $data);
 			} else {
-				// NOTE : S'il n'y avait qu'un seul résultat correspondant à la requête, cafejeux.com redirigeait immédiatement vers la page de profil en question : "<load>user/[id]</load>"
-				// Si le nombre de profils pouvant correspondre dépassait 15, le message suivant était affiché : "Au moins 15 utilisateurs correspondent à votre recherche."
-				// Enfin, seuls les pseudos commençant exactement par la requête effectuée (casse insensible) étaient affichés.
-				$data = str_replace("{ARCHIVE_SEARCH_NAME_1}", $pName . mt_rand(1, 9), $data);
-				$data = str_replace("{ARCHIVE_SEARCH_NAME_2}", $pName . mt_rand(1000, 9999), $data);
+				// NOTE : Seuls les pseudos commençant exactement par la requête effectuée (casse insensible) étaient affichés sur cafejeux.com.
+				if($pOnline || strlen($pName) >= 20) {
+					// NOTE : Quand il n'y a qu'un seul résultat correspondant à la requête, une redirection est immédiatement effectuée vers la page de profil en question...
+					$data = "<load>user/" . ($selfName ? "18269" : "999999") . "</load>";
+				} else {
+					// ... Autrement, les différents résultats trouvés sont affichés, dans une limite de 15.
+					// Si le nombre de profils pouvant correspondre dépassait 15, cafejeux.com affichait alors le message suivant : "Au moins 15 utilisateurs correspondent à votre recherche."
+					$data = str_replace("{ARCHIVE_SEARCH_NAME_1}", ($selfName ? $_SESSION['cafeUsername'] : substr($pName . "0" . mt_rand(1, 9), 0, 20)), $data);
+					$data = str_replace("{ARCHIVE_SEARCH_ID_1}", ($selfName ? "18269" : "999998"), $data);
+					$data = str_replace("{ARCHIVE_SEARCH_STATUS_1}", ($selfName ? "online" : "offline"), $data);
+					$data = str_replace("{ARCHIVE_SEARCH_NAME_2}", substr($pName . mt_rand(1000, 9999), 0, 20), $data);
+				}
 			}
 		} else {
 			$gOnline = isset($_GET['online']) ? intval($_GET['online']) : 0;

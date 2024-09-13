@@ -28,7 +28,7 @@ Vous pouvez signaler tout problème <a href="https://github.com/Toad06/CafeJeux-
 
 Les actions suivantes ont un effet concret au sein de l'archive :
 
-- La création d'un compte depuis la page d'inscription. Plus exactement, seuls le pseudo et l'avatar sont gardés en mémoire par le système de cookies. Créer un nouveau profil remplace automatiquement le précédent.
+- La création d'un compte depuis la page d'inscription. Plus exactement, seuls le pseudo et l'avatar sont gardés en mémoire par le système de cookies. Créer un nouveau profil remplace automatiquement le précédent. Cette étape n'a de toute façon rien d'obligatoire puisque la connexion reste possible avec n'importe quel pseudo et mot de passe, tant que ceux-ci respectent les contraintes qu'imposait CafeJeux.com.
 
 - Le choix de la boisson quotidienne, influençant l'image de la tasse en haut du site. Ce choix est uniquement conservé tant que la session en cours reste active ; ou jusqu'à minuit, heure du serveur.
 
@@ -36,7 +36,7 @@ Les actions suivantes ont un effet concret au sein de l'archive :
 
 - Le déplacement des meubles sur la table "CaféJeux 2007-2020" (le lien vers cette page est à trouver). Ce choix est uniquement conservé tant que la session en cours reste active.
 
-- Le choix des options en jeu depuis la page "Ma page -> Mes options de jeux". Ce choix est uniquement conservé tant que la session en cours reste active. Si vous ne validez jamais ce formulaire (avec ou sans modifications), la carte par défaut pourra être sélectionnée dans le jeu "Anticorp's", ce qui diffère (volontairement) de ce que faisait CafeJeux.com.
+- Le choix des options en jeu depuis la page "Ma page -> Mes options de jeux". Ce choix est uniquement conservé tant que la session en cours reste active. Si ce formulaire n'est jamais validé (avec ou sans modifications), la carte par défaut pourra être sélectionnée dans le jeu "Anticorp's", ce qui diffère (volontairement) de ce que faisait CafeJeux.com.
 
 - L'écriture de messages sur les t'chats des jeux, selon les règles de mise en forme qui étaient autorisées sur CafeJeux.com.
 
