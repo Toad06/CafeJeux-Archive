@@ -406,7 +406,7 @@ switch($page) {
 					http_response_code(400);
 				}
 			}
-			$data = date("H:i") . "," . $_SESSION['cafeUsername'] . "," . $commandType . "|";
+			$data = date("H:i") . "," . htmlentities($_SESSION['cafeUsername']) . "," . $commandType . "|";
 			$data .= $message;
 		}
 		break;
@@ -727,8 +727,15 @@ switch($page) {
 		// (Toad06) Aucune certitude sur l'exactitude de la valeur de retour indiquée ci-dessous, lorsque l'invitation est bien envoyée.
 		$pName = isset($_POST['name']) ? $_POST['name'] : "";
 		$data = '<fill class="ack" id="formError">Votre message a été envoyé.</fill><input id="name"/>';
-		if(strlen($pName) < 4 || strlen($pName) > 20 || preg_match('/[^A-Za-z0-9]/', $pName)) {
+		$error = "";
+		if(strlen($pName) < 4 || strlen($pName) > 20) {
+			$error = "Un pseudo doit faire entre 4 et 20 caractères.";
+		} else if(preg_match('/[^A-Za-z0-9]/', $pName)) {
+			$error = "Cet utilisateur n'existe pas.";
+		}
+		if(strlen($error) > 0) {
 			$data = get_content($pageUrl . "_error" . $pageExt);
+			$data = str_replace("{ARCHIVE_INVITE_ERROR}", $error, $data);
 		}
 		break;
 	case "group/420/members":
@@ -1269,7 +1276,7 @@ switch($page) {
 				} else {
 					// ... Autrement, les différents résultats trouvés sont affichés, dans une limite de 15.
 					// Si le nombre de profils pouvant correspondre dépassait 15, cafejeux.com affichait alors le message suivant : "Au moins 15 utilisateurs correspondent à votre recherche."
-					$data = str_replace("{ARCHIVE_SEARCH_NAME_1}", ($selfName ? $_SESSION['cafeUsername'] : substr($pName . "0" . mt_rand(1, 9), 0, 20)), $data);
+					$data = str_replace("{ARCHIVE_SEARCH_NAME_1}", ($selfName ? htmlentities($_SESSION['cafeUsername']) : substr($pName . "0" . mt_rand(1, 9), 0, 20)), $data);
 					$data = str_replace("{ARCHIVE_SEARCH_ID_1}", ($selfName ? "18269" : "999998"), $data);
 					$data = str_replace("{ARCHIVE_SEARCH_STATUS_1}", ($selfName ? "online" : "offline"), $data);
 					$data = str_replace("{ARCHIVE_SEARCH_NAME_2}", substr($pName . mt_rand(1000, 9999), 0, 20), $data);

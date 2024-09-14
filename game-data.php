@@ -25,7 +25,7 @@ $globalPlayers = array(
 	81 => "tchong", 16732 => "Zehir", /*18269 => "Toad06",*/ 33208 => "3Dos", 190420 => "all200", 243719 => "totolescargo", 258748 => "Mario06", 265566 => "adeli", 275028 => "cedric85",
 	296239 => "tony42", 302576 => "CashMan", 307984 => "yanndu28", 328173 => "natoun", 340881 => "rastahman", 353165 => "BzzlaMouche", 455222 => "Stampinette"
 );
-$globalPlayers[18269] = isset($_SESSION['cafeUsername']) ? $_SESSION['cafeUsername'] : "Toad06";
+$globalPlayers[18269] = isset($_SESSION['cafeUsername']) ? htmlentities($_SESSION['cafeUsername']) : "Toad06";
 
 
 // Variables utilisateur.
