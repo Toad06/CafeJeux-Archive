@@ -716,17 +716,14 @@ switch($page) {
 				$data = "<alert>Vous ne pouvez pas éjecter le propriétaire de la table !</alert>";
 			} else {
 				// NOTE : Cette fonctionnalité de cafejeux.com était hors d'usage au moment du test.
-				// (Toad06) Il est probable que la liste des membres était simplement rafraichie. De mémoire, aucun message automatique informant de son exclusion de la table n'était envoyé au membre concerné.
+				// (Toad06) Il est probable que la liste des membres était simplement rafraichie. De mémoire, aucun message automatique l'informant de son exclusion de la table n'était envoyé au membre concerné.
 				$data = "";
 			}
 		}
 		break;
 	case "group/420/invite":
 	case "group/6951/invite":
-		// NOTE : Lorsque le nom saisi est correct, un message est envoyé au membre invité via la messagerie interne du site. Néanmoins, cette fonctionnalité de cafejeux.com était hors d'usage au moment du test.
-		// (Toad06) Aucune certitude sur l'exactitude de la valeur de retour indiquée ci-dessous, lorsque l'invitation est bien envoyée.
 		$pName = isset($_POST['name']) ? $_POST['name'] : "";
-		$data = '<fill class="ack" id="formError">Votre message a été envoyé.</fill><input id="name"/>';
 		$error = "";
 		if(strlen($pName) < 4 || strlen($pName) > 20) {
 			$error = "Un pseudo doit faire entre 4 et 20 caractères.";
@@ -735,7 +732,11 @@ switch($page) {
 		}
 		if(strlen($error) > 0) {
 			$data = get_content($pageUrl . "_error" . $pageExt);
-			$data = str_replace("{ARCHIVE_INVITE_ERROR}", $error, $data);
+			$data = str_replace("{ARCHIVE_TABLE_INVITE_ERROR}", $error, $data);
+		} else {
+			// NOTE : Lorsque le nom saisi est correct, un message est envoyé au membre invité via la messagerie interne du site. Néanmoins, cette fonctionnalité de cafejeux.com était hors d'usage au moment du test.
+			// (Toad06) Aucune certitude sur l'exactitude de la valeur de retour indiquée ci-dessous.
+			$data = '<fill class="ack" id="formError">Votre message a été envoyé.</fill><input id="name"/>';
 		}
 		break;
 	case "group/420/members":
@@ -830,16 +831,18 @@ switch($page) {
 		break;
 	case "group/search":
 		$pName = isset($_POST['name']) ? $_POST['name'] : "";
-		if(strlen($pName) < 4 || strlen($pName) > 30) {
+		$pNameLength = strlen($pName);
+		if($pNameLength < 4 || $pNameLength > 30) {
 			$data = "<alert>Le nom d'une table doit faire entre 4 et 30 caractères.</alert>";
 		} else {
 			// NOTE : Les tables les plus anciennes sont affichées en premier, à condition que leur nom débute exactement par la requête indiquée.
 			$data = get_content($pageUrl . "_ok" . $pageExt);
 			$pName = htmlentities($pName);
 			$data = str_replace("{ARCHIVE_SEARCH_TABLE_USER_REQUEST}", $pName, $data);
-			$data = str_replace("{ARCHIVE_SEARCH_TABLE_1}", $pName . mt_rand(1, 5), $data);
-			$data = str_replace("{ARCHIVE_SEARCH_TABLE_2}", $pName . mt_rand(60, 99), $data);
-			$data = str_replace("{ARCHIVE_SEARCH_TABLE_3}", $pName . mt_rand(3000, 5000), $data);
+			$data = str_replace("{ARCHIVE_SEARCH_TABLE_NAME_1}", substr($pName . " " . mt_rand(1, 5), 0, 30), $data);
+			$data = str_replace("{ARCHIVE_SEARCH_NO_MORE_TABLES}", ($pNameLength > 25 ? ' style="display:none;"' : ""), $data);
+			$data = str_replace("{ARCHIVE_SEARCH_TABLE_NAME_2}", $pName . " " . mt_rand(60, 99), $data);
+			$data = str_replace("{ARCHIVE_SEARCH_TABLE_NAME_3}", $pName . " " . mt_rand(3000, 5000), $data);
 		}
 		break;
 	case "news":
