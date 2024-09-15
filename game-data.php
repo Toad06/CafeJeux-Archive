@@ -32,11 +32,11 @@ $globalPlayers[18269] = isset($_SESSION['cafeUsername']) ? htmlentities($_SESSIO
 $globalUserFreeMoney = 3; // nombre de sucres blancs
 $globalUserMoney = 100; // nombre de sucres roux
 $globalUserPrizeToken = 500; // nombre de caps
-$globalUserCity = (isset($_SESSION['cafeUsername']) && strtolower($_SESSION['cafeUsername']) === "toad06") ? "NISSA" : "Le PC du Café Jeux"; // ville du profil
+$globalUserCity = (isset($_SESSION['cafeUsername']) && mb_strtolower($_SESSION['cafeUsername']) === "toad06") ? "NISSA" : "Le PC du Café Jeux"; // ville du profil
 $globalUserData = array("username" => "Toad06", "gender" => 0, "gfx" => "0,0,0,0,0,0,0,0,2,0,0,0,3,0,3,6,6,0"); // données définies sur la page d'inscription
 if(isset($_SESSION['cafeUsername']) && isset($_COOKIE['cafeUserData'])) {
 	$getUserData = json_decode($_COOKIE['cafeUserData'], true);
-	if($getUserData !== null && strtolower($_SESSION['cafeUsername']) === strtolower($getUserData['username'])) {
+	if($getUserData !== null && mb_strtolower($_SESSION['cafeUsername']) === mb_strtolower($getUserData['username'])) {
 		$_SESSION['cafeUsername'] = $getUserData['username'];
 		$globalUserData['username'] = $getUserData['username'];
 		$globalUserData['gender'] = $getUserData['gender'];
@@ -163,10 +163,10 @@ function parse_message($str, $allowTags, $allowImages = null) {
 // Détecte les commandes spéciales utilisées sur les chats.
 function parse_command($str) {
 	if(strpos($str, "/") !== 0) return null;
-	$command = strtolower(explode(" ", $str)[0]);
+	$command = mb_strtolower(explode(" ", $str)[0]);
 	if($command === "/me") {
 		$type = "speech";
-		$str = substr($str, 3);
+		$str = mb_substr($str, 3);
 		if(empty($str)) {
 			// NOTE : La requête est invalide si cette commande n'est pas suivie d'un message.
 			// (Toad06) cafejeux.com ne faisait sans doute pas cette vérification, mais elle semble pourtant avoir du sens.

@@ -4,6 +4,7 @@ if(!isset($__recursion)) {
 	session_start();
 	define("PAGE", "dispatch");
 
+	require "config.php";
 	require "game-data.php";
 
 	function get_content($file) {
@@ -158,8 +159,8 @@ switch($page) {
 			// NOTE : En cas de succès, cafejeux.com affichait seulement la première lettre de la partie précédant le symbole "@" dans l'email.
 			$pNameOrMail = $_POST['nameOrMail'];
 			$f = "_noUser";
-			if(strlen($pNameOrMail) >= 6) $f = "_ok";
-			elseif(strlen($pNameOrMail) >= 4) $f = (mt_rand(0, 1) === 0 ? "_noMail" : "_already"); // prétexte pour afficher l'un de ces messages
+			if(mb_strlen($pNameOrMail) >= 6) $f = "_ok";
+			elseif(mb_strlen($pNameOrMail) >= 4) $f = (mt_rand(0, 1) === 0 ? "_noMail" : "_already"); // prétexte pour afficher l'un de ces messages
 			$data = get_content($pageUrl . $f . $pageExt);
 		}
 		break;
@@ -168,15 +169,15 @@ switch($page) {
 		$pIdentName = isset($_POST['ident_name']) ? $_POST['ident_name'] : "";
 		$pIdentPass = isset($_POST['ident_pass']) ? $_POST['ident_pass'] : "";
 		$error = "";
-		if(strlen($pIdentName) < 4 || strlen($pIdentName) > 20) {
+		if(mb_strlen($pIdentName) < 4 || mb_strlen($pIdentName) > 20) {
 			$error = "Un pseudo doit faire entre 4 et 20 caractères.";
 			$pIdentName = "";
 		} elseif(preg_match('/[^A-Za-z0-9]/', $pIdentName)) {
 			$error = "Un pseudo ne doit contenir que des chiffres et des lettres.";
 			$pIdentName = "";
-		} elseif(strlen($pIdentPass) < 6 || strlen($pIdentPass) > 32) {
+		} elseif(mb_strlen($pIdentPass) < 6 || mb_strlen($pIdentPass) > 32) {
 			$error = "Votre code secret doit faire entre 6 et 32 caractères.";
-		} elseif($pIdentName === strtoupper($pIdentName)) {
+		} elseif($pIdentName === mb_strtoupper($pIdentName)) {
 			$error = "Cet utilisateur n'existe pas.";
 			$pIdentName = "";
 		} elseif($pIdentName === $pIdentPass) {
@@ -217,14 +218,14 @@ switch($page) {
 					$pSponsor = isset($_POST['sponsor']) ? $_POST['sponsor'] : "";
 					$pCgu = isset($_POST['cgu']) ? intval($_POST['cgu']) : 0;
 					$errors = "";
-					if(strlen($pName) < 4 || strlen($pName) > 20) {
+					if(mb_strlen($pName) < 4 || mb_strlen($pName) > 20) {
 						$errors .= "<li>Un pseudo doit faire entre 4 et 20 caractères.</li>";
 					} elseif(preg_match('/[^A-Za-z0-9]/', $pName)) {
 						$errors .= "<li>Un pseudo ne doit contenir que des chiffres et des lettres.</li>";
-					} elseif($pName === strtoupper($pName)) { // prétexte pour afficher le message ci-dessous
+					} elseif($pName === mb_strtoupper($pName)) { // prétexte pour afficher le message ci-dessous
 						$errors .= "<li>Ce pseudo est déjà utilisé, veuillez en choisir un autre.</li>";
 					}
-					if(strlen($pPass) < 6 || strlen($pPass) > 32) {
+					if(mb_strlen($pPass) < 6 || mb_strlen($pPass) > 32) {
 						$errors .= "<li>Votre code secret doit faire entre 6 et 32 caractères.</li>";
 					} elseif($pPass !== $pPass2) {
 						$errors .= "<li>Vous avez tapé deux codes secrets différents, veuillez donner deux fois le même.</li>";
@@ -232,7 +233,7 @@ switch($page) {
 					if(strlen($pEmail) > 0 && !preg_match('`^\w([-_.]?\w)*@\w([-_.]?\w)*\.([a-z]{1,6})$`', $pEmail)) {
 						$errors .= "<li>Cette adresse email n'est pas à un format valide.</li>";
 					}
-					if(strlen($pSponsor) > 0 && (strlen($pSponsor) < 4 || strlen($pSponsor) > 20 || preg_match('/[^A-Za-z0-9]/', $pSponsor) || strtolower($pSponsor) === strtolower($pName))) {
+					if(strlen($pSponsor) > 0 && (mb_strlen($pSponsor) < 4 || mb_strlen($pSponsor) > 20 || preg_match('/[^A-Za-z0-9]/', $pSponsor) || mb_strtolower($pSponsor) === mb_strtolower($pName))) {
 						$errors .= "<li>Parrain introuvable : aucun joueur du Café n'a été trouvé avec ce pseudo.</li>";
 					}
 					if($pCgu === 0) {
@@ -446,7 +447,7 @@ switch($page) {
 					} else {
 						if($pTitle !== null && strlen($pTitle) === 0) {
 							$errorArray[0] = '<div class="nack">Le titre ne doit pas être vide.</div>';
-						} elseif(strlen($pContent) < 30) {
+						} elseif(mb_strlen($pContent) < 30) {
 							$errorArray[1] = '<div class="nack">Le message est trop court.</div>';
 						} else {
 							$errorArray[99] = "<load>forum/thread/" . (strlen($topicName) === 0 ? "999999" : strval($__recursiondata)) . "</load>";
@@ -575,7 +576,7 @@ switch($page) {
 			$data = get_content($pageUrl . "_main" . $pageExt);
 		} else {
 			$pContent = $_POST['content'];
-			if(strlen($pContent) < 30 || strlen($pContent) > 180) {
+			if(mb_strlen($pContent) < 30 || mb_strlen($pContent) > 180) {
 				$data = "<alert>Votre annonce doit faire entre 30 et 180 caractères.</alert>";
 			} else {
 				$data = get_content($pageUrl . "_ok" . $pageExt);
@@ -725,7 +726,7 @@ switch($page) {
 	case "group/6951/invite":
 		$pName = isset($_POST['name']) ? $_POST['name'] : "";
 		$error = "";
-		if(strlen($pName) < 4 || strlen($pName) > 20) {
+		if(mb_strlen($pName) < 4 || mb_strlen($pName) > 20) {
 			$error = "Un pseudo doit faire entre 4 et 20 caractères.";
 		} else if(preg_match('/[^A-Za-z0-9]/', $pName)) {
 			$error = "Cet utilisateur n'existe pas.";
@@ -753,7 +754,7 @@ switch($page) {
 		$idTable = explode("/", $page)[1];
 		$pMessage = isset($_POST['message']) ? $_POST['message'] : "";
 		$data = "";
-		if(strlen($pMessage) >= 4) {
+		if(mb_strlen($pMessage) >= 4) {
 			$data = "<load>group/" . $idTable . "/forum</load>";
 		}
 		break;
@@ -809,12 +810,12 @@ switch($page) {
 			$pName = isset($_POST['name']) ? $_POST['name'] : "";
 			$pDescription = isset($_POST['description']) ? $_POST['description'] : "";
 			$error = "";
-			if(strlen($pName) < 4 || strlen($pName) > 30) {
+			if(mb_strlen($pName) < 4 || mb_strlen($pName) > 30) {
 				$error = "Le nom d'une table doit faire entre 4 et 30 caractères.";
-			} elseif(strtolower($pName) === "table des habitués") {
+			} elseif(mb_strtolower($pName) === "table des habitués" || mb_strtolower($pName) === "caféjeux 2007-2020") {
 				// NOTE : Sur cafejeux.com, le nom était bien insensible à la casse mais pas aux espaces entre les mots (donc "table    des habitués" aurait pu être créée).
 				$error = "Une table utilise déjà ce nom, choisissez en un autre.";
-			} elseif(strlen($pDescription) < 20) {
+			} elseif(mb_strlen($pDescription) < 20) {
 				$error = "Merci d'écrire une petite présentation de votre table.";
 			} elseif(!isset($_POST['game_1']) && !isset($_POST['game_2']) && !isset($_POST['game_3']) && !isset($_POST['game_4']) && !isset($_POST['game_5']) && 
 					 !isset($_POST['game_6']) && !isset($_POST['game_7']) && !isset($_POST['game_8']) && !isset($_POST['game_9']) && !isset($_POST['game_11'])) {
@@ -831,7 +832,7 @@ switch($page) {
 		break;
 	case "group/search":
 		$pName = isset($_POST['name']) ? $_POST['name'] : "";
-		$pNameLength = strlen($pName);
+		$pNameLength = mb_strlen($pName);
 		if($pNameLength < 4 || $pNameLength > 30) {
 			$data = "<alert>Le nom d'une table doit faire entre 4 et 30 caractères.</alert>";
 		} else {
@@ -839,8 +840,8 @@ switch($page) {
 			$data = get_content($pageUrl . "_ok" . $pageExt);
 			$pName = htmlentities($pName);
 			$data = str_replace("{ARCHIVE_SEARCH_TABLE_USER_REQUEST}", $pName, $data);
-			$data = str_replace("{ARCHIVE_SEARCH_TABLE_NAME_1}", substr($pName . " " . mt_rand(1, 5), 0, 30), $data);
 			$data = str_replace("{ARCHIVE_SEARCH_NO_MORE_TABLES}", ($pNameLength > 25 ? ' style="display:none;"' : ""), $data);
+			$data = str_replace("{ARCHIVE_SEARCH_TABLE_NAME_1}", mb_substr($pName . " " . mt_rand(1, 5), 0, 30 + (mb_strlen($pName) - $pNameLength)), $data);
 			$data = str_replace("{ARCHIVE_SEARCH_TABLE_NAME_2}", $pName . " " . mt_rand(60, 99), $data);
 			$data = str_replace("{ARCHIVE_SEARCH_TABLE_NAME_3}", $pName . " " . mt_rand(3000, 5000), $data);
 		}
@@ -890,12 +891,12 @@ switch($page) {
 		$gTo = isset($_POST['to']) ? $_POST['to'] : "";
 		$gContent = isset($_POST['content']) ? $_POST['content'] : "";
 		$errors = "";
-		if(strlen($gTo) < 4 || strlen($gTo) > 20) {
+		if(mb_strlen($gTo) < 4 || mb_strlen($gTo) > 20) {
 			$errors .= "<li>Un pseudo doit faire entre 4 et 20 caractères.</li>";
 		} elseif(preg_match('/[^A-Za-z0-9]/', $gTo)) {
 			$errors .= "<li>Cet utilisateur n'existe pas.</li>";
 		}
-		if(strlen($gContent) < 4) {
+		if(mb_strlen($gContent) < 4) {
 			$errors .= "<li>Votre message doit faire au moins 4 caractères.</li>";
 		}
 		if(strlen($errors) > 0) {
@@ -999,7 +1000,7 @@ switch($page) {
 			$pPass = isset($_POST['pass']) ? $_POST['pass'] : "";
 			$pSugar = isset($_POST['qty']) ? intval($_POST['qty']) : 0;
 			$error = "";
-			if(strlen($pPass) < 6 || strlen($pPass) > 32) {
+			if(mb_strlen($pPass) < 6 || mb_strlen($pPass) > 32) {
 				$error = "Ce code secret n'est pas valide. Attention, les différences entre minuscules et majuscules sont prises en compte.";
 			} elseif($pSugar <= 0 || $pSugar > $globalUserMoney) {
 				$error = "Vous n'avez pas assez de sucres.";
@@ -1067,7 +1068,7 @@ switch($page) {
 		$data .= ']]></script>';
 		break;
 	case "user/chooseDrink":
-		if($isUserFullLoggedIn && (($dayChanged) || (isset($_SESSION['cafePrevUsername']) && strtolower($_SESSION['cafePrevUsername']) !== strtolower($_SESSION['cafeUsername'])))) {
+		if($isUserFullLoggedIn && (($dayChanged) || (isset($_SESSION['cafePrevUsername']) && mb_strtolower($_SESSION['cafePrevUsername']) !== mb_strtolower($_SESSION['cafeUsername'])))) {
 			// NOTE : 1 seule boisson par jour par utilisateur, cette portion de code ne sert qu'à simuler grossièrement ce principe.
 			$isUserFullLoggedIn = false;
 			if(isset($_SESSION['cafePrevUsername'])) unset($_SESSION['cafePrevUsername']);
@@ -1111,7 +1112,7 @@ switch($page) {
 		if(isset($_POST['submit'])) {
 			$pPass = isset($_POST['pass']) ? $_POST['pass'] : "";
 			$pSid = isset($_POST['sid']) ? $_POST['sid'] : ""; // inutilisé ici
-			if(strlen($pPass) < 6 || strlen($pPass) > 32) {
+			if(mb_strlen($pPass) < 6 || mb_strlen($pPass) > 32) {
 				$data = "<alert>Ce code secret n'est pas valide. Attention, les différences entre minuscules et majuscules sont prises en compte.</alert>";
 			} else {
 				// NOTE : Dans cette situation, le lien "Supprimer mon compte !" sur "Ma page" devrait être remplacé par le code HTML ci-dessous et $data devrait renvoyer vers "user/18269" au lieu de "user/cancelDelete".
@@ -1178,7 +1179,7 @@ switch($page) {
 			$pEmail = isset($_POST['email']) ? $_POST['email'] : "";
 			$pText = isset($_POST['text']) ? $_POST['text'] : "";
 			$pGroup = isset($_POST['group']) ? intval($_POST['group']) : 0;
-			if(strlen($pEmail) < 10 || !preg_match('`^\w([-_.]?\w)*@\w([-_.]?\w)*\.([a-z]{1,6})$`', $pEmail)) {
+			if(mb_strlen($pEmail) < 10 || !preg_match('`^\w([-_.]?\w)*@\w([-_.]?\w)*\.([a-z]{1,6})$`', $pEmail)) {
 				$data = get_content($pageUrl . "_form_error" . $pageExt);
 			} elseif(isset($_POST['group']) && $pGroup <= 0) {
 				$data = "<alert>Une erreur inconnue s'est produite.</alert>";
@@ -1198,7 +1199,7 @@ switch($page) {
 			$pCity = isset($_POST['city']) ? $_POST['city'] : "";
 			$pPass = isset($_POST['pass']) ? $_POST['pass'] : "";
 			$errors = "";
-			if(strlen($pPass) < 6 || strlen($pPass) > 32) {
+			if(mb_strlen($pPass) < 6 || mb_strlen($pPass) > 32) {
 				$errors .= "<li>Ce code secret n'est pas valide. Attention, les différences entre minuscules et majuscules sont prises en compte.</li>";
 			}
 			if((is_int($pBirthdayY) && ($pBirthdayY < 1900 || $pBirthdayY > intval($year))) ||
@@ -1209,7 +1210,7 @@ switch($page) {
 				// - En mettant 31 comme jour, 12 comme mois et l'année civile en cours, la page de profil indiquait "-1 ans" (sauf le 31/12).
 				$errors .= "<li>La date de naissance n'est pas valide.</li>";
 			}
-			if(strlen($pCity) > 50) {
+			if(mb_strlen($pCity) > 50) {
 				$errors .= "<li>Votre ville ou région ne doit pas dépasser 50 caractères.</li>";
 			}
 			if(strlen($pEmail) > 0 && !preg_match('`^\w([-_.]?\w)*@\w([-_.]?\w)*\.([a-z]{1,6})$`', $pEmail)) {
@@ -1232,10 +1233,10 @@ switch($page) {
 			$pPass = isset($_POST['pass']) ? $_POST['pass'] : "";
 			$pPass2 = isset($_POST['pass2']) ? $_POST['pass2'] : "";
 			$errors = "";
-			if(strlen($pOldPass) < 6 || strlen($pOldPass) > 32) {
+			if(mb_strlen($pOldPass) < 6 || mb_strlen($pOldPass) > 32) {
 				$errors .= "<li>Ce code secret n'est pas valide. Attention, les différences entre minuscules et majuscules sont prises en compte.</li>";
 			}
-			if(strlen($pPass) < 6 || strlen($pPass) > 32) {
+			if(mb_strlen($pPass) < 6 || mb_strlen($pPass) > 32) {
 				$errors .= "<li>Votre code secret doit faire entre 6 et 32 caractères.</li>";
 			} elseif($pPass !== $pPass2) {
 				$errors .= "<li>Vous avez tapé deux codes secrets différents, veuillez donner deux fois le même.</li>";
@@ -1257,11 +1258,11 @@ switch($page) {
 			$pName = "";
 			$pOnline = isset($_POST['online']);
 			$selfName = false;
-			if(strlen($_POST['name']) < 4) {
+			if(mb_strlen($_POST['name']) < 4) {
 				$error = "Vous devez indiquer au moins 4 caractères pour effectuer une recherche.";
 			} else {
-				$selfName = stripos($_SESSION['cafeUsername'], $_POST['name']) === 0;
-				if((!$pOnline || $selfName) && strlen($_POST['name']) <= 20 && !preg_match('/[^A-Za-z0-9]/', $_POST['name'])) {
+				$selfName = mb_stripos($_SESSION['cafeUsername'], $_POST['name']) === 0;
+				if((!$pOnline || $selfName) && mb_strlen($_POST['name']) <= 20 && !preg_match('/[^A-Za-z0-9]/', $_POST['name'])) {
 					$f = "_ok";
 					$pName = htmlentities($_POST['name']);
 				} else {
@@ -1273,16 +1274,16 @@ switch($page) {
 				$data = str_replace("{ARCHIVE_SEARCH_ERROR}", $error, $data);
 			} else {
 				// NOTE : Seuls les pseudos commençant exactement par la requête effectuée (casse insensible) étaient affichés sur cafejeux.com.
-				if($pOnline || strlen($pName) >= 20) {
+				if($pOnline || mb_strlen($pName) >= 20) {
 					// NOTE : Quand il n'y a qu'un seul résultat correspondant à la requête, une redirection est immédiatement effectuée vers la page de profil en question...
 					$data = "<load>user/" . ($selfName ? "18269" : "999999") . "</load>";
 				} else {
 					// ... Autrement, les différents résultats trouvés sont affichés, dans une limite de 15.
 					// Si le nombre de profils pouvant correspondre dépassait 15, cafejeux.com affichait alors le message suivant : "Au moins 15 utilisateurs correspondent à votre recherche."
-					$data = str_replace("{ARCHIVE_SEARCH_NAME_1}", ($selfName ? htmlentities($_SESSION['cafeUsername']) : substr($pName . "0" . mt_rand(1, 9), 0, 20)), $data);
+					$data = str_replace("{ARCHIVE_SEARCH_NAME_1}", ($selfName ? htmlentities($_SESSION['cafeUsername']) : mb_substr($pName . "0" . mt_rand(1, 9), 0, 20)), $data);
 					$data = str_replace("{ARCHIVE_SEARCH_ID_1}", ($selfName ? "18269" : "999998"), $data);
 					$data = str_replace("{ARCHIVE_SEARCH_STATUS_1}", ($selfName ? "online" : "offline"), $data);
-					$data = str_replace("{ARCHIVE_SEARCH_NAME_2}", substr($pName . mt_rand(1000, 9999), 0, 20), $data);
+					$data = str_replace("{ARCHIVE_SEARCH_NAME_2}", mb_substr($pName . mt_rand(1000, 9999), 0, 20), $data);
 				}
 			}
 		} else {

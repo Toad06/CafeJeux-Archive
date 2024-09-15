@@ -4,6 +4,9 @@
 // https://github.com/Toad06/CafeJeux-Archive
 
 session_start();
+define("PAGE", "index");
+
+require "config.php";
 
 $logged = isset($_SESSION['cafeUsername']);
 $fullLogged = $logged && isset($_SESSION['cafeDrink']);
