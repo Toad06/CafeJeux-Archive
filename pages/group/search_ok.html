@@ -56,7 +56,7 @@
 			<td class="autoAccept">
 					<img alt="" src="img/icons/small_r_ConfirmMember.gif" onmouseover="mt.js.Tip.show(this,'Cette table &lt;strong&gt;accepte tous les nouveaux membres&lt;/strong&gt; automatiquement.',null)" onmouseout="mt.js.Tip.hide()"/>
 							</td>
-		</tr><tr onclick="js.XmlHttp.get('group/144',this);"{ARCHIVE_SEARCH_NO_MORE_TABLES}>
+		</tr><tr onclick="js.XmlHttp.get('group/144',this);"{ARCHIVE_SEARCH_HACK_NO_MORE_TABLES}>
 			<td class="logo">
 				
 			</td>
@@ -74,18 +74,18 @@
 
 					<img alt="" src="img/icons/small_online.gif" onmouseover="mt.js.Tip.show(this,'Si vous décidez de rejoindre cette table, les créateurs devront valider votre demande d\'abord.',null)" onmouseout="mt.js.Tip.hide()"/>
 			</td>
-		</tr><tr onclick="js.XmlHttp.get('group/147',this);"{ARCHIVE_SEARCH_NO_MORE_TABLES}>
+		</tr><tr onclick="js.XmlHttp.get('group/{ARCHIVE_SEARCH_TABLE_ID_3}',this);"{ARCHIVE_SEARCH_HACK_NO_MORE_TABLES}>
 			<td class="logo">
-				<div onmouseover="mt.js.Tip.show(this,'&lt;div class=\'groupLogo\'&gt;&lt;img src=\'img/artworks/entrance_small.jpg\' alt=\'\'/&gt;&lt;/div&gt;',null)" onmouseout="mt.js.Tip.hide()"><img alt="[logo]" src="img/artworks/entrance_small.jpg"/></div>
+				{ARCHIVE_SEARCH_TABLE_LOGO_3}
 			</td>
 			<td class="name">{ARCHIVE_SEARCH_TABLE_NAME_3}</td>
-			<td><span class="user" id="u_2747" onmouseover="js.XmlHttp.userTip(this,'4967','')" onmouseout="js.XmlHttp.hideUserTip(this)">
-			<a href="#user/4967" onclick="js.XmlHttp.get('user/4967',this); return false;">margot</a>
+			<td><span class="user" id="u_2747" onmouseover="js.XmlHttp.userTip(this,'{ARCHIVE_SEARCH_TABLE_OWNER_ID_3}','')" onmouseout="js.XmlHttp.hideUserTip(this)">
+			<a href="#user/{ARCHIVE_SEARCH_TABLE_OWNER_ID_3}" onclick="js.XmlHttp.get('user/{ARCHIVE_SEARCH_TABLE_OWNER_ID_3}',this); return false;">{ARCHIVE_SEARCH_TABLE_OWNER_NAME_3}</a>
 		</span>
 	</td>
-			<td>60</td>
-			<td class="date"><span title="Le mercredi 21 mars 2007, à 08:35:45">
-			21 mars 2007
+			<td>{ARCHIVE_SEARCH_TABLE_TOTAL_MEMBERS_3}</td>
+			<td class="date"><span title="{ARCHIVE_SEARCH_TABLE_FULL_DATE_3}">
+			{ARCHIVE_SEARCH_TABLE_PARTIAL_DATE_3}
 		</span>
 	</td>
 			<td class="autoAccept">

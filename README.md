@@ -12,7 +12,7 @@ Les jeux et quelques inédits sont fonctionnels en mode local (monoposte) en acc
 
 ## Installation
 
-Vous devez disposer d'un serveur web disposant des logiciels Apache et PHP. Plus particulièrement, l'archive a été conçue avec Apache 2.4 et PHP 7.4 mais l'ensemble des versions indiquées ci-dessous fonctionnent également :
+Vous devez disposer d'un serveur web doté des logiciels Apache et PHP. Plus particulièrement, l'archive a été conçue avec Apache 2.4 et PHP 7.4 mais l'ensemble des versions indiquées ci-dessous fonctionnent également :
 - Apache : 2.4
 - PHP : 5.6, 7.4, 8.0 à 8.3 
 
@@ -38,6 +38,6 @@ Les actions suivantes ont un effet concret au sein de l'archive :
 
 - Le choix des options en jeu depuis la page "Ma page -> Mes options de jeux". Ce choix est uniquement conservé tant que la session en cours reste active. Si ce formulaire n'est jamais validé (avec ou sans modifications), la carte par défaut pourra être sélectionnée dans le jeu "Anticorp's", ce qui diffère (volontairement) de ce que faisait CafeJeux.com.
 
-- L'écriture de messages sur les t'chats des jeux, selon les règles de mise en forme qui étaient autorisées sur CafeJeux.com.
+- L'écriture et l'envoi de messages sur les t'chats des jeux, selon les règles de mise en forme qui étaient autorisées sur CafeJeux.com.
 
-- La prévisualisation de messages sur les forums lors de sa rédaction, selon les règles de mise en forme qui étaient autorisées sur CafeJeux.com.
+- L'écriture et la prévisualisation de messages sur les forums, selon les règles de mise en forme qui étaient autorisées sur CafeJeux.com.

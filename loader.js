@@ -993,6 +993,7 @@ js.BackForward.check = function() {
 js.BackForward.setBase = function(url) {
 	var r = new EReg("(.*)[?;]rand=[0-9]+","");
 	if(r.match(url)) url = r.matched(1);
+	if(url === "partnerFrame") url = "game"; // Empêche le lien du header de renvoyer vers une mauvaise page.
 	js.BackForward.urlBase = url;
 }
 js.BackForward.add = function(url) {

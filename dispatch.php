@@ -159,8 +159,12 @@ switch($page) {
 			// NOTE : En cas de succès, cafejeux.com affichait seulement la première lettre de la partie précédant le symbole "@" dans l'email.
 			$pNameOrMail = $_POST['nameOrMail'];
 			$f = "_noUser";
-			if(mb_strlen($pNameOrMail) >= 6) $f = "_ok";
-			elseif(mb_strlen($pNameOrMail) >= 4) $f = (mt_rand(0, 1) === 0 ? "_noMail" : "_already"); // prétexte pour afficher l'un de ces messages
+			if(mb_strlen($pNameOrMail) >= 6) {
+				if(preg_match('`^\w([-_.]?\w)*@\w([-_.]?\w)*\.([a-z]{1,6})$`', $pNameOrMail)) $f = "_ok";
+				elseif(!preg_match('/[^A-Za-z0-9]/', $pNameOrMail)) $f = "_already"; // prétexte pour afficher le message associé
+			} elseif(mb_strlen($pNameOrMail) >= 4 && !preg_match('/[^A-Za-z0-9]/', $pNameOrMail)) {
+				$f = "_noMail"; // prétexte pour afficher le message associé
+			}
 			$data = get_content($pageUrl . $f . $pageExt);
 		}
 		break;
@@ -177,10 +181,10 @@ switch($page) {
 			$pIdentName = "";
 		} elseif(mb_strlen($pIdentPass) < 6 || mb_strlen($pIdentPass) > 32) {
 			$error = "Votre code secret doit faire entre 6 et 32 caractères.";
-		} elseif($pIdentName === mb_strtoupper($pIdentName)) {
+		} elseif(mb_strtolower($pIdentName) !== "toad06" && in_array(mb_strtolower($pIdentName), array_map("mb_strtolower", $globalPlayers))) { // prétexte pour afficher le message ci-dessous
 			$error = "Cet utilisateur n'existe pas.";
 			$pIdentName = "";
-		} elseif($pIdentName === $pIdentPass) {
+		} elseif($pIdentName === $pIdentPass) { // prétexte pour afficher le message ci-dessous
 			$error = "Ce code secret n'est pas valide. Attention, les différences entre minuscules et majuscules sont prises en compte.";
 		}
 		if(strlen($error) > 0 || $isUserLoggedIn) {
@@ -222,7 +226,7 @@ switch($page) {
 						$errors .= "<li>Un pseudo doit faire entre 4 et 20 caractères.</li>";
 					} elseif(preg_match('/[^A-Za-z0-9]/', $pName)) {
 						$errors .= "<li>Un pseudo ne doit contenir que des chiffres et des lettres.</li>";
-					} elseif($pName === mb_strtoupper($pName)) { // prétexte pour afficher le message ci-dessous
+					} elseif(mb_strtolower($pName) !== "toad06" && in_array(mb_strtolower($pName), array_map("mb_strtolower", $globalPlayers))) {
 						$errors .= "<li>Ce pseudo est déjà utilisé, veuillez en choisir un autre.</li>";
 					}
 					if(mb_strlen($pPass) < 6 || mb_strlen($pPass) > 32) {
@@ -394,7 +398,7 @@ switch($page) {
 		break;
 	case "_parse_message_chat": // NOTE : Cette page est spécifique à l'archive, elle est destinée à analyser et transformer les chaînes de caractères fournies sur les différents chats.
 		$isPageComponent = true;
-		if(isset($_GET['str']) && $isUserLoggedIn) {
+		if(isset($_GET['str'])) {
 			$message = trim($_GET['str']);
 			$command = parse_command($message);
 			if($command === null) {
@@ -407,7 +411,7 @@ switch($page) {
 					http_response_code(400);
 				}
 			}
-			$data = date("H:i") . "," . htmlentities($_SESSION['cafeUsername']) . "," . $commandType . "|";
+			$data = date("H:i") . ",{ARCHIVE_USERNAME}," . $commandType . "|";
 			$data .= $message;
 		}
 		break;
@@ -668,12 +672,20 @@ switch($page) {
 		$data = str_replace("{ARCHIVE_TABLE_DATETIME}", $date, $data);
 		$data = str_replace("{ARCHIVE_TABLE_SEED}", strval(mt_rand(10000, 99999)), $data);
 		switch($idTable) {
+			case "420":
+				$data = str_replace("{ARCHIVE_TABLE_STATS_MALE}", ($globalUserData['gender'] === 1 ? "50" : "100"), $data);
+				$data = str_replace("{ARCHIVE_TABLE_STATS_FEMALE}", ($globalUserData['gender'] === 1 ? "50" : "0"), $data);
+				break;
 			case "6864":
 				$isDummy = isset($_SESSION['cafeTableDummy']) ? $_SESSION['cafeTableDummy'] : true;
+				$data = str_replace("{ARCHIVE_TABLE_STATS_MALE}", (!$isDummy ? "71" : "70"), $data);
+				$data = str_replace("{ARCHIVE_TABLE_STATS_FEMALE}", (!$isDummy ? "29" : "30"), $data);
 				$data = str_replace("{ARCHIVE_TABLE_TOTAL_MEMBERS}", (!$isDummy ? "59" : "60"), $data);
 				$data = str_replace("{ARCHIVE_TABLE_60TH_MEMBER}", (!$isDummy ? "" : ":29,0,4,2,3,0,0,0,2,0,0,13,0,0,3,6,6,0"), $data);
 				break;
 			case "6951":
+				$data = str_replace("{ARCHIVE_TABLE_STATS_MALE}", ($globalUserData['gender'] === 1 ? "82" : "88"), $data);
+				$data = str_replace("{ARCHIVE_TABLE_STATS_FEMALE}", ($globalUserData['gender'] === 1 ? "18" : "12"), $data);
 				$raw = "IYR8meGmcj-Uyavut9GCJFILGrVYaZapQ1aataeXiUJaqWd6DqaeKYhddqWaYDqaeKsgJaqWaYDqaeKYfZbqWaYDqaeKsgtaqWaYDqaeMsgdaqWaYDqaeMYfJbqWaYDqaeMYgJdqWaYDqaeNsgdcqWaYDqaeLsgtcqWaYDqaeLsgJcqWaYDqaeCiaWec1aasuiBmbdabM1aasCizmbdabL8G3sa";
 				if(isset($_SESSION['cafeTableFurnitures'])) {
 					$raw = htmlentities($_SESSION['cafeTableFurnitures']);
@@ -812,7 +824,7 @@ switch($page) {
 			$error = "";
 			if(mb_strlen($pName) < 4 || mb_strlen($pName) > 30) {
 				$error = "Le nom d'une table doit faire entre 4 et 30 caractères.";
-			} elseif(mb_strtolower($pName) === "table des habitués" || mb_strtolower($pName) === "caféjeux 2007-2020") {
+			} elseif(in_array(mb_strtolower($pName), array_map("mb_strtolower", array("table des habitués", "le caram'bar", "caféjeux 2007-2020")))) {
 				// NOTE : Sur cafejeux.com, le nom était bien insensible à la casse mais pas aux espaces entre les mots (donc "table    des habitués" aurait pu être créée).
 				$error = "Une table utilise déjà ce nom, choisissez en un autre.";
 			} elseif(mb_strlen($pDescription) < 20) {
@@ -823,7 +835,7 @@ switch($page) {
 			}
 			if(strlen($error) <= 0) {
 				// NOTE : Quand il n'y a pas d'erreur, il n'y a pas de message à afficher, cafejeux.com redirigeait alors vers la table fraichement créée.
-				$data = '<user money="{ARCHIVE_USER_MONEY}" freeMoney="{ARCHIVE_USER_FREE_MONEY}"/><load>menu</load><load>group/6951</load>';
+				$data = '<user money="{ARCHIVE_USER_MONEY}" freeMoney="{ARCHIVE_USER_FREE_MONEY}"/><load>menu</load><load>group/420</load>';
 			} else {
 				$data = get_content($pageUrl . "_form_error" . $pageExt);
 				$data = str_replace("{ARCHIVE_TABLE_CREATION_ERROR}", $error, $data);
@@ -838,12 +850,29 @@ switch($page) {
 		} else {
 			// NOTE : Les tables les plus anciennes sont affichées en premier, à condition que leur nom débute exactement par la requête indiquée.
 			$data = get_content($pageUrl . "_ok" . $pageExt);
+			$lastTable = null;
+			if(mb_stripos("table des habitués", $pName) === 0) {
+				$lastTable = array("Table des Habitués", "420", "img/_external_data/logo_table.gif", "7 avril 2007", "Le samedi  7 avril 2007, à 11:08:30", "2", "{ARCHIVE_USERNAME}", "18269");
+			} elseif(mb_stripos("le caram'bar", $pName) === 0) {
+				$lastTable = array("Le Caram'Bar", "6864", "img/_external_data/logo-31ad5f8.png", "25 septembre 2011", "Le dimanche 25 septembre 2011, à 22:15:14", "59", "Keviindu61", "470689");
+			} elseif(mb_stripos("caféjeux 2007-2020", $pName) === 0) {
+				$lastTable = array("CaféJeux 2007-2020", "6951", null, "27 août 2020", "Le jeudi 27 août 2020, à 23:55:17", "17", "githe", "213073");
+			} else {
+				$lastTable = array(null, "147", "img/artworks/entrance_small.jpg", "21 mars 2007", "Le mercredi 21 mars 2007, à 08:35:45", "60", "margot", "4967");
+			}
 			$pName = htmlentities($pName);
 			$data = str_replace("{ARCHIVE_SEARCH_TABLE_USER_REQUEST}", $pName, $data);
-			$data = str_replace("{ARCHIVE_SEARCH_NO_MORE_TABLES}", ($pNameLength > 25 ? ' style="display:none;"' : ""), $data);
+			$data = str_replace("{ARCHIVE_SEARCH_HACK_NO_MORE_TABLES}", ($pNameLength > 25 ? ' style="display:none;"' : ""), $data);
 			$data = str_replace("{ARCHIVE_SEARCH_TABLE_NAME_1}", mb_substr($pName . " " . mt_rand(1, 5), 0, 30 + (mb_strlen($pName) - $pNameLength)), $data);
 			$data = str_replace("{ARCHIVE_SEARCH_TABLE_NAME_2}", $pName . " " . mt_rand(60, 99), $data);
-			$data = str_replace("{ARCHIVE_SEARCH_TABLE_NAME_3}", $pName . " " . mt_rand(3000, 5000), $data);
+			$data = str_replace("{ARCHIVE_SEARCH_TABLE_NAME_3}", ($lastTable[0] === null ? $pName . " " . mt_rand(3000, 5000) : $lastTable[0]), $data);
+			$data = str_replace("{ARCHIVE_SEARCH_TABLE_ID_3}", $lastTable[1], $data);
+			$data = str_replace("{ARCHIVE_SEARCH_TABLE_LOGO_3}", ($lastTable[2] === null ? "" : "<div onmouseover=\"mt.js.Tip.show(this,'&lt;div class=\'groupLogo\'&gt;&lt;img src=\'" . $lastTable[2] . "\' alt=\'\'/&gt;&lt;/div&gt;',null)\" onmouseout=\"mt.js.Tip.hide()\"><img alt=\"[logo]\" src=\"" . $lastTable[2] . "\"/></div>"), $data);
+			$data = str_replace("{ARCHIVE_SEARCH_TABLE_PARTIAL_DATE_3}", $lastTable[3], $data);
+			$data = str_replace("{ARCHIVE_SEARCH_TABLE_FULL_DATE_3}", $lastTable[4], $data);
+			$data = str_replace("{ARCHIVE_SEARCH_TABLE_TOTAL_MEMBERS_3}", $lastTable[5], $data);
+			$data = str_replace("{ARCHIVE_SEARCH_TABLE_OWNER_NAME_3}", $lastTable[6], $data);
+			$data = str_replace("{ARCHIVE_SEARCH_TABLE_OWNER_ID_3}", $lastTable[7], $data);
 		}
 		break;
 	case "news":
@@ -1252,19 +1281,26 @@ switch($page) {
 		}
 		break;
 	case "user/search":
-		if(isset($_POST['name']) && $isUserLoggedIn) {
+		if(isset($_POST['name'])) {
 			$f = "_error";
 			$error = "";
-			$pName = "";
+			$pName = $_POST['name'];
 			$pOnline = isset($_POST['online']);
-			$selfName = false;
-			if(mb_strlen($_POST['name']) < 4) {
+			$searchedPlayerIds = array();
+			if(mb_strlen($pName) < 4) {
 				$error = "Vous devez indiquer au moins 4 caractères pour effectuer une recherche.";
 			} else {
-				$selfName = mb_stripos($_SESSION['cafeUsername'], $_POST['name']) === 0;
-				if((!$pOnline || $selfName) && mb_strlen($_POST['name']) <= 20 && !preg_match('/[^A-Za-z0-9]/', $_POST['name'])) {
+				foreach($globalPlayers as $kPlayerId => $vPlayerName) {
+					if(mb_stripos($vPlayerName, $pName) === 0) {
+						if(!$pOnline || $kPlayerId === 18269) {
+							$searchedPlayerIds[] = $kPlayerId;
+							sort($searchedPlayerIds);
+						}
+					}
+				}
+				if((!$pOnline || count($searchedPlayerIds) > 0) && mb_strlen($pName) <= 20 && !preg_match('/[^A-Za-z0-9]/', $pName)) {
 					$f = "_ok";
-					$pName = htmlentities($_POST['name']);
+					$pName = htmlentities($pName);
 				} else {
 					$error = "Aucun utilisateur ne correspond à votre recherche.";
 				}
@@ -1274,16 +1310,18 @@ switch($page) {
 				$data = str_replace("{ARCHIVE_SEARCH_ERROR}", $error, $data);
 			} else {
 				// NOTE : Seuls les pseudos commençant exactement par la requête effectuée (casse insensible) étaient affichés sur cafejeux.com.
-				if($pOnline || mb_strlen($pName) >= 20) {
+				if(($pOnline && count($searchedPlayerIds) === 1) || mb_strlen($pName) >= 20) {
 					// NOTE : Quand il n'y a qu'un seul résultat correspondant à la requête, une redirection est immédiatement effectuée vers la page de profil en question...
-					$data = "<load>user/" . ($selfName ? "18269" : "999999") . "</load>";
+					$data = "<load>user/" . (isset($searchedPlayerIds[0]) ? $searchedPlayerIds[0] : "999999") . "</load>";
 				} else {
 					// ... Autrement, les différents résultats trouvés sont affichés, dans une limite de 15.
 					// Si le nombre de profils pouvant correspondre dépassait 15, cafejeux.com affichait alors le message suivant : "Au moins 15 utilisateurs correspondent à votre recherche."
-					$data = str_replace("{ARCHIVE_SEARCH_NAME_1}", ($selfName ? htmlentities($_SESSION['cafeUsername']) : mb_substr($pName . "0" . mt_rand(1, 9), 0, 20)), $data);
-					$data = str_replace("{ARCHIVE_SEARCH_ID_1}", ($selfName ? "18269" : "999998"), $data);
-					$data = str_replace("{ARCHIVE_SEARCH_STATUS_1}", ($selfName ? "online" : "offline"), $data);
-					$data = str_replace("{ARCHIVE_SEARCH_NAME_2}", mb_substr($pName . mt_rand(1000, 9999), 0, 20), $data);
+					$data = str_replace("{ARCHIVE_SEARCH_NAME_1}", (isset($searchedPlayerIds[0]) ? htmlentities($globalPlayers[$searchedPlayerIds[0]]) : mb_substr($pName . "0" . mt_rand(1, 9), 0, 20)), $data);
+					$data = str_replace("{ARCHIVE_SEARCH_ID_1}", (isset($searchedPlayerIds[0]) ? strval($searchedPlayerIds[0]) : "999998"), $data);
+					$data = str_replace("{ARCHIVE_SEARCH_STATUS_1}", (array_search(18269, $searchedPlayerIds) === 0 ? "online" : "offline"), $data);
+					$data = str_replace("{ARCHIVE_SEARCH_NAME_2}", (isset($searchedPlayerIds[1]) ? htmlentities($globalPlayers[$searchedPlayerIds[1]]) : mb_substr($pName . mt_rand(1000, 9999), 0, 20)), $data);
+					$data = str_replace("{ARCHIVE_SEARCH_ID_2}", (isset($searchedPlayerIds[1]) ? strval($searchedPlayerIds[1]) : "999999"), $data);
+					$data = str_replace("{ARCHIVE_SEARCH_STATUS_2}", (array_search(18269, $searchedPlayerIds) === 1 ? "online" : "offline"), $data);
 				}
 			}
 		} else {
