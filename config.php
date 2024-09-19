@@ -1,5 +1,8 @@
 <?php
 
+// Archive du site CaféJeux par Toad06.
+// https://github.com/Toad06/CafeJeux-Archive
+
 if(!defined("PAGE")) exit;
 
 header("Content-Type: text/html; charset=utf-8");

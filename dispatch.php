@@ -1,5 +1,8 @@
 <?php
 
+// Archive du site CaféJeux par Toad06.
+// https://github.com/Toad06/CafeJeux-Archive
+
 if(!isset($__recursion)) {
 	session_start();
 	define("PAGE", "dispatch");
@@ -159,11 +162,12 @@ switch($page) {
 			// NOTE : En cas de succès, cafejeux.com affichait seulement la première lettre de la partie précédant le symbole "@" dans l'email.
 			$pNameOrMail = $_POST['nameOrMail'];
 			$f = "_noUser";
-			if(mb_strlen($pNameOrMail) >= 6) {
+			if(mb_strlen($pNameOrMail) >= 8) {
+				// Prétextes pour afficher les messages associés.
 				if(preg_match('`^\w([-_.]?\w)*@\w([-_.]?\w)*\.([a-z]{1,6})$`', $pNameOrMail)) $f = "_ok";
-				elseif(!preg_match('/[^A-Za-z0-9]/', $pNameOrMail)) $f = "_already"; // prétexte pour afficher le message associé
+				elseif(!preg_match('/[^A-Za-z0-9]/', $pNameOrMail)) $f = "_already";
 			} elseif(mb_strlen($pNameOrMail) >= 4 && !preg_match('/[^A-Za-z0-9]/', $pNameOrMail)) {
-				$f = "_noMail"; // prétexte pour afficher le message associé
+				$f = "_noMail"; // Prétexte pour afficher le message associé.
 			}
 			$data = get_content($pageUrl . $f . $pageExt);
 		}
@@ -181,10 +185,10 @@ switch($page) {
 			$pIdentName = "";
 		} elseif(mb_strlen($pIdentPass) < 6 || mb_strlen($pIdentPass) > 32) {
 			$error = "Votre code secret doit faire entre 6 et 32 caractères.";
-		} elseif(mb_strtolower($pIdentName) !== "toad06" && in_array(mb_strtolower($pIdentName), array_map("mb_strtolower", $globalPlayers))) { // prétexte pour afficher le message ci-dessous
+		} elseif(mb_strtolower($pIdentName) !== "toad06" && in_array(mb_strtolower($pIdentName), array_map("mb_strtolower", $globalPlayers))) { // Prétexte pour afficher le message ci-dessous.
 			$error = "Cet utilisateur n'existe pas.";
 			$pIdentName = "";
-		} elseif($pIdentName === $pIdentPass) { // prétexte pour afficher le message ci-dessous
+		} elseif($pIdentName === $pIdentPass) { // Prétexte pour afficher le message ci-dessous.
 			$error = "Ce code secret n'est pas valide. Attention, les différences entre minuscules et majuscules sont prises en compte.";
 		}
 		if(strlen($error) > 0 || $isUserLoggedIn) {
@@ -740,7 +744,7 @@ switch($page) {
 		$error = "";
 		if(mb_strlen($pName) < 4 || mb_strlen($pName) > 20) {
 			$error = "Un pseudo doit faire entre 4 et 20 caractères.";
-		} else if(preg_match('/[^A-Za-z0-9]/', $pName)) {
+		} elseif(preg_match('/[^A-Za-z0-9]/', $pName)) {
 			$error = "Cet utilisateur n'existe pas.";
 		}
 		if(strlen($error) > 0) {
