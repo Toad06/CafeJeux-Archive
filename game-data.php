@@ -51,7 +51,7 @@ if(isset($_SESSION['cafeUsername']) && isset($_COOKIE['cafeUserData'])) {
 
 // Retourne la date du jour dans les différents formats utilisés par CaféJeux.
 function cj_date_today() {
-	$date =  new IntlDateFormatter("fr_FR", IntlDateFormatter::FULL, IntlDateFormatter::NONE);
+	$date = new IntlDateFormatter("fr_FR", IntlDateFormatter::FULL, IntlDateFormatter::NONE);
 	$date = $date->format(time());
 	$dateFull = "Le " . $date . ", à " . date("H:i:s");
 	$datePartial = "Aujourd'hui à " . date("H:i");
@@ -99,42 +99,87 @@ function full_inventory() {
 	return "IYZ9q0aWtL6lSqumpddg_idbLx4yjayoO5EI7efddWWKfbAJL6lSqumpdcquhQoxOUXbqW8mjbqPQoxOUXbqW8mjbqRQoxOUXbqW8mjbqTQoxOUXbqW8mjbqVQoxOUXbqW8mjbqXQoxOUXbqW8mjbqZQoxOUXbqW8mjbq1QoxOUXbqW8mjbq3QoxOUXbqW8mjbq5QoxOUXbqW8mjbq7QoxOUXbqW8mjbq9QoxOUXbqW8mjbq_QoxOUXbqW8mjbriAJL6lSqumpdcqusoO5EI7efddWWKfeLQoxOUXbqW8mjbrj6JL6lSqumpdcqusMO5EI7efddWWKjeRQoxOUXbqW8mjcrlAJL6lSqumpdcqKs-O5EI7efddWWKjeXQoxOUXbqW8mjcrm6JL6lSqumpdcqKtwO5EI7efddWWKje3QoxOUXbqW8mjcroAJL6lSqumpdcqKtUO5EI7efddWWKje9QoxOUXbqW8mjdrp6JL6lSqumpdcq0ugO5EI7efddWWKnfdQoxOUXbqW8mjdrrAJL6lSqumpdcq0uEO5EI7efddWWKnfjQoxOUXbqW8mjdrs6JL6lSqumpdcq0u2O5EI7efddWWKnfpQoxOUXbqW8mjdruAJL6lSqumpdcrrftQoxOUXbqW8mjfevwO5EI7efddWWKurv6JL6lSqumpdcrrfzQoxOUXbqW8mjfevUO5EI7efddWWKvrxAJL6lSqumpdcrvfFQoxOUXbqW8mjfuwgO5EI7efddWWKvry6JL6lSqumpdcrvfLQoxOUXbqW8mjfKwEO5EI7efddWWKwrAAJL6lSqumpdcrzfRQoxOUXbqW8mjfKw2O5EI7efddWWKwrB6JL6lSqumpdcrDfXQoxOUXbqW8mjf0xoO5EI7efddWWKxrDAJL6lSqumpdcrDf3QoxOUXbqW8mjf0xMO5EI7efddWWKArE6JL6lSqumpdcrPf9QoxOUXbqW8mjgKx-O5EI7efddWWKArGaGAJL6lSqumpdcrPgacdQoxOUXbqW8mjg0yaiwO5EI7efddWWKBrGaH6JL6lSqumpdcrTgacjQoxOUXbqW8mjg0yaiUO5EI7efddWWKBrGaJAJL6lSqumpdcrXgacpQoxOUXbqW8mjheyajgO5EI7efddWWKCrGaK6JL6lSqumpdcrXgacvQoxOUXbqW8mjheyajEO5EI7efddWWKDrGaMAJL6lSqumpdcr1gacBQoxOUXbqW8mjhuyaj2O5EI7efddWWKDrGaN6JL6lSqumpdcr1gacHQoxOUXbqW8mjhKyakoO5EI7efddWWKErGaPAJL6lSqumpdcr9gacNQoxOUXbqW8mjh0yakMO5EI7efddWWKFrGaQ6JL6lSqumpdcr9gacTQoxOUXbqW8mjh0yak-O5EI7efddWWKFrGaSAJL6lSqumpdcr9gacZQoxOUXbqW8mjh0yalwO5EI7efddWWKFrGaT6JL6lSqumpdcr9gac5QoxOUXbqW8mjjbgac7QoxOUXbqW8mjjbgac9QoxOUXbqW8mjjbgac_QoxOUXbqW8mjjbgadbQoxOUXbqW8mjjbgaddQoxOUXbqW8mjjfgadfQoxOUXbqW8mjjfgadhQoxOUXbqW8mjjfgadjQoxOUXbqW8mjjfgadlQoxOUXbqW8mjjfgadnQoxOUXbqW8mjjngadpQoxOUXbqW8mjjngadrQoxOUXbqW8mjjngadtQoxOUXbqW8mjjngadvQoxOUXbqW8mjjngadxQoxOUXbqW8mjjngadzQoxOUXbqW8mjjngadBQoxOUXbqW8mjjngadDQoxOUXbqW8mjjngadFQoxOUXbqW8mjjngadHQoxOUXbqW8mjjngadJQoxOUXbqW8mjjngadLQoxOUXbqW8mjjngadNQoxOUXbqW8mjjngadPQoxOUXbqW8mjjngadRQoxOUXbqW8mjjngadTQoxOUXbqW8mjjngadVQoxOUXbqW8mjjngadXQoxOUXbqW8mjjngadZQoxOUXbqW8mjjngad1QoxOUXbqW8mjjrgad3QoxOUXbqW8mjjrgad5QoxOUXbqW8mjjrgad7QoxOUXbqW8mjjrgad9QoxOUXbqW8mjjrgad_QoxOUXbqW8mjjrgaebQoxOUXbqW8mjjrgaedQoxOUXbqW8mjjrgaefQoxOUXbqW8mjjrgaehQoxOUXbqW8mjjrgaejQoxOUXbqW8mjjvgaelQoxOUXbqW8mjjvgaenQoxOUXbqW8mjjvgaepQoxOUXbqW8mjjvgaerQoxOUXbqW8mjjvgaetQoxOUXbqW8mjjvgaevQoxOUXbqW8mjjvgaexQoxOUXbqW8mjjvgaezQoxOUXbqW8mjjvgaeBQoxOUXbqW8mjjvgaeDQoxOUXbqW8mjjzgaeFQoxOUXbqW8mjmagvgaeHQoxOUXbqW8mjmagvgaeJQoxOUXbqW8mjmagvgaeLQoxOUXbqW8mjmagvgaeNQoxOUXbqW8mjmagvgaePQoxOUXbqW8mjmagzgaeRQoxOUXbqW8mjmagzgaeTQoxOUXbqW8mjmagzgaeVQoxOUXbqW8mjmagzgaeXQoxOUXbqW8mjmagzgaeZQoxOUXbqW8mjmagDgae1QoxOUXbqW8mjmagDgae3QoxOUXbqW8mjmagDgae5QoxOUXbqW8mjmagDgae7QoxOUXbqW8mjmagDgae9QoxOUXbqW8mjmagHgae_QoxOUXbqW8mjmagHgafbQoxOUXbqW8mjmagHgafdQoxOUXbqW8mjmagHgaffQoxOUXbqW8mjmagHgafhQoxOUXbqW8mjmagLgafjQoxOUXbqW8mjmagLgaflQoxOUXbqW8mjmagLgafnQoxOUXbqW8mjmagLgafpQoxOUXbqW8mjmagLgafrQoxOUXbqW8mjmagPgaftQoxOUXbqW8mjmagTgafvQoxOUXbqW8mjmagXgafxQoxOUXbqW8mjmag1gafzQoxOUXbqW8mjmag5gafBQoxOUXbqW8mjmag9gafDQoxOUXbqW8mjmahbgafFQoxOUXbqW8mjmahfgafHQoxOUXbqW8mjmahjgafJQoxOUXbqW8mjmahngafLQoxOUXbqW8mjmahngafNQoxOUXbqW8mjmahngafPQoxOUXbqW8mjmahngafRQoxOUXbqW8mjmahngafTQoxOUXbqW8mjmahngafVQoxOUXbqW8mjmahngafXQoxOUXbqW8mjmahngafZQoxOUXbqW8mjmahngaf1QoxOUXbqW8mjmahngaf3QoxOUXbqW8mjmahngaf5QoxOUXbqW8mjmahngaf7QoxOUXbqW8mjmahngaf9QoxOUXbqW8mjmahngaf_QoxOUXbqW8mjmahngagbQoxOUXbqW8mjmahngagdQoxOUXbqW8mjmahngagfQoxOUXbqW8mjmahngaghQoxOUXbqW8mjmahngagjQoxOUXbqW8mjmahngaglQoxOUXbqW8mjmamLgagnQoxOUXbqW8mjmamLgagpQoxOUXbqW8mjmamLgagrQoxOUXbqW8mjmamLgagtQoxOUXbqW8mjmamLgagvQoxOUXbqW8mjmamLgagxQoxOUXbqW8mjmamLgagzQoxOUXbqW8mjmamLgagBQoxOUXbqW8mjmamLgagDQoxOUXbqW8mjmamLgagFQoxOUXbqW8mjmamLgagHQoxOUXbqW8mjmamLgagJQoxOUXbqW8mjmamLgagLQoxOUXbqW8mjmamLgagNQoxOUXbqW8mjmamLgagPQoxOUXbqW8mjmamLgagRQoxOUXbqW8mjmamLgagTQoxOUXbqW8mjmamLgagVQoxOUXbqW8mjmamLgagXQoxOUXbqW8mjmamLgagZQoxOUXbqW8mjmam1gag1QoxOUXbqW8mjmam1gag3QoxOUXbqW8mjmam1gag5QoxOUXbqW8mjmam1gag7QoxOUXbqW8mjmam1gag9QoxOUXbqW8mjmam1gag_QoxOUXbqW8mjmam1gahbQoxOUXbqW8mjmam1gahdQoxOUXbqW8mjmam1gahfQoxOUXbqW8mjmam1gahhQoxOUXbqW8mjmam1gahjQoxOUXbqW8mjmam1gahlQoxOUXbqW8mjmam1gahnQoxOUXbqW8mjmam1gahpQoxOUXbqW8mjmam1gahrQoxOUXbqW8mjmam1gahtQoxOUXbqW8mjmam1gahvQoxOUXbqW8mjmam1gahxQoxOUXbqW8mjmam1gahzQoxOUXbqW8mjmam1gahB4qlpa";
 }
 
-// Formate un message en HTML, en remplaçant les balises BBCode, smileys, etc.
+// Formate un message en HTML, en remplaçant les balises de type BBCode, smileys, etc.
 function parse_message($str, $allowTags, $allowImages = null) {
 	if($allowImages === null) {
 		$allowImages = $allowTags;
 	}
 	$str = htmlspecialchars($str);
 	if($allowTags) {
-		$findTags = array(
-			'~\*(.*?)\*~s',
-			'~//(.*?)//~s',
-			'~__(.*?)__~s',
-			'~===(.*?)===~s', // NOTE : Cette commande avait seulement été documentée dans la rubrique "Guide de CaféJeux" sur le site Motion Twin.
-			'~\[cite\](.*?)\[/cite\]~s',
-			'~\[lien\](https?)://([^"><]*?)\[/lien\]~', // NOTE : cafejeux.com ne prenait pas en charge les liens commençant par "https://".
-			'~\[lien=((https?)://[^"><]*?)\](.*?)\[/lien\]~' // Idem ici.
+		$urlentities = function($str, $encode = true) {
+			// Empêche certains caractères contenus dans les liens de provoquer des "interférences" avec les autres masques.
+			$search = array(":", "*", "/", "_", "=");
+			$replace = array("&#58;", "&#42;", "&#47;", "&#95;", "&#61;");
+			if(!$encode) {
+				$temp = $search;
+				$search = $replace;
+				$replace = $temp;
+			}
+			return str_replace($search, $replace, $str);
+		};
+		$tags = array(
+			// On vérifie d'abord les balises de lien hypertexte.
+			// NOTE : cafejeux.com ne reconnaissait pas les liens commençant par "https://". Une autre époque... :)
+			'~\[lien\](https?)://([^\s]*?)\[/lien\]~s' => function($m) use($urlentities) {
+				$url = $m[1] . "://" . $m[2];
+				$encodedUrl = urlencode(html_entity_decode($url));
+				$displayedUrl = $m[2];
+				if(mb_strlen($displayedUrl) > 30) {
+					$displayedUrl = mb_substr($displayedUrl, 0, 30) . "...";
+				}
+				$displayedUrl = "<skipwrap>" . $urlentities($displayedUrl) . "</skipwrap>";
+				return '<a target="_blank" href="redir?url=' . $encodedUrl . '">' . $displayedUrl . '</a>';
+			},
+			'~\[lien=(https?)://([^\s]*?)\](.*?)\[/lien\]~s' => function($m) use($urlentities) {
+				$url = $m[1] . "://" . $m[2];
+				$encodedUrl = urlencode(html_entity_decode($url));
+				$displayedUrl = $m[3];
+				if($displayedUrl === $m[2]) {
+					if(mb_strlen($displayedUrl) > 30) {
+						$displayedUrl = mb_substr($displayedUrl, 0, 30) . "...";
+					}
+					$displayedUrl = "<skipwrap>" . $urlentities($displayedUrl) . "</skipwrap>";
+				}
+				return '<a target="_blank" href="redir?url=' . $encodedUrl . '">' . $displayedUrl . '</a>';
+			},
+			// Au tour des images... si elles sont autorisées.
+			'~@((https?)://[^\s]*?)@~s' => function($m) use($allowImages, $urlentities) {
+				if($allowImages) {
+					$src = $urlentities($m[1]);
+					return '<img src="' . $src . '" alt="" />';
+				} else {
+					return $m[0];
+				}
+			},
+			// Place aux différentes polices d'écriture et couleurs, les "encres" de la boutique CaféJeux.
+			// NOTE : cafejeux.com vérifiait que l'encre utilisée avait bien été achetée au préalable par le rédacteur du message.
+			'~#([0-9]+)#(.*?)##~s' => function($m) {
+				$colorId = intval($m[1]);
+				$text = $m[2];
+				if($colorId <= 0 || $colorId > 8) return $text;
+				return '<span class="color_' . $colorId . '">' . $text . '</span>';
+			},
+			// Enfin, on convertit les balises les plus simples.
+			'~\*(.*?)\*~s' => function($m) {
+				return '<strong>' . $m[1] . '</strong>';
+			},
+			'~(?<!:)//(.*?)(?<!:)//~s' => function($m) {
+				return '<em>' . $m[1] . '</em>';
+			},
+			'~__(.*?)__~s' => function($m) {
+				return '<span class="underline">' . $m[1] . '</span>';
+			},
+			'~===(.*?)===~s' => function($m) {
+				// NOTE : Cette commande avait seulement été documentée dans la rubrique "Guide de CaféJeux" sur le site Motion Twin.
+				return '<h3>' . $m[1] . '</h3>';
+			},
+			'~\[cite\](.*?)\[/cite\]~s' => function($m) {
+				return '<cite>' . $m[1] . '</cite>';
+			}
 		);
-		if($allowImages) $findTags[] = '~@(https?://[^"><]*?)@~';
-		$replaceTags = array(
-			'<strong>$1</strong>',
-			'<em>$1</em>',
-			'<span class="underline">$1</span>',
-			'<h3>$1</h3>',
-			'<cite>$1</cite>',
-			'<a target="_blank" href="redir?url=$1://$2">$2</a>', // NOTE : cafejeux.com tronquait le texte du lien s'il dépassait 30 caractères et s'il était identique à l'adresse du lien : "..." était affiché à la place.
-			'<a target="_blank" href="redir?url=$1">$3</a>', // L'URL en paramètre devrait être encodée avec une fonction comme "urlencode()", ce que faisait cafejeux.com.
-		);
-		if($allowImages) $replaceTags[] = '<img src="$1" alt="" />';
-		$str = preg_replace($findTags, $replaceTags, $str);
-		$str = preg_replace_callback('/#([0-9]+)#(.*?)##/s', function($m) {
-			if(!isset($m[2])) return "";
-			$font = intval($m[1]);
-			$text = $m[2];
-			if($font <= 0 || $font > 8) return $text;
-			return '<span class="color_' . $font . '">' . $text . '</span>';
-		}, $str);
+		$str = preg_replace_callback_array($tags, $str);
 	}
+	// Smileys.
 	$findSmileys = array(
 		":)", ":(", ":D", ";)", ":quoi:", ":o", "8O", "8)", ":x", ":P", ":!:", ":?", ":timide:", ":lol:", ":pleure:", ":mechant:", ":sadique:", ":innocent:", ":wink:", ":dontcare:",
 		":huh:", ":noon:", ":youpi:", ":idee:", ":charte:", ":fleche:", ":croix:", ":love:", ":sucreblanc:", ":sucre:", ":mail:", ":match:", ":table:", ":tasse:", ":caps:", ":chrono:",
@@ -142,7 +187,7 @@ function parse_message($str, $allowTags, $allowImages = null) {
 	);
 	$replaceSmileys = array(
 		"smile", "sad", "biggrin", "wink", "question", "surprised", "eek", "cool", "mad", "razz", "exclaim", "confused", "redface", "lol", "cry", "evil", "twisted", "rolleyes", "wink2", "dontcare",
-		"huh", "nooo", "yeah", "idea", "chart", "arrow", "cross", "love", "sucreblanc", "sucreroux", "mail", "fight",  "table", "tasse", "cap", "chrono",
+		"huh", "nooo", "yeah", "idea", "chart", "arrow", "cross", "love", "sucreblanc", "sucreroux", "mail", "fight", "table", "tasse", "cap", "chrono",
 		"keepcool"
 	);
 	$smileysLength = count($findSmileys) === count($replaceSmileys) ? count($replaceSmileys) : 0;
@@ -151,15 +196,25 @@ function parse_message($str, $allowTags, $allowImages = null) {
 	}
 	$str = str_replace($findSmileys, $replaceSmileys, $str);
 	// NOTE : cafejeux.com effectuait une césure des chaînes dont la longueur dépassait les 30 caractères (ou, plus exactement, 30 bytes).
-	// Le code ci-dessous reproduit très approximativement ce comportement.
-	$arr = explode(" ", $str);
-	$arrLength = count($arr);
-	for($i = 0; $i < $arrLength; $i++) {
-		if($arr[$i] === htmlspecialchars($arr[$i])) {
-			$arr[$i] = wordwrap($arr[$i], 30, " ", true);
+	// Le code ci-dessous tente de reproduire le plus fidèlement possible ce comportement.
+	$strParts = preg_split('~(<[^>]*>)|(\r?\n)~', $str, -1, PREG_SPLIT_DELIM_CAPTURE);
+	$skipWrap = false;
+	$str = "";
+	foreach($strParts as $i => &$strPart) {
+		$strPart = $urlentities($strPart, false);
+		if((!$skipWrap && $strPart === "<skipwrap>") || ($skipWrap && $strPart === "</skipwrap>")) {
+			$skipWrap = !$skipWrap;
+			$strPart = "";
+		}
+		if($skipWrap || preg_match('~^<[^>]+>$~', $strPart)) {
+			// Balise HTML.
+			$str .= $strPart;
+		} else {
+			// Texte simple.
+			$str .= wordwrap($strPart, 30, " ", true);
 		}
 	}
-	$str = implode(" ", $arr);
+	// Le message est prêt.
 	return nl2br($str);
 }
 
