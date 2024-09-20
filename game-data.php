@@ -100,22 +100,19 @@ function full_inventory() {
 }
 
 // Formate un message en HTML, en remplaçant les balises de type BBCode, smileys, etc.
-function parse_message($str, $allowTags, $allowImages = null) {
+function parse_message($str, $allowTags, $allowImages = null, $allowSmileys = true, $allowMultiline = true) {
 	if($allowImages === null) {
 		$allowImages = $allowTags;
 	}
 	$str = htmlspecialchars($str);
 	if($allowTags) {
-		$urlentities = function($str, $encode = true) {
+		$urlentities = function($str) {
 			// Empêche certains caractères contenus dans les liens de provoquer des "interférences" avec les autres masques.
-			$search = array(":", "*", "/", "_", "=");
-			$replace = array("&#58;", "&#42;", "&#47;", "&#95;", "&#61;");
-			if(!$encode) {
-				$temp = $search;
-				$search = $replace;
-				$replace = $temp;
-			}
-			return str_replace($search, $replace, $str);
+			return str_replace(
+				array(":", "*", "/", "_", "="),
+				array("&#58;", "&#42;", "&#47;", "&#95;", "&#61;"),
+				$str
+			);
 		};
 		$tags = array(
 			// On vérifie d'abord les balises de lien hypertexte.
@@ -127,7 +124,7 @@ function parse_message($str, $allowTags, $allowImages = null) {
 				if(mb_strlen($displayedUrl) > 30) {
 					$displayedUrl = mb_substr($displayedUrl, 0, 30) . "...";
 				}
-				$displayedUrl = "<skipwrap>" . $urlentities($displayedUrl) . "</skipwrap>";
+				$displayedUrl = $urlentities($displayedUrl);
 				return '<a target="_blank" href="redir?url=' . $encodedUrl . '">' . $displayedUrl . '</a>';
 			},
 			'~\[lien=(https?)://([^\s]*?)\](.*?)\[/lien\]~s' => function($m) use($urlentities) {
@@ -138,7 +135,7 @@ function parse_message($str, $allowTags, $allowImages = null) {
 					if(mb_strlen($displayedUrl) > 30) {
 						$displayedUrl = mb_substr($displayedUrl, 0, 30) . "...";
 					}
-					$displayedUrl = "<skipwrap>" . $urlentities($displayedUrl) . "</skipwrap>";
+					$displayedUrl = $urlentities($displayedUrl);
 				}
 				return '<a target="_blank" href="redir?url=' . $encodedUrl . '">' . $displayedUrl . '</a>';
 			},
@@ -161,61 +158,105 @@ function parse_message($str, $allowTags, $allowImages = null) {
 			},
 			// Enfin, on convertit les balises les plus simples.
 			'~\*(.*?)\*~s' => function($m) {
+				// Texte en gras.
 				return '<strong>' . $m[1] . '</strong>';
 			},
 			'~(?<!:)//(.*?)(?<!:)//~s' => function($m) {
+				// Texte en italique.
 				return '<em>' . $m[1] . '</em>';
 			},
 			'~__(.*?)__~s' => function($m) {
+				// Texte souligné.
 				return '<span class="underline">' . $m[1] . '</span>';
 			},
 			'~===(.*?)===~s' => function($m) {
+				// Titre.
 				// NOTE : Cette commande avait seulement été documentée dans la rubrique "Guide de CaféJeux" sur le site Motion Twin.
 				return '<h3>' . $m[1] . '</h3>';
 			},
 			'~\[cite\](.*?)\[/cite\]~s' => function($m) {
+				// Citation.
 				return '<cite>' . $m[1] . '</cite>';
 			}
 		);
 		$str = preg_replace_callback_array($tags, $str);
 	}
 	// Smileys.
-	$findSmileys = array(
-		":)", ":(", ":D", ";)", ":quoi:", ":o", "8O", "8)", ":x", ":P", ":!:", ":?", ":timide:", ":lol:", ":pleure:", ":mechant:", ":sadique:", ":innocent:", ":wink:", ":dontcare:",
-		":huh:", ":noon:", ":youpi:", ":idee:", ":charte:", ":fleche:", ":croix:", ":love:", ":sucreblanc:", ":sucre:", ":mail:", ":match:", ":table:", ":tasse:", ":caps:", ":chrono:",
-		":keepcool:" // NOTE : Ce smiley a seulement été ajouté sur les sites liés à Muxxu, jamais sur cafejeux.com.
-	);
-	$replaceSmileys = array(
-		"smile", "sad", "biggrin", "wink", "question", "surprised", "eek", "cool", "mad", "razz", "exclaim", "confused", "redface", "lol", "cry", "evil", "twisted", "rolleyes", "wink2", "dontcare",
-		"huh", "nooo", "yeah", "idea", "chart", "arrow", "cross", "love", "sucreblanc", "sucreroux", "mail", "fight", "table", "tasse", "cap", "chrono",
-		"keepcool"
-	);
-	$smileysLength = count($findSmileys) === count($replaceSmileys) ? count($replaceSmileys) : 0;
-	for($i = 0; $i < $smileysLength; $i++) {
-		$replaceSmileys[$i] = '<img src="img/smiley/icon_' . $replaceSmileys[$i] . '.gif" alt="' . $findSmileys[$i] . '" />';
+	if($allowSmileys) {
+		$findSmileys = array(
+			":)", ":(", ":D", ";)", ":quoi:", ":o", "8O", "8)", ":x", ":P", ":!:", ":?", ":timide:", ":lol:", ":pleure:", ":mechant:", ":sadique:", ":innocent:", ":wink:", ":dontcare:",
+			":huh:", ":noon:", ":youpi:", ":idee:", ":charte:", ":fleche:", ":croix:", ":love:", ":sucreblanc:", ":sucre:", ":mail:", ":match:", ":table:", ":tasse:", ":caps:", ":chrono:",
+			":keepcool:" // NOTE : Ce smiley a seulement été ajouté sur les sites liés à Muxxu, jamais sur cafejeux.com.
+		);
+		$replaceSmileys = array(
+			"smile", "sad", "biggrin", "wink", "question", "surprised", "eek", "cool", "mad", "razz", "exclaim", "confused", "redface", "lol", "cry", "evil", "twisted", "rolleyes", "wink2", "dontcare",
+			"huh", "nooo", "yeah", "idea", "chart", "arrow", "cross", "love", "sucreblanc", "sucreroux", "mail", "fight", "table", "tasse", "cap", "chrono",
+			"keepcool"
+		);
+		$smileysLength = count($findSmileys) === count($replaceSmileys) ? count($replaceSmileys) : 0;
+		for($i = 0; $i < $smileysLength; $i++) {
+			$replaceSmileys[$i] = '<img src="img/smiley/icon_' . $replaceSmileys[$i] . '.gif" alt="' . $findSmileys[$i] . '" />';
+		}
+		$str = str_replace($findSmileys, $replaceSmileys, $str);
 	}
-	$str = str_replace($findSmileys, $replaceSmileys, $str);
 	// NOTE : cafejeux.com effectuait une césure des chaînes dont la longueur dépassait les 30 caractères (ou, plus exactement, 30 bytes).
 	// Le code ci-dessous tente de reproduire le plus fidèlement possible ce comportement.
-	$strParts = preg_split('~(<[^>]*>)|(\r?\n)~', $str, -1, PREG_SPLIT_DELIM_CAPTURE);
-	$skipWrap = false;
-	$str = "";
-	foreach($strParts as $i => &$strPart) {
-		$strPart = $urlentities($strPart, false);
-		if((!$skipWrap && $strPart === "<skipwrap>") || ($skipWrap && $strPart === "</skipwrap>")) {
-			$skipWrap = !$skipWrap;
-			$strPart = "";
+	$strLength = mb_strlen($str);
+	$charactersCounter = 0;
+	$htmlentityCurrentChars = "";
+	$isTagOpen = false;
+	for($i = 0; $i < $strLength; $i++) {
+		$char = mb_substr($str, $i, 1);
+		// On détecte les balises HTML.
+		// Celles-ci doivent être exclues du processus de césure de la chaîne.
+		if($char === "<" || $char === ">") {
+			$isTagOpen = $char === "<";
+			continue;
 		}
-		if($skipWrap || preg_match('~^<[^>]+>$~', $strPart)) {
-			// Balise HTML.
-			$str .= $strPart;
+		if($isTagOpen) {
+			continue;
+		}
+		// On détecte les entités HTML pour détecter le nombre réel de caractères affichés.
+		// Par exemple, "&lt;" (pour "<") ne doit compter que pour 1.
+		$htmlentityCurrentLength = mb_strlen($htmlentityCurrentChars);
+		if($htmlentityCurrentLength === 0) {
+			if($char === "&") {
+				$htmlentityCurrentChars = "&";
+				$htmlentityCurrentLength = 1;
+			}
 		} else {
-			// Texte simple.
-			$str .= wordwrap($strPart, 30, " ", true);
+			$htmlentityCurrentChars .= $char;
+			if($char === ";") {
+				$htmlentityCurrentLength = -1;
+			} else {
+				$htmlentityCurrentLength++;
+			}
+		}
+		if($htmlentityCurrentLength > 0) {
+			continue;
+		}
+		// On peut maintenant déterminer si une césure est à effectuer.
+		if($char === " " || $char === "\r" || $char === "\n" || $char === "\t") {
+			$charactersCounter = 0;
+		} else {
+			if($htmlentityCurrentLength === -1) {
+				$char = html_entity_decode($htmlentityCurrentChars);
+				$htmlentityCurrentChars = "";
+			}
+			$charactersCounter += strlen($char);
+			if($charactersCounter > 30) {
+				$str = mb_substr($str, 0, $i) . " " . mb_substr($str, $i);
+				$charactersCounter = 0;
+				$strLength++;
+			}
 		}
 	}
+	// Multiligne.
+	if($allowMultiline) {
+		$str = nl2br($str);
+	}
 	// Le message est prêt.
-	return nl2br($str);
+	return $str;
 }
 
 // Détecte les commandes spéciales utilisées sur les chats.
@@ -252,7 +293,8 @@ function parse_command($str) {
 			$type = "invalid";
 		}
 	}
-	return array($type, htmlspecialchars($str));
+	$str = parse_message($str, false, false, false, false);
+	return array($type, $str);
 }
 
 ?>
