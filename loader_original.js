@@ -1,3 +1,7 @@
+/*
+Fichier JavaScript original de cafejeux.com, sans aucune modification.
+Uniquement présent dans l'archive pour référence.
+*/
 $estr = function() { return js.Boot.__string_rec(this,''); }
 if(typeof server=='undefined') server = {}
 server.Async_Api = function(c) { if( c === $_ ) return; {
