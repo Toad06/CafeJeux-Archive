@@ -38,6 +38,10 @@ Les actions suivantes ont un effet concret au sein de l'archive :
 
 - Le choix des options en jeu depuis la page "Ma page -> Mes options de jeux". Ce choix est uniquement conservé tant que la session en cours reste active. Si ce formulaire n'est jamais validé (avec ou sans modifications), la carte par défaut pourra être sélectionnée dans le jeu "Anticorp's", ce qui diffère (volontairement) de ce que faisait CafeJeux.com.
 
+Les actions suivantes, plus anecdotiques et dont l'effet disparaît dès lors qu'une autre page est chargée, sont également possibles :
+
 - L'écriture et l'envoi de messages sur les t'chats des jeux, selon les règles de mise en forme qui étaient autorisées sur CafeJeux.com.
+
+- L'écriture et l'envoi du texte de présentation de la table "Table des Habitués", selon les règles de mise en forme qui étaient autorisées sur CafeJeux.com.
 
 - L'écriture et la prévisualisation de messages sur les forums, selon les règles de mise en forme qui étaient autorisées sur CafeJeux.com.

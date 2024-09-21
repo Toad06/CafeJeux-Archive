@@ -407,7 +407,7 @@ switch($page) {
 			$command = parse_command($message);
 			if($command === null) {
 				$commandType = "msg";
-				$message = parse_message($message, false);
+				$message = parse_message($message, false, false, true, false);
 			} else {
 				$commandType = $command[0];
 				$message = $command[1];
@@ -699,8 +699,23 @@ switch($page) {
 		}
 		break;
 	case "group/420/editDescription":
-		// NOTE : Les champs "logo" et "description" envoyés par le formulaire peuvent être vides. Si l'adresse du logo ne commence pas par "http://", une valeur vide semblait être enregistrée en base de données.
-		$data = "<load>group/420/description</load>";
+		// NOTE : cafejeux.com enregistrait en base de données les valeurs des champs "logo" et "description" envoyées par le formulaire. Ces valeurs pouvaient d'ailleurs être vides.
+		// Si l'adresse du logo ne commençait pas par "http://", celle-ci était alors considérée comme incorrecte, et une chaîne vide était enregistrée.
+		// La page ne renvoyait enfin que le code suivant : "<load>group/420/description</load>".
+		// Dans le cadre de cette archive, l'édition de la description n'est pas enregistrée ; l'affichage de la page doit donc être fait directement.
+		if(!isset($__recursion)) {
+			$__recursion = true;
+			$_GET['p'] = "group/420/description";
+			include "dispatch.php";
+			$pDescription = isset($_POST['description']) ? trim($_POST['description']) : "";
+			$pLogo = isset($_POST['logo']) ? $_POST['logo'] : ""; // ignoré ici
+			if(strlen($pDescription) > 0) {
+				$pDescription = '<div class="groupDescription">' . parse_message($pDescription) . '</div>';
+			} else {
+				$pDescription = '<p class="info">Cette table n\'a pas encore édité sa présentation.</p>';
+			}
+			$data = preg_replace('/<div class="groupDescription">(.*?)<\/div>/', $pDescription, $data);
+		}
 		break;
 	case "group/420/editRoom":
 	case "group/6951/editRoom":

@@ -100,7 +100,7 @@ function full_inventory() {
 }
 
 // Formate un message en HTML, en remplaçant les balises de type BBCode, smileys, etc.
-function parse_message($str, $allowTags, $allowImages = null, $allowSmileys = true, $allowMultiline = true) {
+function parse_message($str, $allowTags = true, $allowImages = null, $allowSmileys = true, $allowMultiline = true) {
 	if($allowImages === null) {
 		$allowImages = $allowTags;
 	}
@@ -109,8 +109,8 @@ function parse_message($str, $allowTags, $allowImages = null, $allowSmileys = tr
 		$urlentities = function($str) {
 			// Empêche certains caractères contenus dans les liens de provoquer des "interférences" avec les autres masques.
 			return str_replace(
-				array(":", "*", "/", "_", "="),
-				array("&#58;", "&#42;", "&#47;", "&#95;", "&#61;"),
+				array("*", "/", ":", "=", "@", "_"),
+				array("&#42;", "&#47;", "&#58;", "&#61;", "&#64;", "&#95;"),
 				$str
 			);
 		};
@@ -216,8 +216,8 @@ function parse_message($str, $allowTags, $allowImages = null, $allowSmileys = tr
 		if($isTagOpen) {
 			continue;
 		}
-		// On détecte les entités HTML pour détecter le nombre réel de caractères affichés.
-		// Par exemple, "&lt;" (pour "<") ne doit compter que pour 1.
+		// On détecte les entités HTML pour déterminer les caractères réellement affichés à l'écran.
+		// Par exemple, "&lt;" correspond à "<", et ne doit donc compter que pour 1 au lieu de 4.
 		$htmlentityCurrentLength = mb_strlen($htmlentityCurrentChars);
 		if($htmlentityCurrentLength === 0) {
 			if($char === "&") {

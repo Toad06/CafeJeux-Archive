@@ -5091,9 +5091,9 @@ js.App.forumInsert = function(id,begin,end) {
 }
 js.App.forumUrl = function(id,addr,text) {
 	var url = js.Lib.window.prompt(addr,"http://");
-	if(url.length == 0) return;
+	if(url == null || url.length == 0) return;
 	var comment = js.Lib.window.prompt(text,url);
-	if(comment.length == 0 || comment == url) return js.App.forumInsert(id,"",("[lien]" + url) + "[/lien]");
+	if(comment == null || comment.length == 0 || comment == url) return js.App.forumInsert(id,"",("[lien]" + url) + "[/lien]");
 	return js.App.forumInsert(id,"",((("[lien=" + url) + "]") + comment) + "[/lien]");
 }
 js.App.replaceSelection = function(input,begin,end) {
