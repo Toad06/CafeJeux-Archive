@@ -217,7 +217,7 @@ function parse_message($str, $allowTags = true, $allowImages = null, $allowSmile
 			continue;
 		}
 		// On détecte les entités HTML pour déterminer les caractères réellement affichés à l'écran.
-		// Par exemple, "&lt;" correspond à "<", et ne doit donc compter que pour 1 au lieu de 4.
+		// Par exemple, "&lt;" correspond à "<" et ne doit donc compter que pour 1 seul caractère au lieu de 4.
 		$htmlentityCurrentLength = mb_strlen($htmlentityCurrentChars);
 		if($htmlentityCurrentLength === 0) {
 			if($char === "&") {

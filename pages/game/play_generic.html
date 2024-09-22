@@ -64,8 +64,9 @@
 				var chatVainqueur = document.createElement("div");
 				chatVainqueur.className = "logMsg chatSystem";
 				// NOTE : Le texte annonçant le résultat du match est celui que verrait un membre simplement spectateur de la partie ; cela a en effet davantage de sens ici par rapport au fonctionnement de l'archive.
-				// Autrement, le message "Vous avez gagné !" ou "Vous avez perdu !" serait affiché, suivi, s'il ne s'agissait pas d'un match amical, de cette autre information :
-				// `<div class="chatInfo">Votre position actuelle : <img src="img/icons/small_rank_1.gif"/> <strong>[position]<sup>ème</sup></strong> ([points]pts)</div>`.
+				// Autrement, le message "Vous remportez ce match !" ou "Vous avez perdu !" serait affiché, suivi, s'il ne s'agissait pas d'un match amical, de ces deux autres informations :
+				// `<div class="logMsg chatSystem">Cette partie vous fait <strong>['gagner' ou 'perdre'] [points] points</strong>.</div>`.
+				// `<div class="chatInfo">Votre position actuelle : <img src="img/icons/small_rank_1.gif" alt=""/> <strong>[position]<sup>['er' ou 'ème']</sup></strong> ([points]pts)</div>`.
 				// Le nombre de points, ajouté ou déduit, dépendait du résultat de la partie et du classement de l'adversaire. La formule de calcul exacte n'est pas connue.
 				// Ainsi, un joueur bien classé qui gagnait contre un mal classé n'engendrait que peu de points ; un match nul lui en faisait perdre, une défaite davantage encore.
 				chatVainqueur.innerHTML = (winner !== null ? (Game_GetData("player" + String(winner) + "Name") + " remporte ce match.") : (Game_GetData("player1Name") + " et " + Game_GetData("player2Name") + " font match nul !"));

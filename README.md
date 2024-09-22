@@ -28,7 +28,7 @@ Vous pouvez signaler tout problème <a href="https://github.com/Toad06/CafeJeux-
 
 Les actions suivantes ont un effet concret au sein de l'archive :
 
-- La création d'un compte depuis la page d'inscription. Plus exactement, seuls le pseudo et l'avatar sont gardés en mémoire par le système de cookies. Créer un nouveau profil remplace automatiquement le précédent. Cette étape n'a de toute façon rien d'obligatoire puisque la connexion reste possible avec n'importe quel pseudo et mot de passe, tant que ceux-ci respectent les contraintes qu'imposait CafeJeux.com.
+- La création d'un compte depuis la page d'inscription. Plus exactement, seuls le pseudo et l'avatar sont gardés en mémoire par le système de cookies. Créer un nouveau profil remplace automatiquement le précédent. Cette étape n'a de toute façon rien d'obligatoire puisque la connexion reste possible avec n'importe quel pseudo et mot de passe, tant que ceux-ci respectent les contraintes qu'imposait CafeJeux.com : dans cette situation, l'avatar par défaut est alors utilisé.
 
 - Le choix de la boisson quotidienne, influençant l'image de la tasse en haut du site. Ce choix est uniquement conservé tant que la session en cours reste active ; ou jusqu'à minuit, heure du serveur.
 

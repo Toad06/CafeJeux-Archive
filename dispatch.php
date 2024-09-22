@@ -700,7 +700,7 @@ switch($page) {
 		break;
 	case "group/420/editDescription":
 		// NOTE : cafejeux.com enregistrait en base de données les valeurs des champs "logo" et "description" envoyées par le formulaire. Ces valeurs pouvaient d'ailleurs être vides.
-		// Si l'adresse du logo ne commençait pas par "http://", celle-ci était alors considérée comme incorrecte, et une chaîne vide était enregistrée.
+		// Si l'adresse du logo ne commençait pas par "http://", celle-ci était considérée comme incorrecte et une chaîne vide était alors enregistrée.
 		// La page ne renvoyait enfin que le code suivant : "<load>group/420/description</load>".
 		// Dans le cadre de cette archive, l'édition de la description n'est pas enregistrée ; l'affichage de la page doit donc être fait directement.
 		if(!isset($__recursion)) {
