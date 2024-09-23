@@ -26,7 +26,9 @@ $globalDrinks = array(
 // Liste des joueurs dont les pages sont conservées.
 $globalPlayers = array(
 	81 => "tchong", 16732 => "Zehir", /*18269 => "Toad06",*/ 33208 => "3Dos", 190420 => "all200", 243719 => "totolescargo", 258748 => "Mario06", 265566 => "adeli", 275028 => "cedric85",
-	296239 => "tony42", 302576 => "CashMan", 307984 => "yanndu28", 328173 => "natoun", 340881 => "rastahman", 353165 => "BzzlaMouche", 455222 => "Stampinette"
+	296239 => "tony42", 302576 => "CashMan", 307984 => "yanndu28", 328173 => "natoun", 340881 => "rastahman", 353165 => "BzzlaMouche", 455222 => "Stampinette",
+	// Les pseudos ci-dessous sont simplement réservés pour éviter toute confusion car ils occupent une place non négligeable dans l'archive.
+	213073 => "githe", 470689 => "Keviindu61", 480488 => "Nath0u"
 );
 $globalPlayers[18269] = isset($_SESSION['cafeUsername']) ? htmlentities($_SESSION['cafeUsername']) : "Toad06";
 
