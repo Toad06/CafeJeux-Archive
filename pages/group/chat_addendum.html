@@ -1,0 +1,225 @@
+<!-- Complément de page ajouté pour l'archive. -->
+<!-- Il permet le fonctionnement du fichier Flash des tables de jeu dans la partie chat. -->
+<script type="text/javascript" id="jsid-1">
+//<![CDATA[
+	if(!window.__archiveChatUsers) {
+		// Le contenu de ce bloc ne doit être exécuté qu'une fois, la navigation ne rechargeant pas les pages intégralement comme cela se fait habituellement sur les autres sites.
+
+		// Retourne la liste des utilisateurs connectés et de leurs données pour la table actuellement affichée.
+		window.__archiveChatUsers = function(isInit, myPosition) {
+			var self = window.__archiveChatUsers;
+			var users = [];
+
+			var me = null;
+			if(isInit) {
+				if(self.isGroup420) {
+					if(self.positionGroup420) {
+						myPosition = self.positionGroup420;
+					} else {
+						myPosition = ["14,8", "15,0", "20,19"][Math.floor(Math.random() * 3)];
+						self.positionGroup420 = myPosition;
+					}
+				} else {
+					if(self.positionGroup6951) {
+						myPosition = self.positionGroup6951;
+					} else {
+						myPosition = ["9,3", "9,5", "9,7"][Math.floor(Math.random() * 3)];
+						self.positionGroup6951 = myPosition;
+					}
+				}
+				me = {
+					_u: { _uid: 18269, _name: "{ARCHIVE_USERNAME}" }, // id et pseudo
+					_g: "{ARCHIVE_USER_GFX}", // gfx
+					_d: {ARCHIVE_TABLE_MY_DRINK}, // boisson (forcée sur "pétillante houblonnée" de 22h00 à 01h59)
+					_s: false, // mode visiteur (fonctionnel, mais une mise à jour de cafejeux.com avait rendu impossible la possibilité de l'activer)
+					_m: myPosition, // position "x,y" du personnage (si null, le personnage attend au niveau de la porte d'entrée)
+				};
+				self.me = me;
+			}
+			if(me !== null) users.push(me);
+
+			var other = null;
+			if(self.isGroup420) {
+				if(isInit) {
+					other = {
+						_u: { _uid: 480488, _name: "Nath0u" },
+						_g: "0,0,9,2,8,0,6,7,3,0,3,0,3,0,3,6,6,0",
+						_d: Math.floor(Math.random() * 13),
+						_s: false,
+						_m: ["9,3", "12,1", "12,10", "20,14", "24,6", "27,6", "27,13", "28,10"][Math.floor(Math.random() * 12)] || null
+					};
+					if(Math.random() > 0.8) {
+						var hour = (new Date()).getHours("{ARCHIVE_TABLE_DATETIME}");
+						if(hour >= 2 && hour < 10) {
+							other._m = "8,7"; // assis sur le comptoir
+						}
+					}
+					self.other = other;
+				} else {
+					other = self.other;
+				}
+				// On adapte la position du "faux" utilisateur en fonction de la position du "vrai" utilisateur.
+				// Cela permet de donner un peu plus de vie et de rendre possible certaines animations (table de Marbils et stade de poche).
+				var otherPosition = other._m;
+				switch(myPosition) {
+					// Table de Marbils -> se place de l'autre côté.
+					case "24,5": case "24,6": case "24,7": otherPosition = "27,6"; break;
+					case "27,5": case "27,6": case "27,7": otherPosition = "24,6"; break;
+					// Stade de poche -> se place de l'autre côté.
+					case "27,10": case "28,10": case "29,10": otherPosition = "27,13"; break;
+					case "27,13": otherPosition = "28,10"; break;
+					// Flipper Motion Ball -> se place sur le côté.
+					case "21,7": otherPosition = "19,6"; break;
+					// Borne Fatal Flurry -> va jouer à la borne Kaluga ou à la borne de danse.
+					case "20,2": case "20,3": otherPosition = ["12,1", "22,1"][Math.floor(Math.random() * 2)]; break;
+					// Banquette près de la boîte à musique -> vient s'asseoir à proximité.
+					case "24,11": otherPosition = "23,11"; break;
+					// Chaises de bar -> vient s'asseoir à proximité.
+					case "9,3": otherPosition = "9,5"; break;
+					case "9,5": otherPosition = "9,7"; break;
+					case "9,7": otherPosition = "9,5"; break;
+					// Sur le comptoir -> vient s'asseoir à proximité.
+					case "8,7": otherPosition = "8,6"; break;
+					case "8,5": otherPosition = "9,5"; break;
+					// Chaises et banquettes autour de tables -> vient s'asseoir à proximité.
+					case "12,11": otherPosition = "12,10"; break;
+					case "13,2": otherPosition = "17,2"; break;
+					case "16,10": otherPosition = "16,11"; break;
+					case "16,11": otherPosition = "16,10"; break;
+					case "20,14": otherPosition = "20,19"; break;
+					case "20,19": otherPosition = "20,14"; break;
+				}
+				if(otherPosition !== other._m) {
+					other._m = otherPosition;
+				} else {
+					if(!isInit) other = null;
+				}
+			}
+			if(other !== null) users.push(other);
+
+			return users;
+		};
+
+		// Fonction réécrite pour injecter du code à des endroits spécifiques.
+		// Cela permet notamment d'appeler directement les fonctions de rappel du fichier "rooms.swf" plutôt que de passer par celles de "client.swf".
+		haxe.remoting.FlashJsConnection.flashCall = function(flashObj, name, path, params) {
+			try {
+				var fobj = window.document[flashObj];
+				if(fobj == null) fobj = window.document.getElementById(flashObj);
+				if(fobj == null) throw("Could not find flash object '" + flashObj + "'");
+				var data = null;
+
+				if(name.indexOf("_cj_chat_group_") === 0) {
+					var rooms = document.getElementById("rooms");
+					var archiveChatUsers = window.__archiveChatUsers;
+					var isGroup420 = name.indexOf("_cj_chat_group_420") === 0;
+					archiveChatUsers.isGroup420 = isGroup420;
+					switch(path) {
+						case "api.}tepB":
+							// Connexion à la table.
+							setTimeout(function() {
+								if(!document.contains(rooms)) return;
+								archiveChatUsers.groupName = name;
+								var usersInit = archiveChatUsers(true, null);
+								rooms.flashJsRemotingCall(name, "api.;jj6_", haxe.Serializer.run([usersInit]));
+							}, 500 + (Math.floor(Math.random() * 500)));
+							return "n";
+						case "api.;P4,A(":
+							// L'utilisateur a déplacé son avatar.
+							var position = haxe.Unserializer.run(params);
+							if(position && position[0]) {
+								if(isGroup420) archiveChatUsers.positionGroup420 = position[0];
+								else archiveChatUsers.positionGroup6951 = position[0];
+								// On vérifie également s'il est opportun de déplacer l'avatar du "faux" utilisateur.
+								var userOtherUpdated = archiveChatUsers(false, position[0]);
+								if(userOtherUpdated.length === 1) {
+									setTimeout(function() {
+										if(!document.contains(rooms)) return;
+										rooms.flashJsRemotingCall(name, "api.;jj6_", haxe.Serializer.run([userOtherUpdated]));
+									}, 1500 + (Math.floor(Math.random() * 500)));
+								}
+							}
+							return "n";
+					}
+				}
+
+				try {
+					data = fobj.flashJsRemotingCall(name, path, params);
+				} catch(e) {}
+				if(data == null) throw("Flash object " + flashObj + " does not have an active FlashJsConnection");
+
+				return data;
+			} catch(e) {
+				var s = new haxe.Serializer();
+				s.serializeException(e);
+				return s.toString();
+			}
+		};
+	}
+
+	// Affiche le message envoyé dans la partie t'chat, ainsi que la bulle de dialogue associée dans la partie Flash.
+	document.querySelector("#input form").onsubmit = function() {
+		var input = this.chatInput;
+		if(!input) return false;
+		var archiveChatUsers = window.__archiveChatUsers;
+		if(!archiveChatUsers.groupName) return false;
+		if(!js.App.sendChatMessage("__archive", input)) return false;
+		var rooms = document.getElementById("rooms");
+		var value = input.value;
+		input.value = "";
+		var xhr = new XMLHttpRequest();
+		xhr.open("GET", "dispatch.php?p=_parse_message_chat&str=" + encodeURIComponent(value), true);
+		xhr.onload = function() {
+			if(archiveChatUsers.groupName !== this._groupName) return;
+			if(!document.contains(rooms)) return;
+			var history = document.querySelector("#groupMain #history");
+			if(!history) return;
+			if(this.status !== 200) return js.App.sendChatMessage("__archive", this._input);
+			var user = archiveChatUsers.me;
+			var userId = user._u._uid;
+			var userName = user._u._name;
+			var currentColor = (!this._stranger ? document.getElementById("currentColor").className.replace("color_", "") : "0");
+			var response = (!this._stranger ? this.responseText : arguments[0]);
+			var text = response.split("|");
+			var metadata = text[0].split(",");
+			var time = metadata[0];
+			var type = metadata[2];
+			if(type === "msg") userName = '<a href="#user/' + userId + '" onclick="js.XmlHttp.get(\'user/' + userId + '\', this); return false;">' + userName + '</a>';
+			text[0] = "";
+			var message = text.join("|").replace("|", ""); // Les entités HTML sont déjà converties.
+			
+			var reactionType;
+			switch(type) {
+				case "msg":
+					reactionType = _ChatMessage._Message(message, currentColor);
+					break;
+				case "speech":
+					reactionType = _ChatMessage._Speech(message);
+					break;
+				default:
+					reactionType = _ChatMessage._Command(_ChatCommand[type]);
+					break;
+			}
+			rooms.flashJsRemotingCall(this._groupName, "api.+oD9l", haxe.Serializer.run([userId, reactionType]));
+			if(type !== "msg" && type !== "speech") type = "cmd" + type;
+			var messageTpl;
+			try {
+				messageTpl = js.App.c.applyTpl("chat@" + type, {_stranger: this._stranger, _user: userName, _uid: userId, _time: time, _c: currentColor, _s: message});
+			} catch(_e) { return js.App.sendChatMessage("__archive", this._input); }
+			var div = document.createElement("div");
+			div.innerHTML = messageTpl;
+			history.appendChild(div.childNodes[0]);
+			history.scrollTop = history.scrollHeight;
+			
+		};
+		//xhr._name = name;
+		//xhr._stranger = false;
+		xhr._groupName = archiveChatUsers.groupName;
+		xhr._input = input;
+		xhr.send(null);
+		return false;
+	};
+
+	window.__archiveChatUsers.groupName = undefined;
+//]]>
+</script>
