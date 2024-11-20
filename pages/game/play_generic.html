@@ -230,6 +230,7 @@
 			var time = metadata[0];
 			var playerId = (metadata[1] === name ? "18269" : "999999");
 			var type = metadata[2];
+			if(type !== "msg" && type !== "speech") type = "cmd" + type;
 			if(type === "msg") name = '<a href="#" onclick="return false;">' + name + '</a>';
 			text[0] = "";
 			var message = text.join("|").replace("|", ""); // Les entités HTML sont déjà converties.

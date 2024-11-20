@@ -289,7 +289,7 @@ function parse_command($str) {
 			"/token" => "_Token", "/sucre" => "_Token"
 		);
 		if(array_key_exists($command, $commands)) {
-			$type = "cmd" . $commands[$command];
+			$type = $commands[$command];
 		} else {
 			// NOTE : Les messages commençant par "/" mais qui ne sont pas des commandes spéciales valides doivent être ignorés.
 			$type = "invalid";
