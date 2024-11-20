@@ -264,16 +264,16 @@ function parse_message($str, $allowTags = true, $allowImages = null, $allowSmile
 // Détecte les commandes spéciales utilisées sur les chats.
 function parse_command($str) {
 	if(strpos($str, "/") !== 0) return null;
-	$command = mb_strtolower(explode(" ", $str)[0]);
-	if($command === "/me") {
+	$words = explode(" ", $str);
+	$command = $words[0];
+	if($command === "/me" || $command === "/em") {
 		$type = "speech";
 		$str = mb_substr($str, 3);
 		if(empty($str)) {
-			// NOTE : La requête est invalide si cette commande n'est pas suivie d'un message.
-			// (Toad06) cafejeux.com ne faisait sans doute pas cette vérification, mais elle semble pourtant avoir du sens.
+			// La requête est invalide si cette commande n'est pas suivie d'un message.
 			$type = "invalid";
 		}
-	} else {
+	} elseif(count($words) === 1) {
 		$commands = array( // "/commande" => "nom de la propriété dans `_ChatCommand`, côté Flash et JavaScript"
 			"/lol" => "_Lol", "/mdr" => "_Lol",
 			"/yes" => "_Yes", "/oui" => "_Yes", "/vi" => "_Yes",
@@ -294,6 +294,9 @@ function parse_command($str) {
 			// NOTE : Les messages commençant par "/" mais qui ne sont pas des commandes spéciales valides doivent être ignorés.
 			$type = "invalid";
 		}
+	} else {
+		// NOTE : Les messages commençant par "/" mais qui contiennent plus qu'un possible nom de commande spéciale doivent être ignorés.
+		$type = "invalid";
 	}
 	$str = parse_message($str, false, false, false, false);
 	return array($type, $str);

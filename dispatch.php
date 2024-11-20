@@ -403,7 +403,7 @@ switch($page) {
 	case "_parse_message_chat": // NOTE : Cette page est spécifique à l'archive, elle est destinée à analyser et transformer les chaînes de caractères fournies sur les différents chats.
 		$isPageComponent = true;
 		if(isset($_GET['str'])) {
-			$message = trim($_GET['str']);
+			$message = $_GET['str'];
 			$command = parse_command($message);
 			if($command === null) {
 				$commandType = "msg";

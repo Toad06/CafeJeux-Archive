@@ -4944,6 +4944,10 @@ js.App.disconnect = function() {
 	js.App.c._disconnect();
 }
 js.App.sendChatMessage = function(room,input) {
+	// Fonction modifiée pour renvoyer un booléen si l'argument "room" est la chaîne "__archive".
+	// Aucun message n'est alors envoyé, la valeur de retour indiquant seulement si les conditions sont réunies pour qu'il puisse l'être.
+	var fromArchive = room === "__archive";
+
 	var ok = true;
 	var now = Date.now().getTime();
 	{
@@ -4959,6 +4963,7 @@ js.App.sendChatMessage = function(room,input) {
 	if(new EReg("(@|http|w\\s*w\\s*w|sex)","i").match(input.value)) b = true;
 	if(new EReg("(\\.|point|dot)[\\s_-]*(c[\\s_-]*(o|\\*)[\\s_-]*m|n[\\s_-]*e[\\s_-]*t|f[\\s_-]*r)","i").match(input.value)) b = true;
 	if(new EReg("([A-Za-z0-9!?_-])\\1\\1\\1","i").match(input.value)) b = true;
+	if(fromArchive && input.value.trim().length === 0) b = true;
 	if(b) {
 		input.value = "";
 		ok = false;
@@ -4966,14 +4971,18 @@ js.App.sendChatMessage = function(room,input) {
 	if(input.value.length > 0 && ok) {
 		js.App.sent.push(now);
 		if(js.App.sent.length > js.App.floodMinDur.length) js.App.sent.shift();
-		js.App.c._sendChatMessage(room,input.value);
-		input.value = "";
-		return;
+		if(!fromArchive) {
+			js.App.c._sendChatMessage(room,input.value);
+			input.value = "";
+			return;
+		}
+		return true;
 	}
 	input.style.borderColor = "red";
 	haxe.Timer.delay(function() {
 		input.style.borderColor = "";
 	},100);
+	if(fromArchive) return false;
 }
 js.App.setChatColor = function(room,color) {
 	js.App.c._setChatColor(room,color);

@@ -8,7 +8,7 @@
 <script type="text/javascript" id="jsid-1">
 //<![CDATA[
 	if(document.getElementById("menuBtnBar") === null) {
-		window.location.reload();
+		if(typeof js !== "undefined") window.location.reload();
 		throw "Barre de menu non initialisée";
 	}
 	if(document.getElementById("headBar").textContent.trim().indexOf("Bonjour") !== 0) {
@@ -211,7 +211,8 @@
 		if(!input) return;
 		var name = Game_GetData("playerActiveName");
 		if(name === null) return;
-		var value = input.value.trim();
+		if(!js.App.sendChatMessage("__archive", input)) return;
+		var value = input.value;
 		input.value = "";
 		var xhr = new XMLHttpRequest();
 		xhr.open("GET", "dispatch.php?p=_parse_message_chat&str=" + encodeURIComponent(value), true);
@@ -220,7 +221,7 @@
 			if(history === null) return;
 			var name = Game_GetData("playerActiveName");
 			if(name === null) return;
-			if(this.status !== 200) return this._onfail();
+			if(this.status !== 200) return js.App.sendChatMessage("__archive", this._input);
 			name = this._name;
 			var currentColor = (!this._stranger ? document.getElementById("currentColor").className.replace("color_", "") : "0");
 			var response = (!this._stranger ? this.responseText : arguments[0]);
@@ -235,7 +236,7 @@
 			var messageTpl;
 			try {
 				messageTpl = js.App.c.applyTpl("chat@" + type, {_stranger: this._stranger, _user: name, _uid: playerId, _time: time, _c: currentColor, _s: message});
-			} catch(_e) { return this._onfail(); }
+			} catch(_e) { return js.App.sendChatMessage("__archive", this._input); }
 			var div = document.createElement("div");
 			div.innerHTML = messageTpl;
 			history.appendChild(div.childNodes[0]);
@@ -283,14 +284,6 @@
 		xhr._name = name;
 		xhr._stranger = false;
 		xhr._input = input;
-		xhr._onfail = function() {
-			var input = this._input;
-			input.style.borderColor = "red";
-			haxe.Timer.delay(function() {
-				input.style.borderColor = "";
-			}, 100);
-		};
-		if(value.length === 0) return xhr._onfail();
 		xhr.send(null);
 	};
 	if(!window.__archivePlayGeneric) {
