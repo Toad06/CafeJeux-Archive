@@ -179,7 +179,7 @@
 					infos = '<p><img src="../../../img/bar.jpg" alt="" /><br />Cette image était utilisée comme illustration durant les premières semaines d\'existence de CaféJeux.</p>';
 					infos += '<p><img src="data/table_icones_chat.png" alt="" /><br />Il était possible pour tout créateur d\'une table de jeu d\'autoriser ou non l\'accès au chat de sa table aux joueurs n\'en faisant pas partie.<br />L\'avant-dernière colonne de la page "Liste des tables" affichait ainsi l\'icône <img src="../../../img/icons/small_say.gif" alt="" /> pour indiquer qu\'une table avait fait le choix d\'activer cette fonctionnalité.<br />Ce mode "visiteur" a par la suite été supprimé mais le droit "Bannir un visiteur" a été laissé tel quel sur la page "Membres" des tables (nécessité d\'en être le créateur pour s\'en apercevoir).<br />Ce droit n\'a donc plus aucune utilité, les boutons "Bannir" et "Débannir" tels qu\'affichés sur l\'image ci-dessus ont également été retirés.</p>';
 					infos += '<p>Le code source Flash relatif aux tables de jeu n\'a pas été rendu public par Motion Twin, mais les éléments graphiques ont été fournis.<br />Parmi eux se trouvent trois objets qui ne sont pas inclus dans le fichier Flash compilé : un bonnet péruvien pour El Papa, un trophée mural de poisson et un ordinateur.<br />L\'ordinateur est présent dans l\'illustration de la page de la boutique (section "Meubles"), ce qui à l\'époque avait amené beaucoup de monde à spéculer sur sa prochaine disponibilité.</p><p><img src="data/table_bonnet_peruvien.png" alt="" class="asuper" /> &nbsp;&nbsp; <img src="data/table_poiscaille.png" alt="" /> &nbsp;&nbsp; <img src="data/table_ordinateur.png" alt="" /></p>';
-					infos += '<p>Davantage d\'informations sur les tables peuvent être trouvées <a href="../table/edition.html">à cette adresse</a>.</p>';
+					infos += '<p>Davantage d\'informations sur les tables et leur aménagement peuvent être trouvées <a href="../table/edition.html">à cette adresse</a>.<br />Il est également possible de parcourir la table "CaféJeux 2007-2020" en tant que visiteur <a onclick="tryTableGuestMode();" href="../../../#group/6951?go=chat" target="_blank">en cliquant ici</a>.</p>';
 					break;
 			}
 			document.getElementById("infos").innerHTML = infos;
@@ -198,6 +198,14 @@
 			so.addParam("menu", (options.menu ? options.menu : "false"));
 			so.addParam("wmode", (options.wmode ? options.wmode : "transparent"));
 			so.write(swfId);
+		}
+
+		function tryTableGuestMode() {
+			try {
+				localStorage.setItem("cafeGuestMode", "1");
+			} catch(e) {
+				console.error(e);
+			}
 		}
 	</script>
 </body>

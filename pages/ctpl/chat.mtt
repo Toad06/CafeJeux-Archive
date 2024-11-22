@@ -30,7 +30,7 @@
 		<a $$click(group/::_p._id::?go=chat)>
 			<img class="icon" src="img/icons/anim_chat.gif" alt=""/>
 			<p><strong>Table "::_p._title::"</strong></p>
-			<p><strong> ::_u._name:::</strong> ::_s::</p>
+			<p><strong> ::_u._name:: :</strong> ::_s::</p>
 		</a>
 	]]></macro>
 	<macro name="report"><![CDATA[

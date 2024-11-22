@@ -221,15 +221,17 @@
 			if(history === null) return;
 			var name = Game_GetData("playerActiveName");
 			if(name === null) return;
-			if(this.status !== 200) return js.App.sendChatMessage("__archive", this._input);
+			if(this.status !== 200) return js.App.sendChatMessage("__archive", this._input); // Un message trop long produit une erreur 414.
 			name = this._name;
 			var currentColor = (!this._stranger ? document.getElementById("currentColor").className.replace("color_", "") : "0");
+			// Traite le message et les données associées.
 			var response = (!this._stranger ? this.responseText : arguments[0]);
 			var text = response.split("|");
 			var metadata = text[0].split(",");
 			var time = metadata[0];
 			var playerId = (metadata[1] === name ? "18269" : "999999");
 			var type = metadata[2];
+			if(type === "invalid") return js.App.sendChatMessage("__archive", this._input);
 			if(type !== "msg" && type !== "speech") type = "cmd" + type;
 			if(type === "msg") name = '<a href="#" onclick="return false;">' + name + '</a>';
 			text[0] = "";

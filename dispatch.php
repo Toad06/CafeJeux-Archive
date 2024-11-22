@@ -411,9 +411,6 @@ switch($page) {
 			} else {
 				$commandType = $command[0];
 				$message = $command[1];
-				if($commandType === "invalid") {
-					http_response_code(400);
-				}
 			}
 			$data = date("H:i") . ",{ARCHIVE_USERNAME}," . $commandType . "|";
 			$data .= $message;
@@ -645,15 +642,12 @@ switch($page) {
 		$data = str_replace("{ARCHIVE_TABLE_ADD_RAW_VARIABLE}", $flashvars, $data);
 		if($isUserFullLoggedIn) {
 			// Addendum pour permettre le fonctionnement du fichier Flash dans le cadre de l'archive.
-			$idTable = explode("/", $page)[1];
 			$data .= get_content("pages/group/chat_addendum.html");
 			$data = str_replace("{ARCHIVE_TABLE_DATETIME}", $date, $data);
 			$data = str_replace("{ARCHIVE_TABLE_MY_DRINK}", strval(intval($_SESSION['cafeDrink'])), $data);
-			if($idTable === "420") {
-				// La variable FlashVars "first" contient l'ID du propriétaire de la table : lorsque celui-ci est connecté au site, il apparaît au sein de sa table avec une couronne sur la tête.
-				// (Toad06) Il semblerait que ceci ait été supprimé lors d'une mise à jour de cafejeux.com (vraisemblablement vers la fin 2010) : la variable "first" n'était définie nulle part.
-				$data = str_replace('so.write("swf_rooms");', 'so.addVariable("first", "18269"); so.write("swf_rooms");', $data);
-			}
+			// La variable FlashVars "first" contient l'ID du propriétaire de la table : lorsque celui-ci est connecté au site, il apparaît au sein de sa table avec une couronne sur la tête.
+			// (Toad06) Il semblerait que ceci ait été supprimé lors d'une mise à jour de cafejeux.com (vraisemblablement vers la fin 2010) : la variable "first" n'était plus initialisée.
+			$data = str_replace("{ARCHIVE_TABLE_ADD_FIRST_VARIABLE}", 'so.addVariable("first", "18269");', $data);
 		}
 		break;
 	case "group/420/delete":

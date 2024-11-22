@@ -270,7 +270,7 @@ function parse_command($str) {
 		$type = "speech";
 		$str = mb_substr($str, 3);
 		if(empty($str)) {
-			// La requête est invalide si cette commande n'est pas suivie d'un message.
+			// NOTE : La requête est invalide si cette commande n'est pas suivie d'un message (un simple espace suffit).
 			$type = "invalid";
 		}
 	} elseif(count($words) === 1) {

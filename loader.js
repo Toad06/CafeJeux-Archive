@@ -4758,7 +4758,7 @@ js.Client.prototype.headBar = function(tplName,ctx,timeout) {
 				return function() {
 					return f(a1);
 				}
-			}($closure(this,"headBarEmpty"),this.headBarLast),Std["int"](Math.max(timeout,20000)));
+			}($closure(this,"headBarEmpty"),this.headBarLast),Std["int"](Math.max(timeout,10000)));
 		}
 	}
 }
@@ -4782,7 +4782,7 @@ js.Client.prototype.headBarNext = function() {
 						return function() {
 							return f(a1);
 						}
-					}($closure(this,"headBarEmpty"),n.id),Std["int"](Math.max(n.timeout,20000)));
+					}($closure(this,"headBarEmpty"),n.id),Std["int"](Math.max(n.timeout,10000)));
 				}
 				else {
 					this.headBarLocked = false;
@@ -5025,6 +5025,10 @@ js.App.chatTip = function(e,g) {
 		var name = js.App.c.__archiveUserName;
 		if(name) {
 			l.push({_u: {_name: name}});
+			if(g === "group_420" && window.location.hash === "#group/420?go=chat" && window.__archiveChatUsers && window.__archiveChatUsers.other) {
+				// Sur la page du chat de la Table des Habitués, nous sommes prétendument deux.
+				l.push({_u: {_name: "Nath0u"}});
+			}
 		}
 	}
 	mt.js.Tip.show(e,js.App.c.applyTpl("chat@tip",{ _list : l}));
