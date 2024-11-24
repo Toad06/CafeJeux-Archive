@@ -139,7 +139,7 @@
 		</tr><tr menuid="msg.6392115">
 			<td class="icon" onclick="js.XmlHttp.get('pvmsg/6392115?page=1',this);" id="msg.6392115.icon">
 
-					<img alt="" src="img/icons/small_button_gray.gif"/>
+					<img alt="" src="img/icons/small_button.gif"/>
 			</td>
 			<td class="from" onclick="js.XmlHttp.get('pvmsg/6392115?page=1',this);">
 					all200
@@ -158,6 +158,18 @@
 
 		<a href="#" class="button b_delete" onclick="js.App.pvmsgDelete('Etes-vous sûr de vouloir supprimer les messages cochés ?','pvmsg/mDelete?page=1'); return false;" onmouseover="mt.js.Tip.show(this,'Cliquez ici pour supprimer tous les messages cochés.',null)" onmouseout="mt.js.Tip.hide()">Suppr.</a>
 		
+		<div class="pagination">
+			<div class="prev">
+				<a href="#pvmsg/list?page=1" onclick="js.XmlHttp.get('pvmsg/list?page=1',this); return false;">Précédent</a>
+						</div>
+			<div class="next">
+				<a href="#pvmsg/list?page=1" onclick="js.XmlHttp.get('pvmsg/list?page=1',this); return false;">Suivant</a>
+						</div>
+			<div class="count">
+
+					Page 1 / 1
+			</div>
+		</div>
 
 		<div class="clear"></div>
 	</form>

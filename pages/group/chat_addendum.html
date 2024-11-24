@@ -213,7 +213,7 @@
 			var userId = user._u._uid;
 			var userName = user._u._name;
 			var userStranger = user._s;
-			var currentColor = (!userStranger && user === archiveChatUsers.me ? document.getElementById("currentColor").className.replace("color_", "") : "0");
+			var currentColor = (user === archiveChatUsers.me ? document.getElementById("currentColor").className.replace("color_", "") : "0");
 			// Récupère le message et les données associées.
 			var response = (user === archiveChatUsers.me ? this.responseText : arguments[0]);
 			var text = response.split("|");
@@ -257,7 +257,7 @@
 				var otherMessage = (type === "msg" ? "" : null);
 				var myWords = message.trim().toLowerCase();
 				myWords = myWords.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()'"?\[\]]/g, "");
-				try { var temp = myWords.normalize("NFD").replace(/[\u0300-\u036f]/g, ""); myWords = temp; } catch(e) {}
+				try { var temp = myWords.normalize("NFD").replace(/[\u0300-\u036f]/g, ""); myWords = temp; } catch(_e) {}
 				myWords = myWords.split(" ");
 				for(var i = 0; i < myWords.length; i++) {
 					var word = myWords[i];
@@ -288,11 +288,13 @@
 						otherMessage = "Je ne suis qu'un simple script qui réagit à une liste de mots. Un peu comme Léonard de Chronopost, sauf que, moi, je le fais mieux et pour moins cher, mdr.";
 						if(archiveChatUsers.otherFlags & 8) otherMessage = "Non, je ne suis pas une intelligence artificielle, la preuve : je ne fais aucune erreur !";
 						else archiveChatUsers.otherFlags |= 8;
+						break;
 					}
 					if(["suivre", "coller", "colle", "collant"].indexOf(word) !== -1 || (word === "suis" && wordNext === "partout") || (word === "arrete" && archiveChatUsers.otherFlags & 16)) {
 						otherMessage = "Je te suis (presque) partout car j'ai été programmé comme ça, tout simplement.";
 						if(archiveChatUsers.otherFlags & 16) { otherCommand = "_Love"; otherMessage = "/love"; }
 						else archiveChatUsers.otherFlags |= 16;
+						break;
 					}
 					if(["pars", "degage", "ouste", "oust"].indexOf(word) !== -1 || (["va", "vas"].indexOf(word) !== -1 && ["t", "en", "ten"].indexOf(wordNext) !== -1)) {
 						otherCommand = "_Cry"; otherMessage = "/pleure";
@@ -309,6 +311,7 @@
 							history.scrollTop = history.scrollHeight;
 							return;
 						} else archiveChatUsers.otherFlags |= 32;
+						break;
 					}
 					if(["mdr", "lol", "ptdr"].indexOf(word) !== -1) {
 						otherCommand = "_Lol"; otherMessage = "/mdr";
@@ -323,11 +326,11 @@
 						break;
 					}
 				}
-				if(otherMessage === "") {
-					if(message.indexOf("?") !== -1) otherMessage = "En voilà une bonne question...";
-					else otherMessage = "OK !";
-				}
 				if(otherMessage !== null) {
+					if(otherMessage === "") {
+						if(message.indexOf("?") !== -1) otherMessage = "En voilà une bonne question...";
+						else otherMessage = "OK !";
+					}
 					otherMessage = time + "," + archiveChatUsers.other._u._name + "," + otherCommand + "|" + otherMessage;
 					this.isOther = true;
 					var that = this;

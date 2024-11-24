@@ -4946,6 +4946,7 @@ js.App.disconnect = function() {
 js.App.sendChatMessage = function(room,input) {
 	// Fonction modifiée pour renvoyer un booléen si l'argument "room" est la chaîne "__archive".
 	// Aucun message n'est alors envoyé, la valeur de retour indiquant seulement si les conditions sont réunies pour qu'il puisse l'être.
+	// Les opérations effectuées sur le champ de texte du formulaire restent effectuées.
 	var fromArchive = room === "__archive";
 
 	var ok = true;
@@ -5026,7 +5027,7 @@ js.App.chatTip = function(e,g) {
 		if(name) {
 			l.push({_u: {_name: name}});
 			if(g === "group_420" && window.location.hash === "#group/420?go=chat" && window.__archiveChatUsers && window.__archiveChatUsers.other) {
-				// Sur la page du chat de la Table des Habitués, nous sommes prétendument deux.
+				// Sur la page du chat de la Table des Habitués, il y a prétendument un second utilisateur connecté.
 				l.push({_u: {_name: "Nath0u"}});
 			}
 		}

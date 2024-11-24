@@ -367,6 +367,7 @@ switch($page) {
 	case "group/my":
 	case "group/myFromSpecial":
 	case "pvmsg": // NOTE : S'il n'y a pas de message à afficher, le code HTML sur cafejeux.com était le suivant : "<em>Aucun message.</em>"
+	case "pvmsgFromSpecial":
 	case "pvmsg/38365":
 	case "pvmsg/42443":
 	case "pvmsg/43268":
@@ -374,8 +375,9 @@ switch($page) {
 	case "pvmsg/1591972":
 	case "pvmsg/2284448":
 	case "pvmsg/6381127":
-	case "pvmsg/6392115": // NOTE : Si la table avait déjà été supprimée au moment de la lecture du message d'invitation, cafejeux.com affichait ceci à la place : "Cette table n'existe plus !"
-	case "pvmsg/list": // NOTE : Pagination ajoutée pour l'archive : sur cafejeux.com, la pagination fonctionnait de manière logique selon le nombre de pages et celle actuellement affichée. 10 messages par page au maximum.
+	case "pvmsg/6392115": // NOTE : Si la table avait été supprimée au moment de la lecture du message d'invitation, cafejeux.com affichait ceci à la place : "Cette table n'existe plus !"
+	case "pvmsg/list":
+	case "pvmsg/listFromSpecial": // NOTE : Pagination ajoutée pour l'archive : sur cafejeux.com, elle fonctionnait de manière logique selon le nombre de pages et celle actuellement affichée. 10 messages par page au maximum.
 	case "pvmsg/mDelete":
 	case "pvmsg/prefs":
 	case "shop/1": case "shop/3": case "shop/4": case "shop/5": case "shop/6": case "shop/7": case "shop/8": case "shop/9": case "shop/10": case "shop/11": case "shop/12": case "shop/13": case "shop/14": case "shop/15":

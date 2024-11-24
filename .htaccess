@@ -82,6 +82,7 @@ RewriteCond %{QUERY_STRING} ^to=([^&]+)$
 RewriteRule ^pvmsg/new$ dispatch.php?p=pvmsg/new&to=%1 [L]
 RewriteRule ^pvmsg$ dispatch.php?p=pvmsg [L]
 RewriteRule ^pvmsg/(.+)$ dispatch.php?p=pvmsg/$1 [L]
+RewriteRule ^pvmsgFromSpecial$ dispatch.php?p=pvmsgFromSpecial [L]
 
 RewriteCond %{QUERY_STRING} ^url=([^&]+)$
 RewriteRule ^redir$ dispatch.php?p=redir&url=%1 [L]

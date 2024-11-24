@@ -1,0 +1,33 @@
+<back ignore="1"></back>
+<load>pvmsg/listFromSpecial?page=null</load>
+<fill id="main">
+
+	<div class="mailer">
+		<h1><strong>Mes</strong> messages</h1>
+
+		<ul class="tabs">
+			<li class="selected" onclick="js.XmlHttp.get('pvmsgFromSpecial',this);"><a>Mes messages</a></li>
+			<li onclick="js.XmlHttp.get('pvmsg/new',this);"><a>Nouveau message</a></li>
+			<li onclick="js.XmlHttp.get('pvmsg/prefs',this);"><a>Préférences</a></li>
+		</ul>
+
+		<div id="msgList">
+			<div class="loading">Chargement de vos messages...</div>
+		</div>
+		<div id="msgView">
+			<script id="jsid-1">js.App.currentPvmsg=null;</script>
+		</div>
+	</div>
+
+	<div class="clear"></div>
+
+</fill>
+<!-- Script ajouté pour l'archive. -->
+<script id="jsid-2">
+	(function() {
+		var menu_pvmsg = document.getElementById("menu_pvmsg");
+		if(!menu_pvmsg) return;
+		menu_pvmsg.href = "#pvmsg";
+		menu_pvmsg.onclick = function() { js.XmlHttp.get("pvmsg", this); return false; };
+	})();
+</script>
