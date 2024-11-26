@@ -131,6 +131,12 @@ RewriteRule ^user/([0-9]+)/remContact$ dispatch.php?p=user/[id]/remContact&id=$1
 RewriteRule ^user/(.+)$ dispatch.php?p=user/$1 [L]
 
 
+# Empêche l'affichage des pages HTML sans passer par l'interpréteur PHP.
+RewriteRule ^pages/static(/.*)?$ - [L]
+RewriteRule ^pages/(.+).html$ dispatch.php?p=$1 [L]
+RewriteRule ^pages/(.+).js$ dispatch.php?p=$1 [L]
+
+
 # Le nom des fichiers mp3 avait été changé par inadvertance dans l'archive. Leur nom d'origine a depuis été rétabli.
 # Les noms qui avaient été utilisés restent conservés ici pour les versions 1.2 à 1.5 du loader (dossier "_toad06").
 RewriteRule ^sound/__constructs__.mp3$ sound/empty.mp3 [L] # Il s'agit d'une erreur de programmation, un fichier factice a été ajouté pour éviter une erreur 404.
