@@ -4946,7 +4946,7 @@ js.App.disconnect = function() {
 js.App.sendChatMessage = function(room,input) {
 	// Fonction modifiée pour renvoyer un booléen si l'argument "room" est la chaîne "__archive".
 	// Aucun message n'est alors envoyé, la valeur de retour indiquant seulement si les conditions sont réunies pour qu'il puisse l'être.
-	// Les opérations effectuées sur le champ de texte du formulaire restent effectuées.
+	// Les opérations affectant le champ de texte du formulaire restent effectuées.
 	var fromArchive = room === "__archive";
 
 	var ok = true;

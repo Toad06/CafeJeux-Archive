@@ -40,7 +40,7 @@ Les actions suivantes ont un effet concret au sein de l'archive :
 
 Les actions suivantes, plus anecdotiques et dont l'effet disparaît dès lors qu'une autre page est chargée, sont également possibles :
 
-- L'écriture et l'envoi de messages sur les t'chats des jeux, selon les règles de mise en forme qui étaient autorisées sur CafeJeux.com.
+- L'écriture et l'envoi de messages sur les t'chats des jeux et des tables, selon les règles de mise en forme qui étaient autorisées sur CafeJeux.com.
 
 - L'écriture et l'envoi du texte de présentation de la table "Table des Habitués", selon les règles de mise en forme qui étaient autorisées sur CafeJeux.com.
 

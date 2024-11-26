@@ -27,17 +27,17 @@
 						self.positionGroup6951 = myPosition;
 					}
 				}
-				var isGuest = (!self.isGroup420 && window.localStorage && localStorage.getItem("cafeGuestMode") !== null); // possible via un contenu dans le fichier "_toad06/_dev_misc/unused_data/info.html"
+				var isStranger = (!self.isGroup420 && window.localStorage && localStorage.getItem("cafeStrangerMode") !== null); // Action possible via un lien dans le fichier "_toad06/_dev_misc/unused_data/info.html".
 				me = {
 					_u: { _uid: 18269, _name: "{ARCHIVE_USERNAME}" }, // id et pseudo
 					_g: "{ARCHIVE_USER_GFX}", // gfx
 					_d: {ARCHIVE_TABLE_MY_DRINK}, // boisson (forcée sur "pétillante houblonnée" de 22h00 à 01h59)
-					_s: isGuest, // présent en tant que visiteur (option fonctionnelle, mais une mise à jour de cafejeux.com avait rendu impossible la possibilité de l'activer)
+					_s: isStranger, // présence en tant que visiteur (option fonctionnelle, mais une mise à jour de cafejeux.com avait rendu impossible la possibilité de l'activer pour les créateurs de table)
 					_m: myPosition, // position "x,y" du personnage (si null, le personnage attend au niveau de la porte d'entrée)
 				};
 				if(me._s) {
 					me._m = myPosition = "12,4";
-					if(isGuest) localStorage.removeItem("cafeGuestMode");
+					if(isStranger) localStorage.removeItem("cafeStrangerMode");
 				}
 				self.me = me;
 			}
@@ -65,7 +65,7 @@
 				}
 				if(other !== null) { // null uniquement si on a déconnecté l'utilisateur factice.
 					// Adapte la position de l'utilisateur factice en fonction de la position du "vrai" utilisateur.
-					// Cela permet de donner un peu plus de vie et de rendre possible certaines animations (table de Marbils et stade de poche).
+					// Cela permet de donner un peu plus de vie et de rendre possibles certaines animations (table de Marbils et stade de poche).
 					var otherPosition = other._m;
 					switch(myPosition) {
 						// Table de Marbils -> se place de l'autre côté.
@@ -109,7 +109,7 @@
 		};
 
 		// Fonction réécrite pour injecter du code à des endroits spécifiques.
-		// Cela permet notamment d'appeler directement les fonctions de rappel du fichier "rooms.swf" plutôt que de passer par celles de "client.swf" qui nécessitent une connexion au serveur de jeux.
+		// Cela permet notamment d'appeler directement les fonctions de rappel du fichier "rooms.swf" plutôt que de passer au préalable par celles de "client.swf" qui nécessitent une connexion au serveur de jeux.
 		haxe.remoting.FlashJsConnection.flashCall = function(flashObj, name, path, params) {
 			try {
 				var fobj = window.document[flashObj];
@@ -158,6 +158,7 @@
 								if(userOtherUpdated.length === 1) {
 									setTimeout(function() {
 										if(!document.contains(rooms)) return;
+										if(!archiveChatUsers.other) return; // On peut avoir entre-temps déconnecté l'utilisateur factice.
 										rooms.flashJsRemotingCall(name, "api.;jj6_", haxe.Serializer.run([userOtherUpdated]));
 									}, 1500 + (Math.floor(Math.random() * 500)));
 								}
@@ -190,7 +191,7 @@
 		};
 	}
 
-	// Affiche le message envoyé dans la partie t'chat, ainsi que la bulle de dialogue associée dans la partie Flash.
+	// Affiche le message envoyé dans la partie chat, ainsi que la bulle de dialogue associée dans la partie Flash.
 	document.querySelector("#input form").onsubmit = function() {
 		var input = this.chatInput;
 		if(!input) return false;
@@ -255,10 +256,15 @@
 				}
 				var otherCommand = "msg";
 				var otherMessage = (type === "msg" ? "" : null);
-				var myWords = message.trim().toLowerCase();
-				myWords = myWords.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()'"?\[\]]/g, "");
+				var myWords = message.toLowerCase();
+				myWords = myWords.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()'"?\[\]]/g, " ");
 				try { var temp = myWords.normalize("NFD").replace(/[\u0300-\u036f]/g, ""); myWords = temp; } catch(_e) {}
 				myWords = myWords.split(" ");
+				for(var i = myWords.length - 1; i >= 0; i--) {
+					if(myWords[i].length === 0) {
+						myWords.splice(i, 1);
+					}
+				}
 				for(var i = 0; i < myWords.length; i++) {
 					var word = myWords[i];
 					var wordNext = (i + 1 < myWords.length ? myWords[i + 1] : "");
@@ -274,9 +280,9 @@
 						else archiveChatUsers.otherFlags |= 2;
 						break;
 					}
-					if(word === "ok") {
+					if(["ok", "okay"].indexOf(word) !== -1) {
 						if(i > 0) {
-							otherMessage = "Je réponds souvent par \"OK\" car je ne suis pas un vrai utilisateur et que ma liste de réponses est limitée.";
+							otherMessage = "Je réponds souvent par \"OK\" parce que je ne suis pas un vrai utilisateur et que ma liste de réponses est limitée.";
 							if(archiveChatUsers.otherFlags & 4) otherMessage = "OK ! (Tu l'as cherché... lol)";
 							else archiveChatUsers.otherFlags |= 4;
 						} else {
@@ -284,7 +290,7 @@
 						}
 						break;
 					}
-					if(["robot", "chatgpt", "ia"].indexOf(word) !== -1) {
+					if(["robot", "chatgpt", "ia"].indexOf(word) !== -1 || (word === "es" && wordNext === "qui")) {
 						otherMessage = "Je ne suis qu'un simple script qui réagit à une liste de mots. Un peu comme Léonard de Chronopost, sauf que, moi, je le fais mieux et pour moins cher, mdr.";
 						if(archiveChatUsers.otherFlags & 8) otherMessage = "Non, je ne suis pas une intelligence artificielle, la preuve : je ne fais aucune erreur !";
 						else archiveChatUsers.otherFlags |= 8;
@@ -313,12 +319,22 @@
 						} else archiveChatUsers.otherFlags |= 32;
 						break;
 					}
-					if(["mdr", "lol", "ptdr"].indexOf(word) !== -1) {
-						otherCommand = "_Lol"; otherMessage = "/mdr";
+					if(["pleure", "pleurer", "noon", "cry"].indexOf(word) !== -1) {
+						otherMessage = "Courage, ça ira mieux demain...";
+						if(archiveChatUsers.otherFlags & 64) otherMessage = "Si ça te semble loin, pourquoi ne pas prendre un bon jour d'avance ?";
+						else archiveChatUsers.otherFlags |= 64;
 						break;
 					}
-					if(["love", "aime", "taime", "bisou", "bisous"].indexOf(word) !== -1) {
+					if(["love", "aime", "taime", "bisou", "bisous", "timide"].indexOf(word) !== -1) {
 						otherMessage = '<img src="img/smiley/icon_redface.gif" alt=":timide:"/>';
+						break;
+					}
+					if(["enerve", "angry", "colere", "x", "mechant", "sadique", "dontcare", "charte"].indexOf(word) !== -1) {
+						otherMessage = "Ne t'inquiète pas, tout va bien se passer !";
+						break;
+					}
+					if(["mdr", "lol", "loul", "ptdr", "xpdr", "xpldr", "rire"].indexOf(word) !== -1) {
+						otherCommand = "_Lol"; otherMessage = "/mdr";
 						break;
 					}
 					if(["cafejeux", "motiontwin", "motion-twin", "deepnight", "skool", "toad06"].indexOf(word) !== -1 || (word === "cafe" && wordNext === "jeux") || (word === "motion" && wordNext === "twin")) {
@@ -328,7 +344,7 @@
 				}
 				if(otherMessage !== null) {
 					if(otherMessage === "") {
-						if(message.indexOf("?") !== -1) otherMessage = "En voilà une bonne question...";
+						if(message.indexOf("?") !== -1 || message.indexOf(":quoi:") !== -1 || message.indexOf("pourquoi") === 0 || message.indexOf("quoi") === 0) otherMessage = "En voilà une bonne question...";
 						else otherMessage = "OK !";
 					}
 					otherMessage = time + "," + archiveChatUsers.other._u._name + "," + otherCommand + "|" + otherMessage;
