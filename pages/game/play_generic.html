@@ -8,22 +8,22 @@
 <script type="text/javascript" id="jsid-1">
 //<![CDATA[
 	if(document.getElementById("menuBtnBar") === null || document.getElementById("menuBtnPlaying") === null) {
-		if(typeof js !== "undefined") window.location.reload();
+		window.location.reload();
 		throw "Barre de menu non initialisée";
 	}
 	if(!window.Game_Event) {
 		// Le contenu de ce bloc ne doit être exécuté qu'une fois, la navigation ne rechargeant pas les pages intégralement comme cela se fait habituellement sur les autres sites.
 		(function() {
 			// Cache l'élément "Une partie est en cours" et affiche à nouveau "Jouer au bar" lors du changement de page avant la fin d'une partie.
-			// NOTE : Sur cafejeux.com, changer de page, ou même être déconnecté durant un temps cumulé de 60 secondes au maximum, n'interrompait pas la partie.
+			// NOTE : Sur cafejeux.com, se rendre sur une autre page du site (ou être déconnecté durant un temps cumulé de 60 secondes au maximum) ne provoquait pas l'arrêt de la partie.
 			var XmlHttpGet = js.XmlHttp.get;
 			js.XmlHttp.get = function(url, obj) {
 				var menuBtnPlaying = document.getElementById("menuBtnPlaying");
 				if(menuBtnPlaying !== null && menuBtnPlaying.className.indexOf("hidden") === -1) {
 					if(url && url !== "partnerFrame" && url.indexOf("smileyTip") !== 0 && url.indexOf("user/siteSound") !== 0 && url.indexOf("user/tipContact") !== 0 && url.replace(/[0-9]/g, "").indexOf("user//tip") !== 0) {
 						js.App.setTitle();
-						js.Utils.setClass("menuBtnBar", "");
 						js.Utils.setClass("menuBtnPlaying", "hidden");
+						js.Utils.setClass("menuBtnBar", "");
 					}
 				}
 				XmlHttpGet(url, obj);
@@ -115,8 +115,8 @@
 				var menuBtnPlaying = document.getElementById("menuBtnPlaying");
 				var nameForHeadBar = menuBtnPlaying.querySelector("a:nth-child(2)").textContent;
 				var iconForHeadBar = menuBtnPlaying.querySelector("img").getAttribute("src").split("/")[2].split(".")[0];
-				js.Utils.setClass("menuBtnBar", "");
 				js.Utils.setClass("menuBtnPlaying", "hidden");
+				js.Utils.setClass("menuBtnBar", "");
 				var backBar = game.querySelector("#backButton a");
 				backBar.href = "#play";
 				backBar.onclick = function() { js.XmlHttp.get("play", this); return false; };
