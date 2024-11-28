@@ -385,6 +385,15 @@ function CJGame_SetInfos(data) {
 	if(!IN_IFRAME) {
 		var div = document.getElementById("infos");
 		div.innerHTML = html;
+		if(window.getComputedStyle) {
+			var currentHeight = parseInt(div.style.minHeight, 10);
+			if(!isFinite(currentHeight)) currentHeight = 0;
+			var newHeight = parseInt(window.getComputedStyle(div).getPropertyValue("height"), 10);
+			if(!isFinite(newHeight)) newHeight = 0;
+			if(currentHeight < newHeight) {
+				div.style.minHeight = (newHeight + 10) + "px";
+			}
+		}
 	} else {
 		WINDOW_TOP.Game_Event(["infos", html]);
 	}

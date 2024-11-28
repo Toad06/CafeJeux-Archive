@@ -3,27 +3,27 @@ function Init_MMApi() {
 	_global._mmHasWon = -1;
 	_global._mmSendToQueue = false;
 	_global._mmQueue = []; _global._mmQueue.wait = 0; _global._mmQueue.requested = false;
-	_global._mmInitMode = _global.fvIndex === 5;
-	_global._mmAdvancedTurnMode = _global.fvIndex === 3 || _global.fvIndex === 5 || _global.fvIndex === 7 || _global.fvIndex === 9 || _global.fvIndex === 12;
 	var endTurn = function(data) {
 		// Termine le tour avec les données de jeu en paramètre (optionnel) et passe la main à l'adversaire.
 		if(!isMyTurn()) { return; }
-		var g = _root.Game;
-		var obfuGame = Obfuscation.Game;
-		if(typeof data === "object") {
-			// JSTrace(data);
-			data = JSCall("CJGame_Action", data);
-			g[obfuGame["onMessage"]](true, data);
-		} else {
-			data = null;
-		}
-		JSCall("CJGame_PlayData", ["turn", 1 + (JSCall("CJGame_PlayData", "turn") % 2)]);
-		if(!_global._mmAdvancedTurnMode || !JSCall("CJGame_PlayData", "locked")) {
-			g[obfuGame["onTurnDone"]]();
-			JSCall("CJGame_SendDataToOtherClients", data, true);
-		} else {
-			JSCall("CJGame_SendDataToAllClients", data, false);
-		}
+		setTimeout(function(data) {
+			var g = _root.Game;
+			var obfuGame = Obfuscation.Game;
+			if(typeof data === "object") {
+				// JSTrace(data);
+				data = JSCall("CJGame_Action", data);
+				g[obfuGame["onMessage"]](true, data);
+			} else {
+				data = null;
+			}
+			JSCall("CJGame_PlayData", ["turn", 1 + (JSCall("CJGame_PlayData", "turn") % 2)]);
+			if(!JSCall("CJGame_PlayData", "locked")) {
+				g[obfuGame["onTurnDone"]]();
+				JSCall("CJGame_SendDataToOtherClients", data, true);
+			} else {
+				JSCall("CJGame_SendDataToAllClients", data, false);
+			}
+		}, 10, data);
 	};
 	var gameOver = function() {
 		// Affiche l'écran de fin de partie, selon le résultat (gagné, perdu ou nul). Le résultat est déterminé au préalable dans la fonction "victory".
@@ -112,6 +112,17 @@ function Init_MMApi() {
 			}
 			return playerOptions;
 		}
+	};
+	var getSeeds = function() {
+		// Cette fonction est uniquement utilisée dans Magmax Battle, jeu dont le code source n'a pas été communiqué.
+		// Il est donc possible que le nom de cette fonction soit différent.
+		// Elle permet la génération de noms différents pour les personnages des deux joueurs.
+		var seeds = JSCall("CJGame_PlayData", "seeds");
+		var obj = {};
+		obj["2jI2"] = _global.fvPlayer !== 2;
+		obj["]D+;"] = seeds[0];
+		obj["=n);"] = seeds[1];
+		return obj;
 	};
 	var hasControl = function() {
 		// Détermine si le client est un joueur (true) ou un spectateur (false).
@@ -222,21 +233,12 @@ function Init_MMApi() {
 		var obfuGame = Obfuscation.Game;
 		_root.Game[obfuGame["onVictory"]](mine);
 	};
-	var _getSeeds = function() {
-		// Cette fonction est spécifique à Magmax Battle dont le code source n'a pas été communiqué. Le nom de cette fonction devrait donc sans doute être différent.
-		// Elle permet la génération de noms différents pour les personnages des deux joueurs.
-		var seeds = JSCall("CJGame_PlayData", "seeds");
-		var obj = {};
-		obj["2jI2"] = _global.fvPlayer !== 2;
-		obj["]D+;"] = seeds[0];
-		obj["=n);"] = seeds[1];
-		return obj;
-	};
 	var obfu = {
 		MMApi: "}-VbH",
 		endTurn: ";ptpb",
 		gameOver: "7T4cF(",
 		getOptions: "3qzMs",
+		getSeeds: "9{3Mr",
 		hasControl: "+4Z+[",
 		isMyTurn: "4mok0",
 		isReconnecting: "9UeAW",
@@ -248,8 +250,7 @@ function Init_MMApi() {
 		sendQueue: "1dlZ]",
 		setColors: "0UN5I",
 		setInfos: "+*[ W",
-		victory: "4[K{k",
-		_getSeeds: "9{3Mr"
+		victory: "4[K{k"
 	};
 	var MMApi = null;
 	for(var k in obfu) {
@@ -778,13 +779,9 @@ function JSSend(data, turnDone, fromPlayer) {
 		_root.Game[obfuGame["onMessage"]](false, data);
 	}
 	if(turnDone) {
-		if(!_global._mmAdvancedTurnMode) {
+		setTimeout(function(obfuGame) {
 			_root.Game[obfuGame["onTurnDone"]]();
-		} else {
-			setTimeout(function(obfuGame) {
-				_root.Game[obfuGame["onTurnDone"]]();
-			}, 100, obfuGame);
-		}
+		}, 10, obfuGame);
 	}
 }
 
@@ -838,8 +835,8 @@ _root.onEnterFrame = function() {
 				var data = g[obfuGame["initialize"]]();
 				data = JSCall("CJGame_Action", data);
 				g[obfuGame["onMessage"]]((_global.fvPlayer === 1), data);
+				g[obfuGame["onTurnDone"]]();
 				g[obfuGame["main"]]();
-				if(_global._mmInitMode) { g[obfuGame["onTurnDone"]](); }
 			}
 		}
 	} else {
