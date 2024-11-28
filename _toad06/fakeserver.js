@@ -168,7 +168,7 @@ function CJGame_Action(data) {
 			}
 			break;
 	}
-	if(isInit) {
+	if(isInit && game !== 14) {
 		if(player === 1) {
 			CJGame_PlayData.game = game;
 			CJGame_PlayData.initData = data;
@@ -191,13 +191,11 @@ function CJGame_Action(data) {
 				return undefined;
 			}
 			if(player === 2) {
-				if(game !== 14) {
-					playSound("_PartyStarted");
-					if(game === 6) {
-						// Affichage "manuel" des couleurs pour Anticorp's, puisque le jeu ne le prévoit pas.
-						if(games[game].swf === window.game.swf) CJGame_SetColors([1, 0xFF0000, 0x5F8EFE]);
-						else CJGame_SetColors([1, 0x5F8EFE, 0xFF0000]);
-					}
+				playSound("_PartyStarted");
+				if(game === 6) {
+					// Affichage "manuel" des couleurs pour Anticorp's, puisque le jeu ne le prévoit pas.
+					if(games[game].swf === window.game.swf) CJGame_SetColors([1, 0xFF0000, 0x5F8EFE]);
+					else CJGame_SetColors([1, 0x5F8EFE, 0xFF0000]);
 				}
 				if(IN_IFRAME) {
 					WINDOW_TOP.Game_Event(["start"]);

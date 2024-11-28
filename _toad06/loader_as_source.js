@@ -9,17 +9,17 @@ function Init_MMApi() {
 		// Termine le tour avec les données de jeu en paramètre (optionnel) et passe la main à l'adversaire.
 		if(!isMyTurn()) { return; }
 		var g = _root.Game;
-		var obfu = Game_Obfuscation();
+		var obfuGame = Obfuscation.Game;
 		if(typeof data === "object") {
 			// JSTrace(data);
 			data = JSCall("CJGame_Action", data);
-			g[obfu["onMessage"]](true, data);
+			g[obfuGame["onMessage"]](true, data);
 		} else {
 			data = null;
 		}
 		JSCall("CJGame_PlayData", ["turn", 1 + (JSCall("CJGame_PlayData", "turn") % 2)]);
 		if(!_global._mmAdvancedTurnMode || !JSCall("CJGame_PlayData", "locked")) {
-			g[obfu["onTurnDone"]]();
+			g[obfuGame["onTurnDone"]]();
 			JSCall("CJGame_SendDataToOtherClients", data, true);
 		} else {
 			JSCall("CJGame_SendDataToAllClients", data, false);
@@ -37,8 +37,8 @@ function Init_MMApi() {
 			}
 			setTimeout(function(timeOver) {
 				var str;
-				var obfu = Game_Obfuscation();
-				_root.Game[obfu["main"]] = function() {};
+				var obfuGame = Obfuscation.Game;
+				_root.Game[obfuGame["main"]] = function() {};
 				if(_global.fvUnique || _global.fvPlayer === 3) {
 					var winner = JSCall("CJGame_PlayData", "winner");
 					JSCall("CJGame_Over", winner);
@@ -130,16 +130,9 @@ function Init_MMApi() {
 	var isReconnecting = function() {
 		// Détermine si le client est en train de se reconnecter au jeu (sur cafejeux.com, cela se produisait généralement en cas de perte de la connexion durant la partie).
 		// Toujours "false" ici puisqu'il n'y a pas de vrai mode multijoueurs et donc pas de serveur de jeu.
-		// Hack pour Trigolo : Quand le tour vient d'être joué, la carte ne se déplace pas jusqu'à la case sélectionnée pour une raison inconnue, rendant le jeu inutilisable.
-		// Le placement direct de la carte sur le plateau, donc sans aucune animation préalable, empêche le bug de se produire : cette fonction doit pour cela renvoyer "true" dans cette situation.
-		var v = _global.fvIndex === 9;
-		if(v) {
-			// var obfu = Game_Obfuscation();
-			// _root.Game[obfu["onReconnectDone"]]();
-			// step == Step.View
-			v = _root.Game["=kIA"] == _root.GameClip[")qF["][";31a"];
-		}
-		return v;
+		// var obfuGame = Obfuscation.Game;
+		// _root.Game[obfuGame["onReconnectDone"]]();
+		return false;
 	};
 	var lockMessages = function(lock) {
 		// Verrouille ou déverrouille la communication client <-> serveur de jeu.
@@ -195,12 +188,12 @@ function Init_MMApi() {
 		if(_global._mmSendToQueue && _global._mmQueue.length > 0) {
 			queueMessage(data);
 		} else {
-			var obfu = Game_Obfuscation();
+			var obfuGame = Obfuscation.Game;
 			if(typeof data === "object") {
 				// JSTrace(data);
 				data = JSCall("CJGame_Action", data);
 			}
-			_root.Game[obfu["onMessage"]](true, data);
+			_root.Game[obfuGame["onMessage"]](true, data);
 			JSCall("CJGame_SendDataToOtherClients", data, null);
 		}
 	};
@@ -226,8 +219,8 @@ function Init_MMApi() {
 			JSCall("CJGame_PlayData", ["winner", _global.fvPlayer]);
 		}
 		_global._mmHasWon = mine;
-		var obfu = Game_Obfuscation();
-		_root.Game[obfu["onVictory"]](mine);
+		var obfuGame = Obfuscation.Game;
+		_root.Game[obfuGame["onVictory"]](mine);
 	};
 	var _getSeeds = function() {
 		// Cette fonction est spécifique à Magmax Battle dont le code source n'a pas été communiqué. Le nom de cette fonction devrait donc sans doute être différent.
@@ -526,10 +519,36 @@ function Init_OldRandSeed() {
 }
 
 function Init_Timer() {
-	// Implémentation partielle mais suffisante de la classe "Timer" dont le code source n'a pas été rendu public par Motion Twin.
-	var Timer = function() {};
-	// Variable publique : tmod
+	// Implémentation complète basée sur le code source de la classe "Timer" publié par Motion Twin pour ses jeux haXe v3.
+	// Adaptée pour correspondre à celle en haXe v2 sur la base du code compilé d'autres jeux Motion Twin.
+	// Toutes les variables et méthodes qu'elle définit sont publiques, à l'exception de "frameCount".
+	// Seules celles utilisées au sein des jeux ont leur nom obfusqué.
+	var Timer = {};
+	// tmod
 	Timer["-V;B"] = 1;
+	Timer.wantedFPS = 32;
+	Timer.maxDeltaTime = 0.5;
+	Timer.oldTime = getTimer();
+	Timer.tmod_factor = 0.95;
+	Timer.calc_tmod = 1;
+	Timer.deltaT = 1;
+	Timer.frameCount = 0;
+	Timer.update = function() {
+		this.frameCount++;
+		var newTime = getTimer();
+		this.deltaT = (newTime - this.oldTime) / 1000.0;
+		this.oldTime = newTime;
+		if(this.deltaT < this.maxDeltaTime) {
+			this.calc_tmod = this.calc_tmod * this.tmod_factor + (1 - this.tmod_factor) * this.deltaT * this.wantedFPS;
+		} else {
+			this.deltaT = 1 / this.wantedFPS;
+		}
+		this["-V;B"] = this.calc_tmod;
+	};
+	// fps
+	Timer["[L2"] = function() {
+		return this.wantedFPS / this["-V;B"];
+	};
 	// mt.Timer
 	if(!_global["9K"]) { _global["9K"] = {}; }
 	_global["9K"]["{-kxL"] = Timer;
@@ -689,24 +708,6 @@ function LoadGame() {
 	_root.GameClip.loadMovie(_global.fvSwf);
 }
 
-function Game_Obfuscation() {
-	// La classe "Game" et ses différentes méthodes sont spécifiques à chaque jeu mais sont toujours appelées par le fichier loader (MMApi).
-	var obj = {
-		Game: "44{N",
-		initialize: ";6aj0(",
-		main: "0D 6",
-		onMessage: "+oD9l",
-		onReconnectDone: "{+Sn=",
-		onTurnDone: "4fHu{",
-		onVictory: "8Z[e,("
-	};
-	if(_global.fvIndex === 14) {
-		// "1nTw,(" = "message". Utilisé par le prototype de Anticorp's qui semble dépendre d'une ancienne version du loader.
-		obj["onMessage"] = "1nTw,(";
-	}
-	return obj;
-}
-
 function Game_Hacks(data, step) {
 	if(_global.fvIndex === 3 && typeof data === "object" && typeof data[2] === "object") {
 		// Crumble, quand une flèche de déplacement est cliquée.
@@ -765,7 +766,7 @@ function JSCall(func, data, arg2) {
 
 function JSSend(data, turnDone, fromPlayer) {
 	// Cette fonction peut être appelée en JavaScript : "client['JS_to_AS_' + clientID](args)".
-	var obfu = Game_Obfuscation();
+	var obfuGame = Obfuscation.Game;
 	if(typeof data === "object" && data[0] === "timeover") {
 		// Cas spécial : Fin de partie par manque de temps, la fonction "MMApi.gameOver()" est appelée tout de suite.
 		_global._mmHasWon = data[1] === _global.fvPlayer;
@@ -774,15 +775,15 @@ function JSSend(data, turnDone, fromPlayer) {
 	}
 	if(data !== null && fromPlayer !== _global.fvPlayer) {
 		Game_Hacks(data, 1);
-		_root.Game[obfu["onMessage"]](false, data);
+		_root.Game[obfuGame["onMessage"]](false, data);
 	}
 	if(turnDone) {
 		if(!_global._mmAdvancedTurnMode) {
-			_root.Game[obfu["onTurnDone"]]();
+			_root.Game[obfuGame["onTurnDone"]]();
 		} else {
-			setTimeout(function(obfu) {
-				_root.Game[obfu["onTurnDone"]]();
-			}, 100, obfu);
+			setTimeout(function(obfuGame) {
+				_root.Game[obfuGame["onTurnDone"]]();
+			}, 100, obfuGame);
 		}
 	}
 }
@@ -800,10 +801,27 @@ _global.fvPlayer = Number(_root.fvPlayer);
 _global.fvUnique = !!Number(_root.fvUnique);
 _global.fvDebug = !!Number(_root.fvDebug);
 
+_root.Obfuscation = {
+	// La classe "Game" et ses différentes méthodes sont spécifiques à chaque jeu mais sont toujours appelées par le fichier loader (MMApi).
+	Game: {
+		Game: "44{N",
+		initialize: ";6aj0(",
+		main: "0D 6",
+		// "1nTw,(" = "message". Utilisé par le prototype de Anticorp's qui semble dépendre d'une ancienne version du loader.
+		onMessage: _global.fvIndex === 14 ? "1nTw,(" : "+oD9l",
+		onReconnectDone: "{+Sn=",
+		onTurnDone: "4fHu{",
+		onVictory: "8Z[e,("
+	},
+	// Autres éléments appelés par le fichier loader.
+	Timer: "{-kxL",
+	mt: "9K"
+};
+
 LoadGame();
 
 _root.onEnterFrame = function() {
-	var obfu = Game_Obfuscation();
+	var obfuGame = Obfuscation.Game;
 	var g = _root.Game;
 	if(!g) {
 		var gc = _root.GameClip;
@@ -815,16 +833,17 @@ _root.onEnterFrame = function() {
 				Init_HaxePolyfillsPost(gc);
 				Init_MMApi();
 				flash.external.ExternalInterface.addCallback("JS_to_AS_" + _global.fvPlayer, null, JSSend);
-				_root.Game = new gc[obfu["Game"]](gc);
+				_root.Game = new gc[obfuGame["Game"]](gc);
 				g = _root.Game;
-				var data = g[obfu["initialize"]]();
+				var data = g[obfuGame["initialize"]]();
 				data = JSCall("CJGame_Action", data);
-				g[obfu["onMessage"]]((_global.fvPlayer === 1), data);
-				g[obfu["main"]]();
-				if(_global._mmInitMode) { g[obfu["onTurnDone"]](); }
+				g[obfuGame["onMessage"]]((_global.fvPlayer === 1), data);
+				g[obfuGame["main"]]();
+				if(_global._mmInitMode) { g[obfuGame["onTurnDone"]](); }
 			}
 		}
 	} else {
-		g[obfu["main"]]();
+		_global[Obfuscation["mt"]][Obfuscation["Timer"]].update();
+		g[obfuGame["main"]]();
 	}
 };

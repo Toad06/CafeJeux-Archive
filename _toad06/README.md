@@ -1,11 +1,10 @@
 # Les jeux multijoueurs de CaféJeux en mode local
-<em>Version 1.6 (14/09/2024)</em><br/>
+<em>Version 2.0-dev1 (--/--/202-)</em><br/>
 <em>Auteur : Toad06, sur la base des codes sources des jeux publiés par Motion Twin.</em>
 
 <em>Notes de version :</em><br/>
-- Ajout de la prise en charge des jeux avec l'émulateur Ruffle : un problème étrange - <a href="https://github.com/ruffle-rs/ruffle/issues/10685">qui a par ailleurs toujours cours</a> - l'en empêchait mais une solution de contournement a été trouvée, de sorte que la fonction de rappel "JS_to_AS" ait toujours un nom différent d'un client à l'autre, en suffixant simplement chaque nom avec l'index du client en question.
-- Ajout d'une option dans Anticorp's concernant l'adhérence des cosmos à la surface jaune (voir les détails dans la rubrique du jeu, ci-dessous).
-- Correction du nom des fichiers audio : les noms d'origine sont désormais utilisés.
+- Implémentation désormais complète de la classe "Timer".
+- Correction de bugs dans Boum : une erreur n'est plus déclenchée si le bouton de lecture du second client est appuyé en premier ; les actions du second client sont maintenant bien transférées au premier client à la fin du tour.
 
 ---
 
@@ -89,9 +88,9 @@ Par ailleurs, des paramètres de configuration optionnels sont disponibles :
 ## Boum - Prototype de Anticorp's
 ### Index : 14
 - Jeu fonctionnel. Il ne s'agit toutefois que d'un prototype très simpliste, des bugs surviendront et il n'est pas possible d'arriver au terme d'une partie.
-- L'utilisation du clavier est également nécessaire pour jouer (touches directionnelles et barre espace).
+- L'utilisation du clavier est par ailleurs nécessaire pour jouer (touches directionnelles et barre espace).
 
 ## Utopiz - Jeu non finalisé
 ### Index : 15
 - Jeu fonctionnel. Son développement n'a toutefois jamais été finalisé par Motion Twin et il n'y a donc ni objectif ni moyen d'arriver au terme d'une partie en l'état actuel.
-- Ce jeu n'a pas été conçu pour CaféJeux en premier lieu : le nom se finissant par "iz" et le style graphique font sans l'ombre d'un doute référence à Frutiparc ; de plus, les éléments interactifs et de décor sont redimensionnés et apparaissent petits à l'écran.
+- Ce jeu n'a pas été imaginé pour CaféJeux en premier lieu : le nom se finissant par "iz" et le style graphique font sans l'ombre d'un doute référence à Frutiparc ; de plus, les éléments interactifs et de décor sont redimensionnés et apparaissent petits à l'écran.
