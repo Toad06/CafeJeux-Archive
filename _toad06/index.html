@@ -56,6 +56,9 @@
 		.turn {
 			border-color: #FFF !important;
 		}
+		.flip {
+			transform: scale(-1, -1);
+		}
 		/* PARTIE SITE */
 		/* Voir les commentaires dans la fonction JS "updateUniqueWindow" plus bas pour les raisons du choix de cette implémentation. */
 		body.iframe {
@@ -105,6 +108,7 @@
 		<div id="messages"></div>
 	</div>
 	<script type="text/javascript">
+		var IS_MOBILE = navigator.userAgentData && navigator.userAgentData.mobile !== undefined ? navigator.userAgentData.mobile : document.ontouchstart !== undefined;
 		var IN_IFRAME = window.self !== window.top;
 		var WINDOW_TOP = IN_IFRAME ? window.top : null;
 		var ENABLE_SPECTATOR_CLIENT = false;
@@ -268,7 +272,7 @@
 			var elemPrev = document.getElementById("div_client_" + (newPlayer === 1 ? 2 : 1));
 			var w = (elemPrev.style.width ? parseInt(elemPrev.style.width, 10) : 300);
 			elemPrev.style.position = "absolute";
-			elemPrev.style.right = (-(w - 1)) + "px";
+			elemPrev.style.right = (-(w - (IS_MOBILE && !IN_IFRAME ? -100 : 1))) + "px";
 			elemNew.style.position = "relative";
 			elemNew.style.right = "0px";
 			if(isFirstCall) {
@@ -280,6 +284,14 @@
 				var elemCache = document.createElement("div");
 				elemCache.setAttribute("style", "position:absolute; width:1px; height:700px; top:0px; right:0px; background-color:#000; z-index:1000;");
 				document.body.appendChild(elemCache);
+			}
+			if(IS_MOBILE && !IN_IFRAME) {
+				var container = document.getElementById("container");
+				if(newPlayer === 2) {
+					container.className += "flip ";
+				} else {
+					container.className = container.className.replace("flip ", "");
+				}
 			}
 		}
 

@@ -391,7 +391,9 @@ function CJGame_SetInfos(data) {
 			var newHeight = parseInt(window.getComputedStyle(div).getPropertyValue("height"), 10);
 			if(!isFinite(newHeight)) newHeight = 0;
 			if(currentHeight < newHeight) {
-				div.style.minHeight = (newHeight + 10) + "px";
+				var margin = parseInt(window.getComputedStyle(div).getPropertyValue("margin-bottom"), 10);
+				if(!isFinite(margin)) margin = 0;
+				div.style.minHeight = (newHeight + margin) + "px";
 			}
 		}
 	} else {

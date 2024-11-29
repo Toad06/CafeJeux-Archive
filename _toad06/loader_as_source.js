@@ -3,10 +3,13 @@ function Init_MMApi() {
 	_global._mmHasWon = -1;
 	_global._mmSendToQueue = false;
 	_global._mmQueue = []; _global._mmQueue.wait = 0; _global._mmQueue.requested = false;
+	_global._mmAdvancedTurnMode = _global.fvIndex === 3 || _global.fvIndex === 5 || _global.fvIndex === 7 || _global.fvIndex === 9 || _global.fvIndex === 12;
+	_global._mmDelayedEndTurnMode = _global.fvIndex === 2 || _global.fvIndex === 9;
+	_global._mmInitMode = _global.fvIndex === 5;
 	var endTurn = function(data) {
 		// Termine le tour avec les données de jeu en paramètre (optionnel) et passe la main à l'adversaire.
 		if(!isMyTurn()) { return; }
-		setTimeout(function(data) {
+		var endTurnImpl = function(data) {
 			var g = _root.Game;
 			var obfuGame = Obfuscation.Game;
 			if(typeof data === "object") {
@@ -17,13 +20,18 @@ function Init_MMApi() {
 				data = null;
 			}
 			JSCall("CJGame_PlayData", ["turn", 1 + (JSCall("CJGame_PlayData", "turn") % 2)]);
-			if(!JSCall("CJGame_PlayData", "locked")) {
+			if(!_global._mmAdvancedTurnMode || !JSCall("CJGame_PlayData", "locked")) {
 				g[obfuGame["onTurnDone"]]();
 				JSCall("CJGame_SendDataToOtherClients", data, true);
 			} else {
 				JSCall("CJGame_SendDataToAllClients", data, false);
 			}
-		}, 10, data);
+		};
+		if(!_global._mmDelayedEndTurnMode) {
+			endTurnImpl(data);
+		} else {
+			setTimeout(endTurnImpl, 0, data);
+		}
 	};
 	var gameOver = function() {
 		// Affiche l'écran de fin de partie, selon le résultat (gagné, perdu ou nul). Le résultat est déterminé au préalable dans la fonction "victory".
@@ -779,9 +787,13 @@ function JSSend(data, turnDone, fromPlayer) {
 		_root.Game[obfuGame["onMessage"]](false, data);
 	}
 	if(turnDone) {
-		setTimeout(function(obfuGame) {
+		if(!_global._mmAdvancedTurnMode) {
 			_root.Game[obfuGame["onTurnDone"]]();
-		}, 10, obfuGame);
+		} else {
+			setTimeout(function(obfuGame) {
+				_root.Game[obfuGame["onTurnDone"]]();
+			}, 100, obfuGame);
+		}
 	}
 }
 
@@ -806,7 +818,7 @@ _root.Obfuscation = {
 		main: "0D 6",
 		// "1nTw,(" = "message". Utilisé par le prototype de Anticorp's qui semble dépendre d'une ancienne version du loader.
 		onMessage: _global.fvIndex === 14 ? "1nTw,(" : "+oD9l",
-		onReconnectDone: "{+Sn=",
+		onReconnectDone: "+Du}V",
 		onTurnDone: "4fHu{",
 		onVictory: "8Z[e,("
 	},
@@ -835,8 +847,8 @@ _root.onEnterFrame = function() {
 				var data = g[obfuGame["initialize"]]();
 				data = JSCall("CJGame_Action", data);
 				g[obfuGame["onMessage"]]((_global.fvPlayer === 1), data);
-				g[obfuGame["onTurnDone"]]();
 				g[obfuGame["main"]]();
+				if(_global._mmInitMode) { g[obfuGame["onTurnDone"]](); }
 			}
 		}
 	} else {

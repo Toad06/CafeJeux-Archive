@@ -1,9 +1,10 @@
 # Les jeux multijoueurs de CaféJeux en mode local
-<em>Version 2.0-dev2 (28/11/2024)</em><br/>
+<em>Version 1.7-dev3 (29/11/2024)</em><br/>
 <em>Auteur : Toad06, sur la base des codes sources des jeux publiés par Motion Twin.</em>
 
 <em>Notes de version :</em><br/>
 - Implémentation désormais complète de la classe "Timer".
+- Modification du comportement de l'option de fenêtre unique sur mobile (détails quelques lignes plus bas).
 - Correction des bugs connus dans Crumble et Trigolo (détails dans la rubrique de chaque jeu, ci-dessous).
 - Correction de bugs dans Boum : une erreur n'est plus déclenchée si le bouton de lecture du second client est appuyé en premier ; les actions du second client sont maintenant bien transférées au premier client à la fin du tour.
 
@@ -14,7 +15,7 @@ Cette section comporte plusieurs fichiers inédits permettant de faire fonctionn
 Pour ce faire, suivez la procédure d'installation de l'archive indiquée dans le fichier <a href="../README.md">README.md</a> principal, puis ouvrez `_toad06/?game=[INDEX]` depuis le navigateur. `[INDEX]` doit être remplacé par l'identifiant du jeu à charger, les index sont les mêmes que ceux du site CaféJeux (avec quelques exclusivités à partir de l'index 12, en provenance de l'archive publiée par Motion Twin). Ils sont également indiqués plus bas dans ce document, accompagnés de différentes remarques sur l'état de fonctionnement des jeux.
 
 Par ailleurs, des paramètres de configuration optionnels sont disponibles :
-- Pour n'afficher qu'une seule fenêtre de jeu sur la page (celle du joueur dont c'est le tour), ajoutez le paramètre `&unique=1` dans l'URL.
+- Pour n'afficher qu'une seule fenêtre de jeu sur la page (celle du joueur dont c'est le tour), ajoutez le paramètre `&unique=1` dans l'URL. Sur les appareils mobiles uniquement, l'écran de jeu est également inversé à chaque tour.
 - Pour personnaliser le nom des deux joueurs, ajoutez le paramètre `&players=[NOM_1],[NOM_2]` dans l'URL, en remplaçant `[NOM_1]` et `[NOM_2]` par les noms à utiliser. L'ordre de départ des joueurs est déterminé aléatoirement.
 - Certains jeux utilisent des paramètres qui leur sont propres. Vous les trouverez ci-dessous.
 
@@ -26,7 +27,7 @@ Par ailleurs, des paramètres de configuration optionnels sont disponibles :
 ## Amonite
 ### Index : 2
 - Jeu fonctionnel.
-~- Bug mineur : Quand un joueur déplace un pion vers une case vide, ce dernier se déplace immédiatement sans jouer d'animation (sauf sur l'écran de l'adversaire). Cela n'affecte en rien le déroulement de la partie.~
+- (1.7) ~~Bug mineur : Quand un joueur déplace un pion vers une case vide, ce dernier se déplace immédiatement sans jouer d'animation (sauf sur l'écran de l'adversaire). Cela n'affecte en rien le déroulement de la partie.~~
 
 ## Crumble
 ### Index : 3
@@ -66,7 +67,7 @@ Par ailleurs, des paramètres de configuration optionnels sont disponibles :
 ## Trigolo
 ### Index : 9
 - Jeu fonctionnel.
-~- Bug : Les cartes sont placées directement sur le plateau, sans jouer d'animation au préalable. Cela est dû à la solution de contournement actuellement utilisée pour permettre au jeu de fonctionner.~
+- (1.7) ~~Bug : Les cartes sont placées directement sur le plateau, sans jouer d'animation au préalable. Cela est dû à la solution de contournement actuellement utilisée pour permettre au jeu de fonctionner.~~
 
 ## Hordes Insurrection !
 ### Index : 11
