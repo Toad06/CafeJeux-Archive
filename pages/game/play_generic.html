@@ -402,6 +402,10 @@
 			'</div>';
 
 		// Données HTML (aléatoires) de l'adversaire.
+		// NOTE : Dans le cadre de cette archive, pour éviter les interactions non voulues, cliquer sur le pseudo ne renvoie pas vers la page de profil et le survoler n'affiche pas non plus le bloc d'informations habituel.
+		// Sur cafejeux.com, dans cette situation, le bloc d'informations sur l'utilisateur affichait en plus des éléments classiques sa position dans le classement pour le jeu en cours :
+		// `<div class="footer"><img src="games/icon/[icône du jeu].gif" alt=""/> <strong>[titre du jeu] <img src="img/icons/small_rank_1.gif" alt=""/> [position]<sup>['er' ou 'ème']</sup></strong><br/>([points]pts)</div>`
+		// La mention "(en jeu)" était également ajoutée à côté de "online", sur la dernière ligne. Ceci affectait tous les endroits où le statut de l'utilisateur était affiché.
 		game.querySelector(".users .field2").innerHTML = "{ARCHIVE_OTHER_USER_NAME} " +
 			'<div class="xpBar" onmouseover="mt.js.Tip.show(this, \'Niveau d\\\'expérience : 1 <p><em>Cette valeur révèle le niveau d\\\'expertise sur ce jeu.</em></p>\', null);" onmouseout="mt.js.Tip.hide();">' +
 			'<div>1</div> <img alt="" src="img/design/xpBar_fill.gif" style="width:0px;"/></div>';
