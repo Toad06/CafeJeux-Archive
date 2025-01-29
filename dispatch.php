@@ -648,7 +648,10 @@ switch($page) {
 			$data = str_replace("{ARCHIVE_TABLE_DATETIME}", $date, $data);
 			$data = str_replace("{ARCHIVE_TABLE_MY_DRINK}", strval(intval($_SESSION['cafeDrink'])), $data);
 			// La variable FlashVars "first" contient l'ID du propriétaire de la table : lorsque celui-ci est connecté au site, il apparaît au sein de sa table avec une couronne sur la tête.
-			// (Toad06) Il semblerait que ceci ait été supprimé lors d'une mise à jour de cafejeux.com (vraisemblablement vers la fin 2010) : la variable "first" n'était plus initialisée.
+			// (Toad06) Pour une raison inconnue, la variable "first" n'était pas initialisée lorsque l'archive a été constituée ; quelques possibilités non excluantes :
+			// - Celle-ci a été supprimée lors d'une mise à jour de cafejeux.com, vraisemblablement vers la fin 2010 si tel devait être le cas.
+			// - Celle-ci n'est initialisée que si au moins deux membres de la table, dont le créateur, sont connectés simultanément.
+			// - Celle-ci n'est initialisée que pour tout utilisateur qui n'est pas le créateur de la table et que ce dernier est connecté.
 			$data = str_replace("{ARCHIVE_TABLE_ADD_FIRST_VARIABLE}", 'so.addVariable("first", "18269");', $data);
 		}
 		break;

@@ -5,7 +5,7 @@
 <em>Notes de version :</em><br/>
 - Implémentation désormais complète de la classe "Timer".
 - Modification du comportement de l'option de fenêtre unique sur mobile (détails quelques lignes plus bas).
-- Correction des bugs connus dans Crumble et Trigolo (détails dans la rubrique de chaque jeu, ci-dessous).
+- Correction des bugs connus dans Amonite et Trigolo (détails dans la rubrique de chaque jeu, ci-dessous).
 - Correction de bugs dans Boum : une erreur n'est plus déclenchée si le bouton de lecture du second client est appuyé en premier ; les actions du second client sont maintenant bien transférées au premier client à la fin du tour.
 
 ---

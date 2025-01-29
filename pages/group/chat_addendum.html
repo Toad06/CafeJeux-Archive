@@ -54,7 +54,7 @@
 						_m: ["9,3", "12,1", "12,10", "20,14", "24,6", "27,6", "27,13", "28,10"][Math.floor(Math.random() * 12)] || null
 					};
 					if(Math.random() > 0.8) {
-						var hour = (new Date()).getHours("{ARCHIVE_TABLE_DATETIME}");
+						var hour = (new Date("{ARCHIVE_TABLE_DATETIME}")).getHours();
 						if(hour >= 2 && hour < 10) {
 							other._m = "8,7"; // assis sur le comptoir
 						}
