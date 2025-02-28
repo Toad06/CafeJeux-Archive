@@ -5028,7 +5028,12 @@ js.App.chatTip = function(e,g) {
 			l.push({_u: {_name: name}});
 			if(g === "group_420" && window.location.hash === "#group/420?go=chat" && window.__archiveChatUsers && window.__archiveChatUsers.other) {
 				// Sur la page du chat de la Table des Habitués, il y a prétendument un second utilisateur connecté.
-				l.push({_u: {_name: "Nath0u"}});
+				var other = {_u: {_name: "Nath0u"}};
+				if(([name.toLowerCase(), "nath0u"].sort())[0] === name.toLowerCase()) {
+					l.push(other);
+				} else {
+					l.unshift(other);
+				}
 			}
 		}
 	}
