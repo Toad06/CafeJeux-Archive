@@ -145,7 +145,7 @@ function parse_message($str, $allowTags = true, $allowImages = null, $allowSmile
 			'~@((https?)://[^\s]*?)@~s' => function($m) use($allowImages, $urlentities) {
 				if($allowImages) {
 					$src = $urlentities($m[1]);
-					return '<img src="' . $src . '" alt="" />';
+					return '<img src="' . $src . '"/>'; // NOTE : L'attribut "alt" pourtant requis n'est pas utilisé ici.
 				} else {
 					return $m[0];
 				}
@@ -197,7 +197,7 @@ function parse_message($str, $allowTags = true, $allowImages = null, $allowSmile
 		);
 		$smileysLength = count($findSmileys) === count($replaceSmileys) ? count($replaceSmileys) : 0;
 		for($i = 0; $i < $smileysLength; $i++) {
-			$replaceSmileys[$i] = '<img src="img/smiley/icon_' . $replaceSmileys[$i] . '.gif" alt="' . $findSmileys[$i] . '" />';
+			$replaceSmileys[$i] = '<img src="img/smiley/icon_' . $replaceSmileys[$i] . '.gif" alt="' . $findSmileys[$i] . '"/>';
 		}
 		$str = str_replace($findSmileys, $replaceSmileys, $str);
 	}
@@ -255,7 +255,7 @@ function parse_message($str, $allowTags = true, $allowImages = null, $allowSmile
 	}
 	// Multiligne.
 	if($allowMultiline) {
-		$str = nl2br($str);
+		$str = str_replace(array("\r\n", "\r", "\n"), "<br/> ", $str);
 	}
 	// Le message est prêt.
 	return $str;
