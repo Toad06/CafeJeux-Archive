@@ -47,7 +47,7 @@
 
 				<ul>
 				::foreach _list::
-					<li><a class="user" href="#" onclick="if( confirm('Etes-vous sûr de vouloir envoyer une alerte à propos du comportement de ::_u._name:: sur le chat ?') ) js.App.chatReport('::_room::',::_u._uid::); return false;">::_u._name::</a></li>
+					<li><a class="user" href="#" onclick="if( confirm('Êtes-vous sûr de vouloir envoyer une alerte à propos du comportement de ::_u._name:: sur le chat ?') ) js.App.chatReport('::_room::',::_u._uid::); return false;">::_u._name::</a></li>
 				::end::
 				</ul>
 			::end::
@@ -93,7 +93,7 @@
 		::end::
 		<ul>
 			::foreach _list::
-				<li onclick="if( confirm('Etes-vous sûr de vouloir bannir ::_u._name:: ?') ){ js.XmlHttp.get('group/::_gid::/chatBan?id=::_u._uid::'); mt.js.Tip.hide(); }">::_u._name::</li>
+				<li onclick="if( confirm('Êtes-vous sûr de vouloir bannir ::_u._name:: ?') ){ js.XmlHttp.get('group/::_gid::/chatBan?id=::_u._uid::'); mt.js.Tip.hide(); }">::_u._name::</li>
 			::end::
 			<li onclick="mt.js.Tip.hide()" class="action">Annuler</li>
 		</ul>
