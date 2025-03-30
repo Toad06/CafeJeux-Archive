@@ -3712,15 +3712,6 @@ js.XmlHttp.get = function(url,obj) {
 	if(js.XmlHttp.lock != null) {
 		return;
 	}
-	try {
-		js.Lib.window.urchinTracker(url);
-	}
-	catch( $e0 ) {
-		{
-			var e = $e0;
-			null;
-		}
-	}
 	if(new EReg("[?]","").match(url)) url += ";rand=" + Std.random(9999999);
 	else url += "?rand=" + Std.random(9999999);
 	var r = new haxe.Http(url);
