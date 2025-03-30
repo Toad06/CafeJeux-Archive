@@ -145,7 +145,7 @@ function parse_message($str, $allowTags = true, $allowImages = null, $allowSmile
 			'~@((https?)://[^\s]*?)@~s' => function($m) use($allowImages, $urlentities) {
 				if($allowImages) {
 					$src = $urlentities($m[1]);
-					return '<img src="' . $src . '"/>'; // NOTE : L'attribut "alt" pourtant requis n'est pas utilisé ici.
+					return '<img src="' . $src . '"/>'; // NOTE : L'attribut "alt" pourtant requis par la spécification HTML n'est pas utilisé ici.
 				} else {
 					return $m[0];
 				}
