@@ -946,6 +946,7 @@ js.BackForward.urlBase = null;
 js.BackForward.init = function() {
 	// Le site était optimisé pour Firefox, à une époque où Chrome n'existait pas encore et de nombreuses différences d'implémentation existaient entre les navigateurs.
 	// Ce ne devrait plus être le cas désormais et les deux lignes suivantes ont donc été changées (Chrome était par ailleurs incorrectement détecté comme étant Safari !).
+	// Ceci est également appliqué aux propriétés "js.Lib.isIE" et "js.Lib.isOpera", plus bas dans ce fichier.
 	js.BackForward.isFirefox = true;
 	js.BackForward.isSafari = false;
 	js.BackForward.history = new List();
@@ -3640,8 +3641,10 @@ js.Boot.__instanceof = function(o,cl) {
 	}
 }
 js.Boot.__init = function() {
-	js.Lib.isIE = (typeof document!='undefined' && document.all != null && typeof window!='undefined' && window.opera == null);
-	js.Lib.isOpera = (typeof window!='undefined' && window.opera != null);
+	// Les deux lignes suivantes ont été changées pour éviter de possibles faux positifs lors de la détection des anciennes versions de Internet Explorer (6 et 7) et Opera (avant sa transition vers Chromium).
+	// Ceci est également appliqué aux propriétés "js.BackForward.isFirefox" et "js.BackForward.isSafari", plus haut dans ce fichier.
+	js.Lib.isIE = false;
+	js.Lib.isOpera = false;
 	Array.prototype.copy = Array.prototype.slice;
 	Array.prototype.insert = function(i,x) {
 		this.splice(i,0,x);
