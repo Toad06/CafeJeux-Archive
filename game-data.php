@@ -111,8 +111,8 @@ function parse_message($str, $allowTags = true, $allowImages = null, $allowSmile
 		$urlentities = function($str) {
 			// Empêche certains caractères contenus dans les liens de provoquer des "interférences" avec les autres masques.
 			return str_replace(
-				array("*", "/", ":", "=", "@", "_"),
-				array("&#42;", "&#47;", "&#58;", "&#61;", "&#64;", "&#95;"),
+				array("(", ")", "*", "/", ":", "=", "@", "_"),
+				array("&#40;", "&#41;", "&#42;", "&#47;", "&#58;", "&#61;", "&#64;", "&#95;"),
 				$str
 			);
 		};
@@ -121,7 +121,11 @@ function parse_message($str, $allowTags = true, $allowImages = null, $allowSmile
 			// NOTE : cafejeux.com ne reconnaissait pas les liens commençant par "https://". Une autre époque... :)
 			'~\[lien\](https?)://([^\s]*?)\[/lien\]~s' => function($m) use($urlentities) {
 				$url = $m[1] . "://" . $m[2];
-				$encodedUrl = urlencode(html_entity_decode($url));
+				$decodedUrl = html_entity_decode($url);
+				if(filter_var($decodedUrl, FILTER_VALIDATE_URL) === false) {
+					return $m[0];
+				}
+				$encodedUrl = urlencode($decodedUrl);
 				$displayedUrl = $m[2];
 				if(mb_strlen($displayedUrl) > 30) {
 					$displayedUrl = mb_substr($displayedUrl, 0, 30) . "...";
@@ -131,7 +135,11 @@ function parse_message($str, $allowTags = true, $allowImages = null, $allowSmile
 			},
 			'~\[lien=(https?)://([^\s]*?)\](.*?)\[/lien\]~s' => function($m) use($urlentities) {
 				$url = $m[1] . "://" . $m[2];
-				$encodedUrl = urlencode(html_entity_decode($url));
+				$decodedUrl = html_entity_decode($url);
+				if(filter_var($decodedUrl, FILTER_VALIDATE_URL) === false) {
+					return $m[0];
+				}
+				$encodedUrl = urlencode($decodedUrl);
 				$displayedUrl = $m[3];
 				if($displayedUrl === $m[2]) {
 					if(mb_strlen($displayedUrl) > 30) {
