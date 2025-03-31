@@ -1435,10 +1435,14 @@ if($data !== null) {
 			http_response_code(302);
 			$data = "<load>user/chooseDrink</load>";
 		} elseif(isset($_SESSION['cafeUsername'])) {
-			if(!$isPageComponent && isset($_SESSION['cafeDay']) && $_SESSION['cafeDay'] !== $day && !isset($_SESSION['cafeDayChanged'])) {
-				// NOTE : En se rendant sur la page "Jouer au bar", cafejeux.com forçait toujours l'affichage de la page de choix de boisson.
-				$_SESSION['cafeDayChanged'] = true;
-				$data = '<user money="{ARCHIVE_USER_MONEY}" freeMoney="0"/><load>user/dayChanged</load>'; // NOTE : Dès le changement de jour, le nombre de sucres blancs restant de la veille passe à 0.
+			if(!$isPageComponent && isset($_SESSION['cafeDay']) && $_SESSION['cafeDay'] !== $day) {
+				if(!isset($_SESSION['cafeDayChanged'])) {
+					$_SESSION['cafeDayChanged'] = true;
+					$data = '<user money="{ARCHIVE_USER_MONEY}" freeMoney="0"/><load>user/dayChanged</load>'; // NOTE : Dès le changement de jour, le nombre de sucres blancs restant de la veille passe à 0.
+				} elseif($page === "game" || $page === "play") {
+					// NOTE : En se rendant sur la page "Jouer au bar", cafejeux.com forçait effectivement l'affichage de la page de choix de boisson.
+					$data = "<reboot/>";
+				}
 			}
 			$data = str_replace("{ARCHIVE_USERNAME}", htmlentities($_SESSION['cafeUsername']), $data);
 			$data = str_replace("{ARCHIVE_USER_MONEY}", strval($globalUserMoney), $data);
