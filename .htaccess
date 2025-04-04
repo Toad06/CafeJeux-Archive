@@ -124,10 +124,10 @@ RewriteCond %{QUERY_STRING} ^v=([^&]+)$
 RewriteRule ^user/siteSound$ dispatch.php?p=user/siteSound&v=%1 [L]
 RewriteCond %{QUERY_STRING} ^rid=([^&]+)$
 RewriteRule ^user/tipContact$ dispatch.php?p=user/tipContact&rid=%1 [L]
-RewriteRule ^user/([0-9]+)/addBlackContact$ dispatch.php?p=user/[id]/addBlackContact&id=$1 [L]
-RewriteRule ^user/([0-9]+)/addContact$ dispatch.php?p=user/[id]/addContact&id=$1 [L]
-RewriteRule ^user/([0-9]+)/remBlackContact$ dispatch.php?p=user/[id]/remBlackContact&id=$1 [L]
-RewriteRule ^user/([0-9]+)/remContact$ dispatch.php?p=user/[id]/remContact&id=$1 [L]
+RewriteRule ^user/([0-9]+)/addBlackContact$ dispatch.php?p=user/[id]/addBlackContact&id=$1 [QSA,L]
+RewriteRule ^user/([0-9]+)/addContact$ dispatch.php?p=user/[id]/addContact&id=$1 [QSA,L]
+RewriteRule ^user/([0-9]+)/remBlackContact$ dispatch.php?p=user/[id]/remBlackContact&id=$1 [QSA,L]
+RewriteRule ^user/([0-9]+)/remContact$ dispatch.php?p=user/[id]/remContact&id=$1 [QSA,L]
 RewriteRule ^user/(.+)$ dispatch.php?p=user/$1 [L]
 
 

@@ -1084,25 +1084,28 @@ switch($page) {
 	case "user/[id]/addContact":
 	case "user/[id]/remBlackContact":
 	case "user/[id]/remContact":
-		// NOTE : Il était techniquement possible sur le site cafejeux.com qu'un utilisateur soit à la fois sur la liste d'amis et sur liste noire. :)
+		// NOTE : Il était techniquement possible sur le site cafejeux.com qu'un utilisateur soit à la fois sur liste d'amis et sur liste noire. :)
 		$action = explode("[id]/", $page)[1];
 		if(isset($_GET['id'])) {
 			$gOtherId = intval($_GET['id']);
 			switch($action) {
 				case "addBlackContact":
-					$data = '<alert>Cet utilisateur a été ajouté à votre liste noire.</alert><blacklist add="' . $gOtherId . '"/>';
+					$data = '<alert>Cet utilisateur a été ajouté à votre liste noire.</alert>{ARCHIVE_USER_REDIR}<blacklist add="' . $gOtherId . '"/>';
 					break;
 				case "addContact":
-					$data = "<alert>Cet utilisateur a été ajouté à votre liste de contacts.</alert>";
+					$data = "<alert>Cet utilisateur a été ajouté à votre liste de contacts.</alert>{ARCHIVE_USER_REDIR}";
 					break;
 				case "remBlackContact":
-					// NOTE : "<load>[data]</load>" ne devrait être présent que si l'URL a le paramètre GET "redir=1".
-					$data = '<alert>Cet utilisateur a été retiré de votre liste noire.</alert><load>user/' . $gOtherId . '</load><blacklist remove="' . $gOtherId . '"/>';
+					$data = '<alert>Cet utilisateur a été retiré de votre liste noire.</alert>{ARCHIVE_USER_REDIR}<blacklist remove="' . $gOtherId . '"/>';
 					break;
 				case "remContact":
-					$data = "<alert>Cet utilisateur a été retiré de votre liste de contacts.</alert>";
+					$data = "<alert>Cet utilisateur a été retiré de votre liste de contacts.</alert>{ARCHIVE_USER_REDIR}";
 					break;
 			}
+			// NOTE : Si le paramètre GET "redir=1" est présent dans l'URL, une redirection vers la page de profil en question est effectuée.
+			// Sur cafejeux.com, l'affichage de la page était alors modifiée en fonction du choix qui venait d'être effectué.
+			// Par exemple, si l'utilisateur venait d'être ajouté en tant qu'ami, le bouton vert "+ Ami" n'était plus affiché sur sa page de profil.
+			$data = str_replace("{ARCHIVE_USER_REDIR}", (isset($_GET['redir']) ? "<load>user/" . $gOtherId . "</load>" : ""), $data);
 		}
 		break;
 	case "user/cancelDelete":
