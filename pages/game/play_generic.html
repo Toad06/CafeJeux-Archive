@@ -118,8 +118,8 @@
 				js.Utils.setClass("menuBtnPlaying", "hidden");
 				js.Utils.setClass("menuBtnBar", "");
 				var backBar = game.querySelector("#backButton a");
-				backBar.href = "#play";
-				backBar.onclick = function() { js.XmlHttp.get("play", this); return false; };
+				backBar.href = "#game";
+				backBar.onclick = function() { js.XmlHttp.get("game", this); return false; };
 				backBar.className = backBar.className.replace("b_abandon", "b_back");
 				backBar.innerHTML = "Retour au bar";
 				var newGame = game.querySelector("#gameZone a.button");
