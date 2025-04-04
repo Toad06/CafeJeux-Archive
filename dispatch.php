@@ -1439,7 +1439,7 @@ if($data !== null) {
 				if(!isset($_SESSION['cafeDayChanged'])) {
 					$_SESSION['cafeDayChanged'] = true;
 					$data = '<user money="{ARCHIVE_USER_MONEY}" freeMoney="0"/><load>user/dayChanged</load>'; // NOTE : Dès le changement de jour, le nombre de sucres blancs restant de la veille passe à 0.
-				} elseif($page === "game" || $page === "play") {
+				} elseif($page === "game") {
 					// NOTE : En se rendant sur la page "Jouer au bar", cafejeux.com forçait effectivement l'affichage de la page de choix de boisson.
 					$data = "<reboot/>";
 				}
