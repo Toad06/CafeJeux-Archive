@@ -63,7 +63,10 @@ function cj_date_today() {
 // Génère un avatar aléatoire sur les pages de joueurs non archivées.
 // Le personnage par défaut sur la page d'inscription a ces caractéristiques : "viewer.swf?gfx=0,0,0,0,0,0,0,0,2,0,0,0,3,0,3,6,6,0".
 // Les valeurs générées correspondent à l'ordre des différentes options dans le SWF de la page d'inscription.
-function random_avatar() {
+function random_avatar($seed = null) {
+	if($seed !== null) {
+		mt_srand($seed);
+	}
 	$gender = "";
 	$gfx = "";
 	for($i = 0; $i < 18; $i++) {
@@ -90,6 +93,9 @@ function random_avatar() {
 			case 17: $r = mt_rand(0, 14); break; // couleur de la rayure du pantalon, si applicable
 		}
 		$gfx .= strval($r);
+	}
+	if($seed !== null) {
+		mt_srand();
 	}
 	return array("gender" => $gender, "gfx" => $gfx);
 }

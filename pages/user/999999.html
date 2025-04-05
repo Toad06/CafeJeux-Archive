@@ -17,7 +17,7 @@
  			<div class="sideButtons">
 
  					<a href="#pvmsg/new?to=Joueur" onclick="js.XmlHttp.get('pvmsg/new?to=Joueur',this); return false;" onmouseover="mt.js.Tip.show(this,'Envoyer un message',null)" onmouseout="mt.js.Tip.hide()"><img alt="" src="img/icons/large_act_mail.gif"/>Ecrire</a>
- 						<a href="#user/999999/addContact?redir=1" onclick="js.XmlHttp.get('user/999999/addContact?redir=1',this); return false;" onmouseover="mt.js.Tip.show(this,'Ajouter à mes amis',null)" onmouseout="mt.js.Tip.hide()"><img alt="" src="img/icons/large_friend.gif"/>Ami</a>
+ 						<a href="#user/{ARCHIVE_OTHER_USER_ID}/addContact?redir=1" onclick="js.XmlHttp.get('user/{ARCHIVE_OTHER_USER_ID}/addContact?redir=1',this); return false;" onmouseover="mt.js.Tip.show(this,'Ajouter à mes amis',null)" onmouseout="mt.js.Tip.hide()"><img alt="" src="img/icons/large_friend.gif"/>Ami</a>
 			</div>
 			
 		<div class="avatar">
@@ -30,7 +30,7 @@
 		so.addParam("scale","noscale");
 		so.addParam("menu","false");
 			so.addParam("wmode","transparent");
-so.addVariable("url","/user/999999");
+so.addVariable("url","/user/{ARCHIVE_OTHER_USER_ID}");
 	so.addVariable("gfx","{ARCHIVE_OTHER_USER_GFX}");
 	so.addVariable("avatarurl","swf/avatar.swf?v=20100928162820");
 			so.write("swf_avatarViewer_999997");
@@ -251,10 +251,10 @@ so.addVariable("url","/user/999999");
 		<div class="clear"></div>
 
 		<div class="actions">
-				<a href="#user/999999/barHistory" class="button b_histo" onclick="js.XmlHttp.get('user/999999/barHistory',this); return false;">Historique de ses parties</a>
-				<a href="#user/999999/furnitures" class="button b_ad" onclick="js.XmlHttp.get('user/999999/furnitures',this); return false;">Ses meubles</a>
-				<a href="#user/999999/giveMoney" class="button b_token" onclick="js.XmlHttp.get('user/999999/giveMoney',this); return false;">Offrir des sucres roux !</a>
-					<a href="#user/999999/addBlackContact?redir=1" class="button b_delete" onclick="js.XmlHttp.get('user/999999/addBlackContact?redir=1',this); return false;" onmouseover="mt.js.Tip.show(this,'Vous ne recevrez plus de messages privés de la part de ce joueur.',null)" onmouseout="mt.js.Tip.hide()">Bloquer ce joueur</a>
+				<a href="#user/{ARCHIVE_OTHER_USER_ID}/barHistory" class="button b_histo" onclick="js.XmlHttp.get('user/{ARCHIVE_OTHER_USER_ID}/barHistory',this); return false;">Historique de ses parties</a>
+				<a href="#user/{ARCHIVE_OTHER_USER_ID}/furnitures" class="button b_ad" onclick="js.XmlHttp.get('user/{ARCHIVE_OTHER_USER_ID}/furnitures',this); return false;">Ses meubles</a>
+				<a href="#user/{ARCHIVE_OTHER_USER_ID}/giveMoney" class="button b_token" onclick="js.XmlHttp.get('user/{ARCHIVE_OTHER_USER_ID}/giveMoney',this); return false;">Offrir des sucres roux !</a>
+					<a href="#user/{ARCHIVE_OTHER_USER_ID}/addBlackContact?redir=1" class="button b_delete" onclick="js.XmlHttp.get('user/{ARCHIVE_OTHER_USER_ID}/addBlackContact?redir=1',this); return false;" onmouseover="mt.js.Tip.show(this,'Vous ne recevrez plus de messages privés de la part de ce joueur.',null)" onmouseout="mt.js.Tip.hide()">Bloquer ce joueur</a>
 							</div>
 	</div>
 ]]>

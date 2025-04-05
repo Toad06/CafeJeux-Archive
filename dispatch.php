@@ -1038,20 +1038,28 @@ switch($page) {
 		break;
 	case "user/999999":
 	case "user/999999/tip":
-		$randomAvatar = random_avatar();
+		$playerId = "999999";
+		$seed = null;
+		if(isset($__recursiondata) && is_int($__recursiondata)) {
+			$playerId = strval($__recursiondata);
+			$seed = $__recursiondata + intval(date("Ymd"));
+		}
+		$randomAvatar = random_avatar($seed);
+		$randomDrink = $seed !== null ? ($seed % count($globalDrinks)) : mt_rand(0, count($globalDrinks) - 1);
 		$data = get_content($pageUrlExt);
+		$data = str_replace("{ARCHIVE_OTHER_USER_ID}", $playerId, $data);
 		$data = str_replace("{ARCHIVE_OTHER_USER_GFX}", $randomAvatar['gfx'], $data);
 		$data = str_replace("{ARCHIVE_OTHER_USER_GENDER}", $randomAvatar['gender'], $data);
 		$data = str_replace("{ARCHIVE_OTHER_USER_FEMALE}", ($randomAvatar['gender'] === "female" ? "e" : ""), $data);
-		$data = str_replace("{ARCHIVE_OTHER_USER_DRINK}", $globalDrinks[mt_rand(0, array_keys($globalDrinks)[count($globalDrinks) - 1])]['name'], $data);
+		$data = str_replace("{ARCHIVE_OTHER_USER_DRINK}", $globalDrinks[$randomDrink]['name'], $data);
 		break;
 	case "user/999999/barHistory":
 	case "user/999999/furnitures":
 	case "user/999999/giveMoney":
 		$playerId = "999999"; $playerName = "Joueur";
 		if(isset($__recursiondata) && is_int($__recursiondata)) {
+			$playerId = strval($__recursiondata);
 			if(isset($globalPlayers[$__recursiondata])) {
-				$playerId = strval($__recursiondata);
 				$playerName = $globalPlayers[$__recursiondata];
 			}
 		}
@@ -1088,6 +1096,7 @@ switch($page) {
 		$action = explode("[id]/", $page)[1];
 		if(isset($_GET['id'])) {
 			$gOtherId = intval($_GET['id']);
+			$gRedir = isset($_GET['redir']);
 			switch($action) {
 				case "addBlackContact":
 					$data = '<alert>Cet utilisateur a été ajouté à votre liste noire.</alert>{ARCHIVE_USER_REDIR}<blacklist add="' . $gOtherId . '"/>';
@@ -1103,9 +1112,9 @@ switch($page) {
 					break;
 			}
 			// NOTE : Si le paramètre GET "redir=1" est présent dans l'URL, une redirection vers la page de profil en question est effectuée.
-			// Sur cafejeux.com, l'affichage de la page était alors modifiée en fonction du choix qui venait d'être effectué.
-			// Par exemple, si l'utilisateur venait d'être ajouté en tant qu'ami, le bouton vert "+ Ami" n'était plus affiché sur sa page de profil.
-			$data = str_replace("{ARCHIVE_USER_REDIR}", (isset($_GET['redir']) ? "<load>user/" . $gOtherId . "</load>" : ""), $data);
+			// Sur cafejeux.com, l'affichage de la page était alors modifié en fonction du choix qui venait d'être effectué.
+			// Par exemple, le bouton vert "+ Ami" n'était plus affiché sur la page de profil d'un utilisateur qui avait été ajouté en tant qu'ami.
+			$data = str_replace("{ARCHIVE_USER_REDIR}", ($gRedir ? "<load>user/" . $gOtherId . "</load>" : ""), $data);
 		}
 		break;
 	case "user/cancelDelete":
@@ -1420,7 +1429,7 @@ switch($page) {
 					}
 					break;
 				case "group": $recursionValue = "6864"; break;
-				case "user": $recursionValue = "999999"; if(isset($checkPage[2])) { $__recursiondata = intval($checkPage[1]); } break;
+				case "user": $recursionValue = "999999"; if(isset($checkPage[1])) { $__recursiondata = intval($checkPage[1]); } break;
 			}
 			if($recursionValue !== "0") {
 				$gp2 = isset($checkPage[2]) ? "/" . $checkPage[2] : "";
