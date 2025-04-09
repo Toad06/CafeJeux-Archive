@@ -16,7 +16,7 @@
 			
  			<div class="sideButtons">
 
- 					<a href="#pvmsg/new?to=Joueur" onclick="js.XmlHttp.get('pvmsg/new?to=Joueur',this); return false;" onmouseover="mt.js.Tip.show(this,'Envoyer un message',null)" onmouseout="mt.js.Tip.hide()"><img alt="" src="img/icons/large_act_mail.gif"/>Ecrire</a>
+ 					<a href="#pvmsg/new?to={ARCHIVE_OTHER_USER_NAME}" onclick="js.XmlHttp.get('pvmsg/new?to={ARCHIVE_OTHER_USER_NAME}',this); return false;" onmouseover="mt.js.Tip.show(this,'Envoyer un message',null)" onmouseout="mt.js.Tip.hide()"><img alt="" src="img/icons/large_act_mail.gif"/>Ecrire</a>
  						<a href="#user/{ARCHIVE_OTHER_USER_ID}/addContact?redir=1" onclick="js.XmlHttp.get('user/{ARCHIVE_OTHER_USER_ID}/addContact?redir=1',this); return false;" onmouseover="mt.js.Tip.show(this,'Ajouter à mes amis',null)" onmouseout="mt.js.Tip.hide()"><img alt="" src="img/icons/large_friend.gif"/>Ami</a>
 			</div>
 			
@@ -41,7 +41,7 @@ so.addVariable("url","/user/{ARCHIVE_OTHER_USER_ID}");
 			
 		<ul class="infos">
 			<li class="name">
- Joueur <em>(
+ {ARCHIVE_OTHER_USER_NAME} <em>(
 
 			<img alt="" src="img/icons/small_offline.gif"/>
 	 

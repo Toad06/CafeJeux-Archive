@@ -1038,19 +1038,26 @@ switch($page) {
 		break;
 	case "user/999999":
 	case "user/999999/tip":
-		$playerId = "999999";
-		$seed = null;
+		$playerId = "999999"; $playerName = "Joueur";
+		$seed = null; $userAvatar = null;
 		if(isset($__recursiondata) && is_int($__recursiondata)) {
 			$playerId = strval($__recursiondata);
 			$seed = $__recursiondata + intval(date("Ymd"));
+			if(isset($globalPlayers[$__recursiondata])) {
+				$playerName = $globalPlayers[$__recursiondata];
+				$userAvatar = user_avatar($__recursiondata);
+			}
 		}
-		$randomAvatar = random_avatar($seed);
+		if($userAvatar === null) {
+			$userAvatar = random_avatar($seed);
+		}
 		$randomDrink = $seed !== null ? ($seed % count($globalDrinks)) : mt_rand(0, count($globalDrinks) - 1);
 		$data = get_content($pageUrlExt);
 		$data = str_replace("{ARCHIVE_OTHER_USER_ID}", $playerId, $data);
-		$data = str_replace("{ARCHIVE_OTHER_USER_GFX}", $randomAvatar['gfx'], $data);
-		$data = str_replace("{ARCHIVE_OTHER_USER_GENDER}", $randomAvatar['gender'], $data);
-		$data = str_replace("{ARCHIVE_OTHER_USER_FEMALE}", ($randomAvatar['gender'] === "female" ? "e" : ""), $data);
+		$data = str_replace("{ARCHIVE_OTHER_USER_NAME}", $playerName, $data);
+		$data = str_replace("{ARCHIVE_OTHER_USER_GFX}", $userAvatar['gfx'], $data);
+		$data = str_replace("{ARCHIVE_OTHER_USER_GENDER}", $userAvatar['gender'], $data);
+		$data = str_replace("{ARCHIVE_OTHER_USER_FEMALE}", ($userAvatar['gender'] === "female" ? "e" : ""), $data);
 		$data = str_replace("{ARCHIVE_OTHER_USER_DRINK}", $globalDrinks[$randomDrink]['name'], $data);
 		break;
 	case "user/999999/barHistory":

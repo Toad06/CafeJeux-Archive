@@ -100,6 +100,28 @@ function random_avatar($seed = null) {
 	return array("gender" => $gender, "gfx" => $gfx);
 }
 
+// Retourne l'avatar d'un utilisateur pour lequel la page de profil n'a pas été enregistrée.
+// Ces utilisateurs doivent toujours être définis dans la variable `$globalPlayers`.
+// La valeur retournée par cette fonction est au même format que celle de `random_avatar`.
+function user_avatar($id) {
+	$gender = "male";
+	$gfx = "";
+	switch($id) {
+		case 213073: // githe
+			$gfx = "0,0,0,0,0,6,2,4,8,0,0,0,3,0,3,6,6,0";
+			break;
+		case 470689: // Keviindu61
+			$gfx = "0,0,4,0,8,0,3,0,2,0,0,0,3,0,3,6,6,0";
+			break;
+		case 480488: // Nath0u
+			$gfx = "0,0,9,2,8,0,6,7,3,0,3,0,3,0,3,6,6,0";
+			break;
+		default:
+			return null;
+	}
+	return array("gender" => $gender, "gfx" => $gfx);
+}
+
 // Retourne la valeur utilisée par la clé "inv" du fichier Flash de la table de jeu "CaféJeux 2007-2020".
 // Elle permet de disposer de tous les meubles en quantité élevée, ainsi que d'autres dont l'existence n'avait pas été révélée.
 // Voir "_toad06/_dev_misc/table/edition.html" pour plus d'informations.
