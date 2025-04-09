@@ -959,6 +959,10 @@ switch($page) {
 			$errors .= "<li>Un pseudo doit faire entre 4 et 20 caractères.</li>";
 		} elseif(preg_match('/[^A-Za-z0-9]/', $gTo)) {
 			$errors .= "<li>Cet utilisateur n'existe pas.</li>";
+		} elseif(in_array(mb_strtolower($gTo), array_map("mb_strtolower", array("3Dos", "rastahman", "tony42", "yanndu28")))) {
+			// Prétexte pour afficher le message ci-dessous : on suppose la réciprocité de la mise sur liste noire.
+			// NOTE : Cette erreur peut également être affichée si le destinataire n'accepte que les messages privés de joueurs présents sur sa liste d'amis.
+			$errors .= "<li>Votre message ne peut pas être envoyé : le destinataire l'a refusé.</li>";
 		}
 		if(mb_strlen($gContent) < 4) {
 			$errors .= "<li>Votre message doit faire au moins 4 caractères.</li>";
