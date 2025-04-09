@@ -159,17 +159,22 @@ switch($page) {
 		if(!isset($_POST['nameOrMail'])) {
 			$data = get_content($pageUrlExt);
 		} else {
-			// NOTE : En cas de succès, cafejeux.com affichait seulement la première lettre de la partie précédant le symbole "@" dans l'email.
 			$pNameOrMail = $_POST['nameOrMail'];
 			$f = "_noUser";
 			if(mb_strlen($pNameOrMail) >= 8) {
 				// Prétextes pour afficher les messages associés.
-				if(preg_match('`^\w([-_.]?\w)*@\w([-_.]?\w)*\.([a-z]{1,6})$`', $pNameOrMail)) $f = "_ok";
-				elseif(!preg_match('/[^A-Za-z0-9]/', $pNameOrMail)) $f = "_already";
+				if(preg_match('`^\w([-_.]?\w)*@\w([-_.]?\w)*\.([a-z]{1,6})$`', $pNameOrMail)) {
+					// NOTE : En cas de succès, seule la première lettre de la partie précédant le symbole "@" dans l'email était effectivement affichée.
+					$f = "_ok";
+					$pNameOrMail = substr(explode("@", $pNameOrMail)[0], 0, 1) . "...@...";
+				} elseif(!preg_match('/[^A-Za-z0-9]/', $pNameOrMail)) {
+					$f = "_already";
+				}
 			} elseif(mb_strlen($pNameOrMail) >= 4 && !preg_match('/[^A-Za-z0-9]/', $pNameOrMail)) {
 				$f = "_noMail"; // Prétexte pour afficher le message associé.
 			}
 			$data = get_content($pageUrl . $f . $pageExt);
+			$data = str_replace("{ARCHIVE_ASKPASS_EMAIL}", htmlentities($pNameOrMail), $data);
 		}
 		break;
 	case "user/ident":
