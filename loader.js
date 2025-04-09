@@ -4059,8 +4059,10 @@ js.XmlHttp.onData = function(data) {
 				var uid = n.get("uid");
 				if(uid != null) {
 					if(js.XmlHttp.waitingUserTip != null) {
-						addToCache = uid;
+						// La variable "addToCache" a été déplacée en fin de bloc, de sorte que si une exception se produit dans "displayUserTip" (ce qui peut arriver lors d'un changement rapide de page),
+						// le bloc d'informations sur cet utilisateur n'affiche pas le texte "Veuillez patienter..." indéfiniment du fait de sa mise en cache.
 						js.XmlHttp.displayUserTip(js.XmlHttp.waitingUserTip.id,s);
+						addToCache = uid;
 					}
 				}
 				else {
