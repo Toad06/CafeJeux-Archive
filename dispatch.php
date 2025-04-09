@@ -1435,8 +1435,21 @@ switch($page) {
 						}
 					}
 					break;
-				case "group": $recursionValue = "6864"; break;
-				case "user": $recursionValue = "999999"; if(isset($checkPage[1])) { $__recursiondata = intval($checkPage[1]); } break;
+				case "group":
+					$recursionValue = "6864";
+					break;
+				case "user":
+					$recursionValue = "999999";
+					if(isset($checkPage[1])) {
+						if($checkPage[1] === "190420") {
+							// Cas spécial d'un utilisateur supprimé.
+							$recursionValue = "190420";
+							if(isset($checkPage[2])) unset($checkPage[2]);
+						} else {
+							$__recursiondata = intval($checkPage[1]);
+						}
+					}
+					break;
 			}
 			if($recursionValue !== "0") {
 				$gp2 = isset($checkPage[2]) ? "/" . $checkPage[2] : "";
