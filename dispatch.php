@@ -33,6 +33,7 @@ $pageUrlExt = $pageUrl . $pageExt;
 
 $isPagePublic = false;
 $isPageComponent = false;
+$isPageUnknown = false;
 
 $isUserLoggedIn = isset($_SESSION['cafeUsername']);
 $isUserFullLoggedIn = $isUserLoggedIn && isset($_SESSION['cafeDrink']);
@@ -1268,9 +1269,7 @@ switch($page) {
 			$pGroup = isset($_POST['group']) ? intval($_POST['group']) : 0;
 			if(mb_strlen($pEmail) < 10 || !preg_match('`^\w([-_.]?\w)*@\w([-_.]?\w)*\.([a-z]{1,6})$`', $pEmail)) {
 				$data = get_content($pageUrl . "_form_error" . $pageExt);
-			} elseif(isset($_POST['group']) && $pGroup <= 0) {
-				$data = "<alert>Une erreur inconnue s'est produite.</alert>";
-			} else {
+			} elseif(!isset($_POST['group']) || $pGroup > 0) {
 				// NOTE : Si un email avait déjà été envoyé au destinataire, cafejeux.com affichait le message d'erreur suivant : "Un message a déjà été envoyé à cette adresse." (adresse email insensible à la casse).
 				$data = get_content($pageUrl . "_form_ok" . $pageExt);
 			}
@@ -1469,6 +1468,7 @@ switch($page) {
 				exit;
 			}
 		}
+		$isPageUnknown = true;
 		break;
 }
 
@@ -1499,6 +1499,10 @@ if($data !== null) {
 	} elseif(!$isUserLoggedIn) {
 		echo "<reboot/>";
 	}
+} elseif(!$isPageUnknown) {
+	// NOTE : Sur cafejeux.com, cette erreur se déclenchait notamment quand une fonctionnalité était hors d'usage ; plusieurs cas sont d'ailleurs documentés à différents endroits dans ce fichier.
+	// Il existe sans doute une multitude d'autres situations, dont celle de la page "Inviter un ami à une table" quand le champ caché "group" est changé au profit d'une valeur incorrecte.
+	echo "<alert>Une erreur inconnue s'est produite.</alert>";
 } else {
 	http_response_code(301);
 	echo "<load>game</load>";
