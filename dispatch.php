@@ -1445,7 +1445,9 @@ switch($page) {
 					}
 					break;
 				case "group":
-					$recursionValue = "6864";
+					if(isset($checkPage[1]) && is_numeric($checkPage[1])) {
+						$recursionValue = "6864";
+					}
 					break;
 				case "user":
 					$recursionValue = "999999";
