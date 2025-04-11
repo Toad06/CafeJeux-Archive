@@ -101,8 +101,7 @@ function random_avatar($seed = null) {
 }
 
 // Retourne l'avatar d'un utilisateur pour lequel la page de profil n'a pas été enregistrée.
-// Ces utilisateurs doivent toujours être définis dans la variable `$globalPlayers`.
-// La valeur retournée par cette fonction est au même format que celle de `random_avatar`.
+// Ces utilisateurs doivent toujours être définis dans la variable "$globalPlayers".
 function user_avatar($id) {
 	$gender = "male";
 	$gfx = "";

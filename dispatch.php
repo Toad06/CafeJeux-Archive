@@ -165,7 +165,7 @@ switch($page) {
 			if(mb_strlen($pNameOrMail) >= 8) {
 				// Prétextes pour afficher les messages associés.
 				if(preg_match('`^\w([-_.]?\w)*@\w([-_.]?\w)*\.([a-z]{1,6})$`', $pNameOrMail)) {
-					// NOTE : En cas de succès, seule la première lettre de la partie précédant le symbole "@" dans l'email était effectivement affichée.
+					// NOTE : En cas de succès, seule la première lettre de la partie précédant le symbole "@" dans l'email est effectivement affichée.
 					$f = "_ok";
 					$pNameOrMail = substr(explode("@", $pNameOrMail)[0], 0, 1) . "...@...";
 				} elseif(!preg_match('/[^A-Za-z0-9]/', $pNameOrMail)) {
@@ -1449,8 +1449,8 @@ switch($page) {
 					}
 					break;
 				case "user":
-					$recursionValue = "999999";
-					if(isset($checkPage[1])) {
+					if(isset($checkPage[1]) && is_numeric($checkPage[1])) {
+						$recursionValue = "999999";
 						if($checkPage[1] === "190420") {
 							// Cas spécial d'un utilisateur supprimé.
 							$recursionValue = "190420";
@@ -1483,7 +1483,7 @@ if($data !== null) {
 					$_SESSION['cafeDayChanged'] = true;
 					$data = '<user money="{ARCHIVE_USER_MONEY}" freeMoney="0"/><load>user/dayChanged</load>'; // NOTE : Dès le changement de jour, le nombre de sucres blancs restant de la veille passe à 0.
 				} elseif($page === "game") {
-					// NOTE : En se rendant sur la page "Jouer au bar", cafejeux.com forçait effectivement l'affichage de la page de choix de boisson.
+					// NOTE : En se rendant sur la page "Jouer au bar", l'affichage de la page de choix de boisson est effectivement forcé.
 					$data = "<reboot/>";
 				}
 			}
