@@ -544,9 +544,9 @@ switch($page) {
 		$data = str_replace("{ARCHIVE_RANKINGS_OLD}", $old, $data);
 		break;
 	case "game/play_generic": // NOTE : Cette page permet d'afficher les jeux au sein même du site. Elle a été recréée sur la base de captures d'écran trouvées sur internet car elle n'était plus accessible sur cafejeux.com au moment où cette archive a été constituée.
-		if(isset($_GET['id'])) {
+		if(isset($_GET['gameId'])) {
 			sleep(mt_rand(1, 3)); // "Simule" le temps d'attente d'un adversaire.
-			$gameId = htmlentities(explode(";", $_GET['id'])[0]);
+			$gameId = htmlentities(explode(";", $_GET['gameId'])[0]);
 			$gameOptions = isset($_SESSION['cafeOptions']) ? $_SESSION['cafeOptions'] : "";
 			switch($gameId) {
 				case "4": $gameOptions = substr($gameOptions, 0, 3); break; // Magmax Battle : 3 options.
@@ -1416,7 +1416,7 @@ switch($page) {
 		break;
 	case "user/tkFurniture":
 		$gId = isset($_GET['id']) ? intval($_GET['id']) : 0;
-		if($gId >= 0) {
+		if($gId > 0) {
 			// NOTE : Cette fonctionnalité de cafejeux.com était hors d'usage au moment du test.
 			$data = "";
 		}
