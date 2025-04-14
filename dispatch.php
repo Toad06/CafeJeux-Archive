@@ -722,6 +722,7 @@ switch($page) {
 		// Dans le cadre de cette archive, l'édition de la description n'est pas enregistrée ; l'affichage de la page doit donc être fait directement.
 		if(!isset($__recursion)) {
 			$__recursion = true;
+			if(isset($_GET['edit'])) unset($_GET['edit']);
 			$_GET['p'] = "group/420/description";
 			include "dispatch.php";
 			$pDescription = isset($_POST['description']) ? trim($_POST['description']) : "";

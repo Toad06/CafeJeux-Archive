@@ -74,7 +74,7 @@ RewriteRule ^user/(.+)$ dispatch.php?p=user/$1 [QSA,L]
 # Empêche l'affichage des pages HTML sans passer par l'interpréteur PHP.
 RewriteRule ^pages/static(/.*)?$ - [QSA,L]
 RewriteRule ^pages/(.+).html$ dispatch.php?p=$1 [QSA,L]
-RewriteRule ^pages/(.+).js$ dispatch.php?p=$1 [QSA,L]
+RewriteRule ^pages/(.+).js$ dispatch.php?p=$1.js [QSA,L]
 
 
 # Le nom des fichiers mp3 avait été changé par inadvertance dans l'archive. Leur nom d'origine a depuis été rétabli.
