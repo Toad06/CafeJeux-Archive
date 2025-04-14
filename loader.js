@@ -5014,6 +5014,7 @@ js.App.leaveQueue = function(dc) {
 	if(dc != true) js.App.c._leaveQueue();
 	js.App.c.fill("queue",null,"");
 	js.App.c.setClass("queue","hidden");
+	mt.js.Tip.clean();
 }
 js.App.chatTip = function(e,g) {
 	var l = js.App.c._chatUsers(g);

@@ -518,7 +518,12 @@ switch($page) {
 		break;
 	case "game/queue":
 		if(false && ($globalUserFreeMoney > 0 || $globalUserMoney > 0)) {
-			// NOTE : Cette page ne devrait effectivement être accessible que lorsque le nombre total de sucres est égal à 0 (et qu'aucune partie n'est en cours).
+			// NOTE : Cette page ne devrait effectivement être accessible que lorsque le nombre total de sucres est égal à 0.
+			// En théorie, cela devrait également être le cas lorsqu'une partie est en cours, mais il existait un bug qui permettait pour un même utilisateur de lancer plusieurs parties à la fois :
+			// 1- Rejoindre la file d'attente et patienter sur la page jusqu'à ce qu'un adversaire soit trouvé.
+			// 2- Une fois l'adversaire trouvé, la redirection vers la page du jeu choisi par ce dernier est effectué : utiliser le bouton de retour du navigateur pour reculer d'une page et revenir à la file d'attente.
+			// 3a- Si un autre joueur attend un adversaire depuis trop de temps dès votre retour en file d'attente, la redirection vers la page du jeu choisi par ce dernier est effectuée, déclenchant ainsi le bug.
+			// 3b- Si aucun autre joueur n'attend depuis suffisamment longtemps dès votre retour en file d'attente, la redirection vers la page du jeu du premier adversaire est effectuée.
 			$data = "<load>game</load>";
 		} else {
 			// NOTE : Un lien "Jouer sans sucre" devrait être affiché sur la page "Jouer au bar".
@@ -526,6 +531,9 @@ switch($page) {
 			if(isset($_GET['queue'])) {
 				$data .= PHP_EOL;
 				$data .= get_content($pageUrl . "_in" . $pageExt);
+				// Le serveur de jeu était inaccessible au moment du test, la position de l'utilisateur dans la file d'attente ne s'affichait donc pas.
+				// Ceci est corrigé ci-dessous afin de produire le même affichage que si la macro "game@queuePos" avait été utilisée.
+				$data = str_replace("-/-", '<a href="#" onclick="js.App.leaveQueue(); return false;">1 / 1</a>', $data);
 			}
 		}
 		break;
