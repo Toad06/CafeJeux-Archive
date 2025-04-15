@@ -1038,6 +1038,7 @@ switch($page) {
 		break;
 	case "user/18269":
 	case "user/18269/tip":
+		$data = "";
 		if($isUserFullLoggedIn) {
 			$drink = $globalDrinks[$_SESSION['cafeDrink']];
 			$data = get_content($pageUrlExt);
