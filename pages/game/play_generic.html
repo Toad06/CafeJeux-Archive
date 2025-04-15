@@ -52,10 +52,10 @@
 				// Textes d'El Papa.
 				var texts = "";
 				if(Game_FirstPlayer === "1") {
-					texts += js.App.c.applyTpl("chat@userlist", {_list: []}).replace("à la table", "au bar"); // Petit changement perso pour un peu plus de cohérence.
+					texts += js.App.c.applyTpl("chat@userlist", {_list: [], _room: "party_" + Game_Id}).replace("à la table", "au bar"); // Petit changement perso pour un peu plus de cohérence.
 					texts += js.App.c.applyTpl("chat@join", {_u: {_uid: 999999, _name: Game_GetData("player2Name")}, _room: "party_" + Game_Id});
 				} else {
-					texts += js.App.c.applyTpl("chat@userlist", {_list: [{_u: {_uid: 18269, _name: Game_GetData("player2Name")}, _room: "party_" + Game_Id}]});
+					texts += js.App.c.applyTpl("chat@userlist", {_list: [{_u: {_uid: 18269, _name: Game_GetData("player2Name")}}], _room: "party_" + Game_Id});
 				}
 				history.innerHTML = texts;
 				break;
@@ -119,10 +119,14 @@
 				js.Utils.setClass("menuBtnBar", "");
 				var backBar = game.querySelector("#backButton a");
 				backBar.href = "#game";
-				backBar.onclick = function() { js.XmlHttp.get("game", this); return false; };
+				backBar.onclick = function() {
+					js.XmlHttp.get("game", this);
+					return false;
+				};
 				backBar.className = backBar.className.replace("b_abandon", "b_back");
 				backBar.innerHTML = "Retour au bar";
-				var newGame = game.querySelector("#gameZone a.button");
+				var reportBehavior = game.querySelector("#gameZone a.button");
+				var newGame = document.createElement("a");
 				newGame.href = "#game/" + Game_Id;
 				newGame.onclick = function() {
 					if(document.querySelector("#siteSound a").className === "on") {
@@ -134,12 +138,15 @@
 					js.XmlHttp.get("game/" + Game_Id, this);
 					return false;
 				};
+				newGame.style.cssText = reportBehavior.style.cssText;
 				// NOTE : Le texte du bouton devrait être "Trouver un autre adversaire" mais cela ne ferait pas sens par rapport au fonctionnement monoposte de l'archive.
 				// Matchs au bar : texte "Trouver un autre adversaire", classe "button b_play".
 				// Matchs de table : texte "Retour à la table", classe "button".
 				// Matchs amicaux : texte "Proposer la revanche à [adversaire]", classe "button b_fight".
-				newGame.className = newGame.className.replace("b_stop", "b_fight");
+				// Tout type de match revisionné : texte "Revoir cette partie", classe "button" (le bouton remplaçant le texte indiquant de cliquer pour passer au coup suivant).
+				newGame.className = "button b_fight";
 				newGame.innerHTML = "Proposer la revanche à {ARCHIVE_OTHER_USER_NAME}";
+				reportBehavior.parentNode.insertBefore(newGame, reportBehavior);
 				break;
 			case "turn":
 				// Au joueur suivant !
@@ -349,7 +356,12 @@
 		// Bouton "Abandonner la partie".
 		var abandon = game.querySelector("#backButton a");
 		abandon.href = "#";
-		abandon.onclick = function() { if(confirm("Veuillez confirmer l'abandon de la partie.")) js.XmlHttp.get("game/" + Game_Id, this); return false; };
+		abandon.onclick = function() {
+			if(confirm("Veuillez confirmer l'abandon de la partie.")) {
+				js.XmlHttp.get("game/" + Game_Id, this);
+			}
+			return false;
+		};
 		abandon.className = abandon.className.replace("b_delete", "b_abandon");
 		abandon.innerHTML = "Abandonner la partie !";
 
@@ -359,7 +371,14 @@
 			helpButton = document.createElement("a");
 			helpButton.className = "button";
 		}
-		helpButton.onclick = function() { this.style.display = "none"; this.nextElementSibling.style.display = ""; js.Utils.setClass("historyContainer", "hidden"); js.Utils.setClass("helpContainer", ""); return false; };
+		helpButton.onclick = function() {
+			this.style.display = "none";
+			this.nextElementSibling.style.display = "";
+			js.Utils.setClass("historyContainer", "hidden");
+			js.Utils.setClass("helpContainer", "");
+			js.Utils.setClass("reportContainer", "hidden");
+			return false;
+		};
 		helpButton.className += " b_help";
 		helpButton.style.display = "";
 		helpButton.innerHTML = "Voir l'aide de " + name;
@@ -371,7 +390,14 @@
 			chatButton = document.createElement("a");
 			chatButton.className = "button";
 		}
-		chatButton.onclick = function() { this.style.display = "none"; this.previousElementSibling.style.display = ""; js.Utils.setClass("historyContainer", ""); js.Utils.setClass("helpContainer", "hidden"); return false; };
+		chatButton.onclick = function() {
+			this.style.display = "none";
+			this.previousElementSibling.style.display = "";
+			js.Utils.setClass("historyContainer", "");
+			js.Utils.setClass("helpContainer", "hidden");
+			js.Utils.setClass("reportContainer", "hidden");
+			return false;
+		};
 		chatButton.className += " b_back";
 		chatButton.style.display = "none";
 		chatButton.innerHTML = "Retour au chat";
@@ -431,11 +457,52 @@
 
 		// Jeu et bouton "Signaler un comportement anormal".
 		// NOTE : cafejeux.com chargeait directement le fichier SWF au lieu de le faire via un élément IFRAME.
+		// NOTE : Pour les matchs revisionnés, le texte "<p>Cliquez sur le jeu pour passer au coup suivant.</p>" était affiché juste au-dessus du bouton de signalement.
 		var gameZone = game.querySelector("#gameZone");
 		gameZone.innerHTML = '<div class="gameClient">' +
 			'<iframe src="_toad06/?game={ARCHIVE_GAME_ID}{ARCHIVE_GAME_OPTIONS}" width="300" height="300" class="swf" frameborder="0" scrolling="no" style="overflow:hidden;"></iframe>' +
-			'<a href="#" class="button b_stop" onclick="return false;" style="width:260px; margin-top:10px;">Signaler un comportement anormal</a>' +
+			'<a href="#" class="button b_stop" style="width:260px; margin-top:10px;">Signaler un comportement anormal</a>' +
 			'</div>';
+		gameZone.querySelector("a.button").onclick = function() {
+			// Simule l'affichage et le fonctionnement du signalement de comportement anormal.
+			// NOTE : Seuls les pseudos des *autres* utilisateurs ayant parlé étaient listés sur cafejeux.com, et à condition que le message à signaler ait été posté il y a au plus 30 secondes.
+			var list = []; list.names = [];
+			var posts = document.querySelectorAll("#history div");
+			for(var i = 0; i < posts.length; i++) {
+				var post = posts[i];
+				var name = "";
+				var uid = -1;
+				if(post.className.indexOf("chatMsg") !== -1) {
+					name = post.querySelector("a").textContent;
+				} else if(post.className.indexOf("chatEmote") !== -1) {
+					name = post.textContent.split(" ")[0];
+				} else {
+					continue;
+				}
+				if(list.names.indexOf(name) === -1) {
+					list.names.push(name);
+					list.push({_u: {_uid: (name === "{ARCHIVE_USERNAME}" ? 18269 : 999999), _name: name}});
+				}
+				js.App.chatReport = function() {
+					alert("Votre alerte a bien été enregistrée. L'accès au chat sera bloqué en cas de récidive.");
+					var back = document.querySelector("#chatReport a.b_back");
+					if(back !== null && back.onclick !== null) {
+						back.onclick();
+					}
+				};
+			}
+			document.getElementById("reportContainer").innerHTML = js.App.c.applyTpl("chat@report", {_list: list, _room: "party_" + Game_Id});
+			document.querySelector("div.game td.chat a.b_help").style.display = "";
+			document.querySelector("div.game td.chat a.b_back").style.display = "none";
+			js.Utils.setClass("historyContainer", "hidden");
+			js.Utils.setClass("helpContainer", "hidden");
+			js.Utils.setClass("reportContainer", "");
+			return false;
+		};
+		var reportContainer = document.createElement("div");
+		reportContainer.id = "reportContainer";
+		reportContainer.className = "hidden";
+		history.parentNode.insertBefore(reportContainer, history.nextSibling);
 	})();
 //]]>
 </script>

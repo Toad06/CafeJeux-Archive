@@ -139,7 +139,7 @@
 								rooms.flashJsRemotingCall(name, "api.;jj6_", haxe.Serializer.run([usersInit]));
 								// Ajoute les textes de El Papa dans la partie chat.
 								var texts = "";
-								texts += js.App.c.applyTpl("chat@userlist", {_list: []});
+								texts += js.App.c.applyTpl("chat@userlist", {_list: [], _room: name});
 								if(isGroup420) {
 									texts += js.App.c.applyTpl("chat@join", {_u: {_uid: 480488, _name: "Nath0u"}, _room: name});
 								}
