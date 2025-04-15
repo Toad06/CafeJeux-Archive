@@ -4678,6 +4678,29 @@ js.Client.prototype.connected = function(b) {
 		haxe.Log.trace("Connected",{ fileName : "Client.hx", lineNumber : 207, className : "js.Client", methodName : "connected"});
 		this.fill("cnxIcon","global@connected",null);
 		js.App.leaveQueue(true);
+		if(window.BroadcastChannel) {
+			// On simule le cas où le serveur de jeu constate que plusieurs connexions ont lieu simultanément pour un même compte.
+			// Ceci ne fonctionne ici que dans le cas où plusieurs fenêtres du site sont ouvertes dans le même navigateur.
+			var bc = new BroadcastChannel("cj_checkMultipleLogin");
+			var msg = "cj_sendToOtherWindows";
+			bc.addEventListener("message", function(event) {
+				if(event.data === msg) {
+					js.App.c.fill("cnxIcon", "global@closed", null);
+					var div = document.getElementById("multipleLoginWarning");
+					div.innerHTML = js.App.c.applyTpl("global@multipleLoginWarning", null);
+					div.className = "";
+					var a = div.querySelector("a");
+					a.__onclick = a.onclick;
+					a.onclick = function() {
+						this.__onclick();
+						js.App.c.fill("cnxIcon", "global@connected", null);
+						bc.postMessage(msg);
+						return false;
+					};
+				}
+			}, false);
+			bc.postMessage(msg);
+		}
 	}
 	else {
 		haxe.Log.trace("Disconnected !",{ fileName : "Client.hx", lineNumber : 211, className : "js.Client", methodName : "connected"});
