@@ -56,7 +56,7 @@ switch($page) {
 		break;
 	case "defm":
 		// NOTE : Cette page est appelée par "swf/client.swf" avec le paramètre GET "sid=[key1];m=[key2]".
-		// Sert-elle à établir la connexion avec le serveur de jeu ?
+		// Elle ne renvoie aucune donnée.
 		$isPagePublic = true;
 		$isPageComponent = true;
 		$data = "";
@@ -932,7 +932,7 @@ switch($page) {
 		$gMode = isset($_GET['mode']) ? explode(";", $_GET['mode'])[0] : "";
 		$type1 = ""; $type2 = ""; $type3 = "";
 		switch($gMode) { case "friendly": $type2 = "selected"; break; case "group": $type3 = "selected"; break; case "default": default: $type1 = "selected"; break; }
-		$data = get_content($pageUrlExt);
+		$data = get_content($pageUrl . (strlen($type1) > 0 ? "_list" : "_empty") . $pageExt);
 		$data = str_replace("{ARCHIVE_HISTORY_1}", $type1, $data);
 		$data = str_replace("{ARCHIVE_HISTORY_2}", $type2, $data);
 		$data = str_replace("{ARCHIVE_HISTORY_3}", $type3, $data);
@@ -1018,7 +1018,7 @@ switch($page) {
 				$data .= 'js.XmlHttp.enqueue("shop/' . $gId . '/buy?sid=' . $sid . '");';
 				$data .= '</script>';
 			} else {
-				// NOTE : L'achat d'une boisson devrait changer le header, voir un exemple dans "pages/shop/buy_drink.html".
+				// NOTE : L'achat d'une boisson devrait changer le header, un exemple est disponible dans "pages/shop/buy_drink.html".
 				$data = get_content("pages/shop/buy_generic.html");
 				$data = str_replace("{ARCHIVE_BUY_SUBSHOP}", "Furniture", $data);
 			}

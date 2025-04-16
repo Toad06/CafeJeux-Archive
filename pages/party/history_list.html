@@ -1,0 +1,105 @@
+<fill id="main">
+<![CDATA[
+	<h1><strong>Historique de</strong> mes parties</h1>
+
+	<ul class="tabs">
+		<li class="{ARCHIVE_HISTORY_1}" href="#party/history?mode=default" onclick="js.XmlHttp.get('party/history?mode=default',this); return false;"><a>Au bar</a></li>
+		<li class="{ARCHIVE_HISTORY_2}" href="#party/history?mode=friendly" onclick="js.XmlHttp.get('party/history?mode=friendly',this); return false;"><a>Amicaux</a></li>
+		<li class="{ARCHIVE_HISTORY_3}" href="#party/history?mode=group" onclick="js.XmlHttp.get('party/history?mode=group',this); return false;"><a>Sur table</a></li>
+	</ul>
+
+	<a href="#user/18269" class="button b_back" onclick="js.XmlHttp.get('user/18269',this); return false;">Retour à ma page</a>
+
+	<!-- Tableau reconstitué sur la base du modèle de "pages/user/999999/barHistory.html". -->
+	<!-- NOTE : cafejeux.com supprimait en effet le résultat et l'historique des parties qui avaient été jouées depuis trop de temps. -->
+	<div class="container">
+		<div class="tableHeader"></div>
+	
+	<table class="table">
+		<tr>
+			<th>&nbsp;</th>
+			<th>Adversaire</th>
+			<th>Jeu</th>
+			<th>Date</th>
+			<th>Durée</th>
+			<th>&nbsp;</th>
+		</tr>
+		<tr>
+			<td class="auth" onmouseover="mt.js.Tip.show(this, 'Victoire !', null);" onmouseout="mt.js.Tip.hide();"><img src="img/icons/small_win.gif" alt=""/></td>
+			<td><span class="user" id="u_00001" onmouseover="js.XmlHttp.userTip(this,'999999', '');" onmouseout="js.XmlHttp.hideUserTip(this);"><a href="#user/999999" onclick="js.XmlHttp.get('user/999999', this); return false;">Joueur</a></span></td>
+			<td><a href="#game/6" onclick="js.XmlHttp.get('game/6', this); return false;"><img src="games/icon/miniwar.gif" class="gameIcon" alt=""/>&nbsp;Anticorp's</a></td>
+			<td><span title="Le mardi  8 novembre 2022, à 21:48:25">Le 8 à 21:48</span></td>
+			<td>09:49</td>
+			<td class="auth"><a href="#" onclick="alert('L\'historique de cette partie n\'est plus disponible.'); return false;" onmouseover="mt.js.Tip.show(this, 'Cliquez pour revoir cette partie.', null);" onmouseout="mt.js.Tip.hide();"><img src="img/icons/small_histo.gif" alt=""/></a></td>
+		</tr>
+		<tr class="loss">
+			<td class="auth" onmouseover="mt.js.Tip.show(this, 'Défaite...', null);" onmouseout="mt.js.Tip.hide();"><img src="img/icons/small_lose.gif" alt=""/></td>
+			<td><span class="user" id="u_00002" onmouseover="js.XmlHttp.userTip(this,'999999', '');" onmouseout="js.XmlHttp.hideUserTip(this);"><a href="#user/999999" onclick="js.XmlHttp.get('user/999999', this); return false;">Joueur</a></span></td>
+			<td><a href="#game/6" onclick="js.XmlHttp.get('game/6', this); return false;"><img src="games/icon/miniwar.gif" class="gameIcon" alt=""/>&nbsp;Anticorp's</a></td>
+			<td><span title="Le mardi  8 novembre 2022, à 21:35:42">Le 8 à 21:35</span></td>
+			<td>04:27</td>
+			<td class="auth"><a href="#" onclick="alert('L\'historique de cette partie n\'est plus disponible.'); return false;" onmouseover="mt.js.Tip.show(this, 'Cliquez pour revoir cette partie.', null);" onmouseout="mt.js.Tip.hide();"><img src="img/icons/small_histo.gif" alt=""/></a></td>
+		</tr>
+		<tr>
+			<td class="auth" onmouseover="mt.js.Tip.show(this, 'Victoire !', null);" onmouseout="mt.js.Tip.hide();"><img src="img/icons/small_win.gif" alt=""/></td>
+			<td><span class="user" id="u_00003" onmouseover="js.XmlHttp.userTip(this,'999999', '');" onmouseout="js.XmlHttp.hideUserTip(this);"><a href="#user/999999" onclick="js.XmlHttp.get('user/999999', this); return false;">Joueur</a></span></td>
+			<td><a href="#game/5" onclick="js.XmlHttp.get('game/5', this); return false;"><img src="games/icon/quat.gif" class="gameIcon" alt=""/>&nbsp;Quat'Cinelle</a></td>
+			<td><span title="Le mardi  8 novembre 2022, à 21:28:04">Le 8 à 21:28</span></td>
+			<td>06:50</td>
+			<td class="auth"><a href="#" onclick="alert('L\'historique de cette partie n\'est plus disponible.'); return false;" onmouseover="mt.js.Tip.show(this, 'Cliquez pour revoir cette partie.', null);" onmouseout="mt.js.Tip.hide();"><img src="img/icons/small_histo.gif" alt=""/></a></td>
+		</tr>
+		<tr>
+			<td class="auth" onmouseover="mt.js.Tip.show(this, 'Victoire !', null);" onmouseout="mt.js.Tip.hide();"><img src="img/icons/small_win.gif" alt=""/></td>
+			<td><span class="user" id="u_00004" onmouseover="js.XmlHttp.userTip(this,'999999', '');" onmouseout="js.XmlHttp.hideUserTip(this);"><a href="#user/999999" onclick="js.XmlHttp.get('user/999999', this); return false;">Joueur</a></span></td>
+			<td><a href="#game/7" onclick="js.XmlHttp.get('game/7', this); return false;"><img src="games/icon/marbil.gif" class="gameIcon" alt=""/>&nbsp;Marbils</a></td>
+			<td><span title="Le dimanche 30 octobre 2022, à 19:05:45">Le 30 octobre à 19:05</span></td>
+			<td>02:20</td>
+			<td class="auth"><a href="#" onclick="alert('L\'historique de cette partie n\'est plus disponible.'); return false;" onmouseover="mt.js.Tip.show(this, 'Cliquez pour revoir cette partie.', null);" onmouseout="mt.js.Tip.hide();"><img src="img/icons/small_histo.gif" alt=""/></a></td>
+		</tr>
+		<tr class="loss">
+			<td class="auth" onmouseover="mt.js.Tip.show(this, 'Défaite...', null);" onmouseout="mt.js.Tip.hide();"><img src="img/icons/small_lose.gif" alt=""/></td>
+			<td><span class="user" id="u_00005" onmouseover="js.XmlHttp.userTip(this,'999999', '');" onmouseout="js.XmlHttp.hideUserTip(this);"><a href="#user/999999" onclick="js.XmlHttp.get('user/999999', this); return false;">Joueur</a></span></td>
+			<td><a href="#game/1" onclick="js.XmlHttp.get('game/1', this); return false;"><img src="games/icon/expanz.gif" class="gameIcon" alt=""/>&nbsp;eXpanz</a></td>
+			<td><span title="Le dimanche 30 octobre 2022, à 19:00:07">Le 30 octobre à 19:00</span></td>
+			<td>04:03</td>
+			<td class="auth"><a href="#" onclick="alert('L\'historique de cette partie n\'est plus disponible.'); return false;" onmouseover="mt.js.Tip.show(this, 'Cliquez pour revoir cette partie.', null);" onmouseout="mt.js.Tip.hide();"><img src="img/icons/small_histo.gif" alt=""/></a></td>
+		</tr>
+		<tr>
+			<td class="auth" onmouseover="mt.js.Tip.show(this, 'Match nul !', null);" onmouseout="mt.js.Tip.hide();"><img src="img/icons/small_draw.gif" alt=""/></td>
+			<td><span class="user" id="u_00006" onmouseover="js.XmlHttp.userTip(this,'999999', '');" onmouseout="js.XmlHttp.hideUserTip(this);"><a href="#user/999999" onclick="js.XmlHttp.get('user/999999', this); return false;">Joueur</a></span></td>
+			<td><a href="#game/9" onclick="js.XmlHttp.get('game/9', this); return false;"><img src="games/icon/trifus.gif" class="gameIcon" alt=""/>&nbsp;Trigolo</a></td>
+			<td><span title="Le dimanche 30 octobre 2022, à 18:54:32">Le 30 octobre à 18:54</span></td>
+			<td>04:35</td>
+			<td class="auth"><a href="#" onclick="alert('L\'historique de cette partie n\'est plus disponible.'); return false;" onmouseover="mt.js.Tip.show(this, 'Cliquez pour revoir cette partie.', null);" onmouseout="mt.js.Tip.hide();"><img src="img/icons/small_histo.gif" alt=""/></a></td>
+		</tr>
+		<tr>
+			<td class="auth" onmouseover="mt.js.Tip.show(this, 'Victoire !', null);" onmouseout="mt.js.Tip.hide();"><img src="img/icons/small_win.gif" alt=""/></td>
+			<td><span class="user" id="u_00007" onmouseover="js.XmlHttp.userTip(this,'999999', '');" onmouseout="js.XmlHttp.hideUserTip(this);"><a href="#user/999999" onclick="js.XmlHttp.get('user/999999', this); return false;">Joueur</a></span></td>
+			<td><a href="#game/3" onclick="js.XmlHttp.get('game/3', this); return false;"><img src="games/icon/crumble.gif" class="gameIcon" alt=""/>&nbsp;Crumble</a></td>
+			<td><span title="Le samedi 29 octobre 2022, à 23:47:32">Le 29 octobre à 23:47</span></td>
+			<td>05:19</td>
+			<td class="auth"><a href="#" onclick="alert('L\'historique de cette partie n\'est plus disponible.'); return false;" onmouseover="mt.js.Tip.show(this, 'Cliquez pour revoir cette partie.', null);" onmouseout="mt.js.Tip.hide();"><img src="img/icons/small_histo.gif" alt=""/></a></td>
+		</tr>
+		<tr>
+			<td class="auth" onmouseover="mt.js.Tip.show(this, 'Match nul !', null);" onmouseout="mt.js.Tip.hide();"><img src="img/icons/small_draw.gif" alt=""/></td>
+			<td><span class="user" id="u_00008" onmouseover="js.XmlHttp.userTip(this,'999999', '');" onmouseout="js.XmlHttp.hideUserTip(this);"><a href="#user/999999" onclick="js.XmlHttp.get('user/999999', this); return false;">Joueur</a></span></td>
+			<td><a href="#game/6" onclick="js.XmlHttp.get('game/6', this); return false;"><img src="games/icon/miniwar.gif" class="gameIcon" alt=""/>&nbsp;Anticorp's</a></td>
+			<td><span title="Le samedi 29 octobre 2022, à 23:40:58">Le 29 octobre à 23:40</span></td>
+			<td>08:52</td>
+			<td class="auth"><a href="#" onclick="alert('L\'historique de cette partie n\'est plus disponible.'); return false;" onmouseover="mt.js.Tip.show(this, 'Cliquez pour revoir cette partie.', null);" onmouseout="mt.js.Tip.hide();"><img src="img/icons/small_histo.gif" alt=""/></a></td>
+		</tr>
+		<tr>
+			<td class="auth" onmouseover="mt.js.Tip.show(this, 'Victoire !', null);" onmouseout="mt.js.Tip.hide();"><img src="img/icons/small_win.gif" alt=""/></td>
+			<td><span class="user" id="u_00009" onmouseover="js.XmlHttp.userTip(this,'999999', '');" onmouseout="js.XmlHttp.hideUserTip(this);"><a href="#user/999999" onclick="js.XmlHttp.get('user/999999', this); return false;">Joueur</a></span></td>
+			<td><a href="#game/6" onclick="js.XmlHttp.get('game/6', this); return false;"><img src="games/icon/miniwar.gif" class="gameIcon" alt=""/>&nbsp;Anticorp's</a></td>
+			<td><span title="Le samedi 29 octobre 2022, à 23:29:25">Le 29 octobre à 23:29</span></td>
+			<td>05:23</td>
+			<td class="auth"><a href="#" onclick="alert('L\'historique de cette partie n\'est plus disponible.'); return false;" onmouseover="mt.js.Tip.show(this, 'Cliquez pour revoir cette partie.', null);" onmouseout="mt.js.Tip.hide();"><img src="img/icons/small_histo.gif" alt=""/></a></td>
+		</tr>
+	</table>
+			</div>
+
+	<a href="party/historyCsv" class="button" target="LoginFrame" onmouseover="mt.js.Tip.show(this,'Téléchargez la liste de vos 1000 dernières parties. La liste peut être importée dans votre tableur préféré pour calculer vous-même les statistiques de votre choix !',null)" onmouseout="mt.js.Tip.hide()">Experts : Historique CSV</a>
+
+]]>
+</fill>
