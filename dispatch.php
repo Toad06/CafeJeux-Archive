@@ -1359,6 +1359,7 @@ switch($page) {
 			} else {
 				foreach($globalPlayers as $kPlayerId => $vPlayerName) {
 					if(mb_stripos($vPlayerName, $pName) === 0) {
+						if($kPlayerId === 999999) continue;
 						if(!$pOnline || $kPlayerId === 18269) {
 							$searchedPlayerIds[] = $kPlayerId;
 							sort($searchedPlayerIds);
