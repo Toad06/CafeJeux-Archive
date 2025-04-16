@@ -360,7 +360,6 @@ switch($page) {
 	case "game/11/ranking":
 	case "game/observe":
 	case "group":
-	case "group/420/forum":
 	case "group/420/partyHistory":
 	case "group/420/ranking":
 	case "group/420/recruit":
@@ -779,6 +778,15 @@ switch($page) {
 			}
 		}
 		break;
+	case "group/420/forum":
+		// Le code JavaScript ci-dessous est ajouté pour ajuster l'affichage de la page si le nouveau message a déjà été lu.
+		// NOTE : Sur cafejeux.com, même les messages postés par soi-même étaient d'abord affichés avec la classe "unread".
+		$data = '<script type="text/javascript">';
+		$data .= 'if(document.querySelector("#groupForumTab img") === null)';
+		$data .= 'setTimeout(function() { try { document.querySelector("#groupMain div.forum table tr.unread").removeAttribute("class"); } catch(_e) {} }, 0);';
+		$data .= '</script>';
+		$data .= get_content($pageUrlExt);
+		break;
 	case "group/420/invite":
 	case "group/6951/invite":
 		$pName = isset($_POST['name']) ? $_POST['name'] : "";
@@ -1008,7 +1016,7 @@ switch($page) {
 		if(isset($_GET['id'])) {
 			$gId = intval($_GET['id']);
 			if(!isset($_GET['sid'])) {
-				$sid = mt_rand(1000, 10000);
+				$sid = strval(mt_rand(1000, 10000));
 				// NOTE : cafejeux.com renvoyait la balise <confirm/> ci-dessous. Ce procédé nécessite l'utilisation d'une base de données ou d'un moyen similaire pour retrouver le nom de l'objet et son prix.
 				// Il est toutefois possible de produire un affichage identique avec quelques lignes de JavaScript. Cette solution est donc choisie ici.
 				// `<confirm macro="shop@confirmBuy" name="[ITEM_NAME]" price="[ITEM_PRICE]" url="shop/[ITEM_ID]/buy?sid=[USER_SID]"/>`
