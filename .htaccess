@@ -4,42 +4,25 @@ Options +Indexes
 
 
 RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-f
 
 RewriteRule ^_special(/.*)?$ dispatch.php?p=_special$1 [QSA,L]
-
 RewriteRule ^bank(/.*)?$ dispatch.php?p=bank$1 [QSA,L]
-
 RewriteRule ^ctpl(/.*)?$ dispatch.php?p=ctpl$1 [QSA,L]
-
 RewriteRule ^defm(/.*)?$ dispatch.php?p=defm$1 [QSA,L]
-
 RewriteRule ^defy(/.*)?$ dispatch.php?p=defy$1 [QSA,L]
-
 RewriteRule ^forum(/.*)?$ dispatch.php?p=forum$1 [QSA,L]
-
 RewriteRule ^game(/.*)?$ dispatch.php?p=game$1 [QSA,L]
-
 RewriteRule ^group(/.*)?$ dispatch.php?p=group$1 [QSA,L]
-
 RewriteRule ^head(/.*)?$ dispatch.php?p=head$1 [QSA,L]
-
 RewriteRule ^help(/.*)?$ dispatch.php?p=help$1 [QSA,L]
-
 RewriteRule ^log(/.*)?$ dispatch.php?p=log$1 [QSA,L]
-
 RewriteRule ^news(/.*)?$ dispatch.php?p=news$1 [QSA,L]
-
 RewriteRule ^partnerFrame(/.*)?$ dispatch.php?p=partnerFrame$1 [QSA,L]
-
 RewriteRule ^party(/.*)?$ dispatch.php?p=party$1 [QSA,L]
-
 RewriteRule ^play(/.*)?$ dispatch.php?p=play$1 [QSA,L]
 
-RewriteCond %{QUERY_STRING} ^page=([^&]+)$
-RewriteRule ^pvmsg/([0-9]+)/delete$ dispatch.php?p=pvmsg/[id]/delete&id=$1&page=%1 [L]
-RewriteCond %{QUERY_STRING} ^page=([^&]+)$
-RewriteRule ^pvmsg/([0-9]+)/report$ dispatch.php?p=pvmsg/[id]/report&id=$1&page=%1 [L]
+RewriteRule ^pvmsg/([0-9]+)/delete$ dispatch.php?p=pvmsg/[id]/delete&id=$1 [QSA,L]
+RewriteRule ^pvmsg/([0-9]+)/report$ dispatch.php?p=pvmsg/[id]/report&id=$1 [QSA,L]
 RewriteRule ^pvmsg(/.*)?$ dispatch.php?p=pvmsg$1 [QSA,L]
 RewriteRule ^pvmsgFromSpecial(/.*)?$ dispatch.php?p=pvmsgFromSpecial$1 [QSA,L]
 
@@ -49,9 +32,7 @@ RewriteRule ^shop/([0-9]+)/buy$ dispatch.php?p=shop/[id]/buy&id=$1 [QSA,L]
 RewriteRule ^shop(/.*)?$ dispatch.php?p=shop$1 [QSA,L]
 
 RewriteRule ^smileyTip(/.*)?$ dispatch.php?p=smileyTip$1 [QSA,L]
-
 RewriteRule ^sponsor(/.*)?$ dispatch.php?p=sponsor$1 [QSA,L]
-
 RewriteRule ^static(/.*)?$ dispatch.php?p=static$1 [QSA,L]
 
 RewriteRule ^user/([0-9]+)/addBlackContact$ dispatch.php?p=user/[id]/addBlackContact&id=$1 [QSA,L]
