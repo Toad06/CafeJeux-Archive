@@ -598,7 +598,15 @@ function Miniwar_Place(data) {
 			data[2] = special;
 		} else if(special === 99) {
 			// Génère différents types de cosmos dans une même partie.
-			data[2] = ~~(Math.random() * 6);
+			// Chaque équipe est cependant constituée des mêmes types de cosmos, mais ceux-ci n'apparaissent pas nécessairement dans le même ordre.
+			if(window._MiniwarCharacters === undefined) {
+				window._MiniwarCharacters = [];
+				var player1Characters = [~~(Math.random() * 6), ~~(Math.random() * 6), ~~(Math.random() * 6)];
+				var player2Characters = JSON.parse(JSON.stringify(player1Characters)).sort(function() { return 0.5 - Math.random(); });
+				_MiniwarCharacters.push(player1Characters);
+				_MiniwarCharacters.push(player2Characters);
+			}
+			data[2] = _MiniwarCharacters[CJGame_PlayData.turn - 1].shift();
 		}
 	}
 }
