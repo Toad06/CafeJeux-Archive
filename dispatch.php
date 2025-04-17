@@ -56,7 +56,6 @@ switch($page) {
 		break;
 	case "defm":
 		// NOTE : Cette page est appelée par "swf/client.swf" avec le paramètre GET "sid=[key1];m=[key2]".
-		// Elle ne renvoie aucune donnée.
 		$isPagePublic = true;
 		$isPageComponent = true;
 		$data = "";
@@ -586,7 +585,7 @@ switch($page) {
 		$data = get_content($pageUrlExt);
 		$data = str_replace("{ARCHIVE_LOAD_TABLE}", $gGo, $data);
 		if($idTable === "6864") {
-			// NOTE : Prétexte pour différencier une table à laquelle on peut ou ne peut plus adhérer (limite maximum : 60 membres par table).
+			// Prétexte pour différencier une table à laquelle on peut ou ne peut plus adhérer (limite maximum : 60 membres par table).
 			$_SESSION['cafeTableDummy'] = isset($__recursion);
 			$data = str_replace("{ARCHIVE_TABLE_TOTAL_MEMBERS}", (!isset($__recursion) ? "59" : "60"), $data);
 		}
@@ -959,7 +958,7 @@ switch($page) {
 			$gPage = isset($_GET['page']) ? intval($_GET['page']) : 1;
 			$data = '<load>pvmsg/list?page=' . $gPage . '</load><fill id="msgView"></fill>';
 			if($page === "pvmsg/[id]/report") {
-				// NOTE : L'ID réel devrait bien sûr être utilisé ici.
+				// NOTE : L'ID réel de l'utilisateur devrait bien sûr être utilisé ci-dessous.
 				$data .= '<blacklist add="[other_user_index]"/>';
 			}
 		}
@@ -1105,7 +1104,7 @@ switch($page) {
 			if(mb_strlen($pPass) < 6 || mb_strlen($pPass) > 32) {
 				$error = "Ce code secret n'est pas valide. Attention, les différences entre minuscules et majuscules sont prises en compte.";
 			} elseif($pSugar <= 0 || $pSugar > $globalUserMoney) {
-				$error = "Vous n'avez pas assez de sucres.";
+				$error = "Vous n'avez pas assez de sucre.";
 			} elseif($playerId === "18269") {
 				$error = "Vous essayez de faire quoi là exactement ?";
 			}
@@ -1437,6 +1436,7 @@ switch($page) {
 		$gId = isset($_GET['id']) ? intval($_GET['id']) : 0;
 		if($gId > 0) {
 			// NOTE : Cette fonctionnalité de cafejeux.com était hors d'usage au moment du test.
+			// (Toad06) Il est probable que la page était simplement rafraichie.
 			$data = "";
 		}
 		break;
@@ -1452,10 +1452,15 @@ switch($page) {
 					$recursionValue = "999999";
 					if(isset($checkPage[1])) {
 						if(!is_numeric($checkPage[1])) {
-							$checkPage[0] .= "/" . $checkPage[1]; $checkPage[1] = "";
+							$checkPage[0] .= "/" . $checkPage[1];
+							$checkPage[1] = "";
 							if(isset($checkPage[2])) {
 								$__recursiondata = intval($checkPage[2]);
-								if(substr_count($checkPage[2], "/") >= 1) { $checkPage[2] = explode("/", $checkPage[2])[1]; } else { unset($checkPage[2]); }
+								if(substr_count($checkPage[2], "/") >= 1) {
+									$checkPage[2] = explode("/", $checkPage[2])[1];
+								} else {
+									unset($checkPage[2]);
+								}
 							}
 						} else {
 							$__recursiondata = intval($checkPage[1]);

@@ -457,7 +457,7 @@
 
 		// Jeu et bouton "Signaler un comportement anormal".
 		// NOTE : cafejeux.com chargeait directement le fichier SWF au lieu de le faire via un élément IFRAME.
-		// NOTE : Pour les matchs revisionnés, le texte "<p>Cliquez sur le jeu pour passer au coup suivant.</p>" était affiché juste au-dessus du bouton de signalement.
+		// NOTE : Pour les matchs revisionnés, cafejeux.com affichait le texte "<p>Cliquez sur le jeu pour passer au coup suivant.</p>" juste au-dessus du bouton de signalement.
 		var gameZone = game.querySelector("#gameZone");
 		gameZone.innerHTML = '<div class="gameClient">' +
 			'<iframe src="_toad06/?game={ARCHIVE_GAME_ID}{ARCHIVE_GAME_OPTIONS}" width="300" height="300" class="swf" frameborder="0" scrolling="no" style="overflow:hidden;"></iframe>' +
@@ -465,7 +465,8 @@
 			'</div>';
 		gameZone.querySelector("a.button").onclick = function() {
 			// Simule l'affichage et le fonctionnement du signalement de comportement anormal.
-			// NOTE : Seuls les pseudos des *autres* utilisateurs ayant parlé étaient listés sur cafejeux.com, et à condition que le message à signaler ait été posté il y a au plus 30 secondes.
+			// NOTE : Seuls les pseudos des *autres* utilisateurs ayant parlé étaient listés sur cafejeux.com, et à condition que le dernier message posté par le joueur à signaler l'ait été il y a au plus 30 secondes.
+			// Le signalement avait également pour conséquence d'ajouter l'utilisateur à sa liste noire : les éventuels futurs messages qu'il pouvait envoyer n'étaient donc plus visibles sur le chat.
 			var list = []; list.names = [];
 			var posts = document.querySelectorAll("#history div");
 			for(var i = 0; i < posts.length; i++) {
