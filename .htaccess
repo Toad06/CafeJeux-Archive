@@ -20,20 +20,18 @@ RewriteRule ^news(/.*)?$ dispatch.php?p=news$1 [QSA,L]
 RewriteRule ^partnerFrame(/.*)?$ dispatch.php?p=partnerFrame$1 [QSA,L]
 RewriteRule ^party(/.*)?$ dispatch.php?p=party$1 [QSA,L]
 RewriteRule ^play(/.*)?$ dispatch.php?p=play$1 [QSA,L]
+RewriteRule ^redir(/.*)?$ dispatch.php?p=redir$1 [QSA,L]
+RewriteRule ^smileyTip(/.*)?$ dispatch.php?p=smileyTip$1 [QSA,L]
+RewriteRule ^sponsor(/.*)?$ dispatch.php?p=sponsor$1 [QSA,L]
+RewriteRule ^static(/.*)?$ dispatch.php?p=static$1 [QSA,L]
 
 RewriteRule ^pvmsg/([0-9]+)/delete$ dispatch.php?p=pvmsg/[id]/delete&id=$1 [QSA,L]
 RewriteRule ^pvmsg/([0-9]+)/report$ dispatch.php?p=pvmsg/[id]/report&id=$1 [QSA,L]
 RewriteRule ^pvmsg(/.*)?$ dispatch.php?p=pvmsg$1 [QSA,L]
 RewriteRule ^pvmsgFromSpecial(/.*)?$ dispatch.php?p=pvmsgFromSpecial$1 [QSA,L]
 
-RewriteRule ^redir(/.*)?$ dispatch.php?p=redir$1 [QSA,L]
-
 RewriteRule ^shop/([0-9]+)/buy$ dispatch.php?p=shop/[id]/buy&id=$1 [QSA,L]
 RewriteRule ^shop(/.*)?$ dispatch.php?p=shop$1 [QSA,L]
-
-RewriteRule ^smileyTip(/.*)?$ dispatch.php?p=smileyTip$1 [QSA,L]
-RewriteRule ^sponsor(/.*)?$ dispatch.php?p=sponsor$1 [QSA,L]
-RewriteRule ^static(/.*)?$ dispatch.php?p=static$1 [QSA,L]
 
 RewriteRule ^user/([0-9]+)/addBlackContact$ dispatch.php?p=user/[id]/addBlackContact&id=$1 [QSA,L]
 RewriteRule ^user/([0-9]+)/addContact$ dispatch.php?p=user/[id]/addContact&id=$1 [QSA,L]
