@@ -1,9 +1,10 @@
 # Les jeux multijoueurs de CaféJeux en mode local
-<em>Version 1.7-dev4 (17/04/2025)</em><br/>
+<em>Version 1.7-dev5 (18/04/2025)</em><br/>
 <em>Auteur : Toad06, sur la base des codes sources des jeux publiés par Motion Twin.</em>
 
 <em>Notes de version :</em><br/>
 - Implémentation désormais complète de la classe "Timer".
+- Ajout d'un bouton permettant de rejouer en fin de partie.
 - Modification du comportement de l'option de fenêtre unique sur mobile (détails quelques lignes plus bas).
 - Modification du comportement de l'option autorisant différents types de cosmos dans une même partie de Anticorp's : pour garantir un meilleur équilibrage, chaque joueur dispose désormais des mêmes cosmos que son adversaire, mais pas nécessairement dans le même ordre.
 - Correction des bugs connus dans Amonite et Trigolo (détails dans la rubrique de chaque jeu, ci-dessous).

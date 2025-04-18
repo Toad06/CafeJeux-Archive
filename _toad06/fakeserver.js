@@ -450,6 +450,7 @@ function CJGame_Over(data) {
 	if(!IN_IFRAME) {
 		document.getElementById("player_1").className = "";
 		document.getElementById("player_2").className = "";
+		document.getElementById("tools").innerHTML = '<button type="button" onclick="window.location.href = window.location.href;">Nouvelle partie</button>';
 	} else {
 		TimerActive.stop();
 		if(!CJGame_PlayData.timeOver) {
