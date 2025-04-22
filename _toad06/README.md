@@ -1,10 +1,12 @@
 # Les jeux multijoueurs de CaféJeux en mode local
-<em>Version 1.7-dev5 (18/04/2025)</em><br/>
+<em>Version 1.7-dev6 (22/04/2025)</em><br/>
 <em>Auteur : Toad06, sur la base des codes sources des jeux publiés par Motion Twin.</em>
 
 <em>Notes de version :</em><br/>
 - Implémentation désormais complète de la classe "Timer".
+- Ajout d'une option permettant de désactiver automatiquement le son (détails quelques lignes plus bas).
 - Ajout d'un bouton permettant de rejouer en fin de partie.
+- Ajout d'un panneau de chargement (extrait du fichier "swf/loader_unknown.swf"), sur la partie site de l'archive uniquement.
 - Modification du comportement de l'option de fenêtre unique sur mobile (détails quelques lignes plus bas).
 - Modification du comportement de l'option autorisant différents types de cosmos dans une même partie de Anticorp's : pour garantir un meilleur équilibrage, chaque joueur dispose désormais des mêmes cosmos que son adversaire, mais pas nécessairement dans le même ordre.
 - Correction des bugs connus dans Amonite et Trigolo (détails dans la rubrique de chaque jeu, ci-dessous).
@@ -18,6 +20,7 @@ Pour ce faire, suivez la procédure d'installation de l'archive indiquée dans l
 
 Par ailleurs, des paramètres de configuration optionnels sont disponibles :
 - Pour n'afficher qu'une seule fenêtre de jeu sur la page (celle du joueur dont c'est le tour), ajoutez le paramètre `&unique=1` dans l'URL. Sur les appareils mobiles uniquement, l'écran de jeu est également inversé à chaque tour.
+- Pour désactiver le son sans avoir à cliquer sur le bouton à chaque nouvelle partie, ajoutez le paramètre `&mute=1` dans l'URL.
 - Pour personnaliser le nom des deux joueurs, ajoutez le paramètre `&players=[NOM_1],[NOM_2]` dans l'URL, en remplaçant `[NOM_1]` et `[NOM_2]` par les noms à utiliser. L'ordre de départ des joueurs est déterminé aléatoirement.
 - Certains jeux utilisent des paramètres qui leur sont propres. Vous les trouverez ci-dessous.
 

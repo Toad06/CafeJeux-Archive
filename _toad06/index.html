@@ -64,6 +64,7 @@
 		body.iframe {
 			margin: 0px !important;
 			padding: 0px !important;
+			background-color: #F1DED1 !important;
 		}
 		body.iframe #container {
 			width: 300px !important;
@@ -86,6 +87,15 @@
 		}
 		body.iframe hr, body.iframe #colors, body.iframe #infos, body.iframe #messages, body.iframe #tools {
 			display: none !important;
+		}
+		body.iframe #overlay.loading {
+			background-color: #F1DED1 !important;
+			background-image: url("loading.png") !important;
+			animation: play .8s steps(18) infinite;
+		}
+		@keyframes play {
+			0% { background-position-x: 0px; }
+			100% { background-position-x: 100%; }
 		}
 	</style>
 </head>
@@ -114,7 +124,7 @@
 		var ENABLE_SPECTATOR_CLIENT = false;
 		var ENABLE_UNIQUE_CLIENT = !IN_IFRAME && !ENABLE_SPECTATOR_CLIENT && parseInt(window.location.href.split("unique=")[1], 10) === 1;
 		var ENABLE_DEBUG_TRACE = true;
-		var ENABLE_AUDIO = true;
+		var ENABLE_AUDIO = !(!IN_IFRAME && parseInt(window.location.href.split("mute=")[1], 10) === 1);
 		var PLAYER_1_NAME = !IN_IFRAME ? "Joueur 1" : WINDOW_TOP.Game_GetData("player1Name");
 		var PLAYER_2_NAME = !IN_IFRAME ? "Joueur 2" : WINDOW_TOP.Game_GetData("player2Name");
 		var PATH_SWF = "../games/swf/";
@@ -196,7 +206,7 @@
 
 		document.getElementById("player_1").textContent = PLAYER_1_NAME;
 		document.getElementById("player_2").textContent = PLAYER_2_NAME;
-		(function() {
+		setTimeout(function() {
 			var script = document.createElement("script");
 			script.setAttribute("type", "text/javascript");
 			script.setAttribute("src", "fakeserver.js");
@@ -215,12 +225,13 @@
 				document.getElementById("game").innerHTML = html;
 			};
 			document.body.appendChild(script);
-		})();
+		}, (IN_IFRAME ? 1000 : 0));
 
 		/*****************************/
 
 		if(IN_IFRAME) {
 			document.body.className = "iframe";
+			document.getElementById("overlay").className = "loading";
 		}
 
 		window.addEventListener("load", function() {
@@ -232,6 +243,7 @@
 					var overlay = document.getElementById("overlay");
 					overlay.style.display = "none";
 					overlay.style.backgroundColor = "transparent";
+					overlay.className = "";
 					updateUniqueWindow(-1);
 					clearInterval(gameIntervalInit);
 				}
