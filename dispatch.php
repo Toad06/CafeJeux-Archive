@@ -935,6 +935,13 @@ switch($page) {
 			$data = get_content($pageUrlExt);
 		}
 		break;
+	case "party/999999/watch":
+		// NOTE : Sur cafejeux.com, cette page permettait de revisionner un match. Les parties étaient toutefois purgées après un certain temps.
+		// L'affichage de la page était similaire à celle des parties "en direct" (cf. "game/play_generic.html").
+		// (Toad06) Il est probable que la même URL était utilisée pour les matchs en cours regardés par des joueurs non participants (cf. "game/observe.html").
+		$gM = isset($_GET['m']) ? $_GET['m'] : "false"; // Valeurs possibles : "true" ou "false"... mais utilité inconnue.
+		$data = "<alert>L'historique de cette partie n'est plus disponible.</alert>";
+		break;
 	case "party/history":
 		$gMode = isset($_GET['mode']) ? explode(";", $_GET['mode'])[0] : "";
 		$type1 = ""; $type2 = ""; $type3 = "";
