@@ -61,7 +61,7 @@
 				break;
 			case "end":
 				// Fin de partie.
-				// cafejeux.com utilisait "js.Client.prototype.displayVictory".
+				// NOTE : cafejeux.com utilisait "js.Client.prototype.displayVictory".
 				var winner = event[1];
 				var winnerInOrder = (winner === 1 ? Game_FirstPlayer : (winner === 2 ? Game_SecondPlayer : null));
 				var loserInOrder = (winnerInOrder === "2" ? "1" : (winnerInOrder === "1" ? "2" : null));
@@ -87,7 +87,7 @@
 				// - `<div class="logMsg chatSystem">Cette partie vous fait <strong>['gagner' ou 'perdre'] [points] points</strong>.</div>` (en cas de défaite avec un nombre de points nul avant de commencer la partie, le message n'était pas affiché).
 				// - `<div class="chatInfo">Votre position actuelle : <img src="img/icons/small_rank_1.gif" alt=""/> <strong>[position]<sup>['er' ou 'ème']</sup></strong> ([points]pts)</div>`.
 				// Pour toute victoire, le texte suivant fermait la marche : `<div class="logMsg chatSystem">Vous gagnez <span class="tokens">1<img alt="caps" src="img/icons/small_cap.gif"/></span> supplémentaire.</div>`.
-				// NOTE : Lorsqu'il s'agit d'un match revisionné, seuls les textes annonçant le résultat et le nombre de points gagnés ou perdus étaient affichés.
+				// NOTE : Lorsqu'il s'agissait d'un match revisionné, seuls les textes annonçant le résultat et le nombre de points gagnés ou perdus étaient affichés.
 				// NOTE : Le nombre de points, ajoutés ou déduits, dépendait du résultat de la partie et du classement de l'adversaire. La formule de calcul exacte n'est pas connue.
 				// Ainsi, un joueur bien classé qui gagnait contre un mal classé n'engendrait que peu de points ; un match nul lui en faisait perdre, une défaite davantage encore.
 				chatVainqueur.innerHTML = (winner !== null ? (Game_GetData("player" + String(winner) + "Name") + " remporte ce match.") : (Game_GetData("player1Name") + " et " + Game_GetData("player2Name") + " font match nul !"));
@@ -95,7 +95,7 @@
 				history.scrollTop = history.scrollHeight;
 				// Affichage de l'expérience gagnée par les deux joueurs.
 				// NOTE : Chaque partie jouée permet d'engendrer de l'expérience, avec un bonus plus important en cas de victoire. La progression devient plus lente après chaque passage au niveau supérieur.
-				// La formule de calcul exacte n'est pas connue. Quand la barre d'expérience était intégralement remplie, le message suivant s'affichait : "Vous passez au niveau [niveau suivant] !".
+				// La formule de calcul exacte n'est pas connue. Quand la barre d'expérience était intégralement remplie, cafejeux.com affichait le message suivant : "Vous passez au niveau [niveau suivant] !".
 				// NOTE : Cette fonctionnalité était ignorée lors des matchs revisionnés.
 				var xpBarInterval = setInterval(function(result) {
 					var bars = document.querySelectorAll(".xpBar img");
@@ -154,7 +154,7 @@
 				break;
 			case "turn":
 				// Au joueur suivant !
-				// cafejeux.com utilisait "js.Client.prototype.dataChanged".
+				// NOTE : cafejeux.com utilisait "js.Client.prototype.dataChanged".
 				table.className = table.className.replace("p" + (event[1] === 1 ? Game_SecondPlayer : Game_FirstPlayer) + "turn", "p" + (event[1] === 1 ? Game_FirstPlayer : Game_SecondPlayer) + "turn");
 				switch(Game_Id) {
 					case 3: // Crumble
@@ -169,9 +169,9 @@
 				break;
 			case "timer":
 				// Décrémentation du chronomètre du joueur actif.
-				// cafejeux.com utilisait "js.Client.prototype.dataChanged".
-				// NOTE : Lors des matchs revisionnés, le chronomètre est ignoré pour les deux joueurs et le temps affiché est remplacé par le texte "--".
-				// La classe "observer" est par ailleurs ajoutée à "table.p1turn" et "table.p2turn" et reste présente jusqu'à ce que la partie se termine.
+				// NOTE : cafejeux.com utilisait "js.Client.prototype.dataChanged".
+				// NOTE : Lors des matchs revisionnés sur cafejeux.com, le chronomètre était ignoré pour les deux joueurs et le temps affiché était remplacé par le texte "--".
+				// La classe "observer" était par ailleurs ajoutée à "table.p1turn" et "table.p2turn" et restait présente jusqu'à ce que la partie se termine.
 				var activePlayer = (event[1] === 1 ? Game_FirstPlayer : Game_SecondPlayer);
 				var minute = event[2];
 				var second = event[3];
@@ -185,7 +185,7 @@
 				break;
 			case "colors":
 				// Couleurs de chaque joueur.
-				// cafejeux.com utilisait "js.Client.prototype.setColors".
+				// NOTE : cafejeux.com utilisait "js.Client.prototype.setColors".
 				if(event[1] !== undefined) {
 					var p1color = document.getElementById("p" + Game_FirstPlayer + "color");
 					p1color.style.display = "block";
