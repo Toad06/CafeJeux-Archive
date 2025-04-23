@@ -91,7 +91,7 @@
 		body.iframe #overlay.loading {
 			background-color: #F1DED1 !important;
 			background-image: url("loading.png") !important;
-			animation: play .8s steps(18) infinite;
+			animation: play 0.5s steps(9) infinite;
 		}
 		@keyframes play {
 			0% { background-position-x: 0px; }
@@ -239,6 +239,7 @@
 				changeAudioStatus(document.getElementById("changeAudioStatusButton"));
 			}
 			var gameIntervalInit = setInterval(function() {
+				if(typeof CJGame_IsPreviousClientLoaded === "undefined") return;
 				if(CJGame_IsPreviousClientLoaded.clients.length >= 2 + Number(ENABLE_SPECTATOR_CLIENT)) {
 					var overlay = document.getElementById("overlay");
 					overlay.style.display = "none";
