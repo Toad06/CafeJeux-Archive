@@ -100,7 +100,7 @@ switch($page) {
 			}
 		}
 		$data = get_content($pageUrlExt);
-		$data = str_replace("{ARCHIVE_SECTION}", $section, $data);
+		$data = str_replace("{ARCHIVE_HELP_SECTION}", $section, $data);
 		break;
 	case "help/connection":
 	case "help/contact":
@@ -198,8 +198,8 @@ switch($page) {
 		}
 		if(strlen($error) > 0 || $isUserLoggedIn) {
 			$data = get_content($pageUrl . "_error" . $pageExt);
-			$data = str_replace("{ARCHIVE_ERROR}", $error, $data);
-			$data = str_replace("{ARCHIVE_USERNAME}", htmlentities($pIdentName), $data);
+			$data = str_replace("{ARCHIVE_IDENT_ERROR}", $error, $data);
+			$data = str_replace("{ARCHIVE_IDENT_USERNAME}", htmlentities($pIdentName), $data);
 		} else {
 			$_SESSION['cafeUsername'] = $pIdentName;
 			if(isset($_SESSION['cafeDay']) && $_SESSION['cafeDay'] !== $day) $_SESSION['cafeDayChanged'] = true;
