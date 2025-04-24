@@ -4079,8 +4079,9 @@ js.XmlHttp.onData = function(data) {
 					if(js.XmlHttp.waitingUserTip != null) {
 						// La variable "addToCache" a été déplacée en fin de bloc, de sorte que si une exception se produit dans "displayUserTip" (ce qui peut arriver lors d'un changement rapide de page),
 						// le bloc d'informations sur cet utilisateur n'affiche pas le texte "Veuillez patienter..." indéfiniment du fait de sa mise en cache.
+						// De plus, la mise en cache est désactivée pour l'ID 999999, comme l'avatar de cet utilisateur est systématiquement différent dans le cadre de l'archive.
 						js.XmlHttp.displayUserTip(js.XmlHttp.waitingUserTip.id,s);
-						addToCache = uid;
+						if(uid !== "999999") addToCache = uid;
 					}
 				}
 				else {

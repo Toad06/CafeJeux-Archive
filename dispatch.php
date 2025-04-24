@@ -1392,18 +1392,18 @@ switch($page) {
 			if(strlen($error) > 0) {
 				$data = str_replace("{ARCHIVE_SEARCH_ERROR}", $error, $data);
 			} else {
-				// NOTE : Seuls les pseudos commençant exactement par la requête effectuée (casse insensible) étaient affichés sur cafejeux.com.
+				// NOTE : Seuls les pseudos commençant exactement par la requête effectuée (casse insensible) étaient effectivement affichés sur cafejeux.com.
 				if(($pOnline && count($searchedPlayerIds) === 1) || mb_strlen($pName) >= 20) {
 					// NOTE : Quand il n'y a qu'un seul résultat correspondant à la requête, une redirection est immédiatement effectuée vers la page de profil en question...
-					$data = "<load>user/" . (isset($searchedPlayerIds[0]) ? $searchedPlayerIds[0] : "999999") . "</load>";
+					$data = "<load>user/" . (isset($searchedPlayerIds[0]) ? strval($searchedPlayerIds[0]) : "999999") . "</load>";
 				} else {
 					// ... Autrement, les différents résultats trouvés sont affichés, dans une limite de 15.
 					// Si le nombre de profils pouvant correspondre dépassait 15, cafejeux.com affichait alors le message suivant : "Au moins 15 utilisateurs correspondent à votre recherche."
 					$data = str_replace("{ARCHIVE_SEARCH_NAME_1}", (isset($searchedPlayerIds[0]) ? htmlentities($globalPlayers[$searchedPlayerIds[0]]) : mb_substr($pName . "0" . mt_rand(1, 9), 0, 20)), $data);
-					$data = str_replace("{ARCHIVE_SEARCH_ID_1}", (isset($searchedPlayerIds[0]) ? strval($searchedPlayerIds[0]) : "999998"), $data);
+					$data = str_replace("{ARCHIVE_SEARCH_ID_1}", (isset($searchedPlayerIds[0]) ? strval($searchedPlayerIds[0]) : strval(mt_rand(700000, 799000))), $data);
 					$data = str_replace("{ARCHIVE_SEARCH_STATUS_1}", (array_search(18269, $searchedPlayerIds) === 0 ? "online" : "offline"), $data);
 					$data = str_replace("{ARCHIVE_SEARCH_NAME_2}", (isset($searchedPlayerIds[1]) ? htmlentities($globalPlayers[$searchedPlayerIds[1]]) : mb_substr($pName . mt_rand(1000, 9999), 0, 20)), $data);
-					$data = str_replace("{ARCHIVE_SEARCH_ID_2}", (isset($searchedPlayerIds[1]) ? strval($searchedPlayerIds[1]) : "999999"), $data);
+					$data = str_replace("{ARCHIVE_SEARCH_ID_2}", (isset($searchedPlayerIds[1]) ? strval($searchedPlayerIds[1]) : strval(mt_rand(800000, 899000))), $data);
 					$data = str_replace("{ARCHIVE_SEARCH_STATUS_2}", (array_search(18269, $searchedPlayerIds) === 1 ? "online" : "offline"), $data);
 				}
 			}
