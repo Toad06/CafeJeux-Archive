@@ -11,25 +11,6 @@
 		if(typeof js !== "undefined") window.location.reload();
 		throw "Barre de menu non initialisée";
 	}
-	if(!window.Game_Event) {
-		// Le contenu de ce bloc ne doit être exécuté qu'une fois, la navigation ne rechargeant pas les pages intégralement comme cela se fait habituellement sur les autres sites.
-		(function() {
-			// Cache l'élément "Une partie est en cours" et affiche à nouveau "Jouer au bar" lors du changement de page avant la fin d'une partie.
-			// NOTE : Sur cafejeux.com, se rendre sur une autre page du site (ou être déconnecté durant un temps cumulé de 60 secondes au maximum) ne provoquait pas l'arrêt de la partie.
-			var XmlHttpGet = js.XmlHttp.get;
-			js.XmlHttp.get = function(url, obj) {
-				var menuBtnPlaying = document.getElementById("menuBtnPlaying");
-				if(menuBtnPlaying !== null && menuBtnPlaying.className.indexOf("hidden") === -1) {
-					if(url && url !== "partnerFrame" && url.indexOf("smileyTip") !== 0 && url.indexOf("user/siteSound") !== 0 && url.indexOf("user/tipContact") !== 0 && url.replace(/[0-9]/g, "").indexOf("user//tip") !== 0) {
-						js.App.setTitle();
-						js.Utils.setClass("menuBtnPlaying", "hidden");
-						js.Utils.setClass("menuBtnBar", "");
-					}
-				}
-				XmlHttpGet(url, obj);
-			};
-		})();
-	}
 	if(document.getElementById("headBar").textContent.trim().indexOf("Bonjour") !== 0) {
 		document.getElementById("headBar").innerHTML = "";
 	}
@@ -95,7 +76,7 @@
 				history.scrollTop = history.scrollHeight;
 				// Affichage de l'expérience gagnée par les deux joueurs.
 				// NOTE : Chaque partie jouée permet d'engendrer de l'expérience, avec un bonus plus important en cas de victoire. La progression devient plus lente après chaque passage au niveau supérieur.
-				// La formule de calcul exacte n'est pas connue. Quand la barre d'expérience était intégralement remplie, cafejeux.com affichait le message suivant : "Vous passez au niveau [niveau suivant] !".
+				// La formule de calcul exacte n'est pas connue. Quand la barre d'expérience était intégralement remplie, cafejeux.com affichait le message suivant dans le chat : "Vous passez au niveau [niveau suivant] !".
 				// NOTE : Cette fonctionnalité était ignorée lors des matchs revisionnés.
 				var xpBarInterval = setInterval(function(result) {
 					var bars = document.querySelectorAll(".xpBar img");
@@ -355,6 +336,7 @@
 		js.App.setTitle(name);
 
 		// "Une partie est en cours".
+		// La fonction "haxe.Http.prototype.request" a été modifiée pour permettre la restauration de l'affichage original dans le cas où l'utilisateur quitte la page avant la fin de la partie.
 		var menuBtnPlaying = document.getElementById("menuBtnPlaying");
 		menuBtnPlaying.innerHTML = '<a href="#" onclick="return false;"><img src="games/icon/' + icon + '" alt="" /></a> <a href="#" onclick="return false;">' + (shortName !== null ? shortName : name) + '</a> <em>une partie est en cours</em>';
 		js.Utils.setClass("menuBtnBar", "hidden");

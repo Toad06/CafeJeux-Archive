@@ -293,6 +293,7 @@ if(!haxe.remoting) haxe.remoting = {}
 haxe.remoting.FlashJsConnection = function() { }
 haxe.remoting.FlashJsConnection.__name__ = ["haxe","remoting","FlashJsConnection"];
 haxe.remoting.FlashJsConnection.flashCall = function(flashObj,name,path,params) {
+	// Cette fonction est réécrite dans "pages/group/chat_addendum.html".
 	try {
 		var fobj = window.document[flashObj];
 		if(fobj == null) fobj = window.document.getElementById(flashObj);
@@ -3381,6 +3382,23 @@ haxe.Http.prototype.request = function(post) {
 		default:{
 			me.onError("Http Error #" + r.status);
 		}break;
+		}
+		if(s === null || s < 200 || s >= 400) return;
+		// Le serveur de jeu n'existant pas dans le cadre de cette archive, toute partie non terminée est définitivement arrêtée dès qu'une autre page est chargée.
+		// Le code ci-dessous cache donc l'élément "Une partie est en cours" et affiche à nouveau "Jouer au bar" lorsque cette situation se produit.
+		// Sur cafejeux.com, se rendre sur une autre page du site (ou être déconnecté durant un temps cumulé de 60 secondes au maximum) ne provoquait pas l'arrêt de la partie.
+		var menuBtnPlaying = document.getElementById("menuBtnPlaying");
+		if(menuBtnPlaying !== null && menuBtnPlaying.className.indexOf("hidden") === -1) {
+			var url = me.url.split("?")[0];
+			if(
+				url !== "game/play_generic" && url !== "partnerFrame" && url !== "user/dayChanged" && url !== "user/siteSound" && url !== "user/tipContact" &&
+				url.indexOf("ctpl/") !== 0 && url.indexOf("smileyTip") !== 0 && url.replace(/[0-9]/g, "").indexOf("user//remContact") !== 0 && url.replace(/[0-9]/g, "").indexOf("user//tip") !== 0 &&
+				r.responseText.indexOf("<load>user/dayChanged</load>") === -1
+			) {
+				js.App.setTitle();
+				js.Utils.setClass("menuBtnPlaying", "hidden");
+				js.Utils.setClass("menuBtnBar", "");
+			}
 		}
 	}
 	if(this.async) r.onreadystatechange = onreadystatechange;
