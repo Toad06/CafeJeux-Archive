@@ -1,0 +1,43 @@
+<fill id="main">
+<![CDATA[
+	<h1><strong>Matchs</strong> en cours</h1>
+
+	<a href="#_special/game" class="button b_back" onclick="js.XmlHttp.get('_special/game',this); return false;">Retour au bar</a>
+
+	<!-- Tableau inspiré du modèle de "pages/user/999999/barHistory.html". -->
+	<div class="container">
+		<div class="tableHeader"></div>
+	
+	<table class="table">
+		<tr>
+			<th>Joueur 1</th>
+			<th>Joueur 2</th>
+			<th>Jeu</th>
+			<th>Durée</th>
+			<th>&nbsp;</th>
+		</tr>
+		<tr>
+			<td><span class="user" id="u_00001" onmouseover="js.XmlHttp.userTip(this,'999998', '');" onmouseout="js.XmlHttp.hideUserTip(this);"><a href="#user/999998" onclick="js.XmlHttp.get('user/999998', this); return false;">Joueur A</a></span></td>
+			<td><span class="user" id="u_00002" onmouseover="js.XmlHttp.userTip(this,'999997', '');" onmouseout="js.XmlHttp.hideUserTip(this);"><a href="#user/999997" onclick="js.XmlHttp.get('user/999997', this); return false;">Joueur B</a></span></td>
+			<td><a href="#_special/2" onclick="js.XmlHttp.get('_special/2', this); return false;"><img src="games/icon/amonite.gif" class="gameIcon" alt=""/>&nbsp;Amonite</a></td>
+			<td>05:21</td>
+			<td class="auth"><a href="#" onclick="return false;" onmouseover="mt.js.Tip.show(this, 'Cliquez pour assister à ce match.', null);" onmouseout="mt.js.Tip.hide();"><img src="img/icons/small_histo.gif" alt=""/></a></td>
+		</tr>
+		<tr>
+			<td><span class="user" id="u_00003" onmouseover="js.XmlHttp.userTip(this,'999996', '');" onmouseout="js.XmlHttp.hideUserTip(this);"><a href="#user/999996" onclick="js.XmlHttp.get('user/999996', this); return false;">Joueur C</a></span></td>
+			<td><span class="user" id="u_00004" onmouseover="js.XmlHttp.userTip(this,'999995', '');" onmouseout="js.XmlHttp.hideUserTip(this);"><a href="#user/999995" onclick="js.XmlHttp.get('user/999995', this); return false;">Joueur D</a></span></td>
+			<td><a href="#_special/4" onclick="js.XmlHttp.get('_special/4', this); return false;"><img src="games/icon/magmax.gif" class="gameIcon" alt=""/>&nbsp;Magmax Battle</a></td>
+			<td>03:34</td>
+			<td class="auth"><a href="#" onclick="return false;" onmouseover="mt.js.Tip.show(this, 'Cliquez pour assister à ce match.', null);" onmouseout="mt.js.Tip.hide();"><img src="img/icons/small_histo.gif" alt=""/></a></td>
+		</tr>
+		<tr>
+			<td><span class="user" id="u_00005" onmouseover="js.XmlHttp.userTip(this,'999994', '');" onmouseout="js.XmlHttp.hideUserTip(this);"><a href="#user/999994" onclick="js.XmlHttp.get('user/999994', this); return false;">Joueur E</a></span></td>
+			<td><span class="user" id="u_00006" onmouseover="js.XmlHttp.userTip(this,'999993', '');" onmouseout="js.XmlHttp.hideUserTip(this);"><a href="#user/999993" onclick="js.XmlHttp.get('user/999993', this); return false;">Joueur F</a></span></td>
+			<td><a href="#_special/8" onclick="js.XmlHttp.get('_special/8', this); return false;"><img src="games/icon/ferme.gif" class="gameIcon" alt=""/>&nbsp;Ferme-la !</a></td>
+			<td>01:02</td>
+			<td class="auth"><a href="#" onclick="return false;" onmouseover="mt.js.Tip.show(this, 'Cliquez pour assister à ce match.', null);" onmouseout="mt.js.Tip.hide();"><img src="img/icons/small_histo.gif" alt=""/></a></td>
+		</tr>
+	</table>
+			</div>
+	]]>
+</fill>

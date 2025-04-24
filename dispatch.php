@@ -310,7 +310,7 @@ switch($page) {
 		break;
 	/*** Pages réservées aux membres ***/
 	case "_special/1": case "_special/2": case "_special/3": case "_special/4": case "_special/5": case "_special/6": case "_special/7": case "_special/8": case "_special/9": case "_special/11":
-	case "_special/game": case "_special/bar_1": case "_special/bar_11": case "_special/unlock_3": case "_special/unlock_8": case "_special/unlock_9":
+	case "_special/bar_1": case "_special/bar_11": case "_special/game": case "_special/observe": case "_special/unlock_3": case "_special/unlock_8": case "_special/unlock_9":
 	case "bank": // NOTE : Il s'agit de l'ancienne page "+ de sucres", spécifique à cafejeux.com. La dernière version de la page était commune à tous les sites Motion Twin et n'avait que peu d'intérêt.
 	case "bank/audio": // Même remarque pour toutes les pages de la catégorie "bank".
 	case "bank/cb":
@@ -525,6 +525,7 @@ switch($page) {
 			$data = "<load>game</load>";
 		} else {
 			// NOTE : Un lien "Jouer sans sucre" devrait être affiché sur la page "Jouer au bar".
+			// Ce lien n'était pas visible si l'un des jeux cadenassés n'avait pas été déverrouillé au préalable (cf. "_special/game.html") ; la page elle-même restait cependant accessible...
 			$data = get_content($pageUrlExt);
 			if(isset($_GET['queue'])) {
 				$data .= PHP_EOL;
@@ -938,7 +939,7 @@ switch($page) {
 	case "party/999999/watch":
 		// NOTE : Sur cafejeux.com, cette page permettait de revisionner un match. Les parties étaient toutefois purgées après un certain temps.
 		// L'affichage de la page était similaire à celle des parties "en direct" (cf. "game/play_generic.html").
-		// (Toad06) Il est probable que la même URL était utilisée pour les matchs en cours regardés par des joueurs non participants (cf. "game/observe.html").
+		// (Toad06) Il est probable que la même URL était utilisée pour les matchs en cours auxquels pouvaient assister des joueurs non participants (cf. "_special/observe.html").
 		$gM = isset($_GET['m']) ? $_GET['m'] : "false"; // Valeurs possibles : "true" ou "false"... mais utilité inconnue.
 		$data = "<alert>L'historique de cette partie n'est plus disponible.</alert>";
 		break;
