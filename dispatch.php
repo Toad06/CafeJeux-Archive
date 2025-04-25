@@ -64,7 +64,8 @@ switch($page) {
 	case "_special/head":
 		$isPagePublic = true;
 		$isPageComponent = true;
-		if($page === "head" && (!$isUserFullLoggedIn || $dayChanged)) {
+		$data = "";
+		if($page === "head" && !$isUserFullLoggedIn) {
 			$data = get_content($pageUrl . "_guest" . $pageExt);
 			if($dayChanged) {
 				$data .= '<fill id="headBar"></fill><fill id="menu"></fill>';
@@ -202,7 +203,10 @@ switch($page) {
 			$data = str_replace("{ARCHIVE_IDENT_USERNAME}", htmlentities($pIdentName), $data);
 		} else {
 			$_SESSION['cafeUsername'] = $pIdentName;
-			if(isset($_SESSION['cafeDay']) && $_SESSION['cafeDay'] !== $day) $_SESSION['cafeDayChanged'] = true;
+			if(isset($_SESSION['cafeDay']) && $_SESSION['cafeDay'] !== $day) {
+				if(isset($_SESSION['cafeDrink'])) unset($_SESSION['cafeDrink']);
+				$_SESSION['cafeDayChanged'] = true;
+			}
 			$data = get_content($pageUrl . "_ok" . $pageExt);
 		}
 		break;
@@ -1181,14 +1185,20 @@ switch($page) {
 		$data .= ']]></script>';
 		break;
 	case "user/chooseDrink":
-		if($isUserFullLoggedIn && (($dayChanged) || (isset($_SESSION['cafePrevUsername']) && mb_strtolower($_SESSION['cafePrevUsername']) !== mb_strtolower($_SESSION['cafeUsername'])))) {
+		$reboot = false;
+		if(($dayChanged) || ($isUserFullLoggedIn && isset($_SESSION['cafePrevUsername']) && mb_strtolower($_SESSION['cafePrevUsername']) !== mb_strtolower($_SESSION['cafeUsername']))) {
 			// NOTE : 1 seule boisson par jour par utilisateur, cette portion de code ne sert qu'à simuler grossièrement ce principe.
-			$isUserFullLoggedIn = false;
 			if(isset($_SESSION['cafePrevUsername'])) unset($_SESSION['cafePrevUsername']);
 			if(isset($_SESSION['cafeDrink'])) unset($_SESSION['cafeDrink']);
-			if($dayChanged) unset($_SESSION['cafeDayChanged']);
+			if($dayChanged) {
+				if(!$isUserFullLoggedIn) unset($_SESSION['cafeDayChanged']);
+				else $reboot = true;
+			}
+			$isUserFullLoggedIn = false;
 		}
-		if($isUserFullLoggedIn) {
+		if($reboot) {
+			$data = "<reboot/>";
+		} elseif($isUserFullLoggedIn) {
 			$data = "<load>head</load><load>game</load>";
 		} else {
 			$_SESSION['cafeDay'] = $day;
@@ -1513,7 +1523,9 @@ if($data !== null) {
 			if(!$isPageComponent && isset($_SESSION['cafeDay']) && $_SESSION['cafeDay'] !== $day) {
 				if(!isset($_SESSION['cafeDayChanged'])) {
 					$_SESSION['cafeDayChanged'] = true;
-					$data = '<user money="{ARCHIVE_USER_MONEY}" freeMoney="0"/><load>user/dayChanged</load>'; // NOTE : Dès le changement de jour, le nombre de sucres blancs restant de la veille passe à 0.
+					// NOTE : Dès le changement de jour, le nombre de sucres blancs restant de la veille passe à 0.
+					$globalUserFreeMoney = 0;
+					$data = '<user money="{ARCHIVE_USER_MONEY}" freeMoney="0"/><load>user/dayChanged</load>';
 				} elseif($page === "game") {
 					// NOTE : En se rendant sur la page "Jouer au bar", l'affichage de la page de choix de boisson est effectivement forcé.
 					$data = "<reboot/>";

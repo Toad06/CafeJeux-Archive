@@ -9,10 +9,12 @@ define("PAGE", "index");
 require "config.php";
 
 $logged = isset($_SESSION['cafeUsername']);
-$fullLogged = $logged && isset($_SESSION['cafeDrink']);
-
 $dayChanged = isset($_SESSION['cafeDay']) && $_SESSION['cafeDay'] !== date("j");
-if($fullLogged && $dayChanged && !isset($_SESSION['cafeDayChanged'])) $_SESSION['cafeDayChanged'] = true;
+
+if($logged && $dayChanged && isset($_SESSION['cafeDrink'])) {
+	unset($_SESSION['cafeDrink']);
+	if(!isset($_SESSION['cafeDayChanged'])) $_SESSION['cafeDayChanged'] = true;
+}
 
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -146,7 +148,7 @@ if($fullLogged && $dayChanged && !isset($_SESSION['cafeDayChanged'])) $_SESSION[
 					js.App.DATA = "./";
 					js.App.main("CMfEH6Ceji6XNeDDPgUNe6eKGZW2FgOd");
 					js.XmlHttp.enqueue("head");
-					if(js.Lib.window.location.hash.length <= 1<?php echo ($fullLogged && $dayChanged ? " || true" : ""); ?>) js.XmlHttp.enqueue('<?php echo $fullLogged && !$dayChanged ? "game" : ($logged ? "user/chooseDrink" : "static/present"); ?>');
+					if(js.Lib.window.location.hash.length <= 1) js.XmlHttp.enqueue('<?php echo $logged ? "game" : "static/present"; ?>');
 					js.BackForward.init();
 				} catch(e) {
 					// haxe.Log.trace(e);
