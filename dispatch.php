@@ -67,7 +67,9 @@ switch($page) {
 		$data = "";
 		if($page === "head" && !$isUserFullLoggedIn) {
 			$data = get_content($pageUrl . "_guest" . $pageExt);
-			if($dayChanged) {
+			if($isUserLoggedIn && $dayChanged) {
+				// Dans cette situation, les textes du menu et de la barre du haut s'affichent brièvement : on préfère donc les effacer immédiatement.
+				// NOTE : Ceci a été ajouté pour l'archive. Sur cafejeux.com, les textes s'affichaient.
 				$data .= '<fill id="headBar"></fill><fill id="menu"></fill>';
 			}
 		} elseif($isUserFullLoggedIn) {
@@ -1185,8 +1187,8 @@ switch($page) {
 		$data .= ']]></script>';
 		break;
 	case "user/chooseDrink":
-		$reboot = false;
-		if(($dayChanged) || ($isUserFullLoggedIn && isset($_SESSION['cafePrevUsername']) && mb_strtolower($_SESSION['cafePrevUsername']) !== mb_strtolower($_SESSION['cafeUsername']))) {
+		$reboot = !$isUserLoggedIn;
+		if(($isUserLoggedIn && $dayChanged) || ($isUserFullLoggedIn && isset($_SESSION['cafePrevUsername']) && mb_strtolower($_SESSION['cafePrevUsername']) !== mb_strtolower($_SESSION['cafeUsername']))) {
 			// NOTE : 1 seule boisson par jour par utilisateur, cette portion de code ne sert qu'à simuler grossièrement ce principe.
 			if(isset($_SESSION['cafePrevUsername'])) unset($_SESSION['cafePrevUsername']);
 			if(isset($_SESSION['cafeDrink'])) unset($_SESSION['cafeDrink']);
@@ -1524,7 +1526,6 @@ if($data !== null) {
 				if(!isset($_SESSION['cafeDayChanged'])) {
 					$_SESSION['cafeDayChanged'] = true;
 					// NOTE : Dès le changement de jour, le nombre de sucres blancs restant de la veille passe à 0.
-					$globalUserFreeMoney = 0;
 					$data = '<user money="{ARCHIVE_USER_MONEY}" freeMoney="0"/><load>user/dayChanged</load>';
 				} elseif($page === "game") {
 					// NOTE : En se rendant sur la page "Jouer au bar", l'affichage de la page de choix de boisson est effectivement forcé.
