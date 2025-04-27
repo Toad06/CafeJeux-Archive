@@ -684,6 +684,16 @@ function Init_HaxePolyfillsPre() {
 			gttc = gc.__trace_txt;
 			gttc.selectable = false;
 			gttc.__trace_lines = [];
+			if(fileInfo === "__end__") {
+				var glow = new flash.filters.DropShadowFilter();
+				glow.color = 0xFFFFFF;
+				glow.blurX = 2;
+				glow.blurY = 2;
+				glow.strength = 10;
+				glow.angle = 0;
+				glow.distance = 0;
+				gttc.filters = [glow];
+			}
 		}
 		var data = "";
 		if(typeof fileInfo == "object") {

@@ -101,7 +101,7 @@
 </head>
 <body>
 	<div id="container">
-		<div id="overlay"></div>
+		<div id="overlay" class="loading"></div>
 		<div id="game"></div>
 		<div id="colors">
 			<span id="player_1" class="turn"></span>
@@ -231,7 +231,6 @@
 
 		if(IN_IFRAME) {
 			document.body.className = "iframe";
-			document.getElementById("overlay").className = "loading";
 		}
 
 		window.addEventListener("load", function() {
@@ -338,7 +337,7 @@
 				if(!WINDOW_TOP.Game_GetData("audioEnabled")) return;
 			}
 			var timer = Date.now();
-			if(timer - (playSound.lastTimer || 0) < 100) return;
+			if(timer - (playSound.lastTimer || 0) < 200) return;
 			playSound.lastTimer = timer;
 			var audio = new Audio();
 			audio.src = PATH_AUDIO + sound + ".mp3";
