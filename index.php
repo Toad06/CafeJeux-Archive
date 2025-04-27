@@ -13,7 +13,7 @@ $dayChanged = isset($_SESSION['cafeDay']) && $_SESSION['cafeDay'] !== date("j");
 
 if($logged && $dayChanged && isset($_SESSION['cafeDrink'])) {
 	unset($_SESSION['cafeDrink']);
-	if(!isset($_SESSION['cafeDayChanged'])) $_SESSION['cafeDayChanged'] = true;
+	$_SESSION['cafeDayChanged'] = true;
 }
 
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
