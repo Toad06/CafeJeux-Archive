@@ -666,12 +666,20 @@ switch($page) {
 			$data .= get_content("pages/group/chat_addendum.html");
 			$data = str_replace("{ARCHIVE_TABLE_DATETIME}", $date, $data);
 			$data = str_replace("{ARCHIVE_TABLE_MY_DRINK}", strval(intval($_SESSION['cafeDrink'])), $data);
-			// La variable FlashVars "first" contient l'ID du propriétaire de la table : lorsque celui-ci est connecté au site, il apparaît au sein de sa table avec une couronne sur la tête.
-			// (Toad06) Pour une raison inconnue, la variable "first" n'était pas initialisée lorsque l'archive a été constituée ; quelques possibilités non excluantes :
-			// - Celle-ci a été supprimée lors d'une mise à jour de cafejeux.com, vraisemblablement vers la fin 2010 si tel devait être le cas.
-			// - Celle-ci n'est initialisée que si au moins deux membres de la table, dont le créateur, sont connectés simultanément.
-			// - Celle-ci n'est initialisée que pour tout utilisateur qui n'est pas le créateur de la table et que ce dernier est connecté.
-			$data = str_replace("{ARCHIVE_TABLE_ADD_FIRST_VARIABLE}", 'so.addVariable("first", "18269");', $data);
+			// NOTE : La variable FlashVars "first" contient l'ID du joueur actuellement en tête du classement de la table : il y apparaît ainsi avec une couronne sur la tête.
+			// Si aucun score n'est enregistré, cette variable n'est pas définie.
+			// (Toad06) La condition de l'heure ci-dessous n'est qu'un prétexte pour afficher la couronne.
+			$data = str_replace("{ARCHIVE_TABLE_ADD_FIRST_VARIABLE}", (intval(date("H")) >= 22 || intval(date("H")) < 2 ? 'so.addVariable("first", "18269");' : ""), $data);
+		}
+		break;
+	case "group/420/chatBan":
+	case "group/6951/chatBan":
+		// NOTE : La possibilité d'autoriser les visiteurs sur le chat d'une table de jeu, et par extension celle de les bannir, avait été désactivée lors d'une mise à jour de cafejeux.com.
+		$idTable = explode("/", $page)[1];
+		$gId = isset($_GET['id']) ? intval($_GET['id']) : 0;
+		$data = "<alert>Cet utilisateur a été banni du chat de la table.</alert>";
+		if($gId === 18269) {
+			$data = '<script type="text/javascript">js.App.c.roomEjected("group_' . $idTable . '");</script>';
 		}
 		break;
 	case "group/420/delete":
@@ -699,12 +707,12 @@ switch($page) {
 				$f = "_edit";
 			}
 		}
-		// NOTE : La "seed" (graine) ci-dessous ne devrait pas être générée aléatoirement. Sur cafejeux.com, sa valeur était toujours la même pour une table donnée.
-		// La valeur de la "seed" correspond en effet au style et à la couleur du tapis de la salle. Celle-ci ne change jamais et est sélectionnée aléatoirement à la création de la table.
-		// Néanmoins, la "seed" influence aussi la position des personnages et leurs interactions dans la salle, sur la vignette Flash. Pour cette raison, il est intéressant ici de la générer aléatoirement.
+		// NOTE : La graine ("seed") ci-dessous permet de déterminer le style et la position du tapis, ainsi que l'apparence du parquet. Cependant, celle-ci ne devrait pas être générée aléatoirement.
+		// En effet, sur cafejeux.com, sa valeur était toujours la même pour une table donnée : elle était ainsi choisie aléatoirement, une seule fois, lors du processus de création de la table.
+		// Mais la graine influence aussi la position des personnages et leurs interactions sur la vignette Flash. Pour permettre un affichage plus varié, il est donc intéressant de la générer aléatoirement.
 		$data = get_content($pageUrl . $f . $pageExt);
 		$data = str_replace("{ARCHIVE_TABLE_DATETIME}", $date, $data);
-		$data = str_replace("{ARCHIVE_TABLE_SEED}", strval(mt_rand(10000, 99999)), $data);
+		$data = str_replace("{ARCHIVE_TABLE_SEED}", strval(mt_rand(10000, 999999)), $data);
 		switch($idTable) {
 			case "420":
 				$data = str_replace("{ARCHIVE_TABLE_STATS_MALE}", ($globalUserData['gender'] === 1 ? "50" : "100"), $data);

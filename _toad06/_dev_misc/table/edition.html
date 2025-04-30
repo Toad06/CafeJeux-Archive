@@ -32,6 +32,10 @@
 		#infos {
 			margin-top: 40px;
 		}
+		.dotted {
+			text-decoration: underline dotted;
+			cursor: help;
+		}
 	</style>
 	<script type="text/javascript" src="../../../swfobject.js?v=20100928162820"></script>
 </head>
@@ -66,7 +70,8 @@
 			</p>
 			<p>
 				Quelques remarques diverses :<br />
-				- C'est le paramètre "seed" des FlashVars qui influence le style et la couleur du tapis. Celui-ci n'a cependant aucun effet en mode édition et le tapis sera donc toujours vert.<br />
+				- C'est <span class="dotted" onclick="tableChangeSeed();">le paramètre "seed" (graine) des FlashVars</span> qui influence le style et la position du tapis, ainsi que l'apparence du parquet.<br />
+				- Ce paramètre n'a cependant aucun effet en mode édition, l'affichage sera ainsi toujours effectué comme si la graine avait une valeur égale à 0.<br />
 				- Les objets muraux par défaut sont toujours les mêmes, quelle que soit la table. La situation aurait pourtant pu être différente mais les objets existants ne s'accrochent pas au mur (!).
 			</p>
 		</div>
@@ -181,6 +186,31 @@
 			}
 			console.log("RoomEncodeData()", arr);
 			return arr;
+		}
+
+		/******************************/
+
+		function tableChangeSeed() {
+			var func = function() {
+				var error = "ERREUR : Ce script doit être exécuté sur la page de chat de l'une des tables de jeu.";
+				var checkPage = document.querySelector("div#groupMain div.groupChat table td.content");
+				if(checkPage === null) return alert(error);
+				var script = null;
+				var scriptNodes = document.getElementsByTagName("script");
+				for(var i = 0; i < scriptNodes.length; i++) {
+					var node = scriptNodes[i];
+					if(node.innerHTML.indexOf("SWFObject") !== -1 && node.innerHTML.indexOf("rooms.swf") !== -1) {
+						script = node.innerHTML;
+						break;
+					}
+				}
+				if(script === null) return alert(error);
+				var newSeed = String(Math.floor(Math.random() * 999999));
+				script = script.replace(/\("seed","(\d+)"\)/, function(match, p1) { return match.replace(p1, newSeed); });
+				eval(script);
+				return newSeed;
+			};
+			prompt("Utilisez la console du navigateur et exécutez le script suivant sur la page de chat de l'une des tables de jeu pour changer la valeur de la graine.", "(" + func.toString() + ")();");
 		}
 	</script>
 </body>

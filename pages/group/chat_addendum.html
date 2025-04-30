@@ -127,6 +127,9 @@
 							// Connexion à la table.
 							var history = document.querySelector("#history");
 							var oldHistory = history.querySelector("div.oldHistory");
+							if(oldHistory && history.textContent.trim().length > 0) {
+								history.innerHTML = oldHistory.outerHTML;
+							}
 							if(oldHistory && isGroup420) {
 								var s = js.App.c.applyTpl("chat@leave", {_u: {_uid: 480488, _name: "Nath0u"}, _room: name});
 								oldHistory.innerHTML += s;
