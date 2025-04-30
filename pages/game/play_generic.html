@@ -38,7 +38,7 @@
 				} else {
 					texts += js.App.c.applyTpl("chat@userlist", {_list: [{_u: {_uid: 18269, _name: Game_GetData("player2Name")}}], _room: "party_" + Game_Id});
 				}
-				history.innerHTML = texts;
+				history.innerHTML += texts;
 				break;
 			case "end":
 				// Fin de partie.
@@ -124,6 +124,7 @@
 					return false;
 				};
 				newGame.style.cssText = reportBehavior.style.cssText;
+				reportBehavior.style.marginTop = "";
 				// NOTE : Le texte du bouton devrait être "Trouver un autre adversaire" mais cela ne ferait pas sens par rapport au fonctionnement monoposte de l'archive.
 				// Matchs au bar : texte "Trouver un autre adversaire", classe "button b_play".
 				// Matchs de table : texte "Retour à la table", classe "button".
@@ -406,7 +407,7 @@
 		history.parentNode.insertBefore(helpDiv, history);
 
 		// Chat.
-		game.querySelector("#historyContainer").innerHTML = '<div id="history"></div>' +
+		game.querySelector("#historyContainer").innerHTML = '<div id="history"><div class="oldHistory"></div></div>' +
 			'<div id="input">' +
 			'<form onsubmit="Game_PostChat(this[0]); return false;" autocomplete="off">' +
 			'<input class="field" id="chatInput" type="text" />' +
@@ -454,7 +455,7 @@
 			'</div>';
 		gameZone.querySelector("a.button").onclick = function() {
 			// Simule l'affichage et le fonctionnement du signalement de comportement anormal.
-			// NOTE : cafejeux.com appelait la page "party/chatReport" lors du clic sur le bouton.
+			// NOTE : cafejeux.com appelait la page "party/chatReport" une fois le signalement effectué.
 			// NOTE : Seuls les pseudos des *autres* utilisateurs ayant parlé étaient listés sur cafejeux.com, et à condition que le dernier message posté par le joueur à signaler l'ait été il y a au plus 30 secondes.
 			// Le signalement avait également pour conséquence d'ajouter l'utilisateur à sa liste noire : les éventuels futurs messages qu'il pouvait envoyer n'étaient donc plus visibles sur le chat.
 			var list = []; list.names = [];
