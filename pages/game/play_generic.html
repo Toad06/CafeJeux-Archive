@@ -77,7 +77,7 @@
 				// Affichage de l'expérience gagnée par les deux joueurs.
 				// NOTE : Chaque partie jouée permet d'engendrer de l'expérience, avec un bonus plus important en cas de victoire. La progression devient plus lente après chaque passage au niveau supérieur.
 				// La formule de calcul exacte n'est pas connue. Quand la barre d'expérience était intégralement remplie, cafejeux.com affichait le message suivant dans le chat : "Vous passez au niveau [niveau suivant] !".
-				// NOTE : Cette fonctionnalité était ignorée lors des matchs revisionnés.
+				// NOTE : Cette fonctionnalité était ignorée lors des matchs revisionnés et pour les matchs en direct regardés par d'autres utilisateurs.
 				var xpBarInterval = setInterval(function(result) {
 					var bars = document.querySelectorAll(".xpBar img");
 					if(!document.contains(chatVainqueur) || bars.length !== 2) {
@@ -124,7 +124,6 @@
 					return false;
 				};
 				newGame.style.cssText = reportBehavior.style.cssText;
-				reportBehavior.style.marginTop = "";
 				// NOTE : Le texte du bouton devrait être "Trouver un autre adversaire" mais cela ne ferait pas sens par rapport au fonctionnement monoposte de l'archive.
 				// Matchs au bar : texte "Trouver un autre adversaire", classe "button b_play".
 				// Matchs de table : texte "Retour à la table", classe "button".
@@ -347,6 +346,8 @@
 		var abandon = game.querySelector("#backButton a");
 		abandon.href = "#";
 		abandon.onclick = function() {
+			// NOTE : Sur cafejeux.com, le message de confirmation ressemblait plutôt à ceci : "Votre adversaire sera déclaré vainqueur. Êtes-vous sûr de vouloir abandonner la partie ?".
+			// De plus, aucune redirection vers une autre page n'avait lieu : la page du jeu était simplement mise à jour avec les éléments de fin de partie habituels.
 			if(confirm("Veuillez confirmer l'abandon de la partie.")) {
 				js.XmlHttp.get("game/" + Game_Id, this);
 			}
@@ -455,7 +456,7 @@
 			'</div>';
 		gameZone.querySelector("a.button").onclick = function() {
 			// Simule l'affichage et le fonctionnement du signalement de comportement anormal.
-			// NOTE : cafejeux.com appelait la page "party/chatReport" une fois le signalement effectué.
+			// NOTE : cafejeux.com appelait la page "party/chatReport" lors du clic sur le pseudo du joueur à signaler.
 			// NOTE : Seuls les pseudos des *autres* utilisateurs ayant parlé étaient listés sur cafejeux.com, et à condition que le dernier message posté par le joueur à signaler l'ait été il y a au plus 30 secondes.
 			// Le signalement avait également pour conséquence d'ajouter l'utilisateur à sa liste noire : les éventuels futurs messages qu'il pouvait envoyer n'étaient donc plus visibles sur le chat.
 			var list = []; list.names = [];

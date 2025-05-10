@@ -134,7 +134,8 @@ input, textarea {
 	font-weight: normal;
 }
 
-/* Le sélecteur ".p2offline" n'est normalement utilisé que pour indiquer que l'adversaire a été déconnecté du serveur de jeux. L'adversaire étant toujours à droite, ".p1offline" n'existe logiquement pas. */
+/* Le sélecteur ".p2offline" n'est normalement utilisé que pour indiquer que l'adversaire a été déconnecté du serveur de jeux. */
+/* L'adversaire étant toujours à droite, ".p1offline" n'existe pas : ceci semble logique, mais ne prend pas en compte le cas où un joueur non-participant assiste au match. */
 /* Le sélecteur ".p1offline" est créé ici car on l'utilise, avec ".p2offline", pour mettre en évidence le joueur qui a perdu en fin de partie. */
 .p1offline .chat .field1 {
 	background-color: #85505e;

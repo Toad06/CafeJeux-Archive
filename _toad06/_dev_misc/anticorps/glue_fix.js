@@ -1,5 +1,5 @@
 // Correctif pour la perte d'adhérence des cosmos à la surface jaune dans Anticorp's.
-// Inclus dans l'archive (en option) à partir de la version 2.0 du loader.
+// Inclus dans l'archive (en option) à partir de la version 1.6 du loader.
 //
 // Ce problème survient à quelques endroits du jeu, le plus notable étant celui se situant au niveau de la "larme" sur la zone "Scissure de Sylvius".
 // Le code suivant ne corrige que superficiellement le problème car le "vrai" correctif nécessiterait sans doute des changements beaucoup plus profonds.

@@ -667,7 +667,7 @@ switch($page) {
 			$data = str_replace("{ARCHIVE_TABLE_DATETIME}", $date, $data);
 			$data = str_replace("{ARCHIVE_TABLE_MY_DRINK}", strval(intval($_SESSION['cafeDrink'])), $data);
 			// NOTE : La variable FlashVars "first" contient l'ID du joueur actuellement en tête du classement de la table : il y apparaît ainsi avec une couronne sur la tête.
-			// Si aucun score n'est enregistré, cette variable n'est pas définie.
+			// Si aucun match n'a été disputé sur la table, cette variable n'est pas définie.
 			// (Toad06) La condition de l'heure ci-dessous n'est qu'un prétexte pour afficher la couronne.
 			$data = str_replace("{ARCHIVE_TABLE_ADD_FIRST_VARIABLE}", (intval(date("H")) >= 22 || intval(date("H")) < 2 ? 'so.addVariable("first", "18269");' : ""), $data);
 		}
@@ -707,9 +707,9 @@ switch($page) {
 				$f = "_edit";
 			}
 		}
-		// NOTE : La graine ("seed") ci-dessous permet de déterminer le style et la position du tapis, ainsi que l'apparence du parquet. Cependant, celle-ci ne devrait pas être générée aléatoirement.
+		// NOTE : La graine ("seed") ci-dessous permet de déterminer le style et la position du tapis, ainsi que l'apparence du parquet. Cependant, celle-ci ne devrait pas être générée aléatoirement à chaque chargement.
 		// En effet, sur cafejeux.com, sa valeur était toujours la même pour une table donnée : elle était ainsi choisie aléatoirement, une seule fois, lors du processus de création de la table.
-		// Mais la graine influence aussi la position des personnages et leurs interactions sur la vignette Flash. Pour permettre un affichage plus varié, il est donc intéressant de la générer aléatoirement.
+		// Mais la graine influence aussi la position des personnages et leurs interactions sur la vignette Flash. Pour permettre un affichage plus varié, il est donc intéressant qu'elle soit toujours différente.
 		$data = get_content($pageUrl . $f . $pageExt);
 		$data = str_replace("{ARCHIVE_TABLE_DATETIME}", $date, $data);
 		$data = str_replace("{ARCHIVE_TABLE_SEED}", strval(mt_rand(10000, 999999)), $data);
