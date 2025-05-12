@@ -1,0 +1,2927 @@
+/*** STRUCTURE ***/
+body {
+	margin:0px ; padding:0px;
+	background-color	: #382f3f;
+	background-image	: url("http://data.cafejeux.com/img/design/site_bg.gif");
+	background-position	: left 332px;
+
+}
+
+body, td, th {
+	font-family			: "Trebuchet MS", arial, sans-serif;
+	font-size			: 12pt;
+	color				: white;
+	text-align			: justify;
+}
+
+form {
+	margin:0px ; padding:0px;;
+}
+
+#webdeveloper-element-information dl dt,
+#webdeveloper-element-information dl dd {
+	float				: none;
+	height				: auto;
+	background-color	: white;
+}
+
+#siteBg {
+}
+
+#siteHeader {
+	background-image	: url("http://data.cafejeux.com/img/design/site_header.gif");
+	background-repeat	: repeat-x;
+	background-position	: 944px top;
+	padding-bottom		: 50px;
+}
+
+#contentBg {
+	background-color	: #403b42;
+	background-image	: url("http://data.cafejeux.com/img/design/content_bg.gif");
+	width				: 944px;
+}
+#contentHeader {
+	background-image	: url("http://data.cafejeux.com/img/design/content_header.jpg");
+	background-repeat	: no-repeat;
+}
+#contentFooter {
+	background-image	: url("http://data.cafejeux.com/img/design/content_footer.gif");
+	background-position	: left bottom;
+	background-repeat	: no-repeat;
+	padding-top			: 250px;
+	padding-bottom		: 110px;
+	padding-left		: 210px;
+	padding-right		: 50px;
+	min-height			: 400px;
+}
+
+#siteFooter {
+	position			: absolute;
+	width				: 875px;
+	margin-top			: -88px;
+
+	color				: #948b98;
+	text-align			: right;
+	font-size			: 8pt;
+	font-family			: Arial, Verdana, sans-serif;
+}
+#ads {
+	position			: absolute;
+	margin-top			: -88px;
+	margin-left			: 45px;
+}
+#ads img {
+	vertical-align		: -20%;
+}
+
+.server {
+	position			: absolute;
+	left				: 300px;
+	top					: 160px;
+	width				: 350px;
+
+	color				: #ffc587;
+	font-size			: 8pt;
+	line-height			: 12pt;
+}
+
+.server,
+.server a {
+	display				: block;
+	height				: 38px;
+	overflow			: hidden;
+	color				: #ffc587;
+}
+
+.server p {
+	margin:0px ; padding:0px;;
+}
+
+.server img {
+	float				: left;
+	position			: relative;
+	margin-right		: 5px;
+}
+
+.server strong {
+	color				: white;
+	font-weight			: bold;
+}
+
+#defy {
+	position			: absolute;
+	left				: 250px;
+	top					: 158px;
+	width				: 38px;
+	height				: 38px;
+	cursor				: pointer;
+	background-image	: url("http://data.cafejeux.com/img/icons/large_noDuel.gif");
+}
+
+#defy img {
+	width				: 38px;
+	height				: 38px;
+}
+
+.connectStatus {
+	position			: absolute;
+	top					: 160px;
+	left				: 865px;
+	cursor				: pointer;
+}
+
+.stocks div {
+	position			: absolute;
+	padding-left		: 40px;
+	top					: 160px;
+	font-size			: 20pt;
+	height				: 38px;
+	cursor				: pointer;
+	background-image	: url("http://data.cafejeux.com/img/design/sugars.gif");
+	background-repeat	: no-repeat;
+}
+.stocks div.bought {
+	background-position	: 0px 0px;
+	left				: 677px;
+}
+.stocks div.free {
+	background-position	: -85px 0px;
+	left				: 764px;
+}
+
+.contactLink {
+	position			: absolute;
+	top					: 220px;
+	left				: 247px;
+	padding-left		: 23px;
+	padding-right		: 4px;
+
+	font-size			: 10pt;
+	font-variant		: small-caps;
+	color				: #bbb;
+	background-color	: #56505a;
+	background-image	: url("http://data.cafejeux.com/img/icons/small_histo.gif");
+	background-position	: 2px 2px;
+	background-repeat	: no-repeat;
+
+	cursor				: pointer;
+	z-index				: 8;
+	-moz-border-radius	: 7px;
+}
+
+.contactLink:hover {
+	color				: white;
+	background-color	: #753d3a;
+}
+
+
+.cache {
+	position			: absolute;
+	top					: -3000px;
+}
+
+
+
+/*** ONLINE / OFFLINE MODES ***/
+
+div.offline .server,
+div.offline .contactLink,
+div.offline .connectStatus,
+div.offline .drink,
+div.offline .stocks,
+div.online #login
+{
+	display				: none;
+}
+
+
+/*** REFRESH WARNING ***/
+
+.sitePopup {
+	position			: absolute;
+	top 				: 160px;
+	width				: 100%;
+	z-index				: 9;
+}
+.sitePopup p {
+	margin				: 0px;
+	margin-left			: 30%;
+	margin-right		: 30%;
+	margin-bottom		: 10px;
+	padding				: 0px;
+	text-align			: justify;
+}
+.sitePopup .button {
+	margin				: auto;
+}
+
+.sitePopup .header {
+	background-image	: url("http://data.cafejeux.com/img/design/refresh_header.png");
+	height				: 30px;
+}
+
+.sitePopup .content {
+	padding-top			: 15px;
+	padding-bottom		: 15px;
+
+	border-top			: 1px solid #d49367;
+	border-bottom		: 1px solid #d49367;
+	background-color	: #403a43;
+	background-image	: url("http://data.cafejeux.com/img/icons/large_refresh.gif");
+	background-repeat	: no-repeat;
+	background-position	: 26% 20px;
+}
+
+.sitePopup .footer {
+	background-image	: url("http://data.cafejeux.com/img/design/refresh_footer.png");
+	height				: 30px;
+}
+
+
+/*** MISC ***/
+dl img,
+ul img,
+.user img,
+p img {
+	vertical-align		: -15%;
+}
+
+div.clear {
+	clear				: both;
+	margin:0px ; padding:0px;
+	height				: 1px;
+	font-size			: 0pt;
+	line-height			: 0pt;
+}
+
+div.center {
+	text-align			: center;
+	margin				: auto;
+}
+
+
+.hidden {
+	display				: none;
+}
+
+div.swf {
+	display				: inline;
+}
+
+
+a {
+	cursor				: pointer;
+	text-decoration		: none;
+	color				: #ea9b62;
+	font-weight			: normal;
+}
+
+a:hover {
+	color				: white;
+	text-decoration		: underline;
+}
+
+a img {
+	border				: none;
+}
+
+
+h1 {
+	margin:0px ; padding:0px;;
+	position			: absolute;
+	top					: 205px;
+	width				: 650px;
+	padding-left		: 40px;
+	text-align			: right;
+	color				: white;
+	text-transform		: lowercase;
+	font-size			: 24pt;
+	overflow			: hidden;
+}
+
+h1 strong {
+	color				: #e48f7e;
+}
+
+h2 {
+	background-color	: #48434b;
+	font-size			: 17pt;
+	font-variant		: small-caps;
+	padding-left		: 5px;
+	color				: #eee;
+}
+
+h2 strong {
+	color				: #bbb;
+}
+
+h3 {
+	font-variant		: small-caps;
+	color				: #bbb;
+	border-bottom		: 1px solid #777;
+}
+
+h3:first-letter {
+	color				: #eee;
+}
+
+
+
+.playStats {
+	cursor				: help;
+	color				: #aaa;
+}
+.playStats span,
+.playStats strong {
+	color				: white;
+}
+
+span.win {
+	font-weight			: bold;
+}
+span.draw {
+	color				: #bbb;
+}
+
+p.help {
+	font-size			: 10pt;
+	color				: #ccc;
+	font-style			: italic;
+	margin-top			: -15px;
+}
+
+
+span.tokens {
+	font-weight			: bold;
+}
+
+span.tokens,
+span.tokens a {
+	color				: #bbb;
+}
+
+span.tokens img {
+	padding-left		: 2px;
+	padding-bottom		: 2px;
+	vertical-align		: -25%;
+}
+
+span.drinkName {
+	color				: #eee;
+	cursor				: help;
+}
+
+.ack,
+.nack {
+	margin-left			: 15px;
+	margin-bottom		: 5px;
+	padding-left		: 25px;
+	padding-right		: 10px;
+	padding-bottom		: 3px;
+	width				: 500px;
+
+	background-repeat	: no-repeat;
+	background-position	: 3px 4px;
+	-moz-border-radius	: 7px;
+}
+
+.ack {
+	background-color	: #56505a;
+	font-weight			: bold;
+	background-image	: url("http://data.cafejeux.com/img/icons/small_submit.gif");
+}
+
+.nack {
+	background-color	: #753d3a;
+	background-image	: url("http://data.cafejeux.com/img/icons/small_warning.gif");
+}
+
+.nack .title {
+	font-weight			: bold;
+	color				: #ea9b62;
+}
+
+.warning {
+	color				: #cd9899;
+	font-weight			: bold;
+}
+
+.warning strong {
+	color				: white;
+}
+
+
+div.avatar {
+	border				: 1px solid #ddd;
+	padding				: 1px;
+	font-size			: 0pt;
+	line-height			: 0pt;
+	-moz-border-radius	: 3px;
+}
+
+.userSheet div.avatar {
+	position			: absolute;
+	margin-left			: 625px;
+	margin-top			: 7px;
+}
+
+img.leagueIcon {
+	vertical-align		: -15%;
+}
+
+.loading {
+	background-color	: #56505a;
+	border				: 1px solid #6c676d;
+	width				: 300px;
+	padding				: 5px;
+	padding-left		: 30px;
+	margin-bottom		: 10px;
+	font-style			: italic;
+	color				: #ccc;
+
+	background-image	: url("http://data.cafejeux.com/img/design/loading.gif");
+	background-position	: 3px 5px;
+	background-repeat	: no-repeat;
+	-moz-border-radius	: 10px;
+}
+.loading p {
+	margin				: 0px;
+}
+.loading strong {
+	color				: white;
+}
+
+.userNoLink {
+	cursor				: help;
+}
+
+
+/*** DRINKS ***/
+
+.drink {
+	position			: absolute;
+	left				: 65px;
+	top					: 67px;
+
+	width				: 175px;
+	height				: 69px;
+	background-repeat	: no-repeat;
+	background-position	: top left;
+	font-size			: 0pt;
+	line-height			: 0pt;
+
+	cursor				: help;
+}
+
+
+.drink_black {		background-image : url("http://data.cafejeux.com/img/drinks/liquid_black.jpg"); }
+.drink_cappu {		background-image : url("http://data.cafejeux.com/img/drinks/liquid_cappu.jpg"); }
+.drink_chocmarsh {	background-image : url("http://data.cafejeux.com/img/drinks/liquid_chocmarsh.jpg"); }
+.drink_choco {		background-image : url("http://data.cafejeux.com/img/drinks/liquid_choco.jpg"); }
+.drink_coffee {		background-image : url("http://data.cafejeux.com/img/drinks/liquid_coffee.jpg"); }
+.drink_coffmarsh {	background-image : url("http://data.cafejeux.com/img/drinks/liquid_coffmarsh.jpg"); }
+.drink_fruit {		background-image : url("http://data.cafejeux.com/img/drinks/liquid_fruit.jpg"); }
+.drink_frutish {	background-image : url("http://data.cafejeux.com/img/drinks/liquid_frutish.jpg"); }
+.drink_grog {		background-image : url("http://data.cafejeux.com/img/drinks/liquid_grog.jpg"); }
+.drink_mint {		background-image : url("http://data.cafejeux.com/img/drinks/liquid_mint.jpg"); }
+.drink_tea {		background-image : url("http://data.cafejeux.com/img/drinks/liquid_tea.jpg"); }
+
+
+ul.drinkList {
+	margin:0px ; padding:0px;
+	list-style			: none;
+	width				: 670px;
+}
+ul.drinkList li {
+	float				: left;
+	position			: relative;
+/*	font-size:0pt  ; line-height:0pt;*/
+	width				: 140px;
+	height				: 50px;
+	margin-right		: 5px;
+	margin-bottom		: 5px;
+}
+
+
+
+
+/*** LINK BUTTONS ***/
+
+a.button,
+a.groupButton {
+	display				: block;
+	width				: 250px;
+	margin-top			: 2px;
+	padding-left		: 22px;
+	padding-right		: 5px;
+
+	text-align			: left;
+	font-variant		: small-caps;
+	font-size			: 11pt;
+	font-weight			: bold;
+	color				: #ea9b62;
+	text-decoration		: none;
+
+	background-color	: #56505a;
+	background-image	: url("http://data.cafejeux.com/img/icons/small_button.gif");
+	background-repeat	: no-repeat;
+	background-position	: 3px 3px;
+	-moz-border-radius	: 10px;
+}
+
+a.groupButton {
+	background-color	: #753d3a;
+	background-image	: url("http://data.cafejeux.com/img/icons/small_table.gif");
+	background-position	: 2px 3px;
+}
+
+a.button strong,
+a.groupButton strong {
+	text-decoration		: underline;
+}
+
+a.button:hover,
+a.groupButton:hover {
+	background-color	: #753d3a;
+	color				: white;
+	text-decoration		: none;
+}
+
+a.groupButton:hover {
+	background-color	: #94524e;
+}
+
+a.contactButton {
+	position			: absolute;
+	display				: inline;
+	width				: 30px;
+	margin-left			: 3px;
+	padding-bottom		: 2px;
+	-moz-border-radius	: 5px;
+	background-image	: url("http://data.cafejeux.com/img/icons/small_histo.gif");
+	font-size			: 9pt;
+	line-height			: 16pt;
+	font-weight			: normal;
+	color				: white;
+}
+
+a.b_mail {			background-image	: url("http://data.cafejeux.com/img/icons/small_mail.gif"); }
+a.b_bomb {			background-image	: url("http://data.cafejeux.com/img/icons/small_bomb.gif"); color:#cd9899; }
+a.b_delete {		background-image	: url("http://data.cafejeux.com/img/icons/small_delete.gif"); color:#cd9899; }
+a.b_histo {			background-image	: url("http://data.cafejeux.com/img/icons/small_histo.gif"); }
+a.b_admin {			background-image	: url("http://data.cafejeux.com/img/icons/small_admin.gif"); color:#cd9899;  }
+a.b_back {			background-image	: url("http://data.cafejeux.com/img/icons/small_back.gif"); margin-bottom:10px; }
+a.b_join {			background-image	: url("http://data.cafejeux.com/img/icons/small_login.gif"); }
+a.b_continue {		background-image	: url("http://data.cafejeux.com/img/icons/small_login.gif"); }
+a.b_score {			background-image	: url("http://data.cafejeux.com/img/icons/small_score.gif"); }
+a.b_fight {			background-image	: url("http://data.cafejeux.com/img/icons/small_fight.gif"); }
+a.b_chat {			background-image	: url("http://data.cafejeux.com/img/icons/small_say.gif"); }
+a.b_play {			background-image	: url("http://data.cafejeux.com/img/icons/small_fight.gif"); color:#cd9899;  }
+a.b_friend {		background-image	: url("http://data.cafejeux.com/img/icons/small_friend.gif"); }
+a.b_yes {			background-image	: url("http://data.cafejeux.com/img/icons/small_act_yes.gif"); }
+a.b_no {			background-image	: url("http://data.cafejeux.com/img/icons/small_act_no.gif"); color:#cd9899; }
+a.b_token {			background-image	: url("http://data.cafejeux.com/img/icons/small_bought.gif"); color:#cd9899; }
+a.b_stop {			background-image	: url("http://data.cafejeux.com/img/icons/small_warning.gif"); color:#cd9899; }
+
+.table a.button {
+	width				: auto;
+	background-color	: transparent;
+	color				: white;
+}
+
+.table a.button:hover {
+	background-color	: #9e5f71;
+}
+
+div.actions {
+	margin-top			: 20px;
+	padding-top			: 10px;
+	border-top			: 2px solid #753d3a;
+}
+
+div.topActions {
+	margin-bottom		: 20px;
+	padding-bottom		: 10px;
+	border-bottom		: 2px solid #56505a;
+}
+
+
+/*** TABLES ***/
+
+table {
+	border-collapse		: collapse;
+	border-spacing		: 0px;
+}
+
+td {
+	vertical-align		: top;
+}
+
+table.table {
+	margin				: auto;
+	margin-bottom		: 15px;
+	border-collapse		: separate;
+	border-spacing		: 1px;
+	border				: 1px solid #ddd;
+	background-color	: #444;
+	-moz-border-radius	: 7px;
+}
+
+table.table tr td,
+table.table tr th {
+	padding-left		: 4px;
+	padding-right		: 3px;
+}
+
+table.table tr th {
+	background-color	: #868187;
+	color				: #bbb;
+	font-size			: 13pt;
+	font-weight			: bold;
+	font-family			: "Times new roman", serif;
+	font-variant		: small-caps;
+	letter-spacing		: 1pt;
+	border-bottom		: 1px solid #bbb;
+	text-align			: center;
+}
+
+table.table tr td {
+	text-align			: left;
+	background-color	: #6c676d;
+	border-bottom		: 1px solid #847e85;
+}
+
+table.table tr.refused td,
+table.table tr.selected td,
+table.table tr td.important {
+	background-color	: #85505e;
+	border-bottom-color	: #9e5f71;
+}
+
+table.table tr td.important a {
+	color				: #cd9899;
+}
+
+table.table tr th.important {
+	background-color	: #9e5f71;
+	border-bottom-color	: #cd9899;
+	color				: #cd9899;
+}
+
+table.table tr.selected,
+table.table tr.selected a {
+	font-weight			: bold;
+}
+
+
+table.table a {
+	color				: #bbb;
+}
+table.table a:hover {
+	color				: white;
+}
+
+.tableHeader,
+.tableHeaderSmall {
+	background-image	: url("http://data.cafejeux.com/img/design/tableHeader.gif");
+	background-repeat	: no-repeat;
+	background-position	: center bottom;
+	width				: 300px;
+	height				: 17px;
+	margin				: auto;
+}
+
+.tableHeaderSmall {
+	width				: 150px;
+}
+
+.table tr.loss td {
+	background-color	: #85505e;
+	border-bottom-color	: #9e5f71;
+}
+
+
+
+/*** DEF LIST ***/
+dl dt {
+	float				: left;
+	position			: relative;
+	width				: 20%;
+	font-weight			: bold;
+	background-color	: #6c676d;
+	margin-bottom		: 1px;
+	margin-right		: 10px;
+	padding-left		: 5px;
+	-moz-border-radius-topleft	: 7px;
+}
+
+dl dd {
+	background-color	: #56505a;
+	margin-bottom		: 1px;
+	color				: #ccc;
+}
+
+dl dd strong {
+	color				: white;
+}
+
+dl.legend {
+	width				: 300px;
+	margin				: auto;
+	border				: 1px solid #ddd;
+	-moz-border-radius	: 7px;
+	padding				: 1px;
+	font-size			: 12pt;
+}
+dl.legend dt {
+	width				: 70px;
+	-moz-border-radius-bottomleft	: 7px;
+}
+
+.legendTitle {
+	text-align			: left;
+	font-size			: 10pt;
+	font-variant		: small-caps;
+	line-height			: 10pt;
+	width				: 300px;
+	margin				: auto;
+	color				: #ddd;
+}
+
+
+/*** MENU PRINCIPAL ***/
+
+#menu {
+	position			: absolute;
+	left				: 43px;
+	top					: 280px;
+	width				: 150px;
+	text-align			: right;
+}
+
+#menu ul, #menu ul li {
+	margin:0px ; padding:0px;
+}
+
+#menu ul li {
+	list-style			: none;
+	font-size			: 0pt;
+	line-height			: 0pt;
+}
+
+#menu ul li.separator {
+	margin-top			: 10px;
+}
+
+#menu ul li a {
+	padding-right		: 15px;
+	text-decoration		: none;
+	font-variant		: small-caps;
+	font-weight			: bold;
+	font-size			: 11pt;
+	line-height			: 15pt;
+	display				: block;
+	color				: #e1a36a;
+}
+
+
+#menu ul li a:hover {
+	color				: white;
+	background-color	: #49383e;
+}
+
+
+#menu ul ul.groups {
+	padding-right		: 0px;
+}
+
+#menu ul ul.groups li {
+	margin-bottom		: 3px;
+}
+
+#menu ul ul.groups li a {
+	color				: white;
+	font-weight			: normal;
+	font-size			: 10pt;;
+	line-height			: 11pt;
+}
+
+/*
+#menu ul ul.groups li a.chat {
+	float				: right;
+	margin-right		: 15px;
+	position			: relative;
+}
+
+#menu ul ul.groups li a.chat:hover {
+	background-color	: transparent;
+}
+*/
+
+#menu .field {
+	width				: 100px;
+	margin-right		: 15px;
+}
+
+
+#menu h2 {
+	margin:0px ; padding:0px;;
+	background-color	: transparent;
+
+}
+
+#menu a.play {
+	background-image	: url("http://data.cafejeux.com/img/icons/small_fight.gif");
+	background-repeat	: no-repeat;
+	background-position	: 30px 3px;
+	color				: #F1D396;
+}
+
+#menu a.logout {
+	background-image	: url("http://data.cafejeux.com/img/icons/small_error.gif");
+	background-repeat	: no-repeat;
+	background-position	: 12px 3px;
+	color				: #cd9899;
+}
+
+#menu a.admin {
+	background-image	: url("http://data.cafejeux.com/img/icons/small_admin.gif");
+	background-repeat	: no-repeat;
+	background-position	: 48px 3px;
+}
+
+
+/*** FRIENDS MT (PARTNERS) ***/
+#partners {
+	position			: absolute;
+	top					: 250px;
+	left				: 905px;
+	width				: 90px;
+	padding-top			: 5px;
+	padding-bottom		: 10px;
+
+	background-color	: #753d3a;
+	border				: 1px solid #d49367;
+	text-align			: left;
+	z-index				: 2;
+	-moz-border-radius	: 7px;
+	font-family			: Arial, Verdana, sans-serif;
+}
+
+#partners .title {
+	font-weight			: bold;
+	font-variant		: small-caps;
+	font-size			: 10pt;
+	padding-left		: 4px;
+	padding-right		: 4px;
+}
+
+#partners ul {
+	margin:0px ; padding:0px;
+	font-size:0pt  ; line-height:0pt;
+	list-style			: none;
+}
+
+#partners ul li a {
+	display				: block;
+	padding-left		: 4px;
+	padding-right		: 4px;
+	font-size			: 8pt;
+	line-height			: 9pt;
+}
+
+#partners ul li a:hover {
+	background-color	: #ea9b62;
+	color				: #753d3a;
+	text-decoration		: none;
+}
+
+#partners ul li a.part_mt {
+	font-weight			: bold;
+}
+
+
+/*** LOGIN BOX ***/
+
+#login {
+	position			: absolute;
+	top					: 168px;
+	left				: 250px;
+
+	font-size			: 10pt;
+}
+
+#login input.field {
+	width				: 70px;
+	margin-right		: 10px;
+}
+
+#login input.button {
+	background-image	: url("http://data.cafejeux.com/img/icons/small_login.gif");
+	margin				: 0px;
+	display				: inline;
+	font-size			: 10pt;
+	height				: auto;
+}
+
+#login input.b_help {
+	background-image	: url("http://data.cafejeux.com/img/icons/small_help.gif");
+}
+
+
+
+/*** DEBUG HAXE ***/
+
+#log_sql,
+iframe#HistoryFrame,
+fieldset.debug { /* hack: debug !!! */
+	/*display				: none;*/
+}
+
+fieldset.debug {
+	margin:0px ; padding:0px;
+	width				: 1000px;
+	font-size			: 10pt;
+	overflow			: auto;
+	padding				: 4px;
+	border-color		: #888;
+}
+
+fieldset.debug legend {
+	color				: red;
+	font-variant		: small-caps;
+	font-weight			: bold;
+}
+
+fieldset.debug div {
+	background-color	: #56505a;
+	color				: white;
+	padding				: 10px;
+	-moz-border-radius	: 10px;
+	height				: 150px;
+	overflow			: auto;
+}
+
+#log_sql {
+	background-color	: #56505a;
+	-moz-border-radius	: 10px;
+	color				: white;
+	margin				: 10px;
+}
+
+#log_sql .title {
+	margin-left			: 10px;
+	margin-right		: 10px;
+	border-bottom		: 2px solid #aaa;
+}
+
+iframe#HistoryFrame {
+	height				: 1px;
+	width				: 1px;
+	border				: 0px;
+}
+
+.log_sql_table {
+	font-size			: 11pt;
+	line-height			: 12pt;
+	padding-top			: 10px;
+	padding-bottom		: 10px;
+}
+.log_sql_table .expand {
+	cursor				: pointer;
+	font-weight			: bold;
+	padding-left		: 10px;
+	padding-right		: 10px;
+}
+.log_sql_table .expand:hover {
+	background-color	: white;
+	color				: black;
+}
+.log_sql_table .sub {
+	padding-left		: 25px;
+	color				: #aaa;
+}
+
+
+/*** FORMS ***/
+
+input.field,
+textarea,
+select {
+	background-color	: #8d5f4f;
+	border				: 1px solid #e1a36a;
+	-moz-border-radius	: 3px;
+	color				: #e1a36a;
+}
+
+select {
+/*	color				: #bbb;
+	border-color		: #bbb;
+	background-color	: #56505a;*/
+}
+
+input.field:focus,
+textarea:focus {
+	border-color		: white;
+	color				: white;
+}
+
+input.field,
+textarea,
+select {
+	width				: 300px;
+	font-family			: Verdana, sans-serif;
+	font-size			: 12px;
+	padding				: 2px;
+}
+
+input.fieldContact {
+	width				: 240px;
+}
+
+input.number {
+	width				: 60px;
+}
+
+input.shortNumber {
+	width				: 30px;
+}
+
+textarea {
+	height				: 100px;
+}
+textarea.big {
+	width				: 540px;
+	height				: 300px;
+}
+
+input.button {
+	margin:0px ; padding:0px;
+	display				: block;
+	margin-top			: 15px;
+	padding-left		: 23px;
+	padding-right		: 10px;
+	height				: 30px;
+	cursor				: pointer;
+
+	text-align			: left;
+	font-family			: "Trebuchet MS", arial, sans-serif;
+	color				: white;
+	font-variant		: small-caps;
+	font-weight			: bold;
+	font-size			: 14pt;
+
+	border				: none;
+	-moz-border-radius	: 7px;
+
+	background-color	: #56505a;
+	background-image	: url("http://data.cafejeux.com/img/icons/small_submit.gif");
+	background-position	: 4px center;
+	background-repeat	: no-repeat;
+}
+
+input.button:hover {
+	background-color	: #753d3a;
+}
+
+.mail input.button {
+	background-image	: url("http://data.cafejeux.com/img/icons/small_mail.gif");
+}
+
+input.b_warning {
+	background-image	: url("http://data.cafejeux.com/img/icons/small_error.gif");
+}
+
+.row {
+	margin-bottom		: 2px;
+}
+
+.row div.label,
+.row div.input {
+	height				: 25px;
+}
+
+.rowFlex div.input {
+	height				: auto;
+}
+
+.row div.label {
+	clear				: both;
+	float				: left;
+	position			: relative;
+	width				: 200px;
+	text-align			: left;
+	padding-left		: 10px;
+	margin-right		: 10px;
+	background-color	: #56505a;
+	-moz-border-radius	: 5px;
+
+	font-weight			: bold;
+	color				: #bbb;
+}
+
+fieldset {
+	margin:0px ; padding:0px;
+	width				: 540px;
+	padding				: 5px;
+	margin-bottom		: 15px;
+	border				: 1px solid #6a6370;
+	-moz-border-radius	: 7px;
+	text-align			: left;
+}
+
+fieldset p {
+	margin-top			: 10px;
+}
+
+form p.help {
+	margin-top			: 0px;
+}
+
+
+.passComplexity {
+	cursor				: help;
+}
+
+#passComplexityText {
+	float				: left;
+	position			: relative;
+	width				: 85px;
+}
+
+#passComplexityContainer,
+#passComplexityBar {
+	height				: 10px;
+}
+
+#passComplexityContainer {
+	-moz-border-radius	: 4px;
+	padding				: 1px;
+	float				: left;
+	position			: relative;
+	margin-top			: 7px;
+	border				: 1px solid #e1a36a;
+	width				: 100px;
+}
+
+#passComplexityBar {
+	width				: 30px;
+}
+
+.awful #passComplexityBar {		background-color	: #bb5963; }
+.bad #passComplexityBar {		background-color	: #cd8747; }
+.medium #passComplexityBar {	background-color	: #dcb438; }
+.good #passComplexityBar {		background-color	: #d7ee88; }
+
+.register p.help {
+	margin-bottom		: 20px;
+}
+
+.register form {
+	margin-top			: 30px;
+}
+
+.register input.field {
+	width				: 185px;
+}
+
+.register fieldset {
+	width				: 420px;
+}
+.register .avatar {
+	position			: absolute;
+	margin-left			: 440px;
+}
+
+#formError ul {
+	margin:0px ; padding:0px;
+	margin-bottom		: 20px;
+	width				: 400px;
+	list-style			: none;
+}
+
+#formError ul li {
+	margin:0px ; padding:0px;
+	margin-bottom		: 5px;
+	padding				: 3px;
+	padding-left		: 23px;
+	background-color	: #753d3a;
+	background-image	: url("http://data.cafejeux.com/img/icons/small_error.gif");
+	background-repeat	: no-repeat;
+	background-position	: 3px 4px;
+
+	text-align			: left;
+	font-size			: 11pt;
+	line-height			: 12pt;
+	-moz-border-radius	: 7px;
+}
+
+.gameHelpEdit form {
+	float				: left;
+	position			: relative;
+}
+
+.gameHelpEdit form textarea {
+	width				: 315px;
+	height				: 460px;
+}
+
+.gameHelpEdit .gameHelpContainer {
+	float				: right;
+	position			: relative;
+}
+
+
+/*** PAGINATION ***/
+
+.pagination {
+	width				: 450px;
+	margin				: auto;
+	margin-top			: -5px;
+	margin-bottom		: 10px;
+	background-color	: #56505a;
+	border				: 1px solid black;
+	border-bottom-color	: #a4a0a5;
+	-moz-border-radius	: 7px;
+
+	font-size			: 10pt;
+	text-align			: center;
+}
+
+.pagination a {
+	display				: block;
+	position			: relative;
+	width				: 14%;
+	background-color	: #6c676d;
+}
+
+.pagination a:hover {
+	background-color	: #868187;
+}
+
+.pagination,
+.pagination .prev a,
+.pagination .next a {
+	height				: 20px;
+	font-size			: 9pt;
+}
+
+.pagination .prev a,
+.pagination .next a {
+	padding-left		: 5px;
+	padding-right		: 5px;
+	color				: #ccc;
+	background-repeat	: no-repeat;
+}
+
+.pagination .prev a:hover,
+.pagination .next a:hover {
+	color				: white;
+}
+
+
+.pagination .prev a {
+	float				: left;
+	text-align			: left;
+	border-right		: 1px solid #403b42;
+	padding-left		: 24px;
+	background-image	: url("http://data.cafejeux.com/img/icons/small_page_prev.gif");
+	background-position	: 2px center;
+	-moz-border-radius-topleft		: 7px;
+	-moz-border-radius-bottomleft	: 7px;
+}
+
+.pagination .next a {
+	float				: right;
+	text-align			: right;
+	border-left			: 1px solid #403b42;
+	padding-right		: 24px;
+	background-image	: url("http://data.cafejeux.com/img/icons/small_page_next.gif");
+	background-position	: 95% center;
+	-moz-border-radius-topright		: 7px;
+	-moz-border-radius-bottomright	: 7px;
+}
+.pagination .count {
+	margin				: auto;
+	width				: 150px;
+}
+
+
+/*** TOOLTIP ***/
+
+#tooltip {
+	position			: absolute;
+	top					: -1000px;
+	z-index				: 10;
+}
+
+
+#tooltip .title {
+	color				: white;
+	font-weight			: bold;
+}
+
+.normalTip,
+.userTip {
+	width				: 160px;
+	padding				: 4px;
+	border				: 1px solid #d49367;
+	background-color	: #753d3a;
+	font-size			: 9pt;
+	line-height			: 10pt;
+	text-align			: left;
+}
+
+.normalTip p,
+.userTip p {
+	margin:0px ; padding:0px;
+	margin-bottom		: 5px;
+}
+
+.normalTip strong,
+.userTip strong {
+	color				: #e1a36a;
+	font-weight			: bold;
+}
+
+.normalTip em {
+	color				: #e1a36a;
+	font-style			: normal;
+}
+.userTip em {
+	color				: #bbb;
+	font-style			: normal;
+}
+
+.normalTip p:first-letter,
+.userTip p:first-letter {
+	font-size			: 110%;
+}
+
+
+.userTip {
+	width				: 200px;
+	padding				: 0px;
+
+	background-color	: #56505a;
+	border-color		: #ddd;
+	color				: white;
+	outline				: 1px solid black;
+}
+
+.userTip .title {
+	margin-bottom		: 5px;
+	padding-left		: 5px;
+	background-color	: #6c676d;
+	font-size			: 12pt;
+	line-height			: 14pt;
+	-moz-border-radius-topleft	: 7px;
+	-moz-border-radius-topright	: 7px;
+}
+
+.userTip div.avatar {
+	float				: left;
+	position			: relative;
+	margin-right		: 5px;
+	margin-left			: 5px;
+	margin-bottom		: 5px;
+}
+
+.userTip .footer {
+	clear				: both;
+	margin-bottom		: 2px;
+	padding-left		: 5px;
+	padding-right		: 5px;
+	border-top			: 1px solid #6c676d;
+}
+
+.userTip p {
+	padding-left		: 5px;
+	padding-right		: 5px;
+}
+
+.userTip ul {
+	margin:0px ; padding:0px;
+	list-style			: none;
+}
+.userTip ul li {
+	margin:0px ; padding:0px;
+}
+
+.drinkTip {
+	color				: #ccc;
+	font-style			: italic;
+	font-family			: Verdana, sans-serif;
+	padding				: 5px;
+	background-color	: #403b42;
+	-moz-border-radius	: 7px;
+}
+
+.drinkTip img {
+	display				: block;
+	margin				: auto;
+	margin-top			: 5px;
+}
+
+.normalTip dl {
+	margin:0px ; padding:0px;
+}
+.normalTip dl dt {
+	background-color	: transparent;
+	color				: #ea9b62;
+	width				: 65%	;
+}
+.normalTip dl dd {
+	background-color	: transparent;
+	color				: white;
+}
+
+
+
+
+/*** TABBED MENU ***/
+
+ul.tabs, ul.tabs li {
+	margin:0px ; padding:0px;
+}
+
+ul.tabs {
+	list-style			: none;
+	height				: 20px;
+	border-bottom		: 1px solid #625665;
+	margin-bottom		: 15px;
+}
+
+ul.tabs li {
+	float				: left;
+	position			: relative;
+	font-size:0pt  ; line-height:0pt;
+}
+
+ul.tabs li a {
+	display				: block;
+	height				: 20px;
+
+	padding-left		: 10px;
+	padding-right		: 10px;
+	margin-left			: 5px;
+
+	text-decoration		: none;
+	font-size			: 11pt;
+	line-height			: 14pt;
+	font-weight			: bold;
+	font-variant		: small-caps;
+	color				: #a8a2ae;
+	text-align			: center;
+
+	-moz-border-radius-topleft	: 5px;
+	-moz-border-radius-topright	: 5px;
+}
+/*ul.tabs li a:first-letter {
+	color				: #dcdade;
+}*/
+
+ul.tabs li a:hover {
+	color				: white;
+	background-color	: #625665;
+	border-bottom		: 1px solid #a8a2ae;
+}
+
+ul.tabs li.selected a {
+	color				: white;
+	background-color	: #753d3a;
+	border-bottom		: 1px solid #9E5668;
+}
+/*ul.tabs li.selected a:first-letter {
+	color				: white;
+}*/
+
+
+
+/*** GROUP SPECIFIC DESIGN ***/
+
+.group ul.tabs {
+	border-color		: #753d3a;
+}
+
+.group ul.tabs a {
+	color				: #cf8370;
+}
+
+/*.group ul.tabs a:first-letter {
+	color				: #e2b5a9;
+}*/
+
+.group ul.tabs li a:hover {
+	border-color		: #94524e;
+	background-color	: #753d3a;
+}
+
+.group .scores select {
+	display				: block;
+	margin				: auto;
+	margin-bottom		: 10px;
+}
+
+.group .smallTable {
+	position			: absolute;
+	margin-left			: 590px;
+	width				: 100px;
+	height				: 100px;
+	z-index				: 1;
+	background-color	: black;
+	background-image	: url("http://data.cafejeux.com/img/bar.jpg");
+	border				: 1px solid #d49367;
+}
+
+
+
+/*** GROUP STATUS ***/
+
+.challengeView {
+/*	margin				: auto;*/
+	text-align			: center;
+}
+
+.challengeView table {
+	width				: 100%;
+	height				: 75px;
+	background-color	: #6c676d;
+}
+
+.groupStatus .challengeView {
+	width				: 450px;
+	margin-left			: 0px;
+	margin-bottom		: 15px;
+}
+
+.groupStatus .challengeView table {
+	cursor				: pointer;
+}
+
+.groupStatus .challengeView table:hover {
+	border-color		: #e1a36a;
+}
+
+.challengeView table tr th {
+	height				: 20px;
+}
+
+.challengeView table tr td {
+	text-align			: center;
+	line-height			: 11pt;
+	padding-left		: 3px;
+	padding-right		: 3px;
+	border				: none;
+	vertical-align		: middle;
+}
+
+.challengeView table tr.name td {
+	font-size			: 10pt;
+	width				: 47%;
+}
+.challengeView table tr.name td.vs {
+	width				: auto;
+}
+
+.challengeView table tr.score td {
+	font-size			: 13pt;
+}
+
+.challengeView table tr.game td {
+	font-size			: 13pt;
+	font-weight			: bold;
+	font-variant		: small-caps;
+	padding-top			: 2px;
+}
+
+.challengeView table tr.score td.vs {
+	color				: #bbb;
+	font-size			: 10pt;
+}
+
+.groupStatus .scorePan {
+	position			: absolute;
+	margin-bottom		: 5px;
+	top					: 295px;
+	left				: 675px;
+}
+.groupStatus .scorePan,
+.groupStatus .scorePan .table {
+	width				: 220px;
+}
+.groupStatus .scorePan .table {
+	margin-bottom		: 0px;
+	cursor				: pointer;
+}
+.groupStatus .scorePan .table:hover {
+	border-color		: #e1a36a;
+}
+
+.groupStatus .scorePan table th,
+.groupStatus .scorePan table td {
+	line-height			: 11pt;
+}
+
+.groupStatus .waiting {
+	margin-bottom		: 10px;
+	padding				: 5px;
+	padding-left		: 25px;
+
+	background-color	: #56505a;
+	background-image	: url("http://data.cafejeux.com/img/icons/small_friend.gif");
+	background-position	: 3px 5px;
+	background-repeat	: no-repeat;
+	border				: 1px solid #ddd;
+	-moz-border-radius	: 7px;
+
+	font-weight			: bold;
+	font-size			: 9pt;
+	cursor				: pointer;
+}
+.groupStatus .waiting strong {
+	text-decoration		: underline;
+}
+.groupStatus .waiting:hover {
+	border-color		: #e1a36a;
+}
+
+.groupDescription {
+	width				: 685px;
+}
+
+
+
+/*** CHALLENGE ***/
+
+.challenge a.button {
+	margin-top			: -10px;
+	margin-bottom		: 10px;
+}
+
+.challenge .title {
+	margin-bottom		: 10px;
+	color				: white;
+	font-weight			: bold;
+	font-variant		: small-caps;
+}
+
+.challenge .gameSelecter,
+.challenge .userSelecter {
+	float				: left;
+	position			: relative;
+	width				: 230px;
+	padding				: 5px;
+	padding-top			: 0px;
+	margin-right		: 15px;
+	min-height			: 120px;
+	border				: 2px solid #56505a;
+	-moz-border-radius	: 10px;
+}
+
+.challenge .gameSelecter input {
+	display				: block;
+	margin				: auto;
+	margin-top			: -5px;
+}
+.challenge .smallGame {
+	float				: left;
+	position			: relative;
+	margin-right		: 4px;
+	margin-bottom		: 10px;
+}
+.challenge .smallGame img {
+	width				: 61px;
+	height				: 55px;
+	padding				: 1px;
+	border				: 1px solid #6c676d;
+	cursor				: pointer;
+}
+
+.challenge .smallGame img:hover {
+	border-color		: white;
+}
+
+.challenge table.users {
+	width				: 100%;
+	margin				: 0px;
+}
+
+.challenge table.users td.radio {
+	width				: 30px;
+}
+
+.challenge table.users tr.disabled td {
+	font-style			: italic;
+	color				: #aaa;
+}
+
+.challenge table.users label {
+	display				: block;
+	cursor				: pointer;
+}
+
+.challenge table.users .userNoLink {
+	cursor				: pointer;
+}
+
+
+.challenge table.users tr.disabled label {
+	cursor				: default;
+}
+.challenge table.users tr.disabled .userNoLink {
+	cursor				: default;
+}
+
+.challenge form .button {
+	margin-bottom		: 20px;
+	margin-top			: 3px;
+	width				: 244px;
+}
+
+.challenge .userSelecter em {
+	display				: block;
+	margin-top			: 5px;
+
+	color				: #bbb;
+	font-size			: 8pt;
+	font-style			: normal;
+	line-height			: 10pt;
+	text-align			: left;
+}
+
+
+
+/*** MESSAGERIE PRIVÉE ***/
+
+.mailer .table {
+	margin-left			: 0px;
+	width				: 100%;
+}
+
+.mailer .table tr:hover td,
+.mailer .table tr.selected td {
+	background-color	: #9e5f71;
+	border-bottom-color	: #cd9899;
+	cursor				: pointer;
+}
+
+.mailer .table tr td.icon {
+	width				: 20px;
+	padding-top			: 3px;
+	padding-left		: 0px;
+	padding-right		: 0px;
+}
+
+.mailer .table tr td.subject {
+	width				: 250px;
+}
+
+.mailer .table tr td.date {
+	font-size			: 10pt;
+	color				: #bbb;
+}
+
+.mailer .pagination {
+	margin-left			: 0px;
+	width				: 100%;
+}
+
+.mailer .topActions {
+	margin-bottom		: 5px;
+	padding-bottom		: 3px;
+}
+
+#msgView dl {
+	margin-bottom		: 0px;
+}
+
+#msgView .content {
+	padding-left		: 5px;
+	padding-right		: 5px;
+	padding-bottom		: 10px;
+	padding-top			: 3px;
+	margin-bottom		: 20px;
+	border				: 1px solid #6c676d;
+}
+
+
+
+/*** CONTACT LIST ***/
+
+.contacts {
+	float				: right;
+/*	position			: absolute;
+	top					: 250px;
+	left				: 775px;*/
+	padding				: 1px;
+	width				: 180px;
+	background-color	: #6c676d;
+	border				: 1px solid #ddd;
+	-moz-border-radius	: 7px;
+}
+
+
+.contacts .title {
+	font-family			: "Times new roman", serif;
+	font-weight			: bold;
+	text-align			: center;
+	font-variant		: small-caps;
+	color				: #bbb;
+	background-color	: #868187;
+	border-bottom		: 1px solid #bbb;
+}
+
+.contacts ul {
+	margin:0px ; padding:0px;
+	list-style			: none;
+	border				: 1px solid #403b42;
+}
+
+.contacts ul li {
+	padding-left		: 5px;
+	padding-right		: 5px;
+	border-top			: 1px solid #403b42;
+	border-bottom		: 1px solid #847e85;
+	overflow			: hidden;
+	cursor				: pointer;
+}
+
+.contacts ul li:hover {
+	background-color	: #9e5f71;
+	border-bottom-color	: #cd9899;
+}
+
+.contacts li.action {
+	border-bottom-color	: #cd9899;
+	background-color	: #85505e;
+	text-align			: center;
+	font-variant		: small-caps;
+	font-size			: 10pt;
+	line-height			: 11.5pt;
+	color				: #cd9899;
+}
+
+.contacts li a.fight,
+.contacts li a.delete {
+	float				: right;
+	position			: relative;
+}
+
+.contacts em {
+	display				: block;
+	text-align			: center;
+	border-bottom		: 1px solid #847e85;
+}
+
+
+
+/*** PROMOTIONS ***/
+
+.groupAd {
+	margin-left			: 15px;
+	border				: 1px solid #6a6370;
+	background-color	: #48434b;
+	padding				: 5px;
+	margin-bottom		: 8px;
+	cursor				: pointer;
+	-moz-border-radius	: 8px;
+}
+
+.groupAd:hover {
+	background-color	: #56505a;
+	border-color		: #ddd;
+}
+
+.groupAd .title {
+	padding-left		: 20px;
+	font-size			: 14pt;
+	color				: #bbb;
+
+	background-image	: url("http://data.cafejeux.com/img/icons/small_submit.gif");
+	background-repeat	: no-repeat;
+	background-position	: 0px 3px;
+}
+
+.groupAd .content {
+	font-size			: 10pt;
+	margin-bottom		: 3px;
+}
+
+
+
+/*** CHAT ***/
+
+.groupChat table {
+	width				: 100%;
+	margin-bottom		: 5px;
+}
+
+.groupChat table td.users {
+	vertical-align		: top;
+	padding				: 0px;
+}
+
+.groupChat table td.content {
+	width				: 100%;
+}
+
+.groupChat table td.content #history {
+	border				: 1px solid #56505a;
+	margin-right		: 5px;
+	height				: 320px;
+	margin-bottom		: 2px;
+	overflow			: auto;
+}
+
+
+.groupChat table td.users .gtable {
+	font-size:0pt  ; line-height:0pt;
+	width				: 420px;
+	border				: 1px solid #e6b276;
+	padding				: 1px;
+}
+
+
+
+.groupChat .chatInfo,
+.groupChat .chatEmote,
+.groupChat .chatMsg {
+	font-size			: 9pt;
+	line-height			: 11pt;
+	text-align			: left;
+}
+
+.groupChat .chatInfo {
+	color				: #aaa;
+	line-height			: 12pt;
+}
+
+.groupChat .chatInfo a {
+	color				: #ddd;
+	font-weight			: bold;
+}
+.groupChat .chatInfo a:hover {
+	text-decoration		: none;
+}
+
+.groupChat .chatInfo strong {
+	color				: #ddd;
+	font-weight			: normal;
+}
+
+.groupChat .chatEmote,
+.groupChat .chatEmote a {
+	color				: #cf8370;
+}
+
+
+.groupChat input.field {
+	width				: 150px;
+	font-size			: 8pt;
+	line-height			: 11pt;
+}
+
+.groupChat input.button {
+	display				: inline;
+	margin				: 0px;
+	padding-top			: 0px;
+	height				: auto;
+
+	font-size			: 9pt;
+	line-height			: 10pt;
+
+	background-image	: url("http://data.cafejeux.com/img/icons/small_say.gif");
+}
+
+
+/*** GROUP FORUM ***/
+
+.forum table {
+	width				: 100%;
+	border-collapse		: collapse;
+	border-spacing		: 0px;
+	margin-left			: 20px;
+}
+
+.forum table td.header {
+	background-color	: #56505a;
+	width				: 160px;
+	padding-left		: 5px;
+	border				: 1px solid #56505a;
+	border-bottom-color	: #888;
+}
+
+.forum table td.content {
+	padding-left		: 5px;
+	padding-right		: 5px;
+	border				: 1px solid #56505a;
+}
+
+.forum table td.header .date {
+	font-size			: 8pt;
+	color				: #bbb;
+}
+
+.forum table tr.recent td {
+	border-color		: #85505e;
+}
+.forum table tr.recent td.header {
+	border-bottom-color	: #cd9899;
+	background-color	: #85505e;
+}
+.forum table tr.recent td.header .date {
+	color				: #cd9899;
+}
+
+.forum table tr.separator td {
+	font-size:0pt  ; line-height:0pt;
+	height				: 3px;
+}
+
+.forum textarea {
+	height				: 100px;
+	margin-bottom		: 5px;
+}
+
+.forum .avatar {
+	float				: left;
+	position			: relative;
+	margin-right		: 3px;
+	border-color		: #888;
+}
+
+
+
+/*** GAME BOXES ***/
+
+.gameBox {
+	float				: left;
+	position			: relative;
+	width				: 210px;
+	height				: 220px;
+	padding				: 5px;
+	text-align			: center;
+	-moz-border-radius	: 10px;
+}
+
+.gameBox .pic {
+	width				: 150px;
+	height				: 150px;
+	margin				: auto;
+	background-image	: url("http://data.cafejeux.com/img/games/box.gif");
+	font-size			: 0pt;
+	line-height			: 0pt;
+	text-align			: left;
+}
+
+.gameBox .pic img {
+	margin-top			: 9px;
+	margin-left			: 9px;
+}
+
+.gameBox .pic:hover {
+	background-image	: url("http://data.cafejeux.com/img/games/box_hover.gif");
+}
+
+.gameBox .pic:hover img {
+	margin-top			: 5px;
+}
+
+.gameBox .title {
+	font-size			: 15pt;
+	font-variant		: small-caps;
+	font-weight			: bold;
+	margin-bottom		: -4px;
+	color				: #b5aeb7;
+}
+
+.gameBox:hover .title {
+	color				: white;
+}
+
+
+.gameBox .desc {
+	margin-bottom		: 2px;
+	padding				: 3px;
+	padding-left		: 5px;
+	padding-right		: 5px;
+	height				: 28px;
+	overflow			: hidden;
+
+	font-size			: 9pt;
+	line-height			: 10pt;
+	text-align			: left;
+
+	background-color	: #56505a;
+	-moz-border-radius	: 10px;
+}
+
+.gameBox .links {
+	margin-bottom		: 2px;
+}
+
+.gameBox table.infos {
+	width				: 100%;
+	margin				: auto;
+}
+
+.gameBox table.infos td {
+	padding				: 0px;
+	padding-left		: 2px;
+	height				: 18px;
+	vertical-align		: middle;
+	color				: #bbb;
+	text-align			: center;
+}
+
+.gameBox table.infos td.players {
+	padding-left		: 0px;
+	width				: 165px;
+	font-size			: 9pt;
+	line-height			: 9pt;
+	background-color	: #56505a;
+	-moz-border-radius	: 10px;
+}
+
+.gameBox table.infos td .button {
+	margin				: 0px;
+	margin-right		: 2px;
+	padding				: 0px;
+	height				: 18px;
+
+	text-align			: center;
+	font-size			: 9pt;
+
+	background-position	: 3px 1px;
+}
+
+.gameBox table.infos td .button em {
+	font-weight			: normal;
+	font-style			: normal;
+}
+
+.gameBox table.infos td.score .button {
+}
+.gameBox table.infos td.play .button {
+}
+
+.gameBox table.infos td.play .button {
+	width				: 50px;
+	padding-left		: 25px;
+	background-position	: 5px 1px;
+	background-image	: url("http://data.cafejeux.com/img/icons/small_fight.gif");
+	text-align			: left;
+}
+.gameBox table.infos td.score .button {
+	width				: 130px;
+	background-image	: none;
+}
+
+.gamePic {
+	width				: 150px;
+	height				: 150px;
+	padding				: 5px;
+	background-image	: url("http://data.cafejeux.com/img/games/box.gif");
+	background-repeat	: no-repeat;
+	background-position	: center center;
+	font-size			: 0pt;
+	line-height			: 0pt;
+	text-align			: left;
+	background-color	: #56505a;
+	-moz-border-radius	: 15px;
+	border				: 1px solid #888;
+}
+
+.gamePic img {
+	margin-top			: 9px;
+	margin-left			: 9px;
+}
+
+
+
+
+
+
+/*** FULL GAME VIEW ***/
+
+table.gameFull {
+	margin-bottom		: 20px;
+}
+
+table.gameFull td.sheet {
+	width				: 320px;
+/*	border				: 2px solid #56505a;
+	padding-top			: 5px;
+	padding-right		: 5px;*/
+}
+
+table.gameFull .pic {
+	float				: left;
+	position			: relative;
+	width				: 150px;
+	height				: 165px;
+	background-image	: url("http://data.cafejeux.com/img/games/box_hover.gif");
+	background-repeat	: no-repeat;
+	font-size			: 0pt;
+	line-height			: 0pt;
+	text-align			: left;
+}
+
+table.gameFull .pic img {
+	margin-top			: 5px;
+	margin-left			: 9px;
+}
+
+table.gameFull .infos {
+	margin-top			: 2px;
+	padding-top			: 5px;
+	padding-bottom		: 5px;
+	padding-left		: 5px;
+	padding-right		: 5px;
+	height				: 47px;
+	width				: 143px;
+
+	border				: 2px solid #56505a;
+	color				: #bbb;
+	font-size			: 8pt;
+	line-height			: 10pt;
+	text-align			: left;
+	-moz-border-radius	: 7px;
+}
+
+table.gameFull .infos .title {
+	margin-top			: 7px;
+	font-size			: 10pt;
+	font-weight			: bold;
+	color				: white;
+}
+
+table.gameFull .menu {
+	float				: right;
+	position			: relative;
+}
+
+table.gameFull .menu .button {
+	width				: 130px;
+}
+
+table.gameFull .menu .b_play {
+	height				: 30px;
+	padding-top			: 8px;
+	background-position	: 3px 11px;
+}
+
+table.gameFull .desc {
+	clear				: both;
+	border				: 2px solid #56505a;
+	padding				: 5px;
+	height				: 281px;
+	font-size			: 11pt;
+	-moz-border-radius	: 7px;
+}
+
+table.gameFull .desc .title {
+	background-color	: #56505a;
+	margin-top			: -5px;
+	margin-left			: -5px;
+	margin-right		: -5px;
+	font-weight			: bold;
+	padding-left		: 5px;
+	font-variant		: small-caps;
+	color				: #aaa;
+	margin-bottom		: 5px;
+}
+
+/*.gameFull {
+	height				: 174px;
+	padding-top			: 10px;
+	padding-left		: 10px;
+	padding-right		: 10px;
+	margin-bottom		: 20px;
+
+	border				: 2px solid #56505a;
+	-moz-border-radius	: 10px;
+}
+
+.gameFull .title {
+	font-size			: 15pt;
+	font-variant		: small-caps;
+	font-weight			: bold;
+	color				: #b5aeb7;
+}
+
+.gameFull .pic {
+	float				: left;
+	position			: relative;
+	width				: 150px;
+	height				: 165px;
+	background-image	: url("http://data.cafejeux.com/img/games/box_hover.gif");
+	background-repeat	: no-repeat;
+	font-size			: 0pt;
+	line-height			: 0pt;
+	text-align			: left;
+}
+
+.gameFull .pic img {
+	margin-top			: 5px;
+	margin-left			: 9px;
+}
+
+.gameFull .infos {
+	color				: #bbb;
+	font-size			: 8pt;
+	line-height			: 10pt;
+	text-align			: center;
+	margin-top			: 30px;
+	padding-right		: 8px;
+}
+
+.gameFull .content {
+	margin-left			: 152px;
+	padding-left		: 5px;
+	padding-right		: 5px;
+}
+
+.gameFull .desc {
+	background-color	: #56505a;
+	height				: 85px;
+	padding-top			: 5px;
+	padding-left		: 5px;
+	padding-right		: 5px;
+	margin-bottom		: 9px;
+	-moz-border-radius	: 10px;
+	font-size			: 9pt;
+	line-height			: 10pt;
+}
+
+.gameFull .button {
+	width				: auto;
+}*/
+
+
+/*** GAME GUIDE ***/
+
+.gameHelpContainer {
+	margin				: auto;
+	margin-bottom		: 10px;
+	padding-left		: 15px;
+	padding-right		: 20px;
+	padding-top			: 35px;
+	padding-bottom		: 15px;
+	/*background-color	: #56505a;*/
+	background-image	: url("http://data.cafejeux.com/img/design/gameHelp.gif");
+	background-repeat	: no-repeat;
+	width				: 320px;
+	height				: 414px;
+	-moz-border-radius	: 10px;
+	color				: #8c6548;
+	font-family			: Arial, Verdana, sans-serif;
+}
+
+.gameHelp {
+	height				: 405px;
+	font-size			: 10pt;
+	line-height			: 11pt;
+	overflow			: auto;
+	padding				: 5x;
+	padding-left		: 20px;
+	padding-right		: 20px;
+}
+
+.gameHelp h3 {
+	margin:0px ; padding:0px;
+	border				: none;
+	font-size			: 10pt;
+	font-weight			: bold;
+	font-variant		: normal;
+	color				: #8c6548;
+	border-bottom		: 1px dotted #e2c7a9;
+}
+.gameHelp h3:first-letter {
+	color				: #8c6548 !important;
+}
+
+.gameHelp .title {
+	margin-bottom		: 5px;
+	padding-left		: 5px;
+
+	text-transform		: uppercase;
+	font-family			: "Trebuchet MS", arial, sans-serif;
+	color				: #d3bb87;
+	text-align			: center;
+	font-size			: 12pt;
+	font-weight			: bold;
+}
+
+.gameHelp p {
+	margin-top			: 5px;
+}
+
+
+/*** INGAME CHAT ***/
+
+.game .chat {
+	padding-left		: 8px;
+}
+
+.game a.button {
+	margin-bottom		: 5px;
+}
+
+.game .chat #infos,
+.game .chat #history {
+	border				: 1px solid #56505a;
+	width				: 350px;
+	padding-left		: 3px;
+	padding-right		: 3px;
+	margin-bottom		: 2px;
+	text-align			: left;
+}
+.game .chat #history {
+	overflow			: auto;
+	height				: 216px;
+}
+.game .chat #infos {
+	width				: 242px;
+	height				: 73px;
+	margin-left			: 2px;
+	overflow			: hidden;
+}
+.game .chat .avatar {
+	float				: left;
+	position			: relative;
+}
+
+.game .chat .av2 .avatar {
+	float				: right;
+}
+
+.game .chat input.field {
+	width				: 290px;
+	font-size			: 8pt;
+	line-height			: 11pt;
+}
+
+.game .chat input.button {
+	display				: inline;
+	margin:0px ; padding:0px;
+	width				: 55px;
+	padding-left		: 23px;
+	padding-right		: 5px;
+	padding-top			: 3px;
+	height				: auto;
+
+	font-size			: 10pt;
+	line-height			: 9pt;
+
+	background-image	: url("http://data.cafejeux.com/img/icons/small_say.gif");
+}
+
+.game .noChat {
+	font-size			: 8pt;
+	color				: #bbb;
+}
+
+.game .chat .logMsg,
+.game .chat .chatMsg {
+	font-size			: 10pt;
+	line-height			: 11pt;
+	text-align			: left;
+}
+
+.game .chat .logMsg a,
+.game .chat .chatMsg a {
+	font-weight			: bold;
+}
+
+.game .chat .logMsg {
+	color				: #aaa;
+}
+
+.game .chat .logMsg a {
+	color				: #ccc;
+	font-weight			: normal;
+}
+
+.game .chat .chatMsg {
+	font-size			: 11pt;
+	line-height			: 13pt;
+}
+
+.game .chat #infos .score0,
+.game .chat #infos .score1 {
+	float				: left;
+	position			: relative;
+	text-align			: center;
+	font-size			: 12pt;
+	font-weight			: bold;
+	width				: 115px;
+}
+
+.game .chat #infos .score0 a,
+.game .chat #infos .score1 a {
+	display				: block;
+	text-align			: center;
+	font-size			: 9pt;
+	margin-bottom		: -5px;
+}
+
+.game .chat #infos .score1 {
+	float				: right;
+}
+
+.game .chat #infos p {
+	margin:0px ; padding:0px;
+	clear				: both;
+	text-align			: left;
+	font-size			: 9pt;
+	border-top			: 1px solid #56505a;
+}
+
+
+/*** SCORE TABLES ***/
+
+.scores .button {
+	margin-bottom		: 2px;
+}
+
+.scores .pagination {
+	width				: 340px;
+}
+
+.scores .gamePic {
+	position			: absolute;
+	top					: 352px;
+	left				: 210px;
+}
+
+.myScore {
+	width				: 220px;
+	margin				: auto;
+	text-align			: center;
+	background-color	: #6c676d;
+	border				: 1px solid #ddd;
+	margin-top			: -5px;
+	margin-bottom		: 30px;
+}
+
+.myScore .score {
+	font-weight			: bold;
+	font-family			: "Times new roman", serif;
+	color				: #bbb;
+	font-variant		: small-caps;
+	background-color	: #868187;
+	border				: 1px solid black;
+	border-bottom		: 1px solid #bbb;
+}
+.myScore .pos {
+	border				: 1px solid black;
+	font-size			: 10pt;
+}
+
+
+/*** END GAME ***/
+
+.end .change {
+	text-align			: center;
+	background-color	: #56505a;
+	font-size			: 14pt;
+	padding-top			: 5px;
+	padding-bottom		: 5px;
+	margin-bottom		: 15px;
+	border				: 1px solid #6c676d;
+	-moz-border-radius	: 10px;
+}
+
+.end .change em {
+	display				: block;
+	color				: #bbb;
+	font-size			: 9pt;
+	font-style			: normal;
+}
+
+.end .art {
+	display:none; /* hack */
+	float				: right;
+	position			: relative;
+	width				: 240px;
+	height				: 180px;
+	padding				: 2px;
+
+	border				: 2px solid #56505a;
+	font-size:0pt  ; line-height:0pt;
+}
+
+.end .art img {
+	width				: 240px;
+	height				: 180px;
+}
+
+.end dl {
+	width				: 290px;
+	margin-top			: 0px;
+	margin-bottom		: 7px;
+}
+
+.end dl dt {
+	width				: 40%;
+}
+
+.end .button {
+	width				: 263px;
+	margin-bottom		: 0px;
+}
+.end .tableHeader,
+.end .table {
+	width				: 400px;
+	margin-left			: 0px;
+}
+
+
+/*** DUEL MANAGEMENT ***/
+
+.duels .table {
+	width				: 100%;
+}
+.duels .table td {
+	vertical-align		: middle;
+}
+.duels .table td.user {
+	width				: 90px;
+	text-align			: center;
+}
+.duels .table td.type {
+	text-align			: center;
+	font-size			: 10pt;
+}
+.duels .table td.game {
+	width				: 110px;
+	font-size			: 14pt;
+	font-weight			: bold;
+	text-align			: center;
+}
+.duels .table .field {
+	display				: block;
+	width				: 170px;
+	margin-left			: 85px;
+	margin-top			: -20px;
+}
+
+.duels .table em {
+	font-size			: 10pt;
+}
+
+
+/*** TEASER ***/
+.teaser .screen {
+	float				: right;
+	position			: relative;
+}
+
+.teaser p {
+	text-align			: left;
+}
+.teaser p.big {
+	font-size			: 13pt;
+	color				: #ea9b62;
+}
+
+.teaser ul {
+	margin:0px ; padding:0px;
+	list-style			: none;
+}
+
+.teaser ul li {
+	margin:0px ; padding:0px;
+	margin-left			: 10px;
+	padding-left		: 22px;
+	background-position	: 2px 4px;
+	background-repeat	: no-repeat;
+	background-color	: #56505a;
+	-moz-border-radius	: 8px;
+	margin-bottom		: 2px;
+	cursor				: help;
+}
+
+.teaser ul li.game	{ background-image : url("http://data.cafejeux.com/img/icons/small_fight.gif"); }
+.teaser ul li.chat	{ background-image : url("http://data.cafejeux.com/img/icons/small_say.gif"); }
+.teaser ul li.table	{ background-image : url("http://data.cafejeux.com/img/icons/small_table.gif"); }
+.teaser ul li.cool	{ background-image : url("http://data.cafejeux.com/img/icons/small_online.gif"); }
+.teaser ul li.xp	{ background-image : url("http://data.cafejeux.com/img/icons/small_rank_2.gif"); }
+
+
+
+/*** DÉFIS ***/
+
+.defyGame .avatar {
+	float				: left;
+	position			: relative;
+}
+
+.defyGame .vs {
+	float				: left;
+	position			: relative;
+	width				: 130px;
+	height				: 75px;
+	background-color	: #56505a;
+	padding				: 5px;
+	margin-right		: 10px;
+}
+.defyGame .vs .inter {
+	float				: left;
+	position			: relative;
+	margin-left			: 5px;
+	margin-right		: 5px;
+	margin-top			: 20px;
+	color				: #bbb;
+}
+
+.defyGame .gamesBg {
+	background-color	: #56505a;
+	margin-top			: 10px;
+	margin-bottom		: 10px;
+	padding-bottom		: 5px;
+	padding-top			: 10px;
+	-moz-border-radius	: 10px;
+}
+.defyGame ul.games {
+	margin:0px ; padding:0px;
+	list-style			: none;
+}
+
+.defyGame ul.games li {
+	margin:0px ; padding:0px;
+	float				: left;
+	position			: relative;
+	text-align			: center;
+	width				: 100px;
+}
+
+.defyGame ul.games li img {
+	width				: 61px;
+	height				: 55px;
+	padding				: 1px;
+	border				: 1px solid #6c676d;
+}
+
+.defyGame ul.games li .title {
+	font-size			: 10pt;
+	font-variant		: small-caps;
+}
+
+.defyGame ul.games li a:hover img {
+	border-color		: white;
+}
+
+
+.defyPlayer .table tr:hover td {
+	background-color	: #85505e;
+	border-bottom-color	: #9e5f71;
+	cursor				: pointer;
+}
+
+.defyPlayer .table td {
+	font-weight			: bold;
+}
+
+.defyPlayer .table td.off {
+	font-style			: italic;
+	font-weight			: normal;
+	color				: #cd9899;
+}
+
+
+/*** SITE HELP ***/
+.guide .loading {
+	margin-top			: 15px;
+}
+
+.guide .menu {
+	position			: absolute;
+	width				: 200px;
+	padding-top			: 1px;
+}
+.guide .menu ul {
+	margin:0px ; padding:0px;
+	font-size:0pt  ; line-height:0pt;
+	list-style			: none;
+}
+
+.guide .menu ul li {
+	margin:0px ; padding:0px;
+}
+
+.guide .menu ul li a {
+	display				: block;
+	font-size			: 10pt;
+	line-height			: 14pt;
+}
+
+.guide .menu ul li a:hover {
+	text-decoration		: none;
+	background-color	: #753d3a;
+}
+
+.guide .menu ul li span {
+	font-size			: 10pt;
+	line-height			: 14pt;
+}
+
+.guide .menu ul li ul {
+	margin-left			: 20px;
+}
+
+.guide #help {
+	padding-top			: 1px;
+	margin-left			: 210px;
+}
+
+.guide .story {
+	font-style			: italic;
+	color				: #bbb;
+}
+
+.guide .story .gamePic {
+	float				: left;
+	position			: relative;
+	margin-right		: 10px;
+	background-color	: transparent;
+	padding				: 0px;
+	border				: none;
+}
+
+
+/*** NEWS ***/
+
+.news .box {
+	margin-bottom		: 20px;
+	margin-top			: 5px;
+	margin-left			: 10px;
+	border				: 1px solid #6c676d;
+	-moz-border-radius	: 10px;
+}
+
+.news .icon {
+	position			: absolute;
+	width				: 80px;
+	height				: 80px;
+}
+
+.news .title {
+	height				: 28px;
+	padding-left		: 10px;
+
+	font-weight			: bold;
+	font-variant		: small-caps;
+	font-size			: 15pt;
+	color				: #bbb;
+
+	background-color	: #56505a;
+	border				: 1px solid black;
+	-moz-border-radius-topleft	: 10px;
+	-moz-border-radius-topright	: 10px;
+}
+
+.news .date {
+	float				: right;
+	position			: relative;
+	margin-top			: 4px;
+	font-size			: 9pt;
+	color				: #bbb;
+	padding-right		: 5px;
+}
+
+.news .content {
+	padding-left		: 10px;
+	padding-right		: 5px;
+	border				: 1px solid black;
+	border-top			: 1px solid #56505a;
+	font-size			: 10.5pt;
+	-moz-border-radius-bottomleft	: 10px;
+	-moz-border-radius-bottomright	: 10px;
+	color				: #bbb;
+}
+
+.news .content p {
+	margin-bottom		: 10px;
+	margin-top			: 0px;
+}
+
+.recentNews .box {
+	margin-left			: 85px;
+	border				: 1px solid #bbb;
+	background-color	: #56505a;
+}
+.recentNews .title {
+	color				: white;
+	background-color	: #868187;
+}
+
+.recentNews .content {
+	border-top			: 1px solid #bbb;
+	color				: white;
+}
+.recentNews .icon {
+	background-image	: url("http://data.cafejeux.com/img/icons/news_recent.gif");
+}

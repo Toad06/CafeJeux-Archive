@@ -46,11 +46,17 @@
 		.nobottom {
 			margin-bottom: 0px;
 		}
+		.bold {
+			font-weight: bold;
+		}
 		.italic {
 			font-style: italic;
 		}
 		.asuper {
 			vertical-align: super;
+		}
+		.abottom {
+			vertical-align: bottom;
 		}
 	</style>
 	<script type="text/javascript" src="../../../swfobject.js?v=20100928162820"></script>
@@ -77,7 +83,9 @@
 						<option value="utopiz">Utopiz</option>
 					</optgroup>
 					<optgroup label="Site">
+						<option value="loader">Affichage des jeux</option>
 						<option value="table">Tables de jeu</option>
+						<option value="forum">Forums</option>
 					</optgroup>
 				</select>
 			</p>
@@ -179,11 +187,21 @@
 				case "utopiz":
 					infos = '<p><img src="data/utopiz_frusiondisc.png" alt="" /></p><p>Initialement prévu pour le site Frutiparc, Utopiz aurait dû sortir sur CaféJeux, mais son développement a finalement été annulé.<br />Le code source du jeu, évidemment incomplet, est disponible dans les sources fournies par Motion Twin.<br />Il est également possible d\'y jouer dans l\'archive, à compter de la version 1.5 du loader.</p><p>Les utilisateurs de Frutiparc avaient eu connaissance de ce projet par le biais d\'un fond d\'écran disponible sur le site.<br />Aucune autre information n\'avait été communiquée sur le développement du jeu, pas plus que sur les raisons de son abandon.</p><p><img src="data/utopiz_background.jpg" alt="" /></p><p class="italic">Fond d\'écran fourni par Renault, ancien joueur de Frutiparc</p>';
 					break;
+				case "loader":
+					setSWF("loader_beta_edited.swf", "300", "320", {variables: {swf: "../../../games/swf/expanz.20110927104815.swf", pid: "123", m: "0", p1: "Toad06", p2: "deepnight"}});
+					infos += '<p>Durant la phase de bêta-test du site, certaines informations concernant les parties étaient affichées directement au sein du jeu, plutôt que dans un bloc de la page.<br />Il était ainsi fait usage du fichier <a href="../../../swf/loader.swf" target="_blank">loader.swf</a>, comme présenté juste au-dessus.</p>';
+					infos += '<p>L\'absence de tous les sélecteurs ".chrono", ".p1turn" et ".p2turn" <a href="data/main_20061205182512.css" target="_blank">dans la feuille de style de décembre 2006</a> était déjà un indice en soi.<br />Dès le mois de février 2007, et possiblement avant, ces sélecteurs sont ajoutés.</p>';
+					infos += '<p>Pour référence, le fichier JavaScript <a href="data/loader_20061205182513.js" target="_blank">loader.js</a> de décembre 2006 est également disponible.</p>';
+					break;
 				case "table":
 					infos = '<p><img src="../../../img/bar.jpg" alt="" /><br />Cette image était utilisée comme illustration durant les premières semaines d\'existence de CaféJeux.</p>';
 					infos += '<p><a href="#" onclick="tableBanButtons(); return false;"><img src="data/table_icones_chat.png" alt="" /></a><br />Il était possible pour tout créateur d\'une table de jeu d\'autoriser ou non l\'accès au chat de sa table aux joueurs n\'en faisant pas partie.<br />L\'avant-dernière colonne de la page "Liste des tables" affichait ainsi l\'icône <img src="../../../img/icons/small_say.gif" alt="" /> pour indiquer qu\'une table avait fait le choix d\'activer cette fonctionnalité.<br />(Cette icône était également affichée sur la page "Rejoindre une table", à droite de l\'information sur le nombre de membres de ladite table.)<br />Ce mode "visiteur" a par la suite été supprimé mais le droit "Bannir un visiteur" a été laissé tel quel sur la page "Membres" des tables (nécessité d\'en être le créateur pour s\'en apercevoir).<br />Ce droit n\'a donc plus aucune utilité, les boutons "Bannir" et "Débannir" tels qu\'affichés sur l\'image ci-dessus ont également été retirés.</p>';
 					infos += '<p>Le code source Flash relatif aux tables de jeu n\'a pas été rendu public par Motion Twin, mais les éléments graphiques ont été fournis.<br />Parmi eux se trouvent trois objets qui ne sont pas inclus dans le fichier Flash compilé : un bonnet péruvien pour El Papa, un trophée mural de poisson et un ordinateur.<br />L\'ordinateur est présent dans l\'illustration de la page de la boutique (section "Meubles"), ce qui à l\'époque avait amené beaucoup de monde à spéculer sur sa prochaine disponibilité.</p><p><img src="data/table_bonnet_peruvien.png" alt="" class="asuper" /> &nbsp;&nbsp; <img src="data/table_poiscaille.png" alt="" /> &nbsp;&nbsp; <img src="data/table_ordinateur.png" alt="" /></p>';
 					infos += '<p>Davantage d\'informations sur les tables et leur aménagement peuvent être trouvées <a href="../table/edition.html">à cette adresse</a>.<br />Il est également possible de parcourir la table "CaféJeux 2007-2020" en tant que visiteur <a onclick="tryTableStrangerMode();" href="../../../#group/6951?go=chat" target="_blank">en cliquant ici</a>.</p>';
+					break;
+				case "forum":
+					infos = "<p>Les forums de CaféJeux étaient à l'origine divisés en trois catégories.<br />Voici la répartition qui était encore en place en 2009.</p>";
+					infos += '<p><img src="../../../img/icons/large_fight.gif" alt="" class="abottom" /> <span class="bold">CaféJeux</span><br /><span class="italic">Discutez des jeux et du Café autour d\'une bonne boisson chaude !</span><br /><br /><img src="../../../img/icons/large_table.gif" alt="" class="abottom" /> <span class="bold">Les tables</span><br /><span class="italic">Présentez vos tables ici et organisez vos événements !</span><br /><br /><img src="../../../img/icons/large_chat.gif" alt="" class="abottom" /> <span class="bold">Bavardages de comptoir</span><br /><span class="italic">Discussions diverses sans rapport avec le Café !</span></p>';
 					break;
 			}
 			document.getElementById("infos").innerHTML = infos;
@@ -201,6 +219,12 @@
 			so.addParam("scale", "noscale");
 			so.addParam("menu", (options.menu ? options.menu : "false"));
 			so.addParam("wmode", (options.wmode ? options.wmode : "transparent"));
+			if(options.variables instanceof Object) {
+				var variables = options.variables;
+				for(var k in variables) {
+					so.addVariable(k, variables[k]);
+				}
+			}
 			so.write(swfId);
 		}
 
