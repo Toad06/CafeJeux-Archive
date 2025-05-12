@@ -67,7 +67,7 @@
 				// Autrement, le message "Vous remportez ce match !" ou "Vous avez perdu !" serait affiché, suivi, s'il ne s'agissait pas d'un match amical, de ces deux autres informations :
 				// - `<div class="logMsg chatSystem">Cette partie vous fait <strong>['gagner' ou 'perdre'] [points] points</strong>.</div>` (en cas de défaite avec un nombre de points nul avant de commencer la partie, le message n'était pas affiché).
 				// - `<div class="chatInfo">Votre position actuelle : <img src="img/icons/small_rank_1.gif" alt=""/> <strong>[position]<sup>['er' ou 'ème']</sup></strong> ([points]pts)</div>`.
-				// Pour toute victoire, le texte suivant fermait la marche : `<div class="logMsg chatSystem">Vous gagnez <span class="tokens">1<img alt="caps" src="img/icons/small_cap.gif"/></span> supplémentaire.</div>`.
+				// Pour toute victoire, le texte suivant fermait la marche : `<div class="logMsg chatSystem">Vous gagnez <span class="tokens">1<img src="img/icons/small_cap.gif" alt="caps"/></span> supplémentaire.</div>`.
 				// NOTE : Lorsqu'il s'agissait d'un match revisionné, seuls les textes annonçant le résultat et le nombre de points gagnés ou perdus étaient affichés.
 				// NOTE : Le nombre de points, ajoutés ou déduits, dépendait du résultat de la partie et du classement de l'adversaire. La formule de calcul exacte n'est pas connue.
 				// Ainsi, un joueur bien classé qui gagnait contre un mal classé n'engendrait que peu de points ; un match nul lui en faisait perdre, une défaite davantage encore.
@@ -77,6 +77,7 @@
 				// Affichage de l'expérience gagnée par les deux joueurs.
 				// NOTE : Chaque partie jouée permet d'engendrer de l'expérience, avec un bonus plus important en cas de victoire. La progression devient plus lente après chaque passage au niveau supérieur.
 				// La formule de calcul exacte n'est pas connue. Quand la barre d'expérience était intégralement remplie, cafejeux.com affichait le message suivant dans le chat : "Vous passez au niveau [niveau suivant] !".
+				// NOTE : La progression de l'adversaire ne devrait pas être affichée.
 				// NOTE : Cette fonctionnalité était ignorée lors des matchs revisionnés et pour les matchs en direct regardés par d'autres utilisateurs.
 				var xpBarInterval = setInterval(function(result) {
 					var bars = document.querySelectorAll(".xpBar img");

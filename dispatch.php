@@ -667,9 +667,11 @@ switch($page) {
 			$data = str_replace("{ARCHIVE_TABLE_DATETIME}", $date, $data);
 			$data = str_replace("{ARCHIVE_TABLE_MY_DRINK}", strval(intval($_SESSION['cafeDrink'])), $data);
 			// NOTE : La variable FlashVars "first" contient l'ID du joueur actuellement en tête du classement de la table : il y apparaît ainsi avec une couronne sur la tête.
-			// Si aucun match n'a été disputé sur la table, cette variable n'est pas définie.
-			// (Toad06) La condition de l'heure ci-dessous n'est qu'un prétexte pour afficher la couronne.
-			$data = str_replace("{ARCHIVE_TABLE_ADD_FIRST_VARIABLE}", (intval(date("H")) >= 22 || intval(date("H")) < 2 ? 'so.addVariable("first", "18269");' : ""), $data);
+			// Si aucun match n'a été disputé sur la table ou si le classement a été réinitialisé, cette variable n'est pas définie.
+			if($idTable === "420") {
+				// La condition de l'heure ci-dessous n'est qu'un prétexte pour afficher la couronne.
+				$data = str_replace("{ARCHIVE_TABLE_ADD_FIRST_VARIABLE}", (intval(date("H")) >= 22 || intval(date("H")) < 2 ? 'so.addVariable("first", "18269");' : ""), $data);
+			}
 		}
 		break;
 	case "group/420/chatBan":
@@ -1038,7 +1040,7 @@ switch($page) {
 			$gId = intval($_GET['id']);
 			if(!isset($_GET['sid'])) {
 				$sid = strval(mt_rand(1000, 10000));
-				// NOTE : cafejeux.com renvoyait la balise <confirm/> ci-dessous. Ce procédé nécessite l'utilisation d'une base de données ou d'un moyen similaire pour retrouver le nom de l'objet et son prix.
+				// NOTE : cafejeux.com renvoyait la balise <confirm/> ci-dessous. Ce procédé nécessite que les données des objets en boutique soient enregistrées côté serveur, ce qui n'est pas fait faute d'utilité réelle.
 				// Il est toutefois possible de produire un affichage identique avec quelques lignes de JavaScript. Cette solution est donc choisie ici.
 				// `<confirm macro="shop@confirmBuy" name="[ITEM_NAME]" price="[ITEM_PRICE]" url="shop/[ITEM_ID]/buy?sid=[USER_SID]"/>`
 				// Le sid doit servir à vérifier que la transaction provient bien de l'utilisateur. Il devrait normalement correspondre à la valeur passée en argument sur la fonction JS "js.App.main".
