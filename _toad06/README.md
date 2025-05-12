@@ -6,7 +6,7 @@
 - Implémentation désormais complète de la classe "Timer".
 - Ajout d'une option permettant de désactiver automatiquement le son (détails quelques lignes plus bas).
 - Ajout d'un bouton permettant de rejouer en fin de partie.
-- Ajout d'un panneau de chargement (extrait du fichier "swf/loader_unknown.swf"), sur la partie site de l'archive uniquement.
+- Ajout d'un panneau de chargement (extrait du fichier "swf/loader.swf"), sur la partie site de l'archive uniquement.
 - Ajout d'un contour autour du texte annonçant le résultat en fin de partie, améliorant ainsi sa lisibilité.
 - Modification du comportement de l'option de fenêtre unique sur mobile (détails quelques lignes plus bas).
 - Modification du comportement de l'option autorisant différents types de cosmos dans une même partie de Anticorp's : pour garantir un meilleur équilibrage, chaque joueur dispose désormais des mêmes cosmos que son adversaire, mais pas nécessairement dans le même ordre.
