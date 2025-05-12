@@ -64,10 +64,6 @@ a.contactButton {
 	font-size: 10pt;
 	line-height: normal;
 }
-.firstJoin a.button {
-	width: 340px;
-	padding-top: 0px;
-}
 
 /***********************************/
 
@@ -96,6 +92,24 @@ a.contactButton {
 
 /***********************************/
 
+/* Page : "group/myFromSpecial.html" */
+
+/* La déclaration "float: right;" avait été remplacée par "margin-left: 93px;" dans la feuille de style originale en 2010. */
+/* Ceci était dû à la suppression de la possibilité de trouver une table en un clic, avec le retrait du lien ayant pour sélecteur "a.autoButton". */
+/* Cet affichage avait finalement été complètement abandonné... On rétablit donc les déclarations précédentes ci-dessous. */
+a.manualButton {
+	float: right;
+	margin-left: 0px;
+}
+
+/* Simple amélioration visuelle ici. */
+.firstJoin a.button {
+	padding-top: 0px;
+	padding-right: 0px;
+}
+
+/***********************************/
+
 /* Pages des jeux */
 
 /* Aligne correctement le conteneur entre les avatars des deux joueurs. */
@@ -115,7 +129,7 @@ input, textarea {
 
 /* Page : "game/play_generic.html" */
 
-/* La propriété "border-color: white;" n'est normalement appliquée que lorsque le joueur connecté a la main (via la classe "p1turn"). */
+/* La déclaration "border-color: white;" n'est normalement appliquée que lorsque le joueur connecté a la main (via la classe "p1turn"). */
 /* Cela est également ajouté pour ".p2turn" car les jeux fonctionnent de manière locale dans l'archive, et donc les deux joueurs partagent le même écran. */
 .p2turn .gameClient .swf {
 	border-color: white;
@@ -127,8 +141,8 @@ input, textarea {
 	text-align: right !important;
 }
 
-/* La feuille de style originale prévoit d'afficher le texte en gras pour ces deux règles. */
-/* Dans les faits, ce n'était pas le cas sur cafejeux.com car les pseudos étaient insérés dans des éléments <a> dont l'une des règles CSS est... d'utiliser un niveau de graisse normale. */
+/* La feuille de style originale prévoit d'afficher le texte en gras pour ces deux sélecteurs. */
+/* Dans les faits, ce n'était pas le cas sur cafejeux.com car les pseudos étaient insérés dans des éléments <a> dont l'une des déclarations CSS est... d'utiliser un niveau de graisse normale. */
 /* Les pseudos ne sont pas pas cliquables dans cette partie-là de l'archive, essentiellement pour éviter des interactions non désirées, d'où l'ajout ci-dessous. */
 .p2turn .chat .users .field2, .p1turn .chat .users .field1 {
 	font-weight: normal;
