@@ -952,7 +952,7 @@ switch($page) {
 			$data = get_content($pageUrlExt);
 		}
 		break;
-	case "party/999999/watch":
+	case "party/999999999/watch":
 		// NOTE : Sur cafejeux.com, cette page permettait de revisionner un match. Les parties étaient toutefois purgées après un certain temps.
 		// L'affichage de la page était similaire à celle des parties "en direct" (cf. "game/play_generic.html").
 		// (Toad06) Il est probable que la même URL était utilisée pour les matchs en cours auxquels pouvaient assister des joueurs non participants (cf. "_special/observe.html").
