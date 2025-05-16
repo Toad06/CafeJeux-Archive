@@ -250,6 +250,14 @@
 			}, 100);
 		}, false);
 
+		document.addEventListener("mousedown", function(event) {
+			// Empêche la possibilité de faire défiler la page en cas de clic sur la molette de la souris.
+			// Ceci permet ainsi d'éviter que le client masqué soit affiché lorsque le paramètre "&unique=1" est spécifié.
+			if(event.button === 1) {
+				event.preventDefault();
+			}
+		}, false);
+
 		function changeSize(elem) {
 			var w = 300, h = 300;
 			if(elem.innerHTML === elem._defaultText || !elem._defaultText) {

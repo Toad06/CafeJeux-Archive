@@ -603,7 +603,7 @@ function Miniwar_Place(data) {
 			if(window._MiniwarCharacters === undefined) {
 				window._MiniwarCharacters = [];
 				var player1Characters = [~~(Math.random() * 6), ~~(Math.random() * 6), ~~(Math.random() * 6)];
-				var player2Characters = JSON.parse(JSON.stringify(player1Characters)).sort(function() { return 0.5 - Math.random(); });
+				var player2Characters = player1Characters.slice().sort(function() { return 0.5 - Math.random(); });
 				_MiniwarCharacters.push(player1Characters);
 				_MiniwarCharacters.push(player2Characters);
 			}
