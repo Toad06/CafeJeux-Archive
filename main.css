@@ -231,3 +231,7 @@ input, textarea {
 .bank ul.tutorial span img {
 	float: none;
 }
+
+.bank ul.tutorial li.sms img {
+	border-radius: 14px;
+}
