@@ -118,8 +118,10 @@ if($logged && $dayChanged && isset($_SESSION['cafeDrink'])) {
 				try {
 					var cjFetch = async function(url) {
 						var response = await fetch(url);
-						var responseText = await response.text();
-						fetchedCtpl[url] = responseText;
+						if(response.ok) {
+							var responseText = await response.text();
+							fetchedCtpl[url] = responseText;
+						}
 						if(++fetchedCtpl.__total === 5) {
 							var run = o.run;
 							o = new haxe.Timer(200);
