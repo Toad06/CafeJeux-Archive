@@ -80,9 +80,11 @@ a.contactButton {
 
 /* Corrige le mauvais alignement du lien "Modifier" sur Chrome. */
 .userSheet a.edit {
-	display: table;
-	width: 65px;
-	margin-left: 240px;
+	position: relative;
+	display: block;
+	height: 0px;
+	margin-left: 0px;
+	margin-bottom: 5px;
 }
 
 /* Empêche le texte "Vous ne pouvez pas le défier pour le moment" de déborder du cadre. */
@@ -174,22 +176,14 @@ input, textarea {
 /***********************************/
 
 /*** Pages "+ de sucres" ***/
-/* L'archive réimplémente les anciennes pages "+ de sucres" ("bank" dans la barre d'adresse), spécifiques à cafejeux.com. Celles-ci avaient été remplacées par une version commune à tous les sites Motion Twin. */
-/* La page principale "bank" n'existait donc plus au moment où cette archive a été constituée. Mais elle a pu être reproduite à partir d'une capture d'écran trouvée sur internet et est identique à la page originale. */
-/* Aucune capture d'écran n'existait en revanche pour les sous-pages de la rubrique. Elles ont donc été reproduites sur la base du modèle HTML de AlphaBounce, un autre site de Motion Twin. */
-/* Le rendu n'est donc pas garanti 100% conforme à l'original pour ces pages, expliquant pourquoi certaines des règles CSS ci-dessous ont été ajoutées. En revanche, les images proviennent bien de cafejeux.com. */
+/* L'archive réimplémente les anciennes pages "+ de sucres" ("bank" dans la barre d'adresse) spécifiques à cafejeux.com. Celles-ci avaient été remplacées par une version commune à tous les sites Motion Twin. */
+/* Ces pages n'existaient donc plus au moment où l'archive a été constituée. C'est une capture d'écran d'époque qui a permis de recréer la page principale "bank", la garantissant ainsi identique à celle du site original. */
+/* Aucune capture d'écran n'existait en revanche pour les sous-pages de la rubrique. Elles ont donc été reproduites et adaptées sur la base du modèle HTML de AlphaBounce, un autre site de Motion Twin. */
+/* Le rendu n'est donc pas garanti 100% conforme à l'original pour ces pages, mais devrait en être très proche ; quelques règles CSS ont été ajoutées à cette fin. En revanche, les images proviennent bien de cafejeux.com. */
 
-.bank ul.cb li span.value {
-	position: absolute;
-	margin: 68px 0 0 10px;
-}
-
-.bank ul.cb li span.value img {
-	vertical-align: 0%;
-}
-
+/* Règles ajoutées en raison d'un contenu vraisemblablement divergent des pages originales. */
 .bank ul#countries {
-	display: inline-block; /* IE 11 */
+	display: none; /* IE 11 */
 	display: grid;
 	padding-left: 0px;
 	list-style: none;
@@ -197,41 +191,17 @@ input, textarea {
 	grid-row-gap: 5px;
 	grid-column-gap: 10px;
 }
-
-.bank ul#countries li {
-	float: left;
-}
-
-.bank ul.bankMeans {
-	float: left;
-}
-
-.bank ul.bankMeans li span:not(.infos):not(.infos span) {
-	position: absolute;
-	width: 110px;
-	margin: 72px 0 0 0;
-	font-size: 14px;
-	text-align: center;
-	color: #bbb;
-	z-index: 100;
-}
-
-.bank ul.bankMeans li .logo {
-	height: 95px;
-}
-
-.bank ul.bankMeans li span.infos img {
-	vertical-align: -10%;
-}
-
-.bank #meanDetails {
-	min-height: 83px;
-}
-
 .bank ul.tutorial span img {
 	float: none;
 }
 
+/* Simples améliorations visuelles. */
+.bank ul.bankMeans li span.infos img {
+	vertical-align: -10%;
+}
+.bank #meanDetails {
+	min-height: 83px;
+}
 .bank ul.tutorial li.sms img {
 	border-radius: 14px;
 }

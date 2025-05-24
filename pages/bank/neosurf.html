@@ -5,9 +5,7 @@
 <ul class="tutorial">
 			<li class="mouse"><a href="#" onclick="return false;">Obtenez un code grâce à votre carte Neosurf.</a><em>Prix du code : 3 €.</em><em>Le code indiqué sur la carte vous permettra d'obtenir un deuxième code que vous pourrez entrer ici.</em></li>
 			<li class="mouse">Suivez toutes les instructions dans la fenêtre qui s'est ouverte.</li>
-			<li class="done">Notez le code reçu dans le champ ci-dessous pour obtenir
-	<span title="35 sucres roux">35 <img alt="" src="img/icons/small_bought.gif"/></span>
-.</li>
+			<li class="done">Notez le code reçu dans le champ ci-dessous pour obtenir <span class="tokens">35<img alt="" src="img/icons/small_bought.gif"/></span>.</li>
 			
 </ul>
 
@@ -33,3 +31,30 @@
 </ul>
 ]]>
 </fill>
+
+<script type="text/javascript" id="jsid-1">
+//<![CDATA[
+
+var selectedMean = 4;
+var means = document.querySelectorAll(".bank li.mean");
+for(var i = 0; i < means.length; i++) {
+	var mean = means[i];
+	var classes = mean.className.replace(" selected", "");
+	if(i === selectedMean) classes += " selected";
+	mean.className = classes;
+}
+
+document.querySelector("form.buy.row input.button").onclick = function() {
+	var cn = "nack";
+	var tc = "Le code saisi est invalide.";
+	if(document.querySelector("form.buy.row input.field").value.length === 0) {
+		cn = "";
+		tc = "";
+	}
+	var bc = document.getElementById("bankCheck");
+	bc.className = cn;
+	bc.textContent = tc;
+};
+
+//]]>
+</script>

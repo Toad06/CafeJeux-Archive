@@ -5,9 +5,7 @@
 <ul class="tutorial">
 			<li class="call">Appelez le :<strong>0899 111 111</strong><em>1,349 € / appel + 0,337 € / minute.</em><em>Durée moyenne : 1 minute et 45 secondes.<br/>Surtaxe éventuelle depuis certains opérateurs.</em></li>
 			<li class="listen">Suivez les instructions de la boîte vocale, jusqu'à ce que votre code vous soit dicté.</li>
-			<li class="hangup">Notez le code obtenu dans le champ ci-dessous, puis raccrochez. Vous obtiendrez 
-	<span title="30 sucres roux">30 <img alt="" src="img/icons/small_bought.gif"/></span>
-.</li>
+			<li class="hangup">Notez le code obtenu dans le champ ci-dessous, puis raccrochez. Vous obtiendrez <span class="tokens">30<img alt="" src="img/icons/small_bought.gif"/></span>.</li>
 			
 </ul>
 
@@ -33,3 +31,30 @@
 </ul>
 ]]>
 </fill>
+
+<script type="text/javascript" id="jsid-1">
+//<![CDATA[
+
+var selectedMean = 1;
+var means = document.querySelectorAll(".bank li.mean");
+for(var i = 0; i < means.length; i++) {
+	var mean = means[i];
+	var classes = mean.className.replace(" selected", "");
+	if(i === selectedMean) classes += " selected";
+	mean.className = classes;
+}
+
+document.querySelector("form.buy.row input.button").onclick = function() {
+	var cn = "nack";
+	var tc = "Le code saisi est invalide.";
+	if(document.querySelector("form.buy.row input.field").value.length === 0) {
+		cn = "";
+		tc = "";
+	}
+	var bc = document.getElementById("bankCheck");
+	bc.className = cn;
+	bc.textContent = tc;
+};
+
+//]]>
+</script>

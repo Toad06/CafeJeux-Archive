@@ -5,9 +5,7 @@
 <ul class="tutorial">
 			<li class="sms"><img src="img/bank/sms_france.gif" alt=""/>Envoyez :<strong>MT au 00000</strong><em>1,50 € + prix du SMS.</em><em></em><div class="clear"></div></li>
 			<li class="wait">Patientez en attendant la réponse, votre code vous sera envoyé par SMS.</li>
-			<li class="done">Notez le code reçu dans le champ ci-dessous pour obtenir
-	<span title="20 sucres roux">20 <img alt="" src="img/icons/small_bought.gif"/></span>
-.</li>
+			<li class="done">Notez le code reçu dans le champ ci-dessous pour obtenir <span class="tokens">20<img alt="" src="img/icons/small_bought.gif"/></span>.</li>
 			
 </ul>
 
@@ -33,3 +31,30 @@
 </ul>
 ]]>
 </fill>
+
+<script type="text/javascript" id="jsid-1">
+//<![CDATA[
+
+var selectedMean = 2;
+var means = document.querySelectorAll(".bank li.mean");
+for(var i = 0; i < means.length; i++) {
+	var mean = means[i];
+	var classes = mean.className.replace(" selected", "");
+	if(i === selectedMean) classes += " selected";
+	mean.className = classes;
+}
+
+document.querySelector("form.buy.row input.button").onclick = function() {
+	var cn = "nack";
+	var tc = "Le code saisi est invalide.";
+	if(document.querySelector("form.buy.row input.field").value.length === 0) {
+		cn = "";
+		tc = "";
+	}
+	var bc = document.getElementById("bankCheck");
+	bc.className = cn;
+	bc.textContent = tc;
+};
+
+//]]>
+</script>
