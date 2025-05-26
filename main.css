@@ -67,7 +67,7 @@ a.contactButton {
 
 /***********************************/
 
-/* Page d'aide */
+/* Pages d'aide */
 
 /* Empêche le sommaire de dépasser s'il est plus long que la page elle-même. */
 .guide {
@@ -76,20 +76,28 @@ a.contactButton {
 
 /***********************************/
 
-/* Page de profil ("Ma page") */
+/* Pages de profil */
 
-/* Corrige le mauvais alignement du lien "Modifier" sur Chrome. */
+/* Ma page - Corrige le mauvais alignement du lien "Modifier" sur Chrome. */
 .userSheet a.edit {
 	position: relative;
 	display: block;
 	height: 0px;
 	margin-left: 0px;
 	margin-bottom: 5px;
+	overflow: visible;
 }
 
-/* Empêche le texte "Vous ne pouvez pas le défier pour le moment" de déborder du cadre. */
+/* Ma page - Empêche le texte "Vous ne pouvez pas le défier pour le moment" de déborder du cadre. */
 .matchOptions a.largeButton.disabled em {
 	line-height: 8pt;
+}
+
+/* Pages d'autres utilisateurs - Permet aux textes sous les icônes d'être correctement centrés. */
+.userSheet .card .sideButtons {
+	width: auto;
+	max-width: 40px;
+	margin-right: 2px;
 }
 
 /***********************************/
