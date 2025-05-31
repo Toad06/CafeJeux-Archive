@@ -48,6 +48,10 @@
 				var loserInOrder = (winnerInOrder === "2" ? "1" : (winnerInOrder === "1" ? "2" : null));
 				table.className = (loserInOrder !== null ? ("p" + loserInOrder + "offline") : "");
 				switch(Game_Id) {
+					case 1: // eXpanz
+					case 8: // Ferme-la !
+						infos.querySelector("p").innerHTML = "";
+						break;
 					case 4: // Magmax Battle
 						infos.innerHTML = "";
 						break;
