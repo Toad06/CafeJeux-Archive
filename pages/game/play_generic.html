@@ -343,7 +343,13 @@
 		// "Une partie est en cours".
 		// La fonction "haxe.Http.prototype.request" a été modifiée pour permettre la restauration de l'affichage original dans le cas où l'utilisateur quitte la page avant la fin de la partie.
 		var menuBtnPlaying = document.getElementById("menuBtnPlaying");
-		menuBtnPlaying.innerHTML = '<a href="#" onclick="return false;"><img src="games/icon/' + icon + '" alt="" /></a> <a href="#" onclick="return false;">' + (shortName !== null ? shortName : name) + '</a> <em>une partie est en cours</em>';
+		if(menuBtnPlaying.tagName === "DIV") {
+			// Menu standard.
+			menuBtnPlaying.innerHTML = '<a href="#" onclick="return false;"><img src="games/icon/' + icon + '" alt="" /></a> <a href="#" onclick="return false;">' + (shortName !== null ? shortName : name) + '</a> <em>une partie est en cours</em>';
+		} else {
+			// Ancien menu (cf. "_toad06/_dev_misc/unused_data/info.html").
+			menuBtnPlaying.innerHTML = '<a href="#" onclick="return false;"><img src="games/icon/' + icon + '" alt="" /> ' + (shortName !== null ? shortName : name) + '</a>';
+		}
 		js.Utils.setClass("menuBtnBar", "hidden");
 		js.Utils.setClass("menuBtnPlaying", "");
 

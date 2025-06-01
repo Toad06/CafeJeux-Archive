@@ -64,7 +64,7 @@
 <body>
 	<div id="container">
 		<div id="list">
-			<p>Cette page contient divers éléments qui n'ont pas été utilisés (ou ont été par la suite abandonnés) dans les jeux ou sur le site.</p>
+			<p>Cette page référence les éléments qui n'ont pas été utilisés (ou ont été par la suite abandonnés) dans les jeux ou sur le site.</p>
 			<p>&nbsp;</p>
 			<p>
 				<select onchange="setGame(this.options[this.selectedIndex].value);">
@@ -86,6 +86,7 @@
 						<option value="loader">Affichage des jeux</option>
 						<option value="table">Tables de jeu</option>
 						<option value="forum">Forums</option>
+						<option value="misc">Pages diverses</option>
 					</optgroup>
 				</select>
 			</p>
@@ -94,6 +95,7 @@
 		<div id="infos"></div>
 	</div>
 	<script type="text/javascript">
+	//<![CDATA[
 		window.addEventListener("load", setGame, false);
 
 		function setGame(game) {
@@ -204,6 +206,13 @@
 					infos = "<p>Les forums de CaféJeux étaient à l'origine divisés en trois catégories.<br />Voici la répartition qui était encore en place en 2009.</p>";
 					infos += '<p><img src="../../../img/icons/large_fight.gif" alt="" class="abottom" /> <span class="bold">CaféJeux</span><br /><span class="italic">Discutez des jeux et du Café autour d\'une bonne boisson chaude !</span><br /><br /><img src="../../../img/icons/large_table.gif" alt="" class="abottom" /> <span class="bold">Les tables</span><br /><span class="italic">Présentez vos tables ici et organisez vos événements !</span><br /><br /><img src="../../../img/icons/large_chat.gif" alt="" class="abottom" /> <span class="bold">Bavardages de comptoir</span><br /><span class="italic">Discussions diverses sans rapport avec le Café !</span></p>';
 					break;
+				case "misc":
+					infos = "<p>Certaines pages du site contiennent des commentaires HTML dans lesquels se trouve du code qui, lorsqu'il est interprété, modifie l'apparence de la page ou y ajoute des fonctionnalités.</p>";
+					infos += '<p><img src="data/misc_index_beta.jpg" alt="" style="position:absolute; margin-left:-420px;" /><a href="#" onclick="pagesAltContent(0); return false;"><span class="bold">La page d\'accueil en mode non connecté</span></a> <span class="italic">(<a href="../../../#static/present" target="_blank">URL</a>)</span><br />L\'une des images affichées est différente.<br />L\'apparence de cette page se rapproche ainsi davantage de celle de la bêta-test, comme l\'illustre l\'image ci-contre.</p>';
+					infos += '<p><a href="#" onclick="pagesAltContent(1); return false;"><span class="bold">La page de confirmation d\'inscription</span></a> <span class="italic">(<a href="../../../#user/register" target="_blank">URL</a>)</span><br />Du texte et des liens supplémentaires sont affichés au bas de la page.</p>';
+					infos += '<p><a href="#" onclick="pagesAltContent(2); return false;"><span class="bold">Une page de table de jeu</span></a> <span class="italic">(<a href="../../../#group/6951" target="_blank">URL</a>)</span><br />Une icône de croix est ajoutée à droite du menu interne à la table.<br />Cette croix étant positionnée au même endroit que le logo de la table, celle-ci n\'est visible que sur les tables sans logo.</p>';
+					infos += '<p><a href="#" onclick="pagesAltContent(99); return false;"><span class="bold">Le menu en mode connecté</span></a> <span class="italic">(<a href="../../../" target="_blank">URL</a>)</span><br />Le menu est affiché d\'une manière minimaliste, comme lors de la bêta-test du site.<br />Le lien "En cuisine" n\'était visible que par les administrateurs.</p>';
+					break;
 			}
 			document.getElementById("infos").innerHTML = infos;
 		}
@@ -265,6 +274,104 @@
 			};
 			prompt('Utilisez la console du navigateur et exécutez le script suivant sur la page de chat de l\'une des tables de jeu pour y afficher les boutons "Bannir" et "Débannir".', "(" + func.toString() + ")();");
 		}
+
+		function pagesAltContent(pageId) {
+			var func = function(id) {
+				var regexComment = new RegExp("<!--([\\s\\S]*?)-->");
+				var regexMt = new RegExp("<mt[^>]*>([\\s\\S]*?)<\\/mt>");
+				var regexSimpleQuote = new RegExp("::tools\\.escapeSimpleQuote\\(\\('\\s*([\\s\\S]*?)\\s*'\\)\\)::");
+				var page = "";
+				var wrongPage = false;
+				var alreadyRun = false;
+				switch(id) {
+					case 0:
+						page = "la page de présentation principale de CaféJeux en mode non connecté";
+						var screen = document.querySelector("div#main div.teaser div.screen");
+						var desc = document.querySelector("div#main div.teaser ul.desc");
+						if(screen === null || desc === null) wrongPage = true;
+						else {
+							var newScreen = screen.innerHTML.match(regexComment);
+							var newDesc = desc.innerHTML.match(regexComment);
+							if(newScreen === null || newDesc === null) alreadyRun = true;
+							else {
+								newScreen = newScreen[1].replace(regexSimpleQuote, "$1");
+								newDesc = newDesc[1].replace(regexSimpleQuote, "$1");
+								screen.innerHTML = newScreen;
+								desc.innerHTML = desc.innerHTML.replace(regexComment, newDesc);
+							}
+						}
+						break;
+					case 1:
+						page = "la page de confirmation d'inscription";
+						var welcome = document.querySelector("div#main div.welcome");
+						if(welcome === null) wrongPage = true;
+						else {
+							var newWelcome = welcome.innerHTML.match(regexComment);
+							if(newWelcome === null) alreadyRun = true;
+							else {
+								newWelcome = newWelcome[1].replace(new RegExp("::user.id::", "g"), "18269");
+								welcome.innerHTML = welcome.innerHTML.replace(regexComment, newWelcome);
+							}
+						}
+						break;
+					case 2:
+						page = "l'une des pages de table de jeu";
+						var group = document.querySelector("div#main div.group");
+						if(group === null) wrongPage = true;
+						else {
+							var newGroup = group.innerHTML.match(regexComment);
+							if(newGroup === null) alreadyRun = true;
+							else {
+								newGroup = group.innerHTML.replace(regexComment, newGroup[1]);
+								newGroup = newGroup.replace(regexMt, "$1"); /* premier X */
+								newGroup = newGroup.replace(regexMt, ""); /* second X, ignoré */
+								group.innerHTML = newGroup;
+							}
+						}
+						break;
+					case 99: /* head */
+						page = "n'importe quelle page de CaféJeux en mode connecté";
+						var menu = document.querySelector("div#menu");
+						if(menu === null || menu.querySelector("#menu_pvmsg") === null) wrongPage = true;
+						else {
+							var newMenu = menu.innerHTML.match(regexComment);
+							if(newMenu === null) alreadyRun = true;
+							else {
+								newMenu = newMenu[1].replace(new RegExp("::DATA::", "g"), "");
+								newMenu = newMenu.replace(new RegExp("::user.id::", "g"), "18269");
+								newMenu = newMenu.replace(new RegExp("static/forum", "g"), "forum");
+								newMenu = newMenu.replace(regexMt, menu.querySelector("ul.groups").outerHTML); /* Liste des tables */
+								if(menu.querySelector("#menu_pvmsg span.count") === null) {
+									newMenu = newMenu.replace(regexMt, ""); /* Messages privés */
+								} else {
+									newMenu = newMenu.replace(regexMt, "$1").replace('0">', ""); /* Messages privés */
+									newMenu = newMenu.replace("::(msgcount).unseen::", "1");
+								}
+								newMenu = newMenu.replace(regexMt, "$1"); /* Admin */
+								menu.innerHTML = newMenu;
+								var pvMsg = menu.querySelector("li#menu_pvmsg");
+								pvMsg.removeAttribute("id");
+								if(pvMsg.querySelector("span.count") === null) {
+									pvMsg.innerHTML = '<a id="menu_pvmsg" href="#pvmsg" onclick="js.XmlHttp.get(\'pvmsg\', this); return false;">' + pvMsg.innerHTML + '</a>';
+								} else {
+									pvMsg.innerHTML = '<a id="menu_pvmsg" href="#pvmsgFromSpecial" onclick="js.XmlHttp.get(\'pvmsgFromSpecial\', this); return false;">' + pvMsg.innerHTML + '</a>';
+								}
+							}
+						}
+						break;
+					default:
+						return;
+				}
+				if(wrongPage) {
+					return alert("ERREUR : Ce script doit être exécuté sur " + page + ".");
+				}
+				if(alreadyRun) {
+					return alert("ERREUR : Ce script a déjà été exécuté, veuillez recharger " + page + " pour pouvoir l'exécuter à nouveau.");
+				}
+			};
+			prompt('Utilisez la console du navigateur et exécutez le script suivant sur la page indiquée pour en changer l\'affichage.', "(" + func.toString() + ")(" + pageId + ");");
+		}
+	//]]>
 	</script>
 </body>
 </html>
