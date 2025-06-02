@@ -123,6 +123,20 @@ function user_avatar($id) {
 	return array("gender" => $gender, "gfx" => $gfx);
 }
 
+// Retourne true si l'utilisateur connecté dispose des droits d'administration.
+function is_admin() {
+	if(!isset($_SESSION['cafeUsername'])) return false;
+	return in_array(mb_strtolower($_SESSION['cafeUsername']), array_map("mb_strtolower", array("aniii", "bumdum", "deepnight", "Eole", "hiko", "irvie", "mynameisHK", "skool", "whitetigle", "yota")));
+}
+
+// Retourne true si l'utilisateur connecté dispose des droits de modération.
+function is_moderator($checkAdmin = true) {
+	if(!isset($_SESSION['cafeUsername'])) return false;
+	$ret = in_array(mb_strtolower($_SESSION['cafeUsername']), array_map("mb_strtolower", array("7atane", "githe", "kenpashii", "lilidu3311", "Tomdu56")));
+	if(!$ret && $checkAdmin) $ret = is_admin();
+	return $ret;
+}
+
 // Retourne la valeur utilisée par la clé "inv" du fichier Flash de la table de jeu "CaféJeux 2007-2020".
 // Elle permet de disposer de tous les meubles en quantité élevée, ainsi que d'autres dont l'existence n'avait pas été révélée.
 // Voir "_toad06/_dev_misc/table/edition.html" pour plus d'informations.

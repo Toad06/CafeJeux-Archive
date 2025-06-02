@@ -331,7 +331,6 @@ switch($page) {
 	case "forum/2":
 	case "forum/5":
 	case "forum/bookmarks": // NOTE : Pas de sujet = `<p class="dyk">Vous n'avez aucun sujet en favoris actuellement. Pour ajouter un sujet dans vos favoris, il vous suffit de cliquer sur le lien en bas de la page du sujet.</p>`
-	case "forum/thread/64083": case "forum/thread/68580": case "forum/thread/131526": case "forum/thread/156621": case "forum/thread/160307": case "forum/thread/163937": case "forum/thread/186881": case "forum/thread/186884":
 	case "game":
 	case "game/1":
 	case "game/1/bar":
@@ -489,8 +488,24 @@ switch($page) {
 			}
 		}
 		break;
+	case "forum/thread/64083": case "forum/thread/68580": case "forum/thread/131526": case "forum/thread/156621": case "forum/thread/160307": case "forum/thread/163937": case "forum/thread/186881": case "forum/thread/186884":
 	case "forum/thread/999999":
-		$data = get_content(str_replace("999999", "186884", $pageUrlExt));
+		if(!isset($__recursion)) {
+			$data = get_content($pageUrlExt);
+		} else {
+			$data = get_content(str_replace("999999", "186884", $pageUrlExt));
+		}
+		if(is_moderator()) {
+			// Ajout des liens de modération.
+			// (Toad06) Comme pour la plupart des fonctionnalités de modération et d'administration, il n'y a aucune certitude quant à l'exactitude de l'affichage ci-dessous.
+			$data .= '<script type="text/javascript"><![CDATA[';
+			$data .= 'var threadButtons = document.getElementById("threadButtons");';
+			$data .= 'threadButtons.innerHTML += \'<a href="#" class="button b_lock" onclick="return false;">\' + (threadButtons.querySelector("em") === null ? "Fermer" : "Ouvrir") + \' le sujet</a>';
+			$data .= '<a href="#" class="button b_delete" onclick="return false;">Supprimer le sujet</a>\';';
+			$data .= 'var threadPosts = document.querySelectorAll("table.thread.replies tr.head td.header");';
+			$data .= 'for(var i = 0; i < threadPosts.length; i++) { threadPosts[i].innerHTML = \'<a href="#" class="button b_delete" onclick="return false;">Supprimer</a>\' + threadPosts[i].innerHTML; }';
+			$data .= ']]></script>';
+		}
 		break;
 	case "forum/thread/999999/bookmark":
 	case "forum/thread/999999/unbookmark":
@@ -501,6 +516,14 @@ switch($page) {
 			}
 			$data = get_content($pageUrl . $f . $pageExt);
 			$data = str_replace("{ARCHIVE_FORUM_BOOKMARK_INDEX}", strval($__recursiondata), $data);
+			if(is_moderator()) {
+				// Ajout des liens de modération.
+				$data .= '<script type="text/javascript"><![CDATA[';
+				$data .= 'var threadButtons = document.getElementById(\'threadButtons\');';
+				$data .= 'threadButtons.innerHTML += \'<a href="#" class="button b_lock" onclick="return false;">\' + (threadButtons.querySelector("em") === null ? "Fermer" : "Ouvrir") + \' le sujet</a>';
+				$data .= '<a href="#" class="button b_delete" onclick="return false;">Supprimer le sujet</a>\';';
+				$data .= ']]></script>';
+			}
 		}
 		break;
 	case "forum/search":
@@ -1081,6 +1104,10 @@ switch($page) {
 				$data = str_replace("{ARCHIVE_USER_DRINK_DESC}", str_replace("'", "\'", $drink['desc']), $data);
 				$data = str_replace("{ARCHIVE_USER_LAST_SEEN_FULL}", $date[0], $data);
 				$data = str_replace("{ARCHIVE_USER_LAST_SEEN_PARTIAL}", $date[1], $data);
+				// Ajout de l'icône signalant que l'utilisateur est un administrateur.
+				// Il s'agit de l'affichage qu'un utilisateur standard voyait en se rendant sur la page de profil d'un administrateur.
+				// (Toad06) La feuille de style mentionne l'existence de plusieurs sélecteurs ".userSheet .adminCard" : leur usage, s'il y en avait un sur cafejeux.com, est inconnu.
+				$data = str_replace("{ARCHIVE_USER_ADMIN}", (!is_admin() ? "" : '<img alt="" src="img/icons/small_admin.gif" onmouseover="mt.js.Tip.show(this,\'{ARCHIVE_USERNAME} est un <strong>administrateur</strong> de CaféJeux.\',null)" onmouseout="mt.js.Tip.hide()">'), $data);
 			}
 		}
 		break;
