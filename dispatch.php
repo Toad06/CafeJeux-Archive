@@ -456,6 +456,9 @@ switch($page) {
 					$pContent = isset($_POST['content']) ? trim($_POST['content']) : "";
 					if(isset($_POST['preview'])) {
 						$f = "_preview";
+						if(isset($_POST['moderator']) && is_moderator()) {
+							$f .= "_moderator";
+						}
 						$date = cj_date_today();
 						$fullDate = $date[0];
 						$partialDate = $date[1];
@@ -484,6 +487,17 @@ switch($page) {
 					$data = str_replace("{ARCHIVE_FORUM_PREVIEW_DATE_FULL}", $fullDate, $data);
 					$data = str_replace("{ARCHIVE_FORUM_PREVIEW_DATE_PARTIAL}", $partialDate, $data);
 					$data = str_replace("{ARCHIVE_FORUM_PREVIEW_CONTENT}", $parsedContent, $data);
+					if(is_moderator()) {
+						// Ajout d'une option de modération.
+						// (Toad06) Comme pour la plupart des fonctionnalités de modération et d'administration, il n'y a aucune certitude quant à l'exactitude de l'affichage ci-dessous.
+						$data .= '<script type="text/javascript"><![CDATA[';
+						$data .= 'var submit = document.querySelector("div.forumContainer div.submit");';
+						$data .= 'var div = document.createElement("div"); div.setAttribute("class", "row");';
+						$data .= 'div.innerHTML = \'<div class="input inputCheck"><input name="moderator" id="moderator" value="1" type="checkbox"/><label for="moderator">Publier ce message en tant que modérateur</label></div>\';';
+						$data .= 'submit.insertBefore(div, submit.firstChild);';
+						if(isset($_POST['moderator'])) $data .= 'document.getElementById("moderator").checked = true;';
+						$data .= ']]></script>';
+					}
 				}
 			}
 		}
@@ -497,7 +511,6 @@ switch($page) {
 		}
 		if(is_moderator()) {
 			// Ajout des liens de modération.
-			// (Toad06) Comme pour la plupart des fonctionnalités de modération et d'administration, il n'y a aucune certitude quant à l'exactitude de l'affichage ci-dessous.
 			$data .= '<script type="text/javascript"><![CDATA[';
 			$data .= 'var threadButtons = document.getElementById("threadButtons");';
 			$data .= 'threadButtons.innerHTML += \'<a href="#" class="button b_lock" onclick="return false;">\' + (threadButtons.querySelector("em") === null ? "Fermer" : "Ouvrir") + \' le sujet</a>';
@@ -519,7 +532,7 @@ switch($page) {
 			if(is_moderator()) {
 				// Ajout des liens de modération.
 				$data .= '<script type="text/javascript"><![CDATA[';
-				$data .= 'var threadButtons = document.getElementById(\'threadButtons\');';
+				$data .= 'var threadButtons = document.getElementById("threadButtons");';
 				$data .= 'threadButtons.innerHTML += \'<a href="#" class="button b_lock" onclick="return false;">\' + (threadButtons.querySelector("em") === null ? "Fermer" : "Ouvrir") + \' le sujet</a>';
 				$data .= '<a href="#" class="button b_delete" onclick="return false;">Supprimer le sujet</a>\';';
 				$data .= ']]></script>';
@@ -759,6 +772,17 @@ switch($page) {
 				}
 				$data = str_replace("{ARCHIVE_TABLE_RAW}", $raw, $data);
 				break;
+		}
+		if(is_moderator()) {
+			// Ajout d'un lien de modération.
+			$data .= '<script type="text/javascript"><![CDATA[ (function() {';
+			$data .= 'var groupDescription = document.querySelector("div.group div.groupDescription");';
+			$data .= 'if(groupDescription === null) return;';
+			$data .= 'var button = document.createElement("a"); button.setAttribute("href", "#"); button.setAttribute("class", "button b_report");';
+			$data .= 'button.onclick = function() { if(confirm("Voulez-vous vraiment supprimer la présentation de cette table ?")) groupDescription.outerHTML = \'<p class="info">La présentation de cette table a été supprimée par un modérateur en raison de son contenu.</p>\'; return false; };';
+			$data .= 'button.textContent = "Supprimer la présentation";';
+			$data .= 'groupDescription.appendChild(button);';
+			$data .= '})(); ]]></script>';
 		}
 		break;
 	case "group/420/editDescription":
@@ -1107,7 +1131,7 @@ switch($page) {
 				// Ajout de l'icône signalant que l'utilisateur est un administrateur.
 				// Il s'agit de l'affichage qu'un utilisateur standard voyait en se rendant sur la page de profil d'un administrateur.
 				// (Toad06) La feuille de style mentionne l'existence de plusieurs sélecteurs ".userSheet .adminCard" : leur usage, s'il y en avait un sur cafejeux.com, est inconnu.
-				$data = str_replace("{ARCHIVE_USER_ADMIN}", (!is_admin() ? "" : '<img alt="" src="img/icons/small_admin.gif" onmouseover="mt.js.Tip.show(this,\'{ARCHIVE_USERNAME} est un <strong>administrateur</strong> de CaféJeux.\',null)" onmouseout="mt.js.Tip.hide()">'), $data);
+				$data = str_replace("{ARCHIVE_USER_ADMIN}", (!is_admin() ? "" : '<img alt="*" src="img/icons/small_admin.gif" onmouseover="mt.js.Tip.show(this,\'{ARCHIVE_USERNAME} est un <strong>administrateur</strong> de CaféJeux.\',null)" onmouseout="mt.js.Tip.hide()">'), $data);
 			}
 		}
 		break;
