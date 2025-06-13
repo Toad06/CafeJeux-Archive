@@ -46,6 +46,9 @@ a.buttonOff, a.button, a.groupButton {
 .ack, .nack {
 	background-position: 3px 2px;
 }
+.forum table td.header a.button {
+	background-position: 0px 50%;
+}
 
 /* Corrections diverses mineures. */
 #groupMain .table.tableClick.members a {
