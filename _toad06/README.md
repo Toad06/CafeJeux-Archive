@@ -1,17 +1,10 @@
 # Les jeux multijoueurs de CaféJeux en mode local
-<em>Version 1.7 (31/05/2025)</em><br/>
+<em>Version 2.0-dev1 (01/07/2025)</em><br/>
 <em>Auteur : Toad06, sur la base des codes sources des jeux publiés par Motion Twin.</em>
 
 <em>Notes de version :</em><br/>
-- Implémentation désormais complète de la classe "Timer".
-- Ajout d'une option permettant de désactiver automatiquement le son (détails quelques lignes plus bas).
-- Ajout d'un bouton permettant de rejouer en fin de partie.
-- Ajout d'un panneau de chargement (extrait du fichier "swf/loader_beta.swf"), sur la partie site de l'archive uniquement.
-- Ajout d'un contour autour du texte annonçant le résultat en fin de partie, améliorant ainsi sa lisibilité.
-- Modification du comportement de l'option de fenêtre unique sur mobile (détails quelques lignes plus bas).
-- Modification du comportement de l'option autorisant différents types de cosmos dans une même partie de Anticorp's : pour garantir un meilleur équilibrage, chaque joueur dispose désormais des mêmes cosmos que son adversaire, mais pas nécessairement dans le même ordre.
-- Correction des bugs connus dans Amonite et Trigolo (détails dans la rubrique de chaque jeu, ci-dessous).
-- Correction de bugs dans Boum : une erreur n'est plus déclenchée si le bouton de lecture du second client est appuyé en premier ; les actions du second client sont maintenant bien transférées au premier client à la fin du tour.
+- Ajout de deux panneaux de chargement, sélectionnés aléatoirement et extraits du fichier "swf/loader_prod.swf", sur la partie site de l'archive uniquement.
+- Ajout de deux panneaux d'erreur, sélectionnés aléatoirement en cas de problème lors de la phase d'initialisation et extraits du fichier "swf/loader_prod.swf", sur la partie site de l'archive uniquement.
 
 ---
 
@@ -33,7 +26,6 @@ Par ailleurs, des paramètres de configuration optionnels sont disponibles :
 ## Amonite
 ### Index : 2
 - Jeu fonctionnel.
-- (1.7) ~~Bug mineur : Quand un joueur déplace un pion vers une case vide, ce dernier se déplace immédiatement sans jouer d'animation (sauf sur l'écran de l'adversaire). Cela n'affecte en rien le déroulement de la partie.~~
 
 ## Crumble
 ### Index : 3
@@ -73,7 +65,6 @@ Par ailleurs, des paramètres de configuration optionnels sont disponibles :
 ## Trigolo
 ### Index : 9
 - Jeu fonctionnel.
-- (1.7) ~~Bug : Les cartes sont placées directement sur le plateau, sans jouer d'animation au préalable. Cela est dû à la solution de contournement actuellement utilisée pour permettre au jeu de fonctionner.~~
 
 ## Hordes Insurrection !
 ### Index : 11

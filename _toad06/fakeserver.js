@@ -179,14 +179,18 @@ function CJGame_Action(data) {
 				// Ce n'est pas supposé arriver... mais ça peut parfois arriver : le client 1 a incorrectement renvoyé la valeur "undefined" pour l'argument "data".
 				// Cela rend donc impossible pour le client 2 de récupérer les données communes d'initialisation, si celui-ci démarre avant la nouvelle tentative du client 1.
 				// On annule simplement la partie et on recharge la page dans ce cas de figure.
-				// Fait amusant : La page FAQ de la rubrique d'aide du site mentionne aussi l'existence d'un problème qui pouvait parfois survenir lors du démarrage du jeu.
-				CJGame_IsPreviousClientLoaded.clients.length = 0;
-				document.body.innerHTML = "";
-				alert("Une erreur est survenue lors de l'initialisation du jeu.\nLa page va être rechargée.");
+				// (Toad06) Sur cafejeux.com aussi, certaines parties ne parvenaient pas à démarrer, potentiellement pour les mêmes raisons qu'ici.
+				CJGame_IsPreviousClientLoaded.initError = true;
 				if(!IN_IFRAME) {
+					document.body.innerHTML = "";
+					alert("Une erreur est survenue lors de l'initialisation du jeu.\nLa page va être rechargée.");
 					window.location.reload();
 				} else {
-					WINDOW_TOP.js.XmlHttp.get("game/" + game, null);
+					document.getElementById("game").innerHTML = "";
+					var overlay = document.getElementById("overlay");
+					overlay.className = Math.random() < 0.8 ? "error" : "reconnecting";
+					overlay.onclick = function() { WINDOW_TOP.js.XmlHttp.get("game/" + game, null); };
+					WINDOW_TOP.Game_Event(["initError", overlay.className === "error"]);
 				}
 				return undefined;
 			}
@@ -215,9 +219,9 @@ function CJGame_PlayData(data) {
 		CJGame_PlayData[prop] = val;
 		if(prop === "turn") {
 			if(ENABLE_UNIQUE_CLIENT || IN_IFRAME) {
-				document.getElementById("overlay").style.display = "block";
+				document.getElementById("overlay").className = "";
 				setTimeout(function() {
-					document.getElementById("overlay").style.display = "none";
+					document.getElementById("overlay").className = "hidden";
 				}, 500);
 			}
 			if(!IN_IFRAME) {
@@ -288,6 +292,7 @@ function CJGame_IsPreviousClientLoaded(player) {
 	return true;
 }
 CJGame_IsPreviousClientLoaded.clients = [];
+CJGame_IsPreviousClientLoaded.initError = false;
 
 function CJGame_SetColors(data) {
 	var player = data[0];

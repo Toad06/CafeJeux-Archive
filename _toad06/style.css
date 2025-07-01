@@ -1,0 +1,161 @@
+body {
+	color: #FFF;
+	background-color: #000;
+}
+
+hr {
+	width: 300px;
+}
+
+#container {
+	margin: auto;
+	text-align: center;
+}
+
+#overlay {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	z-index: 1000;
+	background-color: transparent;
+}
+
+#overlay.loading {
+	background-color: #000 !important;
+}
+
+#overlay.hidden {
+	display: none !important;
+}
+
+#div_client_1, #div_client_2 {
+	display: inline-block;
+	width: 300px;
+	height: 300px;
+	margin: 50px 10px 20px 10px;
+}
+
+#div_client_3 {
+	display: block;
+	width: 150px;
+	height: 150px;
+	margin: 0px auto 20px auto;
+}
+
+#player_1, #player_2 {
+	display: inline-block;
+	width: 120px;
+	font-weight: bold;
+	border: 1px solid transparent;
+}
+
+#infos {
+	margin: 10px auto;
+}
+
+.score0, .score1 {
+	display: inline-block;
+	width: 120px;
+}
+
+.turn {
+	border-color: #FFF !important;
+}
+
+.flip {
+	transform: scale(-1, -1);
+}
+
+
+/* PARTIE SITE */
+/* Voir les commentaires dans la fonction JS "updateUniqueWindow" du fichier "index.html" pour les raisons du choix de cette implémentation. */
+
+body.iframe {
+	margin: 0px !important;
+	padding: 0px !important;
+	background-color: #F1DED1 !important;
+}
+
+body.iframe #container {
+	width: 300px !important;
+	margin: 0px !important;
+	text-align: left !important;
+}
+
+body.iframe #div_client_1, body.iframe #div_client_2 {
+	position: absolute !important;
+	margin: 0px !important;
+	top: 0px;
+	left: 0px;
+}
+
+body.iframe #div_client_1 {
+	z-index: 100;
+}
+
+body.iframe #div_client_1.skip {
+	top: 0px !important;
+	left: 299px !important;
+	z-index: -100 !important;
+}
+
+body.iframe hr, body.iframe #colors, body.iframe #infos, body.iframe #messages, body.iframe #tools {
+	display: none !important;
+}
+
+/* Animations extraites du fichier "swf/loader_prod.swf". */
+
+body.iframe #overlay.loading, body.iframe #overlay.sync, body.iframe #overlay.reconnecting, body.iframe #overlay.error {
+	background-color: #F1E0D4 !important;
+	background-repeat: no-repeat;
+}
+
+body.iframe #overlay.loading {
+	background-image: url("edited_swf/_extracted_images/loading_foreground.png"), url("edited_swf/_extracted_images/loading_spritesheet.png");
+	background-position-x: 0px, 122px;
+	background-position-y: 0px, 146px;
+	animation: playLoading 0.6s steps(23) infinite;
+}
+
+body.iframe #overlay.sync {
+	background-image: url("edited_swf/_extracted_images/synchronizing_foreground.png"), url("edited_swf/_extracted_images/synchronizing_spritesheet.png");
+	background-position-x: 0px, 108px;
+	background-position-y: 0px, 146px;
+	animation: playSync 1.0s steps(43) infinite;
+}
+
+body.iframe #overlay.reconnecting {
+	cursor: pointer;
+	background-image: url("edited_swf/_extracted_images/reconnecting.png");
+	animation: playReconnecting 1.0s steps(2) infinite;
+}
+
+body.iframe #overlay.error {
+	cursor: pointer;
+	background-image: url("edited_swf/_extracted_images/error_foreground.png"), url("edited_swf/_extracted_images/error_spritesheet.png");
+	background-position-x: 0px, 122px;
+	background-position-y: 0px, 146px;
+	animation: playError 0.9s steps(35) infinite;
+}
+
+@keyframes playLoading {
+	0% { background-position-x: 0px, 122px; }
+	100% { background-position-x: 0px, -1212px; } /* -1334px + 122px */
+}
+
+@keyframes playSync {
+	0% { background-position-x: 0px, 108px; }
+	100% { background-position-x: 0px, -4536px; } /* -4644px + 108px */
+}
+
+@keyframes playReconnecting {
+	0% { background-position-x: 0px; }
+	100% { background-position-x: -600px; }
+}
+
+@keyframes playError {
+	0% { background-position-x: 0px, 122px; }
+	100% { background-position-x: 0px, -1908px; } /* -2030px + 122px */
+}

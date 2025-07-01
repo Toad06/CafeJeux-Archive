@@ -211,6 +211,19 @@
 				history.appendChild(logMsg);
 				history.scrollTop = history.scrollHeight;
 				break;
+			case "initError":
+				// Erreur lors de l'initialisation de la partie !
+				// NOTE : La page FAQ de la rubrique d'aide mentionne bien l'existence d'un problème qui pouvait survenir lors du démarrage d'une partie : le texte "Partie annulée" était alors affiché au sein du jeu, au bout d'une trentaine de secondes.
+				// L'implémentation étant ici différente, on procède différemment : l'une des illustrations d'erreur est affichée (sur cafejeux.com, elles l'étaient pour un tout autre type de problème), ainsi qu'un texte exclusif sur la partie chat.
+				var history = game.querySelector("#history");
+				var messageTpl = '<div class="chatInfo"><strong>El Papa :</strong> {MESSAGE}</div>';
+				if(event[1]) {
+					messageTpl = messageTpl.replace("{MESSAGE}", "Saperlipopette, mais où avais-je donc la tête ? Je te prie d'accepter toutes mes confuses ! Clique sur la machine à café pour remettre de l'ordre et démarrer immédiatement une nouvelle partie.");
+				} else {
+					messageTpl = messageTpl.replace("{MESSAGE}", "Si j'attrape le benêt à deux sous qui a débranché la prise ! Désolé ! Clique sur la prise pour rétablir le courant, tu pourras alors lancer une nouvelle partie.");
+				}
+				history.innerHTML += messageTpl;
+				break;
 		}
 	};
 	window.Game_GetData = function(action) {
