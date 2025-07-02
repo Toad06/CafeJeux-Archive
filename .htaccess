@@ -1,5 +1,5 @@
-AddType text/plain .md
-AddCharset UTF-8 .css .html .js .md .txt .xml
+AddType text/plain .as .md
+AddCharset UTF-8 .as .css .html .js .md .txt .xml
 Options +Indexes
 
 
