@@ -213,8 +213,8 @@
 				break;
 			case "initError":
 				// Erreur lors de l'initialisation de la partie !
-				// NOTE : La page FAQ de la rubrique d'aide mentionne bien l'existence d'un problème qui pouvait survenir lors du démarrage d'une partie : le texte "Partie annulée" était alors affiché au sein du jeu, au bout d'une trentaine de secondes.
-				// L'implémentation étant ici différente, on procède différemment : l'une des illustrations d'erreur est affichée (sur cafejeux.com, elles l'étaient pour un tout autre type de problème), ainsi qu'un texte exclusif sur la partie chat.
+				// NOTE : La page FAQ de la rubrique d'aide mentionne bien l'existence d'un problème qui pouvait survenir lors du démarrage d'une partie : le texte "Fin de partie - La partie a été annulée" était alors affiché au sein du jeu, après une trentaine de secondes.
+				// L'implémentation étant ici différente, on procède autrement : l'une des illustrations d'erreur est affichée (sur cafejeux.com, elles l'étaient pour un tout autre type de problème), ainsi qu'un texte exclusif sur la partie chat.
 				var history = game.querySelector("#history");
 				var messageTpl = '<div class="chatInfo"><strong>El Papa :</strong> {MESSAGE}</div>';
 				if(event[1]) {

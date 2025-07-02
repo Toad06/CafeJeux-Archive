@@ -44,42 +44,38 @@ function Init_MMApi() {
 				delay = 0;
 			}
 			setTimeout(function(timeOver) {
-				var str;
 				var obfuGame = Obfuscation.Game;
-				_root.Game[obfuGame["main"]] = function() {};
+				_root.onEnterFrame = function() {};
 				if(_global.fvUnique || _global.fvPlayer === 3) {
+					var messageFrame = 4;
 					var winner = JSCall("CJGame_PlayData", "winner");
 					JSCall("CJGame_Over", winner);
-					str = "FIN DE PARTIE !\n";
 					if(winner === null) {
-						str = str + "Aucun joueur n'a pu être départagé.";
+						GameOverScreen(messageFrame, _global.fvName1 + " et " + _global._fvName2 + " n'ont pas pu se départager !");
 					} else {
 						var loser = winner === 1 ? 2 : 1;
 						var winnerName = _global["fvName" + winner];
 						var loserName = _global["fvName" + loser];
 						if(!timeOver) {
-							str = str + winnerName + " a vaincu " + loserName + " !";
+							GameOverScreen(messageFrame, winnerName + " a vaincu " + loserName + " !");
 						} else {
-							str = str + loserName + " a épuisé tout son temps !\n" + winnerName + " remporte la partie !";
+							GameOverScreen(messageFrame, loserName + " n'a plus assez de temps ! " + winnerName + " gagne la partie !");
 						}
 					}
 				} else {
 					JSCall("CJGame_Over", null);
 					switch(_global._mmHasWon) {
 						case true:
-							str = "VICTOIRE !\nVous avez vaincu votre adversaire !";
+							GameOverScreen(1, "Vous avez vaincu votre adversaire !");
 							break;
 						case false:
-							str = "PERDU !\nVous avez été vaincu !";
+							GameOverScreen(2, "Vous avez été vaincu !");
 							break;
 						case null:
-							str = "ÉGALITÉ !\nAucun joueur n'a pu être départagé.";
+							GameOverScreen(3, "Aucun joueur n'a pu remporter ce match !");
 							break;
 					}
 				}
-				// Appelle la fonction "trace" de haXe pour afficher le résultat à l'écran.
-				// Simpliste mais suffisant pour le moment.
-				_global[" D(1"]["]{i"]["-[Ra6"](str, "__end__");
 			}, delay, timeOver);
 		}
 	};
@@ -480,6 +476,7 @@ function Init_DepthManager() {
 	// mt.DepthManager
 	if(!_global["9K"]) { _global["9K"] = {}; }
 	_global["9K"]["+7U K"] = DepthManager;
+	_global.mtDepthManager = _global["9K"]["+7U K"];
 }
 
 function Init_OldRandSeed() {
@@ -554,13 +551,14 @@ function Init_Timer() {
 		}
 		this["-V;B"] = this.calc_tmod;
 	};
-	// fps
-	Timer["[L2"] = function() {
+	Timer.fps = function() {
 		return this.wantedFPS / this["-V;B"];
 	};
+	Timer["[L2"] = Timer.fps;
 	// mt.Timer
 	if(!_global["9K"]) { _global["9K"] = {}; }
 	_global["9K"]["{-kxL"] = Timer;
+	_global.mtTimer = _global["9K"]["{-kxL"];
 }
 
 function Init_Std() {
@@ -675,25 +673,14 @@ function Init_HaxePolyfillsPre() {
 	_global[" D(1"]["]{i"] = {};
 	_global[" D(1"]["]{i"]["-[Ra6"] = function(msg, fileInfo) {
 		// Réimplémentation simplifiée de la fonction "trace" de haXe, avec possibilité de la rendre inopérante via les FlashVars.
-		// Actuellement, elle est également utilisée pour afficher le résultat en fin de partie.
-		if(fileInfo !== "__end__" && (!_global.fvDebug || _global.fvIndex === 1)) { return; }
+		if(!_global.fvDebug || _global.fvIndex === 1) { return; }
 		var gc = _root.GameClip;
 		var gttc = gc.__trace_txt;
-		if(!gttc || fileInfo === "__end__") {
+		if(!gttc) {
 			gc.createTextField("__trace_txt", 1048500, 0, 0, flash.Stage.width, flash.Stage.height + 30);
 			gttc = gc.__trace_txt;
 			gttc.selectable = false;
 			gttc.__trace_lines = [];
-			if(fileInfo === "__end__") {
-				var glow = new flash.filters.DropShadowFilter();
-				glow.color = 0xFFFFFF;
-				glow.blurX = 2;
-				glow.blurY = 2;
-				glow.strength = 10;
-				glow.angle = 0;
-				glow.distance = 0;
-				gttc.filters = [glow];
-			}
 		}
 		var data = "";
 		if(typeof fileInfo == "object") {
@@ -715,6 +702,105 @@ function Init_HaxePolyfillsPost(clip) {
 	if(!clip["[8X6+"]["1ni"]) { clip["[8X6+"]["1ni"] = {}; }
 	if(!clip["[8X6+"]["1ni"]["_global"]) { clip["[8X6+"]["1ni"]["_global"] = _global; }
 	if(!clip["[8X6+"]["1ni"]["_root"]) { clip["[8X6+"]["1ni"]["_root"] = _root; }
+}
+
+function GameOverScreen(frame, text) {
+	// Écran de fin de partie dont le code est repris du fichier original "swf/loader_prod.swf" et adapté.
+	var screen = _root.createEmptyMovieClip("GameOverClip", _root.getNextHighestDepth());
+	var screenDM = new _global.mtDepthManager(screen);
+	var gameClip = _root.GameClip;
+	var snapshot = new flash.display.BitmapData(300, 300, false, 0x000000);
+	snapshot.draw(gameClip);
+	gameClip.removeMovieClip();
+	var map = new flash.display.BitmapData(300, 300, true, 0x880000);
+	var mapClip = screenDM.attach("mcMap", 0);
+	map.draw(mapClip, new flash.geom.Matrix());
+	mapClip.removeMovieClip();
+	var matrixCalc = 1;
+	var matrixValue1 = 1 - matrixCalc * 2 / 3;
+	var matrixValue2 = matrixCalc / 3;
+	var colorMatrixFilter = new flash.filters.ColorMatrixFilter();
+	colorMatrixFilter.matrix = [matrixValue1, matrixValue2, matrixValue2, 0, 0, matrixValue2, matrixValue1, matrixValue2, 0, 0, matrixValue2, matrixValue2, matrixValue1, 0, 0, 0, 0, 0, 1, 0];
+	snapshot.applyFilter(snapshot, snapshot.rectangle, new flash.geom.Point(0, 0), colorMatrixFilter);
+	var snapshotCloned = snapshot.clone();
+	screenDM.empty(0).attachBitmap(snapshotCloned, 0, "always", true);
+	var message = screenDM.attach("mcMsg", 1);
+	message._x = 150;
+	message._y = 1000;
+	message.gotoAndStop(frame);
+	message._xscale = 5000;
+	message._yscale = message._xscale;
+	var anim = {};
+	anim.dmScreen = screenDM;
+	anim.bdMap = map;
+	anim.bdSnapshot = snapshot;
+	anim.bdSnapshotCloned = snapshotCloned;
+	anim.mcMsg = message;
+	anim.mcText = null;
+	anim.text = text.toLowerCase();
+	anim.step = 0;
+	anim.blur = 0;
+	anim.blurDecr = 80;
+	_root.onEnterFrame = function() {
+		var step = anim.step;
+		if(step !== 0) {
+			if(step !== 1) {
+				if(step === 2) {
+					if(anim.blur <= 0) {
+						anim.blur = 0;
+						anim.step = 3;
+					}
+					anim.mcText._visible = true;
+					var blurFilter = new flash.filters.BlurFilter();
+					blurFilter.blurX = anim.blur;
+					blurFilter.blurY = 0;
+					anim.mcText.filters = [blurFilter];
+					anim.blur *= 0.5;
+					anim.blur -= 1;
+				}
+			} else {
+				anim.blurDecr += (-anim.blur) * 0.5;
+				anim.blurDecr *= 0.7;
+				anim.blur += anim.blurDecr;
+				var displacementMapFilter = new flash.filters.DisplacementMapFilter();
+				displacementMapFilter.mapBitmap = anim.bdMap;
+				displacementMapFilter.componentY = 1;
+				displacementMapFilter.scaleX = 100;
+				displacementMapFilter.scaleY = anim.blur;
+				displacementMapFilter.mode = "clamp";
+				anim.bdSnapshotCloned.applyFilter(anim.bdSnapshot, anim.bdSnapshot.rectangle, new flash.geom.Point(0, 0), displacementMapFilter);
+				var blur = (-anim.blur) * 0.5;
+				anim.mcMsg._y = 150 + blur;
+				if(Math.abs(blur) + Math.abs(anim.blurDecr) < 1) {
+					anim.step = 2;
+					anim.mcText = anim.dmScreen.attach("mcText", 1);
+					anim.mcText._x = 150;
+					anim.mcText._y = 150;
+					anim.mcText.info.text = anim.text;
+					anim.blur = 200;
+					anim.mcText._visible = false;
+				}
+			}
+		} else {
+			anim.mcMsg._y = 150 + (anim.mcMsg._xscale - 100) * 0.1;
+			anim.mcMsg._xscale *= 0.5;
+			anim.mcMsg._xscale -= 10;
+			if(anim.mcMsg._xscale < 100) {
+				anim.mcMsg._xscale = 100;
+				var glowFilter = new flash.filters.GlowFilter();
+				glowFilter.blurX = 4;
+				glowFilter.blurY = 4;
+				glowFilter.strength = 4;
+				glowFilter.color = 0x000000;
+				glowFilter.inner = false;
+				var filters = anim.mcMsg.filters;
+				filters.push(glowFilter);
+				anim.mcMsg.filters = filters;
+				anim.step = 1;
+			}
+			anim.mcMsg._yscale = anim.mcMsg._xscale;
+		}
+	};
 }
 
 function LoadGame() {
@@ -862,7 +948,7 @@ _root.onEnterFrame = function() {
 			}
 		}
 	} else {
-		_global[Obfuscation["mt"]][Obfuscation["Timer"]].update();
+		_global.mtTimer.update();
 		g[obfuGame["main"]]();
 	}
 };

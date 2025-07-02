@@ -179,7 +179,7 @@ function CJGame_Action(data) {
 				// Ce n'est pas supposé arriver... mais ça peut parfois arriver : le client 1 a incorrectement renvoyé la valeur "undefined" pour l'argument "data".
 				// Cela rend donc impossible pour le client 2 de récupérer les données communes d'initialisation, si celui-ci démarre avant la nouvelle tentative du client 1.
 				// On annule simplement la partie et on recharge la page dans ce cas de figure.
-				// (Toad06) Sur cafejeux.com aussi, certaines parties ne parvenaient pas à démarrer, potentiellement pour les mêmes raisons qu'ici.
+				// (Toad06) Sur cafejeux.com aussi, certaines parties pouvaient ne pas démarrer, potentiellement pour les mêmes raisons qu'ici.
 				CJGame_IsPreviousClientLoaded.initError = true;
 				if(!IN_IFRAME) {
 					document.body.innerHTML = "";
