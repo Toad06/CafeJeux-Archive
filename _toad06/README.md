@@ -3,10 +3,10 @@
 <em>Auteur : Toad06, sur la base des codes sources des jeux publiés par Motion Twin.</em>
 
 <em>Notes de version :</em><br/>
-<em>Cette nouvelle version majeure est la première pouvant se servir du fichier "swf/loader_prod.swf" comme référence. Les ressources graphiques en ont ainsi été extraites et le code a été analysé afin de corriger plusieurs problèmes de cette implémentation.</em>
-- Ajout des panneaux de chargement. L'un des deux existant est affiché lors de la phase d'initialisation du jeu, sur la partie site de l'archive uniquement.
-- Ajout des panneaux d'erreur. L'un des deux existant est affiché si un problème survient lors de la phase d'initialisation du jeu, sur la partie site de l'archive uniquement.
-- Ajout de l'animation annonçant le résultat en fin de partie.
+Cette nouvelle version majeure est la première à utiliser comme référence le fichier "swf/loader_prod.swf" récemment ajouté. Les ressources graphiques en ont ainsi été extraites et (à venir...) le code a été analysé afin de corriger plusieurs problèmes de cette implémentation.
+- (01/07/2025) Ajout des panneaux de chargement. L'un des deux existant est affiché lors de la phase d'initialisation du jeu, sur la partie site de l'archive uniquement.
+- (01/07/2025) Ajout des panneaux d'erreur. L'un des deux existant est affiché si un problème survient lors de la phase d'initialisation du jeu, sur la partie site de l'archive uniquement.
+- (02/07/2025) Ajout de l'animation annonçant le résultat en fin de partie.
 
 ---
 
