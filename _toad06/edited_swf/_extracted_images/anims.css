@@ -1,0 +1,56 @@
+/* PARTIE SITE */
+/* Animations extraites du fichier "swf/loader_prod.swf". */
+/* Utilisées depuis la version 2.0 du loader. */
+
+body.iframe #overlay.loading, body.iframe #overlay.sync, body.iframe #overlay.reconnecting, body.iframe #overlay.error {
+	background-color: #F1E0D4 !important;
+	background-repeat: no-repeat;
+}
+
+body.iframe #overlay.loading {
+	background-image: url("loading_foreground.png"), url("loading_spritesheet.png");
+	background-position-x: 0px, 122px;
+	background-position-y: 0px, 146px;
+	animation: playLoading 0.6s steps(23) infinite;
+}
+
+body.iframe #overlay.sync {
+	background-image: url("synchronizing_foreground.png"), url("synchronizing_spritesheet.png");
+	background-position-x: 0px, 108px;
+	background-position-y: 0px, 146px;
+	animation: playSync 1.0s steps(43) infinite;
+}
+
+body.iframe #overlay.reconnecting {
+	cursor: pointer;
+	background-image: url("reconnecting.png");
+	animation: playReconnecting 1.0s steps(2) infinite;
+}
+
+body.iframe #overlay.error {
+	cursor: pointer;
+	background-image: url("error_foreground.png"), url("error_spritesheet.png");
+	background-position-x: 0px, 122px;
+	background-position-y: 0px, 146px;
+	animation: playError 0.9s steps(35) infinite;
+}
+
+@keyframes playLoading {
+	0% { background-position-x: 0px, 122px; }
+	100% { background-position-x: 0px, -1212px; } /* -1334px + 122px */
+}
+
+@keyframes playSync {
+	0% { background-position-x: 0px, 108px; }
+	100% { background-position-x: 0px, -4536px; } /* -4644px + 108px */
+}
+
+@keyframes playReconnecting {
+	0% { background-position-x: 0px; }
+	100% { background-position-x: -600px; }
+}
+
+@keyframes playError {
+	0% { background-position-x: 0px, 122px; }
+	100% { background-position-x: 0px, -1908px; } /* -2030px + 122px */
+}
