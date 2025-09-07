@@ -6,6 +6,7 @@ Options +Indexes
 RewriteEngine On
 
 RewriteRule ^_special(/.*)?$ dispatch.php?p=_special$1 [QSA,L]
+RewriteRule ^admin(/.*)?$ dispatch.php?p=admin$1 [QSA,L]
 RewriteRule ^bank(/.*)?$ dispatch.php?p=bank$1 [QSA,L]
 RewriteRule ^ctpl(/.*)?$ dispatch.php?p=ctpl$1 [QSA,L]
 RewriteRule ^defm(/.*)?$ dispatch.php?p=defm$1 [QSA,L]

@@ -90,6 +90,15 @@ switch($page) {
 				$data = str_replace("{ARCHIVE_SOUND_CURRENT_STATE_STR}", ($sSound === 1 ? "on" : "off"), $data);
 				$data = str_replace("{ARCHIVE_SOUND_UPDATE_STATE_ID}", ($sSound === 1 ? "0" : "1"), $data);
 			}
+			if(is_admin()) {
+				// Ajout du lien vers l'espace d'administration.
+				$data .= '<script type="text/javascript"><![CDATA[';
+				$data .= 'var menu = document.querySelector("div#menu ul.topLevel");';
+				$data .= 'var li = document.createElement("li");';
+				$data .= 'li.innerHTML = \'<a href="#admin" onclick="js.XmlHttp.get(\\\'admin\\\', this); return false;" class="admin">En cuisine</a>\';';
+				$data .= 'menu.insertBefore(li, menu.lastElementChild);';
+				$data .= ']]></script>';
+			}
 		}
 		break;
 	case "help":
@@ -432,6 +441,14 @@ switch($page) {
 		$data = get_content("pages/group/6951.html");
 		$data .= "<load>group/6951/editRoom</load>";
 		$data = str_replace("{ARCHIVE_LOAD_TABLE}", "chat", $data);
+		break;
+	case "admin":
+		if(!is_admin()) {
+			$isPageUnknown = true;
+		} else {
+			// (Toad06) Cette page existait... Aucune idée de sa mise en page et des fonctionnalités qu'elle proposait, toutefois.
+			$data = "";
+		}
 		break;
 	case "forum/999999/post":
 	case "forum/thread/999999/reply":
