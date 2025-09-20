@@ -16,8 +16,12 @@ services:
     environment:
       - APACHE_DOCUMENT_ROOT=/var/www/html
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.cafejeux.rule=Host(`cafejeux.cmnemoi.com`)"
-      - "traefik.http.routers.cafejeux.entrypoints=websecure"
-      - "traefik.http.routers.cafejeux.tls.certresolver=letsencrypt"
-      - "traefik.http.services.cafejeux.loadbalancer.server.port=80"
+      - traefik.enable=true
+      - traefik.http.routers.cafejeux.rule=Host(`cafejeux.cmnemoi.com`)
+      - traefik.http.routers.cafejeux.entrypoints=websecure
+      - traefik.http.routers.cafejeux.tls.certresolver=letsencrypt
+      - traefik.http.services.cafejeux.loadbalancer.server.port=80
+
+networks:
+  traefik-proxy:
+    external: true
