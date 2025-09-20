@@ -3,6 +3,7 @@ name: cafejeux
 services:
   traefik:
     image: traefik:3.5
+    container_name: traefik
     command:
       - "--providers.docker=true"
       - "--entrypoints.web.address=:80"
@@ -13,6 +14,7 @@ services:
 
   cafejeux:
     image: php:8.4-apache
+    container_name: cafejeux
     volumes:
       - .:/var/www/html
     command: >
