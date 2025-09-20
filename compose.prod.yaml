@@ -4,6 +4,8 @@ services:
   cafejeux:
     image: php:8.4-apache
     container_name: cafejeux
+    networks:
+      - traefik-proxy
     volumes:
       - .:/var/www/html
     command: >
