@@ -23,6 +23,11 @@ Vous pouvez signaler tout problème <a href="https://github.com/Toad06/CafeJeux-
 
 <a href="https://github.com/Toad06/CafeJeux-Archive"><img src="presentation.png?raw=true" alt="" /></a>
 
+### Installer avec Docker
+
+Si vous disposez de [Docker Compose](https://docs.docker.com/compose/install/), vous pouvez lancer le site en exécutant la commande `docker compose up -d` depuis le dossier racine de l'archive.
+
+Vous pouvez ensuite accéder au site à l'adresse http://cafejeux.localhost.
 
 ## Fonctionnalités dynamiques
 

@@ -1,0 +1,28 @@
+name: cafejeux
+
+services:
+  traefik:
+    image: traefik:3.5
+    command:
+      - "--providers.docker=true"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+  cafejeux:
+    image: php:8.4-apache
+    volumes:
+      - .:/var/www/html
+    command: >
+      bash -c "
+        a2enmod rewrite &&
+        apache2-foreground
+      "
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.cafejeux.rule=Host(`cafejeux.localhost`)"
+      - "traefik.http.services.cafejeux.loadbalancer.server.port=80"
