@@ -1,0 +1,20 @@
+name: cafejeux
+
+services:
+  cafejeux:
+    image: php:8.4-apache
+    volumes:
+      - .:/var/www/html
+    command: >
+      bash -c "
+        a2enmod rewrite &&
+        apache2-foreground
+      "
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.cafejeux.rule=Host(`cafejeux.cmnemoi.com`)"
+      - "traefik.http.routers.emush-eternaltwin.entrypoints=websecure"
+      - "traefik.http.routers.emush-eternaltwin.tls.certresolver=letsencrypt"
+      - "traefik.http.services.cafejeux.loadbalancer.server.port=80"
