@@ -1,7 +1,7 @@
 # Archive CaféJeux
 
 <em>Auteur : Toad06</em><br/>
-<em>Contributeur : Tomdu56</em>
+<em>Contributeurs : Evian, Tomdu56</em>
 
 Cette archive contient l'ensemble des pages, images et fichiers Flash de CafeJeux.com, site de jeux en ligne créé et édité par la société Motion Twin de 2007 à 2021.
 
@@ -14,20 +14,31 @@ Les jeux et quelques inédits sont fonctionnels en mode local (monoposte) en acc
 
 Vous devez disposer d'un serveur web doté des logiciels Apache et PHP. Plus particulièrement, l'archive a été conçue avec Apache 2.4 et PHP 7.4 mais l'ensemble des versions indiquées ci-dessous fonctionnent également :
 - Apache : 2.4
-- PHP : 5.6, 7.4, 8.0 à 8.3 
+- PHP : 5.6, 7.4, 8.0 à 8.4
 
 L'installation de l'archive en elle-même est très simple : il vous suffit d'extraire tout le contenu du fichier zip téléchargé vers votre serveur et d'accéder à la page `index.php` depuis un navigateur qui prend toujours en charge le plugin Flash Player, comme Basilisk. L'émulateur <a href="https://github.com/ruffle-rs/ruffle">Ruffle</a> peut également être utilisé dans les navigateurs plus habituels tels Chrome ou Firefox, pour pallier l'obsolescence de Flash Player : vous devez toutefois vous assurer qu'il est configuré de manière à permettre la lecture automatique des fichiers Flash (sans interaction préalable).
 
-Vous pouvez signaler tout problème <a href="https://github.com/Toad06/CafeJeux-Archive/issues">en ouvrant un ticket</a> ou contribuer <a href="https://github.com/Toad06/CafeJeux-Archive/pulls">en créant une requête de fusion</a>.
+
+### Utilisation avec WampServer (Windows)
+
+La solution la plus simple pour profiter du site est probablement d'utiliser <a href="https://www.wampserver.com">WampServer</a>.
+
+Une fois le programme installé sur votre machine, vous devez vous rendre dans le dossier `www` de WampServer et créer un dossier `cafejeux` dans lequel doivent être transférés tous les fichiers de l'archive.
+
+Lorsque tout est en place, il ne vous reste plus qu'à démarrer WampServer et, dès que l'icône du logiciel s'affiche en vert dans la barre des tâches de Windows, à saisir l'adresse `http://localhost/cafejeux` dans votre navigateur pour accéder au site.
+
+
+### Utilisation avec Docker
+
+Si vous disposez de <a href="https://docs.docker.com/compose/install">Docker Compose</a>, vous pouvez lancer le site en exécutant la commande `docker compose up -d` depuis le dossier racine de l'archive.
+
+Il vous suffit ensuite de saisir l'adresse `http://cafejeux.localhost` dans votre navigateur pour accéder au site.
 
 
 <a href="https://github.com/Toad06/CafeJeux-Archive"><img src="presentation.png?raw=true" alt="" /></a>
 
-### Installer avec Docker
+Vous pouvez signaler tout problème <a href="https://github.com/Toad06/CafeJeux-Archive/issues">en ouvrant un ticket</a> ou contribuer <a href="https://github.com/Toad06/CafeJeux-Archive/pulls">en créant une requête de fusion</a>.
 
-Si vous disposez de [Docker Compose](https://docs.docker.com/compose/install/), vous pouvez lancer le site en exécutant la commande `docker compose up -d` depuis le dossier racine de l'archive.
-
-Vous pouvez ensuite accéder au site à l'adresse http://cafejeux.localhost.
 
 ## Fonctionnalités dynamiques
 
