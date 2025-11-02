@@ -53,13 +53,74 @@ if(isset($_SESSION['cafeUsername']) && isset($_COOKIE['cafeUserData'])) {
 }
 
 
-// Retourne la date actuelle dans les différents formats utilisés par CaféJeux.
-function cj_date_now() {
-	$date = new IntlDateFormatter("fr_FR", IntlDateFormatter::FULL, IntlDateFormatter::NONE);
-	$date = $date->format(time());
-	$dateFull = "Le " . $date . ", à " . date("H:i:s");
-	$datePartial = "Aujourd'hui à " . date("H:i");
+// Retourne la date et l'heure passées en paramètre dans les différents formats utilisés par CaféJeux.
+// L'implémentation de cette fonction est complète mais celle-ci n'est utilisée dans l'archive que pour la date du jour.
+function cj_date($datetimeString, $isForumThreadList = false) {
+	$datetime = new DateTime($datetimeString);
+	$formatDate = function($isFullDate) use($datetime, $isForumThreadList) {
+		$datetime = clone $datetime;
+		$weekday = "";
+		switch($datetime->format("N")) {
+			case "1": $weekday = "lundi"; break; case "2": $weekday = "mardi"; break; case "3": $weekday = "mercredi"; break; case "4": $weekday = "jeudi"; break;
+			case "5": $weekday = "vendredi"; break; case "6": $weekday = "samedi"; break; case "7": $weekday = "dimanche"; break;
+		}
+		$day = $datetime->format("j");
+		if(intval($day) < 10) $day = " " . $day; // Nécessaire pour que l'affichage soit strictement identique à celui de cafejeux.com.
+		$month = "";
+		switch($datetime->format("n")) {
+			case "1": $month = "janvier"; break; case "2": $month = "février"; break; case "3": $month = "mars"; break; case "4": $month = "avril"; break;
+			case "5": $month = "mai"; break; case "6": $month = "juin"; break; case "7": $month = "juillet"; break; case "8": $month = "août"; break;
+			case "9": $month = "septembre"; break; case "10": $month = "octobre"; break; case "11": $month = "novembre"; break; case "12": $month = "décembre"; break;
+		}
+		$year = $datetime->format("Y");
+		$time = $isFullDate ? $datetime->format("H:i:s") : $datetime->format("H:i");
+		$dateFormat = "";
+		if($isFullDate) {
+			// Date complète.
+			$dateFormat = "Le " . $weekday . " " . $day . " " . $month . " " . $year . ", à " . $time;
+		} else {
+			// Date partielle et relative.
+			$today = new DateTime("today");
+			$datetime->setTime(0, 0, 0);
+			$diff = $today->diff($datetime);
+			$diffDays = intval($diff->format("%R%a"));
+			if($diffDays === 0) {
+				// Même jour.
+				$dateFormat = "Aujourd'hui";
+				if(!$isForumThreadList) $dateFormat .= " à " . $time;
+			} elseif($diffDays === -1) {
+				// Hier.
+				$dateFormat = "Hier";
+				if(!$isForumThreadList) $dateFormat .= " à " . $time;
+			} elseif($diffDays > -7 && $diffDays < -1 && $today->format("W") === $datetime->format("W")) {
+				// Même semaine.
+				$dateFormat = $weekday;
+				if(!$isForumThreadList) $dateFormat .= " à " . $time;
+			} elseif($today->format("n") === $datetime->format("n") && $today->format("Y") === $datetime->format("Y")) {
+				// Même mois.
+				$dateFormat = "Le " . $day;
+				if(!$isForumThreadList) $dateFormat .= " à " . $time;
+				else $dateFormat .= " " . $month;
+			} elseif($today->format("Y") === $datetime->format("Y")) {
+				// Même année.
+				if($isForumThreadList) $dateFormat = "Le ";
+				$dateFormat .= $day . " " . $month;
+			} else {
+				// Date plus ancienne.
+				if($isForumThreadList) $dateFormat = "Le ";
+				$dateFormat .= $day . " " . $month . " " . $year;
+			}
+		}
+		return $dateFormat;
+	};
+	$dateFull = $formatDate(true);
+	$datePartial = $formatDate(false);
 	return array($dateFull, $datePartial);
+}
+
+// Retourne la date et l'heure actuelles.
+function cj_date_now() {
+	return cj_date("now");
 }
 
 // Génère un avatar aléatoire sur les pages de joueurs non archivées.
