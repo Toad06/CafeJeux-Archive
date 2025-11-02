@@ -476,7 +476,7 @@ switch($page) {
 						if(isset($_POST['moderator']) && is_moderator()) {
 							$f .= "_moderator";
 						}
-						$date = cj_date_today();
+						$date = cj_date_now();
 						$fullDate = $date[0];
 						$partialDate = $date[1];
 						$parsedContent = parse_message($pContent, true, false);
@@ -887,7 +887,7 @@ switch($page) {
 		break;
 	case "group/420/members":
 	case "group/6951/members":
-		$date = cj_date_today();
+		$date = cj_date_now();
 		$fullDate = $date[0];
 		$partialDate = $date[1];
 		$data = get_content($pageUrlExt);
@@ -1140,7 +1140,7 @@ switch($page) {
 			$data = str_replace("{ARCHIVE_USER_DRINK_NAME}", $drink['name'], $data);
 			if($page === "user/18269") {
 				// NOTE : La date affichée devrait en réalité correspondre à celle de la dernière utilisation du formulaire de connexion ou du "<reboot/>".
-				$date = cj_date_today();
+				$date = cj_date_now();
 				$data = str_replace("{ARCHIVE_USER_DRINK_IMG}", $drink['img'], $data);
 				$data = str_replace("{ARCHIVE_USER_DRINK_DESC}", str_replace("'", "\'", $drink['desc']), $data);
 				$data = str_replace("{ARCHIVE_USER_LAST_SEEN_FULL}", $date[0], $data);
@@ -1247,7 +1247,7 @@ switch($page) {
 		if(isset($_GET['submit'])) {
 			$data = "<alert>La demande de suppression a été annulée. Votre compte ne sera pas supprimé.</alert><load>user/18269</load>";
 		} else {
-			$date = cj_date_today();
+			$date = cj_date_now();
 			$data = get_content($pageUrlExt);
 			$data = str_replace("{ARCHIVE_USER_DELETE_FULL_DATE}", $date[0], $data);
 			$data = str_replace("{ARCHIVE_USER_DELETE_PARTIAL_DATE}", $date[1], $data);

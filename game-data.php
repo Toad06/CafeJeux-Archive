@@ -53,8 +53,8 @@ if(isset($_SESSION['cafeUsername']) && isset($_COOKIE['cafeUserData'])) {
 }
 
 
-// Retourne la date du jour dans les différents formats utilisés par CaféJeux.
-function cj_date_today() {
+// Retourne la date actuelle dans les différents formats utilisés par CaféJeux.
+function cj_date_now() {
 	$date = new IntlDateFormatter("fr_FR", IntlDateFormatter::FULL, IntlDateFormatter::NONE);
 	$date = $date->format(time());
 	$dateFull = "Le " . $date . ", à " . date("H:i:s");
