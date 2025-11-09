@@ -139,11 +139,11 @@ switch($page) {
 	case "log": // NOTE : Cette page est appelée quand un problème survient lors de l'initialisation du site, avec l'erreur précise et différentes données de l'utilisateur dans un paramètre POST.
 	case "static/present":
 	case "static/present2":
-	case "static/require": // NOTE : Cette page s'affiche quand le site ne parvient pas à s'initialiser. Pour cette raison, elle contient tout le code HTML nécessaire.
 		$isPagePublic = true;
 		$data = get_content($pageUrlExt);
 		break;
 	case "partnerFrame":
+	case "static/require": // NOTE : Cette page s'affiche quand le site ne parvient pas à s'initialiser. Pour cette raison, elle contient tout le code HTML nécessaire.
 		$isPagePublic = true;
 		$isPageComponent = true;
 		$data = get_content($pageUrlExt);
