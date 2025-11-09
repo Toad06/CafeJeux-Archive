@@ -55,9 +55,9 @@ if(isset($_SESSION['cafeUsername']) && isset($_COOKIE['cafeUserData'])) {
 
 // Retourne la date et l'heure passées en paramètre dans les différents formats utilisés par CaféJeux.
 // L'implémentation de cette fonction est complète mais celle-ci n'est utilisée dans l'archive que pour la date du jour.
-function cj_date($datetimeString, $isForumThreadList = false) {
+function cj_date($datetimeString) {
 	$datetime = new DateTime($datetimeString);
-	$formatDate = function($isFullDate) use($datetime, $isForumThreadList) {
+	$formatDate = function($isFullDate, $isForumThreadList) use($datetime) {
 		$datetime = clone $datetime;
 		$weekday = "";
 		switch($datetime->format("N")) {
@@ -113,9 +113,10 @@ function cj_date($datetimeString, $isForumThreadList = false) {
 		}
 		return $dateFormat;
 	};
-	$dateFull = $formatDate(true);
-	$datePartial = $formatDate(false);
-	return array($dateFull, $datePartial);
+	$dateFull = $formatDate(true, false);
+	$datePartial = $formatDate(false, false);
+	$datePartialForumThreadList = $formatDate(false, true);
+	return array($dateFull, $datePartial, $datePartialForumThreadList);
 }
 
 // Retourne la date et l'heure actuelles.
