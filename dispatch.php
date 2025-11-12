@@ -446,8 +446,18 @@ switch($page) {
 		if(!is_admin()) {
 			$isPageUnknown = true;
 		} else {
-			// (Toad06) Cette page existait... Aucune idée de sa mise en page et des fonctionnalités qu'elle proposait, toutefois.
-			$data = "";
+			// (Toad06) Cette page existait... En l'absence des informations nécessaires, sa mise en page et les fonctionnalités qu'elle propose dans le cadre de cette archive sont une création originale intégrale.
+			if(isset($_POST['dateToFormat'])) {
+				$pDateToFormat = strval($_POST['dateToFormat']);
+				$formattedDate = cj_date($pDateToFormat);
+				if($formattedDate === null) {
+					$data = '<fill class="nack" id="formFormattedDate">La date indiquée n\'est pas valide.</fill>';
+				} else {
+					$data = '<fill class="ack" id="formFormattedDate"><pre>' . print_r($formattedDate, true) . '</pre></fill>';
+				}
+			} else {
+				$data = get_content($pageUrlExt);
+			}
 		}
 		break;
 	case "forum/999999/post":

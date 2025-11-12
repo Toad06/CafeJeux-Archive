@@ -1,0 +1,42 @@
+<fill id="main">
+<![CDATA[
+	<h1><strong>En</strong> cuisine</h1>
+	<img src="img/icons/large_dev.gif" alt="" class="art"/>
+	<p>
+		Bienvenue en cuisine ! En dehors de son nom amusant, aucune information n'est connue concernant la mise en page et les fonctionnalités de l'espace administration de CafeJeux.com.
+		Cette page est donc une création originale intégrale.
+	</p>
+
+	<form onsubmit="js.XmlHttp.post('admin', this); return false;">
+		<div class="tableHeader"></div>
+		<fieldset style="width:auto;">
+			<p class="help">
+				Cet outil vous permet de formater des dates afin de reproduire l'affichage qui existait sur le site original.
+			</p>
+			<p class="help">
+				Vous pouvez indiquer une date complète, en veillant à respecter le format de la date indiquée par défaut ;
+				ou utiliser des expressions comme <strong>now</strong>, <strong>today</strong>, <strong>yesterday</strong>,
+				<strong>last monday</strong>, <strong>-36 hours</strong>, <strong>-10 days</strong>, <strong>-4 weeks</strong>,
+				<strong>-6 months</strong>, <strong>-8 years</strong>, etc. Ces expressions peuvent être combinées, par exemple
+				<strong>yesterday -1 year 09:35:48</strong>.
+			</p>
+			<p class="help">
+				La fonction PHP <strong>cj_date()</strong> est appelée et renvoie un tableau de données. Les index 0 et 1 correspondent
+				aux dates complète et partielle/relative de la plupart des pages (notez que la date complète ne s'affiche qu'en
+				survolant la date partielle avec le curseur, sur la page en question). Les index 2 et 3 sont des dates partielles
+				utilisées uniquement sur les catégories de forums et pour l'ancienneté des comptes utilisateurs, respectivement.
+			</p>
+			<div class="row">
+				<div class="label"><label for="dateToFormat">Date à formater :</label></div>
+				<div class="input"><input class="field" name="dateToFormat" id="dateToFormat" type="text" value="2007-03-20 12:00:00"/></div>
+				<div class="clear"></div>
+			</div>
+			<div class="row">
+				<input class="button" name="submit" type="submit" value="Valider"/>
+				<div class="clear"></div>
+			</div>
+			<div id="formFormattedDate"></div>
+		</fieldset>
+	</form>
+]]>
+</fill>

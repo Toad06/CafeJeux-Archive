@@ -53,11 +53,15 @@ if(isset($_SESSION['cafeUsername']) && isset($_COOKIE['cafeUserData'])) {
 }
 
 
-// Retourne la date et l'heure passées en paramètre dans les différents formats utilisés par CaféJeux.
-// L'implémentation de cette fonction est complète mais celle-ci n'est utilisée dans l'archive que pour la date du jour.
+// Formate la date et l'heure passées en paramètre dans les différents styles utilisés par CaféJeux.
 function cj_date($datetimeString) {
-	$datetime = new DateTime($datetimeString);
-	$formatDate = function($isFullDate, $isForumThreadList) use($datetime) {
+	try {
+		// Sur la page d'administration, l'utilisateur a la possibilité de fournir lui-même la chaîne, donc une erreur peut être déclenchée ici.
+		$datetime = new DateTime($datetimeString);
+	} catch(Exception $e) {
+		return null;
+	}
+	$formatDate = function($isFullDate, $isForumThreadList = false, $isAccountAge = false) use($datetime) {
 		$datetime = clone $datetime;
 		$weekday = "";
 		switch($datetime->format("N")) {
@@ -84,42 +88,57 @@ function cj_date($datetimeString) {
 			$datetime->setTime(0, 0, 0);
 			$diff = $today->diff($datetime);
 			$diffDays = intval($diff->format("%R%a"));
-			if($diffDays === 0) {
-				// Même jour.
-				$dateFormat = "Aujourd'hui";
-				if(!$isForumThreadList) $dateFormat .= " à " . $time;
-			} elseif($diffDays === -1) {
-				// Hier.
-				$dateFormat = "Hier";
-				if(!$isForumThreadList) $dateFormat .= " à " . $time;
-			} elseif($diffDays > -7 && $diffDays < -1 && $today->format("W") === $datetime->format("W")) {
-				// Même semaine.
-				$dateFormat = $weekday;
-				if(!$isForumThreadList) $dateFormat .= " à " . $time;
-			} elseif($today->format("n") === $datetime->format("n") && $today->format("Y") === $datetime->format("Y")) {
-				// Même mois.
-				$dateFormat = "Le " . $day;
-				if(!$isForumThreadList) $dateFormat .= " à " . $time;
-				else $dateFormat .= " " . $month;
-			} elseif($today->format("Y") === $datetime->format("Y")) {
-				// Même année.
-				if($isForumThreadList) $dateFormat = "Le ";
-				$dateFormat .= $day . " " . $month;
+			if(!$isAccountAge) {
+				// Date à usage général ou liée aux catégories des forums.
+				if($diffDays === 0) {
+					// Même jour.
+					$dateFormat = "Aujourd'hui";
+					if(!$isForumThreadList) $dateFormat .= " à " . $time;
+				} elseif($diffDays === -1) {
+					// Hier.
+					$dateFormat = "Hier";
+					if(!$isForumThreadList) $dateFormat .= " à " . $time;
+				} elseif($diffDays > -7 && $diffDays < -1 && $today->format("W") === $datetime->format("W")) {
+					// Même semaine.
+					$dateFormat = $weekday;
+					if(!$isForumThreadList) $dateFormat .= " à " . $time;
+				} elseif($today->format("n") === $datetime->format("n") && $today->format("Y") === $datetime->format("Y")) {
+					// Même mois.
+					$dateFormat = "Le " . $day;
+					if(!$isForumThreadList) $dateFormat .= " à " . $time;
+					else $dateFormat .= " " . $month;
+				} elseif($today->format("Y") === $datetime->format("Y")) {
+					// Même année.
+					if($isForumThreadList) $dateFormat = "Le ";
+					$dateFormat .= $day . " " . $month;
+				} else {
+					// Date plus ancienne ou plus loin dans le futur.
+					if($isForumThreadList) $dateFormat = "Le ";
+					$dateFormat .= $day . " " . $month . " " . $year;
+				}
 			} else {
-				// Date plus ancienne.
-				if($isForumThreadList) $dateFormat = "Le ";
-				$dateFormat .= $day . " " . $month . " " . $year;
+				// Date liée à l'ancienneté du compte.
+				if($diffDays > 0) {
+					// Date dans le futur non prise en charge ici.
+				} elseif($diffDays >= -7) {
+					$dateFormat = strval(-$diffDays) . " jour(s)";
+				} elseif($diffDays >= -34) {
+					$dateFormat = strval(floor(-$diffDays / 7)) . " semaine(s)";
+				} else {
+					$dateFormat = strval(($diff->format("%y") * 12) + $diff->format("%m")) . " mois";
+				}
 			}
 		}
 		return $dateFormat;
 	};
-	$dateFull = $formatDate(true, false);
-	$datePartial = $formatDate(false, false);
+	$dateFull = $formatDate(true);
+	$datePartial = $formatDate(false);
 	$datePartialForumThreadList = $formatDate(false, true);
-	return array($dateFull, $datePartial, $datePartialForumThreadList);
+	$datePartialAccountAge = $formatDate(false, false, true);
+	return array($dateFull, $datePartial, $datePartialForumThreadList, $datePartialAccountAge);
 }
 
-// Retourne la date et l'heure actuelles.
+// Formate la date et l'heure actuelles.
 function cj_date_now() {
 	return cj_date("now");
 }
