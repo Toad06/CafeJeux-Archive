@@ -51,7 +51,7 @@ function Init_MMApi() {
 					var winner = JSCall("CJGame_PlayData", "winner");
 					JSCall("CJGame_Over", winner);
 					if(winner === null) {
-						GameOverScreen(messageFrame, _global.fvName1 + " et " + _global._fvName2 + " n'ont pas pu se départager !");
+						GameOverScreen(messageFrame, _global.fvName1 + " et " + _global.fvName2 + " n'ont pas pu se départager !");
 					} else {
 						var loser = winner === 1 ? 2 : 1;
 						var winnerName = _global["fvName" + winner];

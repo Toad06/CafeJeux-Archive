@@ -1,5 +1,5 @@
 # Les jeux multijoueurs de CaféJeux en mode local
-<em>Version 2.0-dev2 (02/07/2025)</em><br/>
+<em>Version 2.0-dev3 (14/11/2025)</em><br/>
 <em>Auteur : Toad06, sur la base des codes sources des jeux publiés par Motion Twin.</em>
 
 <em>Notes de version :</em><br/>
