@@ -446,7 +446,7 @@ switch($page) {
 		if(!is_admin()) {
 			$isPageUnknown = true;
 		} else {
-			// (Toad06) Cette page existait... En l'absence des informations nécessaires, sa mise en page et les fonctionnalités qu'elle propose dans le cadre de cette archive sont une création originale intégrale.
+			// (Toad06) Cette page existait... En l'absence des éléments nécessaires pour la recréer fidèlement, l'archive présente une page de substitution.
 			if(isset($_POST['dateToFormat'])) {
 				$pDateToFormat = strval($_POST['dateToFormat']);
 				$formattedDate = cj_date($pDateToFormat);

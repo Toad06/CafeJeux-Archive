@@ -56,12 +56,13 @@ if(isset($_SESSION['cafeUsername']) && isset($_COOKIE['cafeUserData'])) {
 // Formate la date et l'heure passées en paramètre dans les différents styles utilisés par CaféJeux.
 function cj_date($datetimeString) {
 	try {
-		// Sur la page d'administration, l'utilisateur a la possibilité de fournir lui-même la chaîne, donc une erreur peut être déclenchée ici.
+		// Sur la page d'administration, l'utilisateur a la possibilité de fournir lui-même la chaîne de date, elle peut donc s'avérer incorrecte et déclencher une erreur ici.
 		$datetime = new DateTime($datetimeString);
 	} catch(Exception $e) {
 		return null;
 	}
-	$formatDate = function($isFullDate, $isForumThreadList = false, $isAccountAge = false) use($datetime) {
+	$now = new DateTime("now");
+	$formatDate = function($isFullDate, $isForumThreadList = false, $isAccountAge = false) use($datetime, $now) {
 		$datetime = clone $datetime;
 		$weekday = "";
 		switch($datetime->format("N")) {
@@ -84,7 +85,12 @@ function cj_date($datetimeString) {
 			$dateFormat = "Le " . $weekday . " " . $day . " " . $month . " " . $year . ", à " . $time;
 		} else {
 			// Date partielle et relative.
-			$today = new DateTime("today");
+			$today = clone $now;
+			$today->setTime(intval($today->format("H")), 0, 0);
+			$datetime->setTime(intval($datetime->format("H")), 0, 0);
+			$diff = $today->diff($datetime);
+			$diffHours = intval($diff->format("%R") . ($diff->h + ($diff->days * 24)));
+			$today->setTime(0, 0, 0);
 			$datetime->setTime(0, 0, 0);
 			$diff = $today->diff($datetime);
 			$diffDays = intval($diff->format("%R%a"));
@@ -118,8 +124,10 @@ function cj_date($datetimeString) {
 				}
 			} else {
 				// Date liée à l'ancienneté du compte.
-				if($diffDays > 0) {
+				if($diffHours > 0) {
 					// Date dans le futur non prise en charge ici.
+				} elseif($diffHours >= -23) {
+					$dateFormat = strval(-$diffHours) . " heure(s)";
 				} elseif($diffDays >= -7) {
 					$dateFormat = strval(-$diffDays) . " jour(s)";
 				} elseif($diffDays >= -34) {
