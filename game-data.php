@@ -89,7 +89,7 @@ function cj_date($datetimeString) {
 			$today->setTime(intval($today->format("H")), 0, 0);
 			$datetime->setTime(intval($datetime->format("H")), 0, 0);
 			$diff = $today->diff($datetime);
-			$diffHours = intval($diff->format("%R") . ($diff->h + ($diff->days * 24)));
+			$diffHours = intval($diff->format("%R") . strval($diff->h + ($diff->days * 24)));
 			$today->setTime(0, 0, 0);
 			$datetime->setTime(0, 0, 0);
 			$diff = $today->diff($datetime);
@@ -133,7 +133,7 @@ function cj_date($datetimeString) {
 				} elseif($diffDays >= -34) {
 					$dateFormat = strval(floor(-$diffDays / 7)) . " semaine(s)";
 				} else {
-					$dateFormat = strval(($diff->format("%y") * 12) + $diff->format("%m")) . " mois";
+					$dateFormat = strval(intval($diff->format("%y")) * 12 + intval($diff->format("%m"))) . " mois";
 				}
 			}
 		}
