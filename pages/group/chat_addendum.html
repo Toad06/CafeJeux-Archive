@@ -183,9 +183,24 @@
 			}
 		};
 
+		// Fonction réécrite pour prendre en compte la boîte à cocher "Me prévenir en cas de nouveaux messages sur ce chat".
+		js.App.updateWatchChat = function(group, watch) {
+			var watchChat = document.getElementById("chat_watch");
+			if(!watchChat) return;
+			if(this.__archiveWatchChat === undefined) {
+				this.__archiveWatchChat = {};
+			}
+			if(watch === null) {
+				watch = this.__archiveWatchChat[group] === undefined ? watchChat.checked : this.__archiveWatchChat[group];
+				watchChat.checked = watch;
+			}
+			this.__archiveWatchChat[group] = watch;
+			this.__archiveWatchChat.current = watch;
+		};
+
 		// Affiche (potentiellement) un message dans l'en-tête du site lorsque l'utilisateur décide de changer de page.
 		window.__archiveOnLeaveTable = function() {
-			if(window.__archiveChatUsers && window.__archiveChatUsers.other) {
+			if((js.App.__archiveWatchChat && js.App.__archiveWatchChat.current) && (window.__archiveChatUsers && window.__archiveChatUsers.other)) {
 				var s = ["À bientôt !", "À la prochaine !", "À la revoyure !"][Math.floor(Math.random() * 3)];
 				js.App.c.headBar("chat@msg.bar", {_p: {_id: 420, _title: "Table des Habitués"}, _u: {_name: "Nath0u"}, _s: s}, 5000);
 			}
@@ -369,6 +384,8 @@
 		xhr.send(null);
 		return false;
 	};
+
+	js.App.updateWatchChat("group_" + (js.XmlHttp.isInChatRoom("group_420") ? "420" : "6951"), null);
 
 	window.__archiveChatUsers.groupName = undefined;
 	window.__archiveChatUsers.otherFlags = undefined;

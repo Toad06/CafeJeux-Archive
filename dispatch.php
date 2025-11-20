@@ -920,7 +920,7 @@ switch($page) {
 		if($gV === "0") $gV = "false";
 		elseif($gV === "1") $gV = "true";
 		if($gV === "true" || $gV === "false") {
-			$data = "<script type=\"text/javascript\">js.App.updateWatchChat('group_" . $idTable . "'," . $gV . ");</script>";
+			$data = "<script>js.App.updateWatchChat('group_" . $idTable . "'," . $gV . ");</script>";
 		}
 		break;
 	case "group/6864/join":
