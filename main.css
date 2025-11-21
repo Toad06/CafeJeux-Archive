@@ -140,6 +140,18 @@ input, textarea {
 
 /***********************************/
 
+/* Page : "admin.html" */
+
+/* Ajout pour les contenus qui ne faisaient pas partie du site original. */
+.adminCustom fieldset {
+	width: auto;
+}
+.adminCustom h3 {
+	margin-top: 0px;
+}
+
+/***********************************/
+
 /* Page : "game/play_generic.html" */
 
 /* La déclaration "border-color: white;" n'est normalement appliquée que lorsque le joueur connecté a la main (via la classe "p1turn"). */
