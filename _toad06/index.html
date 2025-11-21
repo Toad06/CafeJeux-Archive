@@ -79,6 +79,12 @@
 					specialFile = parseInt(window.location.href.split("glue=")[1], 10);
 					if(specialFile === 1) {
 						game.swf = PATH_SWF_EDITED + "miniwar_fun_gluefix.swf";
+					} else {
+						// Option uniquement documentée dans "_dev_misc/unused_data/info.html".
+						specialFile = parseInt(window.location.href.split("old=")[1], 10);
+						if(specialFile === 1) {
+							game.swf = PATH_SWF + "miniwar.20071115175859.swf";
+						}
 					}
 				}
 			}
