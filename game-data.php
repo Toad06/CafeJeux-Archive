@@ -133,7 +133,7 @@ function cj_date($datetimeString) {
 				} elseif($diffDays >= -34) {
 					$dateFormat = strval(floor(-$diffDays / 7)) . " semaine(s)";
 				} else {
-					$dateFormat = strval(intval($diff->format("%y")) * 12 + intval($diff->format("%m"))) . " mois";
+					$dateFormat = strval((intval($diff->format("%y")) * 12) + intval($diff->format("%m"))) . " mois";
 				}
 			}
 		}
