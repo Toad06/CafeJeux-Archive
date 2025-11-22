@@ -148,6 +148,10 @@ input, textarea {
 }
 .adminCustom h3 {
 	margin-top: 0px;
+	margin-bottom: 10px;
+}
+.adminCustom p.help {
+	margin-top: 0px;
 }
 
 /***********************************/
