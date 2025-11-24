@@ -50,6 +50,12 @@ a.buttonOff, a.button, a.groupButton {
 	background-position: 0px 50%;
 }
 
+/* Améliore l'alignement vertical de certains textes. */
+.pagination {
+	line-height: 20px;
+	white-space: nowrap;
+}
+
 /* Corrections diverses mineures. */
 #groupMain .table.tableClick.members a {
 	text-decoration: none;
