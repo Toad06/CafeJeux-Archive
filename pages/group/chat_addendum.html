@@ -186,7 +186,7 @@
 		// Fonctions réécrites pour conserver en mémoire la couleur choisie par l'utilisateur sur les chats auxquels il participe.
 		js.App.setChatColor = function(room, color) {
 			if(room.indexOf("group_") !== 0) {
-				// Pour l'archive, on ignore les demandes provenant du chat des pages de jeu (la valeur de "room" devant de toute façon être différente à chaque nouvelle partie).
+				// Pour l'archive, on ignore les appels provenant du chat des pages de jeu (la valeur de "room" devant de toute façon être différente à chaque nouvelle partie).
 				return;
 			}
 			if(this.__archiveChatColor === undefined) {
