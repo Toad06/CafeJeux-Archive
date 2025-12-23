@@ -3391,7 +3391,7 @@ haxe.Http.prototype.request = function(post) {
 		if(menuBtnPlaying !== null && menuBtnPlaying.className.indexOf("hidden") === -1) {
 			var url = me.url.split("?")[0];
 			if(
-				url !== "game/play_generic" && url !== "partnerFrame" && url !== "user/dayChanged" && url !== "user/siteSound" && url !== "user/tipContact" &&
+				url !== "game/play_generic" && url !== "partnerFrame" && url !== "user/dayChanged" && url !== "user/logout" && url !== "user/siteSound" && url !== "user/tipContact" &&
 				url.indexOf("ctpl/") !== 0 && url.indexOf("smileyTip") !== 0 && url.replace(/[0-9]/g, "").indexOf("user//remContact") !== 0 && url.replace(/[0-9]/g, "").indexOf("user//tip") !== 0 &&
 				r.responseText.indexOf("<load>user/dayChanged</load>") === -1
 			) {
