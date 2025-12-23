@@ -16,7 +16,7 @@ Vous devez disposer d'un serveur web doté des logiciels Apache et PHP. Plus par
 - Apache : 2.4
 - PHP : 5.6, 7.4, 8.0 à 8.4
 
-L'installation de l'archive en elle-même est très simple : il vous suffit d'extraire tout le contenu du fichier zip téléchargé vers votre serveur et d'accéder à la page `index.php` depuis un navigateur qui prend toujours en charge le plugin Flash Player, comme Basilisk. L'émulateur <a href="https://github.com/ruffle-rs/ruffle">Ruffle</a> peut également être utilisé dans les navigateurs plus habituels tels Chrome ou Firefox, pour pallier l'obsolescence de Flash Player : vous devez toutefois vous assurer qu'il est configuré de manière à permettre la lecture automatique des fichiers Flash (sans interaction préalable).
+L'installation de l'archive en elle-même est très simple : il vous suffit d'extraire tout le contenu du fichier zip téléchargé vers votre serveur et d'accéder à la page `index.php` depuis un navigateur qui prend toujours en charge le plugin Flash Player, comme Basilisk. L'émulateur <a href="https://github.com/ruffle-rs/ruffle">Ruffle</a> peut également être utilisé dans les navigateurs plus habituels tels Chrome ou Firefox, pour pallier l'obsolescence de Flash Player : vous devez toutefois vous assurer qu'il est configuré de manière à permettre la lecture automatique des fichiers Flash.
 
 
 ### Utilisation avec WampServer (Windows)
