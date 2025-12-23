@@ -35,7 +35,7 @@ Si vous disposez de <a href="https://docs.docker.com/compose/install">Docker Com
 Il vous suffit ensuite de saisir l'adresse `http://cafejeux.localhost` dans votre navigateur pour accéder au site.
 
 
-<a href="https://github.com/Toad06/CafeJeux-Archive"><img src="presentation.png?raw=true" alt="" /></a>
+<a href="https://github.com/Toad06/CafeJeux-Archive"><img src="img/_external_data/readme_illustration.png?raw=true" alt="" /></a>
 
 Vous pouvez signaler tout problème <a href="https://github.com/Toad06/CafeJeux-Archive/issues">en ouvrant un ticket</a> ou contribuer <a href="https://github.com/Toad06/CafeJeux-Archive/pulls">en créant une requête de fusion</a>.
 
